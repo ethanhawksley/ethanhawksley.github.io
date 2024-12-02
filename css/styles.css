@@ -4,7 +4,7 @@ body {
     font-size: 1rem;
 }
 
-.page-container {
+#page-container {
     margin: 0 auto;
     padding: 5%;
     display: flex;
@@ -12,19 +12,19 @@ body {
     max-width: 1100px;
 }
 
-.info-bar, .content-bar {
+#info-bar, #content-bar {
     display: flex;
     flex-direction: column;
     padding: 1rem;
 }
 
-.info-bar {
+#info-bar {
     width: 40%;
     align-items: center;
     max-width: 100%;
 }
 
-.profile-image {
+#profile-image {
     width: 60%;
     height: auto;
     border-radius: 50%;
@@ -35,12 +35,12 @@ body {
     background-color: #f0f0f0;
 }
 
-.title {
+#title {
     font-size: 2rem;
     text-align: center;
 }
 
-.content-bar {
+#content-bar {
     width: 60%;
     padding-left: 2em;
     max-width: 100%;
@@ -66,18 +66,18 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-    .page-container {
+    #page-container {
         flex-direction: column;
         padding: 2%;
         flex-wrap: wrap;
     }
 
-    .info-bar, .content-bar {
+    #info-bar, #content-bar {
         width: calc(100% - 2rem);
         padding: 1rem;
     }
 
-    .title {
+    #title {
         font-size: 6vw;
     }
 
