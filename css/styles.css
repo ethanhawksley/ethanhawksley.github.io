@@ -57,6 +57,14 @@ body {
     font-size: 1.2rem;
     margin-bottom: 1rem;
 }
+
+.construction {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #ff3c00;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 800px) {
     .page-container {
         flex-direction: column;
