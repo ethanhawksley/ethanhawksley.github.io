@@ -67,6 +67,11 @@ body {
     font-weight: bold;
 }
 
+#social-links {
+    font-size:1.1rem;
+    text-align: center;
+}
+
 @media screen and (max-width: 800px) {
     #page-container {
         flex-direction: column;
