@@ -65,7 +65,7 @@ body {
     }
 
     .info-bar, .content-bar {
-        width: 100%;
+        width: calc(100% - 2rem);
         padding: 1rem;
     }
 
