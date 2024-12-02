@@ -10,6 +10,8 @@ body {
     display: flex;
     flex-direction: row;
     max-width: 1100px;
+    border: 0.5rem solid #e0e0e0;
+    border-radius: 15px;
 }
 
 #info-bar, #content-bar {
