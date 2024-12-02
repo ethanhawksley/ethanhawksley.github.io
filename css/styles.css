@@ -1,0 +1,50 @@
+body {
+    background-color: #f0f0f0;
+    font-family: "-apple-system, BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.page-container {
+    margin: 0 auto;
+    padding: 5em;
+    display: flex;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+    .page-container {
+        flex-direction: column;
+    }
+}
+
+.info-bar, .content-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    .info-bar, .content-bar{
+        width: calc(100% - 5em);
+    }
+}
+
+.info-bar {
+    width: 40%;
+    align-items: center;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    display: block;
+}
+
+.title {
+    font-size: 2vw;
+}
+
+.content-bar {
+    width: 60%;
+    padding-left: 2em;
+}
