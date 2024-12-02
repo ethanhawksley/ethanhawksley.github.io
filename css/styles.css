@@ -1,6 +1,7 @@
 body {
     background-color: #f0f0f0;
     font-family: "-apple-system, BlinkMacSystemFont", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
 }
 
 .page-container {
@@ -8,47 +9,71 @@ body {
     padding: 5%;
     display: flex;
     flex-direction: row;
-}
-
-@media screen and (max-width: 600px) {
-    .page-container {
-        flex-direction: column;
-    }
+    max-width: 1100px;
 }
 
 .info-bar, .content-bar {
     display: flex;
     flex-direction: column;
-}
-
-@media screen and (max-width: 600px) {
-    .info-bar, .content-bar{
-        width: calc(100% - 5em);
-    }
+    padding: 1rem;
 }
 
 .info-bar {
     width: 40%;
     align-items: center;
+    max-width: 100%;
 }
 
 .profile-image {
     width: 60%;
     height: auto;
     border-radius: 50%;
-    border: 3px solid #ccc;
+    border: 0.2em solid #ccc;
     display: block;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #f0f0f0;
 }
 
 .title {
-    font-size: 2vw;
+    font-size: 2rem;
+    text-align: center;
 }
 
 .content-bar {
     width: 60%;
     padding-left: 2em;
+    max-width: 100%;
 }
 
 .heading {
-    font-size: 1.5vw;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.content {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+@media screen and (max-width: 800px) {
+    .page-container {
+        flex-direction: column;
+        padding: 2%;
+        flex-wrap: wrap;
+    }
+
+    .info-bar, .content-bar {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 6vw;
+    }
+
+    .heading {
+        font-size: 4vw;
+    }
 }
