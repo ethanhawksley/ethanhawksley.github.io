@@ -6,12 +6,12 @@ body {
 
 a {
     text-decoration: none;
-    color: #0073e6;
+    color: #006DEB;
     transition: color 0.2s;
 }
 
 a:hover {
-    color: #005bb5;
+    color: #0053a5;
 }
 
 #page-container {
