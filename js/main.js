@@ -1,4 +1,3 @@
-console.log('loaded main.js');
 document.getElementById('email-clipboard').addEventListener('click', function () {
     navigator.clipboard.writeText('ethan@hawksley.dev');
 });
