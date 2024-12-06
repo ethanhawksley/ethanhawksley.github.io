@@ -80,6 +80,11 @@ a:hover {
     color: #222;
 }
 
+#email-clipboard {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 #projects {
     display: flex;
     flex-direction: column;
