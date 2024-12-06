@@ -8,10 +8,17 @@ body {
     margin: 0 auto;
     padding: 5%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     max-width: 1100px;
-    border: 0.5rem solid #e0e0e0;
-    border-radius: 15px;
+}
+
+#overview {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #info-bar, #content-bar {
@@ -65,10 +72,53 @@ body {
     text-align: center;
 }
 
+#projects {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+}
+
+.project:hover {
+    transform: scale(1.02);
+}
+
+.project-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+
+
+.project-description {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333333;
+}
+
 @media screen and (max-width: 800px) {
     #page-container {
-        flex-direction: column;
         padding: 2%;
+    }
+
+    #overview {
+        flex-direction: column;
         flex-wrap: wrap;
     }
 
