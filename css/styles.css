@@ -136,6 +136,10 @@ a:hover {
         flex-wrap: wrap;
     }
 
+    #info-bar {
+        flex-direction: row;
+    }
+
     #info-bar, #content-bar {
         width: calc(100% - 2rem);
         padding: 1rem;
