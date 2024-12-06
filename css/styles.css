@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
     font-family: -apple-system, blinkmacsystemfont, "segoe ui", "noto sans", helvetica, arial, sans-serif, "apple color emoji", "segoe ui emoji";
     font-size: 1rem;
 }
@@ -70,23 +70,26 @@ a:hover {
     margin-bottom: 1rem;
     text-align: center;
     text-decoration: underline;
+    color: #111;
 }
 
 .content {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+    color: #222;
 }
 
 #contact-me {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-align: center;
+    color: #222
 }
 
 #projects {
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
-    padding: 1rem;
+    margin-top: 2rem;
+    padding: 2rem;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -95,17 +98,18 @@ a:hover {
 .project {
     display: flex;
     flex-direction: row;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     justify-content: center;
-    padding: 1rem;
+    padding: 1.5rem;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     background-color: #f9f9f9;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .project:hover {
     transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .project-title {
@@ -114,12 +118,10 @@ a:hover {
     font-weight: bold;
 }
 
-
-
 .project-description {
     font-size: 1rem;
     margin-bottom: 0.5rem;
-    color: #333333;
+    color: #333;
 }
 
 @media screen and (max-width: 800px) {
