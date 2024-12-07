@@ -102,6 +102,11 @@ a:hover {
 
 }
 
+#email-clipboard:active #copy-svg {
+    fill: #8f9398;
+}
+
+
 #project-section {
     display: flex;
     flex-direction: column;
