@@ -66,6 +66,7 @@ a:hover {
     text-align: center;
     text-decoration: underline;
     color: #111;
+    font-weight: normal;
 }
 
 .content {
@@ -78,6 +79,8 @@ a:hover {
     font-size: 1.2rem;
     text-align: center;
     color: #222;
+    list-style-type: none;
+    padding: 0;
 }
 
 #email-clipboard {
@@ -85,7 +88,7 @@ a:hover {
     -webkit-user-select: none;
 }
 
-#projects {
+#project-section {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
@@ -93,6 +96,11 @@ a:hover {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#projects {
+    list-style-type: none;
+    padding: 0;
 }
 
 .project {
