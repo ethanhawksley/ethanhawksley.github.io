@@ -93,8 +93,13 @@ a:hover {
 }
 
 #email-clipboard {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
+
 }
 
 #project-section {
