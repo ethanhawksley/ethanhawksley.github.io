@@ -10,6 +10,7 @@ body {
     background: linear-gradient(135deg, var(--background-color), #e0e0e0);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 a {
@@ -46,7 +47,7 @@ a:hover {
 }
 
 #info-bar {
-    width: 40%;
+    flex: 1;
     align-items: center;
 }
 
@@ -64,7 +65,7 @@ a:hover {
 }
 
 #content-bar {
-    width: 60%;
+    flex: 2;
     padding-left: 2rem;
 }
 
