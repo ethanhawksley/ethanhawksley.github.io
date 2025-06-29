@@ -4,3 +4,6 @@
 [submodule "turing-machine"]
 	path = turing-machine
 	url = https://github.com/ethan-hawksley/turing-machine
+[submodule "tetris"]
+	path = tetris
+	url = https://github.com/ethan-hawksley/tetris
