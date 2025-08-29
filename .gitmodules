@@ -7,3 +7,6 @@
 [submodule "tetris"]
 	path = tetris
 	url = https://github.com/ethan-hawksley/tetris
+[submodule "soundboard"]
+	path = soundboard
+	url = https://github.com/ethan-hawksley/soundboard
