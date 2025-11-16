@@ -1,135 +1,121 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Home - Ethan Hawksley</title>
-        <link href="images/favicon.ico" rel="icon" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta
-            content="The personal site of Ethan Hawksley"
-            name="description"
-        />
-        <meta content="Ethan Hawksley" name="author" />
-        <meta
-            content="Ethan Hawksley, Ethan, Hawksley, Computer Science, Mathematics"
-            name="keywords"
-        />
-        <meta content="Home - Ethan Hawksley" property="og:title" />
-        <meta
-            content="The personal site of Ethan Hawksley"
-            property="og:description"
-        />
-        <meta content="https://hawksley.dev" property="og:url" />
-        <meta
-            content="https://www.hawksley.dev/images/ethan-hawksley.png"
-            property="og:image"
-        />
-        <meta content="Ethan Hawksley" property="og:site_name" />
-        <meta content="website" property="og:type" />
-    </head>
-    <body>
-        <main id="page-container">
-            <div id="overview">
-                <div id="info-bar">
-                    <img
-                        alt="Ethan Hawksley Profile Picture"
-                        id="profile-image"
-                        src="images/ethan-hawksley.png"
-                    />
-                    <h1 id="title">Ethan Hawksley</h1>
-                </div>
-                <section id="content-bar">
-                    <h2 class="heading">About Me</h2>
-                    <p class="content">
-                        I am a student currently studying Computer Science and
-                        Mathematics. I'm passionate about learning new
-                        programming languages and technologies.
-                    </p>
-                    <h2 class="heading">Get in touch!</h2>
-                    <ul id="contact-me">
-                        <li class="content">
-                            Email:
-                            <a href="mailto:ethan@hawksley.dev"
-                                >ethan&nbsp;&#91;&#97;t&#93;&nbsp;hawksley.dev</a
-                            >
-                            <button
-                                aria-label="Copy Email Address"
-                                id="email-clipboard"
-                            >
-                                <svg
-                                    fill="#5f6368"
-                                    height="1rem"
-                                    id="copy-svg"
-                                    viewBox="0 -960 960 960"
-                                    width="1rem"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
-                                    />
-                                </svg>
-                            </button>
-                        </li>
-                        <li class="content">
-                            GitHub:
-                            <a href="https://github.com/ethan-hawksley"
-                                >Ethan-Hawksley</a
-                            >
-                        </li>
-                    </ul>
-                </section>
-            </div>
-            <section id="project-section">
-                <h2 class="heading">Projects</h2>
-                <ul id="projects">
-                    <li class="project">
-                        <p class="project-title">
-                            <a
-                                href="https://github.com/ethan-hawksley/hawksley-site"
-                            >
-                                Ethan Hawksley's Site
-                            </a>
-                        </p>
-                        <p class="project-description content">
-                            The source code for this website.
-                        </p>
-                    </li>
-                    <li class="project">
-                        <p class="project-title">
-                            <a href="https://hawksley.dev/cyms-interpreter"
-                                >CYMS Interpreter</a
-                            >
-                        </p>
-                        <p class="project-description content">
-                            A web-based interpreter for the CYMS assembly
-                            language.
-                        </p>
-                    </li>
-                    <li class="project">
-                        <p class="project-title">
-                            <a href="https://hawksley.dev/turing-machine"
-                                >Turing Machine</a
-                            >
-                        </p>
-                        <p class="project-description content">
-                            An online simulator of a Turing Machine.
-                        </p>
-                    </li>
-                    <li class="project">
-                        <p class="project-title">
-                            <a
-                                href="https://github.com/ethan-hawksley/moss-music"
-                                >Moss Music</a
-                            >
-                        </p>
-                        <p class="project-description content">
-                            A music player written with Electron.
-                        </p>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <script src="js/main.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - Ethan Hawksley</title>
+    <link href="favicon.ico" rel="icon" />
+    <link href="style.css" rel="stylesheet" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="The personal site of Ethan Hawksley" name="description" />
+    <meta content="Ethan Hawksley" name="author" />
+    <meta
+      content="Ethan Hawksley, Ethan, Hawksley, Computer Science, Mathematics"
+      name="keywords"
+    />
+    <meta content="Home - Ethan Hawksley" property="og:title" />
+    <meta
+      content="The personal site of Ethan Hawksley"
+      property="og:description"
+    />
+    <meta content="https://hawksley.dev" property="og:url" />
+    <meta
+      content="https://www.hawksley.dev/images/ethan-hawksley.png"
+      property="og:image"
+    />
+    <meta content="Ethan Hawksley" property="og:site_name" />
+    <meta content="website" property="og:type" />
+  </head>
+  <body>
+    <main id="page-container">
+      <div id="overview">
+        <div id="info-bar">
+          <img
+            alt="Ethan Hawksley Profile Picture"
+            id="profile-image"
+            src="ethan-hawksley.png"
+          />
+          <h1 id="title">Ethan Hawksley</h1>
+        </div>
+        <section id="content-bar">
+          <h2 class="heading">About Me</h2>
+          <p class="content">
+            I am a student currently studying Computer Science and Mathematics.
+            I'm passionate about learning new programming languages and
+            technologies.
+          </p>
+          <h2 class="heading">Get in touch!</h2>
+          <ul id="contact-me">
+            <li class="content">
+              Email:
+              <a href="mailto:ethan@hawksley.dev"
+                >ethan&nbsp;&#91;&#97;t&#93;&nbsp;hawksley.dev</a
+              >
+              <button aria-label="Copy Email Address" id="email-clipboard">
+                <svg
+                  fill="#5f6368"
+                  height="1rem"
+                  id="copy-svg"
+                  viewBox="0 -960 960 960"
+                  width="1rem"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li class="content">
+              GitHub:
+              <a href="https://github.com/ethan-hawksley">Ethan-Hawksley</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <section id="project-section">
+        <h2 class="heading">Projects</h2>
+        <ul id="projects">
+          <li class="project">
+            <p class="project-title">
+              <a href="https://github.com/ethan-hawksley/ethan-hawksley.github.io">
+                Ethan Hawksley's Site
+              </a>
+            </p>
+            <p class="project-description content">
+              The source code for this website.
+            </p>
+          </li>
+          <li class="project">
+            <p class="project-title">
+              <a href="https://hawksley.dev/cyms-interpreter"
+                >CYMS Interpreter</a
+              >
+            </p>
+            <p class="project-description content">
+              A web-based interpreter for the CYMS assembly language.
+            </p>
+          </li>
+          <li class="project">
+            <p class="project-title">
+              <a href="https://hawksley.dev/turing-machine">Turing Machine</a>
+            </p>
+            <p class="project-description content">
+              An online simulator of a Turing Machine.
+            </p>
+          </li>
+          <li class="project">
+            <p class="project-title">
+              <a href="https://github.com/ethan-hawksley/moss-music"
+                >Moss Music</a
+              >
+            </p>
+            <p class="project-description content">
+              A music player written with Electron.
+            </p>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <script src="main.js"></script>
+  </body>
 </html>
