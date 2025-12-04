@@ -8,10 +8,7 @@
       content="Portfolio of Ethan Hawksley, a Computer Science student specializing in Linux systems, web development, and low-level computing."
       name="description"
     />
-    <meta
-      content="Ethan Hawksley, Computer Science, Alcester Grammar School"
-      name="keywords"
-    />
+    <meta content="Ethan Hawksley" name="keywords" />
     <meta content="Ethan Hawksley" name="author" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="canonical" href="https://hawksley.dev" />
@@ -19,6 +16,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <link rel="manifest" href="site.webmanifest" />
+    <link
+      rel="preload"
+      href="InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link href="style.css" rel="stylesheet" />
     <meta content="Ethan Hawksley | Developer Portfolio" property="og:title" />
     <meta
@@ -41,40 +45,58 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ethan Hawksley",
-        "url": "https://hawksley.dev",
-        "image": "https://hawksley.dev/og-image.png",
-        "jobTitle": "Computer Science Student",
-        "alumniOf": {
-          "@type": "School",
-          "name": "Alcester Grammar School"
-        },
-        "sameAs": [
-          "https://github.com/ethan-hawksley",
-          "https://www.linkedin.com/in/ethan-hawksley"
-        ]
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Ethan Hawksley",
+          "url": "https://hawksley.dev",
+          "image": "https://hawksley.dev/og-image.png",
+          "jobTitle": "Computer Science Student",
+          "alumniOf": {
+            "@type": "School",
+            "name": "Alcester Grammar School"
+          },
+          "sameAs": [
+            "https://github.com/ethan-hawksley",
+            "https://www.linkedin.com/in/ethan-hawksley"
+          ],
+          "knowsAbout": [
+            "Linux System Administration",
+            "Web Development",
+            "Low-level Computing",
+            "Assembly Language",
+            "JavaScript"
+          ]
+        }
       }
     </script>
   </head>
   <body>
     <div class="container">
       <header>
-        <img class="avatar" src="avatar.svg" alt="Profile Avatar" />
-        <h1>Hi, I'm Ethan Hawksley</h1>
+        <img
+          class="avatar"
+          src="avatar.svg"
+          alt="Ethan Hawksley - Computer Science Student"
+          height="150"
+          width="150"
+        />
+        <h1>Ethan Hawksley</h1>
         <div class="subtitle">
           <p>Computer Science Student at Alcester Grammar School.</p>
-          <p>Focused on Linux systems and web development.</p>
+          <p>
+            Focused on Linux systems, web development, and low-level computing.
+          </p>
         </div>
         <ul class="links">
           <li>
-            <img src="github.svg" alt="GitHub Icon" />
+            <img src="github.svg" alt="GitHub Icon" height="20" width="20" />
             <a href="https://github.com/ethan-hawksley" target="_blank">
               Ethan-Hawksley
             </a>
           </li>
           <li>
-            <img src="email.svg" alt="Email Icon" />
+            <img src="email.svg" alt="Email Icon" height="20" width="20" />
             <a href="mailto:ethan@hawksley.dev">ethan@hawksley.dev</a>
           </li>
         </ul>
@@ -87,12 +109,17 @@
               <h3>CYMS Interpreter</h3>
               <p>A web-based interpreter for the CYMS assembly language.</p>
               <div class="project-links">
-                <a href="https://hawksley.dev/cyms-interpreter" target="_blank">
+                <a
+                  href="https://hawksley.dev/cyms-interpreter"
+                  target="_blank"
+                  aria-label="Live site for CYMS Interpreter"
+                >
                   Live Site
                 </a>
                 <a
                   href="https://github.com/ethan-hawksley/cyms-interpreter"
                   target="_blank"
+                  aria-label="Source code for CYMS Interpreter"
                 >
                   Source Code
                 </a>
@@ -102,12 +129,17 @@
               <h3>Online Turing Machine</h3>
               <p>A dynamic Turing machine simulator.</p>
               <div class="project-links">
-                <a href="https://hawksley.dev/turing-machine" target="_blank">
+                <a
+                  href="https://hawksley.dev/turing-machine"
+                  target="_blank"
+                  aria-label="Live site for Online Turing Machine"
+                >
                   Live Site
                 </a>
                 <a
                   href="https://github.com/ethan-hawksley/turing-machine"
                   target="_blank"
+                  aria-label="Source code for Online Turing Machine"
                 >
                   Source Code
                 </a>
@@ -120,6 +152,7 @@
                 <a
                   href="https://github.com/ethan-hawksley/moss-music"
                   target="_blank"
+                  aria-label="Source code for Moss Music"
                 >
                   Source Code
                 </a>
@@ -129,12 +162,17 @@
               <h3>MineDuo</h3>
               <p>An online cooperative Minesweeper using PeerJS.</p>
               <div class="project-links">
-                <a href="https://hawksley.dev/mineduo" target="_blank">
+                <a
+                  href="https://hawksley.dev/mineduo"
+                  target="_blank"
+                  aria-label="Live site for MineDuo"
+                >
                   Live Site
                 </a>
                 <a
                   href="https://github.com/ethan-hawksley/mineduo"
                   target="_blank"
+                  aria-label="Source code for MineDuo"
                   >Source Code
                 </a>
               </div>
