@@ -112,10 +112,9 @@ h3 {
 
 #projects h2 {
   margin-bottom: 1.5rem;
-  text-align: left;
 }
 
-#projects {
+#project-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
