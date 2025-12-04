@@ -71,6 +71,7 @@ header {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2.5rem;
 }
 
 .avatar {
@@ -80,22 +81,33 @@ header {
 
 .subtitle {
   color: var(--secondary-text-color);
+  margin-bottom: 1rem;
 }
 
-.links {
+.links,
+.projects {
   list-style: none;
   padding: 0;
 }
 
-.links li {
+.links li,
+.projects li {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
+.projects li {
+  gap: 1rem;
+}
+
 .links li img {
   height: 28px;
   width: 28px;
+}
+
+.links li a {
+    text-align: left;
 }
 
 a {
@@ -108,4 +120,8 @@ a {
 a:hover {
   color: var(--accent-color);
   border-bottom-color: var(--accent-color);
+}
+
+#projects h2 {
+  margin-bottom: 1rem;
 }
