@@ -103,11 +103,21 @@ a:hover {
   border-bottom-color: var(--accent-color);
 }
 
+a:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 p,
 h1,
 h2,
 h3 {
   overflow-wrap: break-word;
+}
+
+#projects {
+    margin-bottom: 4rem;
 }
 
 #projects h2 {
@@ -166,4 +176,29 @@ h3 {
 
 .project-links a:hover {
   text-decoration: underline;
+}
+
+footer {
+  font-size: 0.85rem;
+  color: var(--secondary-text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #111;
+    --text-color: #f0f0f0;
+    --accent-color: #60a5fa;
+    --secondary-text-color: #a0a0a0;
+    --border-color: #333;
+  }
+
+  .project-card {
+    background: #1a1a1a;
+    box-shadow: none;
+  }
+
+  .links li img,
+  .avatar {
+    filter: invert(1);
+  }
 }
