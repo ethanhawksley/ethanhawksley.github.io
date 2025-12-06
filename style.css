@@ -22,11 +22,17 @@
   padding: 0;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 body {
   color: var(--text-color);
   background-color: var(--background-color);
   line-height: 1.6;
-  font-size: 16px;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
@@ -88,7 +94,6 @@ h1 {
 .links li img {
   height: 20px;
   width: 20px;
-  display: block;
 }
 
 a {
@@ -109,11 +114,16 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-p,
+p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
 h1,
 h2,
 h3 {
   overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 #projects {
