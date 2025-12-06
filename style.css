@@ -1,8 +1,8 @@
 :root {
   --background-color: #fff;
   --text-color: #1a1a1a;
-  --accent-color: #2563eb;
   --secondary-text-color: #4a4a4a;
+  --accent-color: #2563eb;
   --border-color: #e5e5e5;
 }
 
@@ -22,78 +22,42 @@
   padding: 0;
 }
 
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
 body {
-  color: var(--text-color);
-  background-color: var(--background-color);
-  line-height: 1.6;
-  font-size: 1rem;
-  -webkit-font-smoothing: antialiased;
   display: flex;
   justify-content: center;
+
   font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
   text-align: center;
+  -webkit-font-smoothing: antialiased;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
-.container {
-  width: 100%;
-  max-width: 700px;
-  padding: 2rem 1.5rem;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 3.5rem;
-}
-
-.avatar {
-  height: 150px;
-  width: 150px;
-  margin-bottom: 1.5rem;
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 h1 {
+  margin-bottom: 0.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
 }
 
-.subtitle {
-  color: var(--secondary-text-color);
-  margin-bottom: 1.5rem;
-}
-
-.links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-@media (min-width: 500px) {
-  .links {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-}
-
-.links li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.links li img {
-  height: 20px;
-  width: 20px;
+p {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
 }
 
 a {
@@ -114,16 +78,54 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-p {
-  overflow-wrap: break-word;
-  text-wrap: pretty;
+.container {
+  width: 100%;
+  max-width: 700px;
+  padding: 2rem 1.5rem;
 }
 
-h1,
-h2,
-h3 {
-  overflow-wrap: break-word;
-  text-wrap: balance;
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  margin-bottom: 1.5rem;
+  color: var(--secondary-text-color);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.links li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.links li img {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 500px) {
+  .links {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
 }
 
 #projects {
@@ -145,12 +147,12 @@ h3 {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
+  background: #fafafa;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  background: #fafafa;
 }
 
 .project-card:hover {
@@ -160,15 +162,15 @@ h3 {
 }
 
 .project-card h3 {
-  font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .project-card p {
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
   font-size: 0.95rem;
   color: var(--secondary-text-color);
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
 }
 
 .project-links {
@@ -179,9 +181,9 @@ h3 {
 }
 
 .project-links a {
-  border-bottom: none;
-  color: var(--accent-color);
   font-weight: 500;
+  color: var(--accent-color);
+  border-bottom: none;
 }
 
 .project-links a:hover {
@@ -197,8 +199,8 @@ footer {
   :root {
     --background-color: #111;
     --text-color: #f0f0f0;
-    --accent-color: #60a5fa;
     --secondary-text-color: #a0a0a0;
+    --accent-color: #60a5fa;
     --border-color: #333;
   }
 
