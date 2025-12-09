@@ -121,6 +121,10 @@ header {
   height: 20px;
 }
 
+.email-link::after {
+  content: "ethan@hawksley.dev";
+}
+
 @media (min-width: 500px) {
   .links {
     flex-direction: row;
