@@ -33,6 +33,9 @@
       crossorigin
     />
     <link href="style.css" rel="stylesheet" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="twitter:site" content="@Ethan_Hawksley" />
+    <meta name="twitter:creator" content="@Ethan_Hawksley" />
     <link rel="preload" as="image" href="avatar.svg" fetchpriority="high" />
     <meta name="thumbnail" content="https://hawksley.dev/avatar-1200x1200.png" />
     <meta content="Ethan Hawksley | Developer Portfolio" property="og:title" />
@@ -47,8 +50,10 @@
       content="https://hawksley.dev/og-image-1200x630.png"
       property="og:image"
     />
+    <meta property="og:image:alt" content="Ethan Hawksley - Developer Portfolio" />
     <meta content="1200" property="og:image:width" />
     <meta content="630" property="og:image:height" />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Ethan Hawksley | Developer Portfolio" />
     <meta
@@ -59,6 +64,7 @@
       name="twitter:image"
       content="https://hawksley.dev/og-image-1200x630.png"
     />
+    <meta name="twitter:image:alt" content="Ethan Hawksley - Developer Portfolio" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -71,7 +77,12 @@
           "jobTitle": "Computer Science Student",
           "alumniOf": {
             "@type": "School",
-            "name": "Alcester Grammar School"
+            "name": "Alcester Grammar School",
+            "url": "https://www.alcestergs.co.uk",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "UK"
+            }
           },
           "homeLocation": {
             "@type": "Country",
