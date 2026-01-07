@@ -3,31 +3,39 @@
     <!-- Homepage -->
     <url>
         <loc>https://hawksley.dev/</loc>
-        <lastmod>2025-12-06</lastmod>
+        <lastmod>2026-01-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <!-- Project: CYMS Interpreter -->
     <url>
-        <loc>https://hawksley.dev/cyms-interpreter</loc>
-        <lastmod>2025-12-04</lastmod>
+        <loc>https://hawksley.dev/cyms-interpreter/</loc>
+        <lastmod>2026-01-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <!-- Project: Online Turing Machine -->
     <url>
-        <loc>https://hawksley.dev/turing-machine</loc>
-        <lastmod>2025-12-04</lastmod>
+        <loc>https://hawksley.dev/turing-machine/</loc>
+        <lastmod>2026-01-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <!-- Project: MineDuo -->
     <url>
-        <loc>https://hawksley.dev/mineduo</loc>
-        <lastmod>2025-12-04</lastmod>
+        <loc>https://hawksley.dev/mineduo/</loc>
+        <lastmod>2026-01-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Project: Tetris -->
+    <url>
+        <loc>https://hawksley.dev/tetris/</loc>
+        <lastmod>2026-01-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
