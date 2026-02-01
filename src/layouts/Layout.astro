@@ -165,6 +165,23 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   h6 {
     text-wrap: balance;
   }
+
+  :root {
+    --color-background: #fafafa;
+    --color-surface: #f0f0f0;
+    --color-text: #1a1a1a;
+    --color-text-muted: #525252;
+    --color-accent: #d14100;
+    --color-border: #e0e0e0;
+  }
+  :root.dark {
+    --color-background: #0f0f0f;
+    --color-surface: #1a1a1a;
+    --color-text: #ededed;
+    --color-text-muted: #b0b0b0;
+    --color-accent: #ff4f00;
+    --color-border: #2a2a2a;
+  }
 </style>
 <style>
   @font-face {
@@ -176,17 +193,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   }
 
   html {
-    background-color: #fafafa;
-    color: #1a1a1a;
+    background-color: var(--color-background);
+    color: var(--color-text);
     transition:
       background-color 250ms ease-out,
       color 250ms ease;
     font-family: 'Inter', system-ui, sans-serif;
-  }
-
-  html.dark {
-    background-color: #0f0f0f;
-    color: #ededed;
   }
 
   #page {

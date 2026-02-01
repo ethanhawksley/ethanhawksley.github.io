@@ -24,7 +24,7 @@ import Sun from '../assets/sun.svg';
     transition:
       color 0.3s ease,
       opacity 0.3s ease;
-    color: #1a1a1a;
+    color: var(--color-text);
     width: 2rem;
     height: 2rem;
     position: absolute;
@@ -36,17 +36,15 @@ import Sun from '../assets/sun.svg';
 
   :global(.dark) .moon {
     opacity: 0;
-    color: #ededed;
   }
 
   :global(.dark) .sun {
     opacity: 1;
-    color: #ededed;
   }
 
   button:hover > .sun,
   button:hover > .moon {
-    color: #ff4f00;
+    color: var(--color-accent);
   }
 </style>
 <script>

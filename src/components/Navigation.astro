@@ -54,21 +54,12 @@ const { highlightedLink } = Astro.props;
 
   .active {
     font-weight: 600;
-    text-decoration: #d14100 underline 2px;
+    text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.5rem;
   }
 
   .active,
   a:hover {
-    color: #d14100;
-  }
-
-  :global(.dark) .active,
-  :global(.dark) a:hover {
-    color: #ff4f00;
-  }
-
-  :global(.dark) .active {
-    text-decoration: #ff4f00 underline 2px;
+    color: var(--color-accent);
   }
 </style>
