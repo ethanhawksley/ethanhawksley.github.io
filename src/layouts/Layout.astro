@@ -4,9 +4,10 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
   pageTitle: string;
-  highlightedLink: string | undefined;
+  highlightedLink?: string;
+  jsonLd?: Record<string, any>;
 }
-const { pageTitle, highlightedLink } = Astro.props;
+const { pageTitle, highlightedLink, jsonLd } = Astro.props;
 ---
 
 <html lang="en">
@@ -31,10 +32,21 @@ const { pageTitle, highlightedLink } = Astro.props;
       let theme = getCurrentTheme();
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
+    {
+      jsonLd && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(jsonLd)}
+        />
+      )
+    }
   </head>
   <body>
     <div id="page">
-      <Navigation highlightedLink={highlightedLink} />
+      <div id="nav-bar">
+        <Navigation highlightedLink={highlightedLink} />
+      </div>
       <slot />
       <Footer />
     </div>
@@ -117,7 +129,11 @@ const { pageTitle, highlightedLink } = Astro.props;
   }
 
   #page {
-    max-width: 800px;
+    max-width: 900px;
     margin-inline: auto;
+  }
+
+  #nav-bar {
+    margin-bottom: 1.5rem;
   }
 </style>
