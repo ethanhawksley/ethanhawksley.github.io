@@ -32,13 +32,9 @@ const { pageTitle } = Astro.props;
     </script>
   </head>
   <body>
-    <div id="page">
-      <Navigation />
-      <main>
-        <slot />
-      </main>
-      <Footer />
-    </div>
+    <Navigation />
+    <slot />
+    <Footer />
   </body>
 </html>
 
@@ -60,8 +56,8 @@ const { pageTitle } = Astro.props;
   }
 
   body {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 1rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -105,7 +101,7 @@ const { pageTitle } = Astro.props;
 </style>
 <style>
   html {
-    background-color: #fafaf9;
+    background-color: #fafafa;
     color: #1a1a1a;
     transition:
       background-color 250ms ease-out,
@@ -113,11 +109,7 @@ const { pageTitle } = Astro.props;
   }
 
   html.dark {
-    background-color: #111;
-    color: #fafafa;
-  }
-
-  #page {
-    margin: 1rem;
+    background-color: #0f0f0f;
+    color: #ededed;
   }
 </style>

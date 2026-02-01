@@ -5,41 +5,65 @@ import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const allProjects = (await getCollection('projects')).sort((a, b) =>
-  b.data.name > a.data.name ? 1 : -1,
+  b.data.name < a.data.name ? 1 : -1,
 );
 ---
 
 <Layout pageTitle="Ethan Hawksley | Software Developer & CS Student">
-  <section id="hero" aria-labelledby="hero-heading">
-    <h1 id="hero-heading">Ethan Hawksley</h1>
-    <p>Hi, I'm Ethan, a CS student at Alcester Grammar School.</p>
-    <p>I build webapps, use Linux, and write Rust when performance matters.</p>
-  </section>
-  <SocialLinks />
-  <section id="projects" aria-labelledby="projects-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <div class="projects-grid">
-      {
-        allProjects.map((project) => (
-          <ProjectCard
-            name={project.data.name}
-            description={project.data.description}
-            sourceUrl={project.data.sourceUrl}
-            liveUrl={project.data.liveUrl}
-          />
-        ))
-      }
-    </div>
+  <main>
+    <section id="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Ethan Hawksley</h1>
+      <p>
+        Hi, I'm Ethan, a CS student at Alcester Grammar School. I build webapps,
+        use Linux, and write Rust when performance matters.
+      </p>
+    </section>
+    <SocialLinks />
+    <section id="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <div class="projects-grid">
+        {
+          allProjects.map((project) => (
+            <ProjectCard
+              name={project.data.name}
+              description={project.data.description}
+              sourceUrl={project.data.sourceUrl}
+              liveUrl={project.data.liveUrl}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <style>
+    main {
+      max-width: 65ch;
+      margin-inline: auto;
+      padding-inline: 1rem;
+    }
 
-    <style>
-      #hero {
-        text-wrap: balance;
-      }
+    #hero {
+      text-wrap: balance;
+      max-width: 40ch;
+      margin-bottom: 0.5rem;
+    }
 
-      h1 {
-        text-decoration: #ff4f00 underline 6px;
-        text-underline-offset: 0.5rem;
-      }
-    </style>
-  </section></Layout
->
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-decoration: #ff4f00 underline 6px;
+      text-underline-offset: 0.5rem;
+      line-height: 1.2rem;
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-decoration: #ff4f00 underline 4px;
+      text-underline-offset: 0.5rem;
+      line-height: 1.3rem;
+      font-weight: 600;
+    }
+  </style>
+</Layout>
