@@ -9,7 +9,10 @@ const allProjects = (await getCollection('projects')).sort((a, b) =>
 );
 ---
 
-<Layout pageTitle="Ethan Hawksley | Software Developer & CS Student">
+<Layout
+  pageTitle="Ethan Hawksley | Software Developer & CS Student"
+  highlightedLink="home"
+>
   <main>
     <section id="hero" aria-labelledby="hero-heading">
       <h1 id="hero-heading">Ethan Hawksley</h1>
@@ -40,11 +43,13 @@ const allProjects = (await getCollection('projects')).sort((a, b) =>
       max-width: 65ch;
       margin-inline: auto;
       padding-inline: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     #hero {
       text-wrap: balance;
-      max-width: 40ch;
       margin-bottom: 0.5rem;
     }
 
@@ -55,15 +60,19 @@ const allProjects = (await getCollection('projects')).sort((a, b) =>
       text-underline-offset: 0.5rem;
       line-height: 1.2rem;
       font-weight: 600;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
     }
 
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      text-decoration: #ff4f00 underline 4px;
-      text-underline-offset: 0.5rem;
       line-height: 1.3rem;
       font-weight: 600;
+      text-align: center;
     }
   </style>
 </Layout>

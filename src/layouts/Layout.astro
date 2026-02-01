@@ -4,8 +4,9 @@ import Footer from '../components/Footer.astro';
 
 interface Props {
   pageTitle: string;
+  highlightedLink: string | undefined;
 }
-const { pageTitle } = Astro.props;
+const { pageTitle, highlightedLink } = Astro.props;
 ---
 
 <html lang="en">
@@ -32,7 +33,7 @@ const { pageTitle } = Astro.props;
     </script>
   </head>
   <body>
-    <Navigation />
+    <Navigation highlightedLink={highlightedLink} />
     <slot />
     <Footer />
   </body>

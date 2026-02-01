@@ -24,6 +24,13 @@ import Github from '../assets/github.svg';
     flex-direction: column;
   }
 
+  @media (min-width: 480px) {
+    address {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
   a {
     padding: 0.25rem;
     width: fit-content;
@@ -34,13 +41,10 @@ import Github from '../assets/github.svg';
     gap: 0.5rem;
     text-decoration: #ff4f00 underline 2px;
     text-underline-offset: 0.25rem;
+    transition: color 0.3s ease;
   }
 
-  a > span {
-    transition: transform 0.3s ease;
-  }
-
-  a:hover > span {
-    transform: translateX(0.5rem);
+  a:hover {
+    color: #ff4f00;
   }
 </style>

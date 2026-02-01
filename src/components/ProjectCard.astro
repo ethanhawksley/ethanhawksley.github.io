@@ -37,26 +37,32 @@ const { name, description, sourceUrl, liveUrl } = Astro.props;
 <style>
   article {
     background-color: #f0f0f0;
-    padding: 0.5rem;
+    padding: 1.5rem;
     border: 2px solid #e0e0e0;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-    transition:
-      transform 0.3s ease,
-      border-color 0.3s ease;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
   }
   :global(.dark) article {
     background-color: #1a1a1a;
     border-color: #2a2a2a;
   }
   article:hover {
-    transform: translateY(-0.125rem);
     border-color: #ff4f00;
   }
   h3 {
     font-size: 1.25rem;
     line-height: 1.4;
     font-weight: 600;
+  }
+  p {
+    color: #6e6e6e;
+    flex-grow: 1;
+  }
+  :global(.dark) p {
+    color: #8f8f8f;
   }
   a {
     padding: 0.25rem;
