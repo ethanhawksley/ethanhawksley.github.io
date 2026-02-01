@@ -5,18 +5,11 @@ interface Props {
   highlightedLink: string | undefined;
 }
 const { highlightedLink } = Astro.props;
-if (highlightedLink === 'home') {
-}
 ---
 
 <nav>
-  <a href="/"
-    ><LogoRound
-      width="3rem"
-      height="3rem"
-      aria-label="home"
-      aria-hidden="true"
-    /></a
+  <a href="/" aria-label="home"
+    ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
   >
   <div>
     <a href="/" class={`${highlightedLink === 'home' ? 'active' : ''}`}>Home</a>
@@ -43,9 +36,7 @@ if (highlightedLink === 'home') {
     justify-content: center;
     align-items: center;
     font-size: 1.125rem;
-    transition: text-decoration 0.3s ease;
-    text-decoration-color: #ff4f00;
-    text-decoration-thickness: 0;
+    transition: color 0.3s ease;
   }
 
   div {
@@ -55,14 +46,13 @@ if (highlightedLink === 'home') {
   }
 
   .active {
-    color: #ff4f00;
     font-weight: 600;
     text-decoration: #ff4f00 underline 2px;
     text-underline-offset: 0.5rem;
   }
 
+  .active,
   a:hover {
-    text-decoration: #ff4f00 underline 4px;
-    text-underline-offset: 0.5rem;
+    color: #ff4f00;
   }
 </style>

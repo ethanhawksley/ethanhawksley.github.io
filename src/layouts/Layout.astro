@@ -33,9 +33,11 @@ const { pageTitle, highlightedLink } = Astro.props;
     </script>
   </head>
   <body>
-    <Navigation highlightedLink={highlightedLink} />
-    <slot />
-    <Footer />
+    <div id="page">
+      <Navigation highlightedLink={highlightedLink} />
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
 
@@ -112,5 +114,10 @@ const { pageTitle, highlightedLink } = Astro.props;
   html.dark {
     background-color: #0f0f0f;
     color: #ededed;
+  }
+
+  #page {
+    max-width: 800px;
+    margin-inline: auto;
   }
 </style>

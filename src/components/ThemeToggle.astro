@@ -3,26 +3,45 @@ import Moon from '../assets/moon.svg';
 import Sun from '../assets/sun.svg';
 ---
 
-<button id="theme-toggle">
+<button id="theme-toggle" aria-label="Toggle dark mode">
   <Moon class="moon" />
   <Sun class="sun" />
 </button>
 <style>
-  #theme-toggle {
+  button {
     border: 0;
     background: none;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
+  .sun,
+  .moon {
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+    color: #1a1a1a;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+  }
   .sun {
-    display: none;
+    opacity: 0;
   }
-
   :global(.dark) .moon {
-    display: none;
+    opacity: 0;
+    color: #ededed;
   }
   :global(.dark) .sun {
-    display: block;
-    color: white;
+    opacity: 1;
+    color: #ededed;
+  }
+  button:hover > .sun,
+  button:hover > .moon {
+    color: #ff4f00;
   }
 </style>
 <script>
