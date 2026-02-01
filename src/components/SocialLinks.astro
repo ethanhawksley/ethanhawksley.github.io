@@ -1,0 +1,23 @@
+---
+import Email from '../assets/email.svg';
+import Github from '../assets/github.svg';
+interface Props {
+  flexDirection: 'column' | 'row';
+}
+const { flexDirection } = Astro.props;
+---
+
+<div class="social-links">
+  <a href="mailto:ethan@hawksley.dev"
+    ><Email class="email" } /><span>ethan@hawksley.dev</span></a
+  >
+  <a href="https://github.com/ethan-hawksley"
+    ><Github class="github" /><span>ethan-hawksley</span></a
+  >
+</div>
+<style define:vars={{ flexDirection }}>
+  .social-links {
+    display: flex;
+    flex-direction: var(--flexDirection);
+  }
+</style>

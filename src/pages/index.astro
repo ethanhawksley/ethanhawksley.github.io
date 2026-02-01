@@ -16,7 +16,23 @@ import Layout from '../layouts/Layout.astro';
   }
 
   h1 {
-    text-decoration: #ff4f00 underline 5px;
+    text-decoration: #ff4f00 underline 6px;
     text-underline-offset: 0.5rem;
+  }
+
+  #outlinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #outlinks > a {
+    color: unset;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 0.5rem;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.25rem;
   }
 </style>

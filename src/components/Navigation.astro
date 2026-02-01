@@ -1,10 +1,10 @@
 ---
-import logoRound from '../assets/logo_round.svg';
+import LogoRound from '../assets/logo_round.svg';
 import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <nav>
-  <a href="/"><img src={logoRound.src} alt="Site Logo" /></a>
+  <a href="/"><LogoRound width="3rem" height="3rem" /></a>
   <a href="/">Home</a>
   <a href="/blog/">Blog</a>
   <ThemeToggle />
@@ -17,11 +17,6 @@ import ThemeToggle from './ThemeToggle.astro';
     justify-content: space-between;
     height: 3rem;
     margin: 1rem;
-  }
-
-  img {
-    width: 3rem;
-    height: 3rem;
   }
 
   a {
