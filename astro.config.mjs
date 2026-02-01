@@ -7,5 +7,14 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://hawksley.dev',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      customPages: [
+        'https://hawksley.dev/cyms-interpreter/',
+        'https://hawksley.dev/turing-machine/',
+        'https://hawksley.dev/mineduo/',
+        'https://hawksley.dev/tetris/',
+      ],
+    }),
+  ],
 });

@@ -18,6 +18,7 @@ import Sun from '../assets/sun.svg';
     align-items: center;
     justify-content: center;
   }
+
   .sun,
   .moon {
     transition:
@@ -28,17 +29,21 @@ import Sun from '../assets/sun.svg';
     height: 2rem;
     position: absolute;
   }
+
   .sun {
     opacity: 0;
   }
+
   :global(.dark) .moon {
     opacity: 0;
     color: #ededed;
   }
+
   :global(.dark) .sun {
     opacity: 1;
     color: #ededed;
   }
+
   button:hover > .sun,
   button:hover > .moon {
     color: #ff4f00;
