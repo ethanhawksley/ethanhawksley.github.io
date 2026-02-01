@@ -1,0 +1,46 @@
+---
+import Email from '../assets/email.svg';
+import Github from '../assets/github.svg';
+---
+
+<address>
+  <a href="mailto:ethan@hawksley.dev"
+    ><Email class="email" aria-hidden="true" /><span>ethan@hawksley.dev</span
+    ></a
+  >
+  <a href="https://github.com/ethan-hawksley" rel="noopener" target="_blank"
+    ><Github class="github" aria-hidden="true" /><span>ethan-hawksley</span></a
+  >
+</address>
+
+<style>
+  address {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    address {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
+
+  a {
+    padding: 0.25rem;
+    width: fit-content;
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #ff4f00;
+  }
+</style>

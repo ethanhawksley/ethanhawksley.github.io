@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const allProjects = (await getCollection('projects')).sort(
+  (a, b) => a.data.priority - b.data.priority,
+);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://hawksley.dev/#website',
+      url: 'https://hawksley.dev/',
+      name: 'Ethan Hawksley | Software Developer & CS Student',
+      description:
+        'Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing.',
+      publisher: { '@id': 'https://hawksley.dev/#person' },
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': 'https://hawksley.dev/#webpage',
+      url: 'https://hawksley.dev/',
+      name: 'About Ethan Hawksley',
+      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      mainEntity: { '@id': 'https://hawksley.dev/#person' },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://hawksley.dev/#person',
+      name: 'Ethan Hawksley',
+      jobTitle: 'Software Developer',
+      description: 'CS Student and Software Developer',
+      url: 'https://hawksley.dev/',
+      image: 'https://hawksley.dev/logo_round.png',
+      sameAs: [
+        'https://github.com/ethan-hawksley',
+        'https://www.linkedin.com/in/ethan-hawksley',
+        'https://x.com/Ethan_Hawksley',
+      ],
+      knowsAbout: ['Rust', 'JavaScript', 'Linux', 'Web Development'],
+      homeLocation: {
+        '@type': 'Place',
+        name: 'United Kingdom',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  pageTitle="Ethan Hawksley | Software Developer & CS Student"
+  pageDescription="Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing."
+  highlightedLink="home"
+  jsonLd={jsonLd}
+>
+  <main>
+    <section id="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">Ethan Hawksley</h1>
+      <p>
+        Hi, I'm Ethan, a CS student at Alcester Grammar School. I build webapps,
+        use Linux, and write Rust when performance matters.
+      </p>
+    </section>
+    <div id="social-links">
+      <SocialLinks />
+    </div>
+    <section id="projects" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <div id="projects-grid">
+        {
+          allProjects.map((project) => (
+            <ProjectCard
+              name={project.data.name}
+              description={project.data.description}
+              sourceUrl={project.data.sourceUrl}
+              liveUrl={project.data.liveUrl}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <style>
+    main {
+      max-width: 900px;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    #hero {
+      text-wrap: balance;
+      margin-bottom: 0.5rem;
+      max-width: 65ch;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-decoration: #ff4f00 underline 3px;
+      text-underline-offset: 0.5rem;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+
+    #social-links {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    #projects-grid {
+      display: grid;
+      column-gap: 1.25rem;
+      row-gap: 1.25rem;
+    }
+
+    @media (min-width: 750px) {
+      #projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</Layout>

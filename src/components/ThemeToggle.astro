@@ -1,0 +1,57 @@
+---
+import Moon from '../assets/moon.svg';
+import Sun from '../assets/sun.svg';
+---
+
+<button id="theme-toggle" aria-label="Toggle dark mode">
+  <Moon class="moon" />
+  <Sun class="sun" />
+</button>
+<style>
+  button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sun,
+  .moon {
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+    color: #1a1a1a;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+  }
+
+  .sun {
+    opacity: 0;
+  }
+
+  :global(.dark) .moon {
+    opacity: 0;
+    color: #ededed;
+  }
+
+  :global(.dark) .sun {
+    opacity: 1;
+    color: #ededed;
+  }
+
+  button:hover > .sun,
+  button:hover > .moon {
+    color: #ff4f00;
+  }
+</style>
+<script>
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>

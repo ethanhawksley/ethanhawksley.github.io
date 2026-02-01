@@ -1,0 +1,201 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  pageTitle: string;
+  pageDescription: string;
+  highlightedLink?: string;
+  jsonLd?: Record<string, any>;
+}
+const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta
+      name="theme-color"
+      content="#fafafa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f0f"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta content="website" property="og:type" />
+    <meta content={canonicalUrl} property="og:url" />
+    <meta content={pageTitle} property="og:title" />
+    <meta content={pageDescription} property="og:description" />
+    <meta
+      content="https://hawksley.dev/og-image-1200x630.png"
+      property="og:image"
+    />
+    <meta property="og:image:alt" content={pageTitle} />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="Ethan Hawksley" property="og:site_name" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Ethan_Hawksley" />
+    <meta name="twitter:creator" content="@Ethan_Hawksley" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta
+      name="twitter:image"
+      content="https://hawksley.dev/og-image-1200x630.png"
+    />
+    <meta name="twitter:image:alt" content={pageTitle} />
+    <meta
+      name="thumbnail"
+      content="https://hawksley.dev/avatar-1200x1200.png"
+    />
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <script is:inline>
+      function getCurrentTheme() {
+        const localTheme = localStorage.getItem('theme');
+        if (localTheme) {
+          return localTheme;
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      let theme = getCurrentTheme();
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
+    {
+      jsonLd && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify(jsonLd)}
+        />
+      )
+    }
+  </head>
+  <body>
+    <div id="page">
+      <div id="nav-bar">
+        <Navigation highlightedLink={highlightedLink} />
+      </div>
+      <slot />
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  *:not(dialog) {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+  }
+</style>
+<style>
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/InterVariable.woff2') format('woff2');
+  }
+
+  html {
+    background-color: #fafafa;
+    color: #1a1a1a;
+    transition:
+      background-color 250ms ease-out,
+      color 250ms ease;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  html.dark {
+    background-color: #0f0f0f;
+    color: #ededed;
+  }
+
+  #page {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-top: 1rem;
+  }
+
+  #nav-bar {
+    margin-bottom: 1.5rem;
+  }
+</style>

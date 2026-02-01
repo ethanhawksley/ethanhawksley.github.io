@@ -1,0 +1,65 @@
+---
+import LogoRound from '../assets/logo_round.svg';
+import ThemeToggle from './ThemeToggle.astro';
+interface Props {
+  highlightedLink: string | undefined;
+}
+const { highlightedLink } = Astro.props;
+---
+
+<nav>
+  <a href="/" aria-label="home" id="logo"
+    ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
+  >
+  <div>
+    <a href="/" class={`${highlightedLink === 'home' ? 'active' : ''}`}>Home</a>
+    <a href="/blog/" class={`${highlightedLink === 'blog' ? 'active' : ''}`}
+      >Blog</a
+    >
+    <ThemeToggle />
+  </div>
+</nav>
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+    max-width: 900px;
+  }
+
+  #logo {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.125rem;
+    transition: color 0.3s ease;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .active {
+    font-weight: 600;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.5rem;
+  }
+
+  .active,
+  a:hover {
+    color: #ff4f00;
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  liveUrl: string | undefined;
+  sourceUrl: string;
+}
+const { name, description, sourceUrl, liveUrl } = Astro.props;
+---
+
+<article>
+  <header>
+    <h3>{name}</h3>
+  </header>
+  <p>{description}</p>
+  <footer>
+    <a
+      href={sourceUrl}
+      rel="noopener"
+      target="_blank"
+      aria-label={`View ${name} source code`}>Source Code</a
+    >
+    {
+      liveUrl && (
+        <a
+          href={liveUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+          aria-label={`View ${name} live demo`}
+        >
+          Live Demo
+        </a>
+      )
+    }
+  </footer>
+</article>
+<style>
+  article {
+    background-color: #f0f0f0;
+    padding: 1.5rem;
+    border: 2px solid #e0e0e0;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  :global(.dark) article {
+    background-color: #1a1a1a;
+    border-color: #2a2a2a;
+  }
+
+  article:hover {
+    border-color: #ff4f00;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  p {
+    color: #6e6e6e;
+    flex-grow: 1;
+  }
+
+  :global(.dark) p {
+    color: #8f8f8f;
+  }
+
+  footer {
+    display: flex;
+    gap: 1rem;
+  }
+
+  a {
+    padding: 0.25rem;
+    color: inherit;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #ff4f00;
+  }
+</style>
