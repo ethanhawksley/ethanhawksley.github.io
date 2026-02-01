@@ -7,8 +7,15 @@ interface Props {
   pageDescription: string;
   highlightedLink?: string;
   jsonLd?: Record<string, any>;
+  robots?: string;
 }
-const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
+const {
+  pageTitle,
+  pageDescription,
+  highlightedLink,
+  jsonLd,
+  robots = 'index, follow, max-image-preview:large',
+} = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -22,7 +29,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={robots} />
     <meta name="color-scheme" content="light dark" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta
