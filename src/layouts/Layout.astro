@@ -9,6 +9,8 @@ interface Props {
   jsonLd?: Record<string, any>;
 }
 const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
@@ -22,6 +24,7 @@ const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
     <meta name="description" content={pageDescription} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="color-scheme" content="light dark" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta
       name="theme-color"
       content="#fafafa"
@@ -29,17 +32,44 @@ const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
     />
     <meta
       name="theme-color"
-      content="0f0f0f"
+      content="#0f0f0f"
       media="(prefers-color-scheme: dark)"
+    />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta content="website" property="og:type" />
+    <meta content={canonicalUrl} property="og:url" />
+    <meta content={pageTitle} property="og:title" />
+    <meta content={pageDescription} property="og:description" />
+    <meta
+      content="https://hawksley.dev/og-image-1200x630.png"
+      property="og:image"
+    />
+    <meta property="og:image:alt" content={pageTitle} />
+    <meta content="1200" property="og:image:width" />
+    <meta content="630" property="og:image:height" />
+    <meta content="Ethan Hawksley" property="og:site_name" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Ethan_Hawksley" />
+    <meta name="twitter:creator" content="@Ethan_Hawksley" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta
+      name="twitter:image"
+      content="https://hawksley.dev/og-image-1200x630.png"
+    />
+    <meta name="twitter:image:alt" content={pageTitle} />
+    <meta
+      name="thumbnail"
+      content="https://hawksley.dev/avatar-1200x1200.png"
     />
     <link
       rel="preload"
-      href="InterVariable.woff2"
+      href="/fonts/InterVariable.woff2"
       as="font"
       type="font/woff2"
       crossorigin="anonymous"
     />
-    <link rel="preload" as="image" href="avatar.svg" fetchpriority="high" />
     <script is:inline>
       function getCurrentTheme() {
         const localTheme = localStorage.getItem('theme');
@@ -142,7 +172,7 @@ const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
-    src: url('InterVariable.woff2') format('woff2');
+    src: url('/fonts/InterVariable.woff2') format('woff2');
   }
 
   html {
@@ -162,6 +192,7 @@ const { pageTitle, pageDescription, highlightedLink, jsonLd } = Astro.props;
   #page {
     max-width: 900px;
     margin-inline: auto;
+    margin-top: 1rem;
   }
 
   #nav-bar {
