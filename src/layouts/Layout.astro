@@ -36,7 +36,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       media="(prefers-color-scheme: dark)"
     />
     <link rel="canonical" href={canonicalUrl} />
-    <meta content="website" property="og:type" />
+    <meta name="author" content="Ethan Hawksley" />
+    <meta content="profile" property="og:type" />
+    <meta property="profile:first_name" content="Ethan" />
+    <meta property="profile:last_name" content="Hawksley" />
     <meta content={canonicalUrl} property="og:url" />
     <meta content={pageTitle} property="og:title" />
     <meta content={pageDescription} property="og:description" />
