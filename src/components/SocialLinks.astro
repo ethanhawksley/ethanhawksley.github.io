@@ -1,23 +1,45 @@
 ---
 import Email from '../assets/email.svg';
 import Github from '../assets/github.svg';
-interface Props {
-  flexDirection: 'column' | 'row';
-}
-const { flexDirection } = Astro.props;
 ---
 
-<div class="social-links">
-  <a href="mailto:ethan@hawksley.dev"
-    ><Email class="email" } /><span>ethan@hawksley.dev</span></a
-  >
-  <a href="https://github.com/ethan-hawksley"
-    ><Github class="github" /><span>ethan-hawksley</span></a
-  >
-</div>
-<style define:vars={{ flexDirection }}>
-  .social-links {
+<section id="social-links">
+  <address>
+    <a href="mailto:ethan@hawksley.dev"
+      ><Email class="email" } /><span>ethan@hawksley.dev</span></a
+    >
+    <a href="https://github.com/ethan-hawksley" rel="noopener" target="_blank"
+      ><Github class="github" /><span>ethan-hawksley</span></a
+    >
+  </address>
+</section>
+
+<style>
+  #social-links {
+    margin-bottom: 0.5rem;
+  }
+
+  address {
     display: flex;
-    flex-direction: var(--flexDirection);
+    flex-direction: column;
+  }
+
+  a {
+    padding: 0.25rem;
+    color: inherit;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 0.5rem;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.25rem;
+  }
+
+  a > span {
+    transition: transform 0.3s ease;
+  }
+
+  a:hover > span {
+    transform: translateX(0.5rem);
   }
 </style>

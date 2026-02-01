@@ -1,13 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 ---
 
 <Layout pageTitle="Ethan Hawksley | Software Developer & CS Student">
-  <div id="hero">
-    <h1>Ethan Hawksley</h1>
+  <section id="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading">Ethan Hawksley</h1>
     <p>Hi, I'm Ethan, a CS student at Alcester Grammar School.</p>
     <p>I build webapps, use Linux, and write Rust when performance matters.</p>
-  </div>
+  </section>
+  <SocialLinks />
 </Layout>
 
 <style>
@@ -18,21 +20,5 @@ import Layout from '../layouts/Layout.astro';
   h1 {
     text-decoration: #ff4f00 underline 6px;
     text-underline-offset: 0.5rem;
-  }
-
-  #outlinks {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  #outlinks > a {
-    color: unset;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    gap: 0.5rem;
-    text-decoration: #ff4f00 underline 2px;
-    text-underline-offset: 0.25rem;
   }
 </style>
