@@ -1,0 +1,34 @@
+---
+import logoRound from '../assets/logo_round.svg';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<nav>
+  <a href="/"><img src={logoRound.src} alt="Site Logo" /></a>
+  <a href="/">Home</a>
+  <a href="/blog/">Blog</a>
+  <ThemeToggle />
+</nav>
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    margin: 1rem;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
