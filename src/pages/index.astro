@@ -52,6 +52,22 @@ const jsonLd = {
         name: 'United Kingdom',
       },
     },
+    {
+      '@type': 'ItemList',
+      name: "Ethan Hawksley's Projects",
+      itemListElement: allProjects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: project.data.name,
+          description: project.data.description,
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Linux, Windows, macOS',
+          url: project.data.liveUrl || project.data.sourceUrl,
+        },
+      })),
+    },
   ],
 };
 ---
