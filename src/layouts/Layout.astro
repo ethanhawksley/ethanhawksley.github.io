@@ -176,6 +176,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     text-wrap: balance;
   }
 
+  :focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
   :root {
     --color-background: #fafafa;
     --color-surface: #f0f0f0;
