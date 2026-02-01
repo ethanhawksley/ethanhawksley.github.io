@@ -109,7 +109,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       <div id="nav-bar">
         <Navigation highlightedLink={highlightedLink} />
       </div>
-      <slot />
+      <div id="page-content">
+        <slot />
+      </div>
       <Footer />
     </div>
   </body>
@@ -224,9 +226,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     max-width: 900px;
     margin-inline: auto;
     margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   #nav-bar {
+    margin-bottom: 1.5rem;
+  }
+
+  #page-content {
     margin-bottom: 1.5rem;
   }
 </style>
