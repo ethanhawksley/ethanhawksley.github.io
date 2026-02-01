@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const allProjects = (await getCollection('projects')).sort((a, b) =>
+  b.data.name > a.data.name ? 1 : -1,
+);
 ---
 
 <Layout pageTitle="Ethan Hawksley | Software Developer & CS Student">
@@ -10,15 +16,30 @@ import SocialLinks from '../components/SocialLinks.astro';
     <p>I build webapps, use Linux, and write Rust when performance matters.</p>
   </section>
   <SocialLinks />
-</Layout>
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <div class="projects-grid">
+      {
+        allProjects.map((project) => (
+          <ProjectCard
+            name={project.data.name}
+            description={project.data.description}
+            sourceUrl={project.data.sourceUrl}
+            liveUrl={project.data.liveUrl}
+          />
+        ))
+      }
+    </div>
 
-<style>
-  #hero {
-    text-wrap: balance;
-  }
+    <style>
+      #hero {
+        text-wrap: balance;
+      }
 
-  h1 {
-    text-decoration: #ff4f00 underline 6px;
-    text-underline-offset: 0.5rem;
-  }
-</style>
+      h1 {
+        text-decoration: #ff4f00 underline 6px;
+        text-underline-offset: 0.5rem;
+      }
+    </style>
+  </section></Layout
+>

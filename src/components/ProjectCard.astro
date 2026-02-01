@@ -1,0 +1,54 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  liveUrl: string | undefined;
+  sourceUrl: string;
+}
+const { name, description, sourceUrl, liveUrl } = Astro.props;
+---
+
+<article>
+  <header>
+    <h3>{name}</h3>
+  </header>
+  <p>{description}</p>
+  <footer>
+    <a
+      href={sourceUrl}
+      rel="noopener"
+      target="_blank"
+      aria-label={`View ${name} source code`}>Source Code</a
+    >
+    {
+      liveUrl && (
+        <a
+          href={liveUrl}
+          rel="noopener"
+          target="_blank"
+          aria-label={`View ${name} live demo`}
+        >
+          Live Demo
+        </a>
+      )
+    }
+  </footer>
+</article>
+<style>
+  article {
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  :global(.dark) article {
+    background-color: #1a1a1a;
+  }
+  a {
+    padding: 0.25rem;
+    color: inherit;
+    text-decoration: #ff4f00 underline 2px;
+    text-underline-offset: 0.25rem;
+  }
+</style>
