@@ -185,6 +185,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     outline-offset: 4px;
   }
 
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  p,
+  li {
+    max-width: 65ch;
+  }
+
   :root {
     --color-background: #fafafa;
     --color-surface: #f0f0f0;
@@ -222,6 +232,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       system-ui,
       -apple-system,
       sans-serif;
+    text-rendering: optimizeLegibility;
+    color-scheme: light dark;
+    accent-color: var(--color-accent);
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   #page {

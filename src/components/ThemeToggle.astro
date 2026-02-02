@@ -50,18 +50,23 @@ import Sun from '../assets/sun.svg';
 <script>
   const button = document.getElementById('theme-toggle');
 
-  function updateLabel(isDark: boolean) {
+  function updateTheme(isDark: boolean) {
     button?.setAttribute(
       'aria-label',
       `Switch to ${isDark ? 'light' : 'dark'} mode`,
     );
+    const themeColorMetaTags = document.querySelectorAll(
+      'meta[name="theme-color"]',
+    );
+    const newColor = isDark ? '#0f0f0f' : '#fafafa';
+    themeColorMetaTags.forEach((tag) => tag.setAttribute('content', newColor));
   }
 
   button?.addEventListener('click', () => {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateLabel(isDark);
+    updateTheme(isDark);
   });
 
-  updateLabel(document.documentElement.classList.contains('dark'));
+  updateTheme(document.documentElement.classList.contains('dark'));
 </script>
