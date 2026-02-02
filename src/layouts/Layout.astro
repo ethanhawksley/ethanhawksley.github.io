@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 interface Props {
   pageTitle: string;
   pageDescription: string;
-  highlightedLink?: string;
+  highlightedLink?: 'home' | 'blog';
   jsonLd?: Record<string, any>;
   robots?: string;
 }
@@ -95,6 +95,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       }
       let theme = getCurrentTheme();
       document.documentElement.classList.toggle('dark', theme === 'dark');
+      const themeColorMetaTags = document.querySelectorAll(
+        'meta[name="theme-color"]',
+      );
+      const newColor = theme ? '#0f0f0f' : '#fafafa';
+      themeColorMetaTags.forEach((tag) =>
+        tag.setAttribute('content', newColor),
+      );
     </script>
     {
       jsonLd && (

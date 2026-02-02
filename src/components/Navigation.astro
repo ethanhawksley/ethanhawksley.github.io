@@ -2,7 +2,7 @@
 import LogoRound from '../assets/logo_round.svg';
 import ThemeToggle from './ThemeToggle.astro';
 interface Props {
-  highlightedLink: string | undefined;
+  highlightedLink?: 'home' | 'blog';
 }
 const { highlightedLink } = Astro.props;
 ---
