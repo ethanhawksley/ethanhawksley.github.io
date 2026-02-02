@@ -195,6 +195,38 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     max-width: 65ch;
   }
 
+  a,
+  button {
+    transition: transform 0.1s ease;
+  }
+
+  a:active,
+  button:active {
+    transform: scale(0.96);
+  }
+
+  html {
+    scrollbar-color: var(--color-text-muted) var(--color-background);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 10px;
+    border: 2px solid var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-text-muted);
+  }
+
   :root {
     --color-background: #fafafa;
     --color-surface: #f0f0f0;
