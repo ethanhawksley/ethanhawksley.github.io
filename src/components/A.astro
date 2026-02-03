@@ -1,0 +1,83 @@
+---
+import External from '../assets/external.svg';
+interface Props {
+  href: string;
+  rel?: string;
+  style?: string;
+  [key: string]: any;
+}
+const { href, rel, style, ...rest } = Astro.props;
+
+function isExternal(linkHref: string) {
+  const protocols = new Set(['http:', 'https:']);
+  const hostnames = new Set([
+    'hawksley.dev',
+    'www.hawksley.dev',
+    '127.0.0.1',
+    'localhost',
+    'mailto',
+  ]);
+  const exactPaths = new Set(['/', '/404/']);
+  const pathPrefixes = new Set(['/blog/']);
+
+  const url = new URL(linkHref, 'https://hawksley.dev');
+
+  // Treat unknown protocols as internal
+  if (!protocols.has(url.protocol)) return false;
+
+  if (!hostnames.has(url.hostname)) return true;
+
+  let path = url.pathname;
+  if (!path.endsWith('/')) {
+    path += '/';
+  }
+
+  if (exactPaths.has(path)) return false;
+
+  for (const prefix of pathPrefixes) {
+    if (path.startsWith(prefix)) return false;
+  }
+
+  return true;
+}
+const isExternalLink = isExternal(href);
+console.log(href, isExternalLink);
+---
+
+<a
+  href={href}
+  rel={(isExternalLink ? 'noopener noreferrer' : '') + (rel ?? '')}
+  target={isExternalLink ? '_blank' : ''}
+  style={style}
+  {...rest}
+>
+  <slot />
+  {isExternalLink && <External />}
+</a>
+
+<style>
+  a {
+    padding: 0.25rem;
+    color: inherit;
+    text-decoration: var(--color-accent) underline 2px;
+    text-underline-offset: 0.25rem;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+  }
+
+  a svg {
+    transition: transform 0.2s ease-in-out;
+    width: 0.85em;
+    height: 0.85em;
+  }
+
+  a:hover svg {
+    transform: translate(2px, -2px);
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import External from '../assets/external.svg';
+import A from './A.astro';
 interface Props {
   name: string;
   description: string;
@@ -15,23 +16,12 @@ const { name, description, sourceUrl, liveUrl } = Astro.props;
   </header>
   <p>{description}</p>
   <footer>
-    <a
-      href={sourceUrl}
-      rel="noopener noreferrer"
-      target="_blank"
-      aria-label={`View ${name} source code`}>Source Code<External /></a
-    >
+    <A href={sourceUrl} aria-label={`View ${name} source code`}>Source Code</A>
     {
       liveUrl && (
-        <a
-          href={liveUrl}
-          rel="noopener noreferrer"
-          target="_blank"
-          aria-label={`View ${name} live demo`}
-        >
+        <A href={liveUrl} aria-label={`View ${name} live demo`}>
           Live Demo
-          <External />
-        </a>
+        </A>
       )
     }
   </footer>

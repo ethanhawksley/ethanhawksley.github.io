@@ -188,6 +188,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   h5,
   h6 {
     text-wrap: balance;
+    text-rendering: optimizeLegibility;
   }
 
   :focus-visible {
@@ -269,12 +270,24 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     transition:
       background-color 250ms ease-out,
       color 250ms ease;
+
     font-family:
       'Inter',
-      system-ui,
       -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Helvetica Neue',
+      Arial,
       sans-serif;
-    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-optical-sizing: auto;
+    text-rendering: optimizeSpeed;
     color-scheme: light dark;
     accent-color: var(--color-accent);
     scroll-behavior: smooth;

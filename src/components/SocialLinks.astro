@@ -1,23 +1,22 @@
 ---
 import Email from '../assets/email.svg';
 import Github from '../assets/github.svg';
-import External from '../assets/external.svg';
+import A from './A.astro';
 ---
 
 <address>
-  <a href="mailto:ethan@hawksley.dev"
-    ><Email class="email" aria-hidden="true" /><span class="email-address"
-      >ethan@hawksley.dev</span
-    ></a
-  >
-  <a
-    href="https://github.com/ethan-hawksley"
-    rel="noopener noreferrer"
-    target="_blank"
-    ><Github class="github" aria-hidden="true" /><span class="github-account"
-      >ethan-hawksley<External /></span
-    ></a
-  >
+  <A href="mailto:ethan@hawksley.dev">
+    <span>
+      <Email class="email" aria-hidden="true" />
+      ethan@hawksley.dev
+    </span>
+  </A>
+  <A href="https://github.com/ethan-hawksley">
+    <span>
+      <Github class="github" aria-hidden="true" />
+      ethan-hawksley
+    </span>
+  </A>
 </address>
 
 <style>
@@ -34,41 +33,14 @@ import External from '../assets/external.svg';
     }
   }
 
-  a {
-    padding: 0.25rem;
-    width: fit-content;
-    color: inherit;
+  address > a {
+    min-width: 13rem;
+  }
+
+  span {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 0.5rem;
-    text-decoration: var(--color-accent) underline 2px;
-    text-underline-offset: 0.25rem;
-    transition: color 0.3s ease;
-  }
-
-  a:hover {
-    color: var(--color-accent);
-  }
-
-  .email-address {
-    min-width: 18ch;
-  }
-
-  .github-account {
-    min-width: 13ch;
-    display: inline-flex;
     align-items: center;
-    gap: 4px;
-  }
-
-  .github-account svg {
-    transition: transform 0.2s ease-in-out;
-    width: 0.85em;
-    height: 0.85em;
-  }
-
-  .github-account:hover svg {
-    transform: translate(2px, -2px);
   }
 </style>

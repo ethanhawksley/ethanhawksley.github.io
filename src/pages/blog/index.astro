@@ -1,5 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import PostPreview from '../../components/PostPreview.astro';
+
+const allPosts = (await getCollection('posts')).sort((a, b) =>
+  a.data.pubDate < b.data.pubDate ? 1 : -1,
+);
 ---
 
 <Layout
@@ -7,5 +13,16 @@ import Layout from '../../layouts/Layout.astro';
   pageDescription="A technical blog by Ethan Hawksley. Articles featuring a variety of topics such as software engineering, computer science concepts, and more!"
 >
   <h1>Blog</h1>
-  <ul></ul>
+  <ul>
+    {
+      allPosts.map((post) => (
+        <PostPreview
+          url={`/blogg/${post.id}/`}
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+        />
+      ))
+    }
+  </ul>
 </Layout>

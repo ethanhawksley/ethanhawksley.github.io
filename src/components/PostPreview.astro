@@ -1,5 +1,13 @@
 ---
+import A from './A.astro';
+
+interface Props {
+  url: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+}
 const { url, title, description, pubDate } = Astro.props;
 ---
 
-<li><a href={url}>{title}</a><small>{pubDate}</small><p>{description}</p></li>
+<li><A href={url}>{title}</A><small>{pubDate}</small><p>{description}</p></li>
