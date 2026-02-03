@@ -19,7 +19,7 @@ const allPosts = (await getCollection('posts')).sort((a, b) =>
     {
       allPosts.map((post) => (
         <PostPreview
-          url={`/blogg/${post.id}/`}
+          url={`/blog/${post.id}/`}
           title={post.data.title}
           description={post.data.description}
           pubDate={post.data.pubDate}
