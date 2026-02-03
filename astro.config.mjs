@@ -5,10 +5,19 @@ import sitemap from '@astrojs/sitemap';
 
 import mdx from '@astrojs/mdx';
 
+import compressPlugin from 'astro-compress';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hawksley.dev',
   trailingSlash: 'always',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+  build: {
+    inlineStylesheets: 'auto',
+  },
   markdown: {
     shikiConfig: {
       themes: {
@@ -27,5 +36,16 @@ export default defineConfig({
       ],
     }),
     mdx(),
+    compressPlugin({
+      CSS: true,
+      HTML: {
+        'html-minifier-terser': {
+          removeComments: true,
+        },
+      },
+      Image: false,
+      JavaScript: true,
+      SVG: true,
+    }),
   ],
 });

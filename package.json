@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/ts-plugin": "^1.10.6",
     "astro": "^5.17.1",
+    "astro-compress": "^2.3.9",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
