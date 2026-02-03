@@ -10,4 +10,40 @@ interface Props {
 const { url, title, description, pubDate } = Astro.props;
 ---
 
-<li><A href={url}>{title}</A><small>{pubDate}</small><p>{description}</p></li>
+<article>
+  <small>
+    <time datetime={pubDate.toISOString()}>
+      {pubDate.toLocaleString().slice(0, 10)}
+    </time>
+  </small>
+  <h2><A href={url}>{title}</A></h2>
+  <p>{description}</p>
+</article>
+
+<style>
+  article {
+    background-color: var(--color-surface);
+    padding: 1rem;
+    border: 2px solid var(--color-border);
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  article:hover {
+    border-color: var(--color-accent);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  time,
+  p {
+    color: var(--color-text-muted);
+  }
+</style>

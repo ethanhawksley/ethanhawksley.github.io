@@ -1,5 +1,4 @@
 ---
-import External from '../assets/external.svg';
 import A from './A.astro';
 interface Props {
   name: string;
@@ -56,30 +55,5 @@ const { name, description, sourceUrl, liveUrl } = Astro.props;
   footer {
     display: flex;
     gap: 1rem;
-  }
-
-  a {
-    padding: 0.25rem;
-    color: inherit;
-    text-decoration: var(--color-accent) underline 2px;
-    text-underline-offset: 0.25rem;
-    transition: color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
-
-  a:hover {
-    color: var(--color-accent);
-  }
-
-  a svg {
-    transition: transform 0.2s ease-in-out;
-    width: 0.85em;
-    height: 0.85em;
-  }
-
-  a:hover svg {
-    transform: translate(2px, -2px);
   }
 </style>
