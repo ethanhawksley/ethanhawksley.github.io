@@ -42,9 +42,9 @@ const jsonLd = {
         headline: post.data.title,
         description: post.data.description,
         datePublished: post.data.pubDate.toISOString(),
-        dateModified:
-          post.data.modifiedDate?.toISOString ??
-          post.data.pubDate.toISOString(),
+        dateModified: (
+          post.data.modifiedDate || post.data.pubDate
+        ).toISOString(),
         author: { '@id': 'https://hawksley.dev/#person' },
         url: `https://hawksley.dev/blog/${post.id}/`,
         keywords: post.data.tags,
@@ -76,8 +76,8 @@ const jsonLd = {
   pageTitle="Blog | Ethan Hawksley - Software Developer & CS Student"
   pageDescription="A technical blog by Ethan Hawksley. Articles featuring a variety of topics such as software engineering, computer science concepts, and more!"
   highlightedLink="blog"
-  ogType="website"
   jsonLd={jsonLd}
+  ogType="website"
 >
   <h1>Blog</h1>
   <ul>

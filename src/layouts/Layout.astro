@@ -123,7 +123,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       const themeColorMetaTags = document.querySelectorAll(
         'meta[name="theme-color"]',
       );
-      const newColor = theme ? '#0f0f0f' : '#fafafa';
+      const newColor = theme === 'dark' ? '#0f0f0f' : '#fafafa';
       themeColorMetaTags.forEach((tag) =>
         tag.setAttribute('content', newColor),
       );

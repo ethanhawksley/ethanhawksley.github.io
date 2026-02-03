@@ -3,10 +3,20 @@ import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hawksley.dev',
   trailingSlash: 'always',
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'ayu-light',
+        dark: 'ayu-dark',
+      },
+    },
+  },
   integrations: [
     sitemap({
       customPages: [
@@ -16,5 +26,6 @@ export default defineConfig({
         'https://hawksley.dev/tetris/',
       ],
     }),
+    mdx(),
   ],
 });

@@ -11,18 +11,24 @@ interface Props {
 const { url, title, description, pubDate, tags } = Astro.props;
 ---
 
-<article>
-  <small>
-    <time datetime={pubDate.toISOString()}>
-      {pubDate.toLocaleString().slice(0, 10)}
-    </time>
-    {tags && <span> - {tags.join(', ')}</span>}
-  </small>
-  <h2><A href={url}>{title}</A></h2>
-  <p>{description}</p>
-</article>
+<li>
+  <article>
+    <small>
+      <time datetime={pubDate.toISOString()}>
+        {pubDate.toLocaleString().slice(0, 10)}
+      </time>
+      {tags && <span> - {tags.join(', ')}</span>}
+    </small>
+    <h2><A href={url}>{title}</A></h2>
+    <p>{description}</p>
+  </article>
+</li>
 
 <style>
+  li {
+    list-style: none;
+  }
+
   article {
     background-color: var(--color-surface);
     padding: 1rem;

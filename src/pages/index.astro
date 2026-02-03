@@ -79,33 +79,31 @@ const jsonLd = {
   jsonLd={jsonLd}
   ogType="profile"
 >
-  <main>
-    <section id="hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Ethan Hawksley</h1>
-      <p>
-        Hi, I'm Ethan, a CS student at Alcester Grammar School. I build webapps,
-        use Linux, and write Rust when performance matters.
-      </p>
-    </section>
-    <div id="contact-links">
-      <SocialLinks />
+  <section id="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading">Ethan Hawksley</h1>
+    <p>
+      Hi, I'm Ethan, a CS student at Alcester Grammar School. I build webapps,
+      use Linux, and write Rust when performance matters.
+    </p>
+  </section>
+  <div id="contact-links">
+    <SocialLinks />
+  </div>
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <div id="projects-grid">
+      {
+        allProjects.map((project) => (
+          <ProjectCard
+            name={project.data.name}
+            description={project.data.description}
+            sourceUrl={project.data.sourceUrl}
+            liveUrl={project.data.liveUrl}
+          />
+        ))
+      }
     </div>
-    <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-      <div id="projects-grid">
-        {
-          allProjects.map((project) => (
-            <ProjectCard
-              name={project.data.name}
-              description={project.data.description}
-              sourceUrl={project.data.sourceUrl}
-              liveUrl={project.data.liveUrl}
-            />
-          ))
-        }
-      </div>
-    </section>
-  </main>
+  </section>
   <style>
     #hero {
       text-wrap: balance;
