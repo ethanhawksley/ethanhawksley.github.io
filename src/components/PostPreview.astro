@@ -6,8 +6,9 @@ interface Props {
   title: string;
   description: string;
   pubDate: Date;
+  tags: string[];
 }
-const { url, title, description, pubDate } = Astro.props;
+const { url, title, description, pubDate, tags } = Astro.props;
 ---
 
 <article>
@@ -15,6 +16,7 @@ const { url, title, description, pubDate } = Astro.props;
     <time datetime={pubDate.toISOString()}>
       {pubDate.toLocaleString().slice(0, 10)}
     </time>
+    {tags && <span> - {tags.join(', ')}</span>}
   </small>
   <h2><A href={url}>{title}</A></h2>
   <p>{description}</p>
@@ -42,7 +44,7 @@ const { url, title, description, pubDate } = Astro.props;
     font-weight: 600;
   }
 
-  time,
+  small,
   p {
     color: var(--color-text-muted);
   }
