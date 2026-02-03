@@ -7,24 +7,33 @@ interface Props {
 const { highlightedLink } = Astro.props;
 ---
 
-<nav>
-  <a href="/" aria-label="home" id="logo"
-    ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
-  >
-  <div>
-    <a
-      href="/"
-      class={`${highlightedLink === 'home' ? 'active' : ''}`}
-      aria-current={highlightedLink === 'home' ? 'page' : undefined}>Home</a
+<header>
+  <nav aria-label="Main navigation">
+    <a href="/" aria-label="Home - Ethan Hawksley" id="logo"
+      ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
     >
-    <a
-      href="/blog/"
-      class={`${highlightedLink === 'blog' ? 'active' : ''}`}
-      aria-current={highlightedLink === 'blog' ? 'page' : undefined}>Blog</a
-    >
-    <ThemeToggle />
-  </div>
-</nav>
+    <div role="list" aria-label="Page links">
+      <a
+        href="/"
+        role="listitem"
+        class={`${highlightedLink === 'home' ? 'active' : ''}`}
+        aria-current={highlightedLink === 'home' ? 'page' : undefined}
+      >
+        Home
+      </a>
+      <a
+        href="/blog/"
+        role="listitem"
+        class={`${highlightedLink === 'blog' ? 'active' : ''}`}
+        aria-current={highlightedLink === 'blog' ? 'page' : undefined}
+      >
+        Blog
+      </a>
+      <ThemeToggle />
+    </div>
+  </nav>
+</header>
+
 <style>
   nav {
     display: flex;
