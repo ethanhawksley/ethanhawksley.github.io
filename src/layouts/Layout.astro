@@ -8,6 +8,8 @@ interface Props {
   highlightedLink?: 'home' | 'blog';
   jsonLd?: Record<string, any>;
   robots?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  article?: { publishedTime: string; modifiedTime?: string; tags: string[] };
 }
 const {
   pageTitle,
@@ -15,6 +17,8 @@ const {
   highlightedLink,
   jsonLd,
   robots = 'index, follow, max-image-preview:large',
+  ogType = 'website',
+  article,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -49,9 +53,27 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="author" content="Ethan Hawksley" />
-    <meta content="profile" property="og:type" />
     <meta property="profile:first_name" content="Ethan" />
     <meta property="profile:last_name" content="Hawksley" />
+    <meta content={ogType} property="og:type" />
+    {
+      article && (
+        <>
+          <meta
+            property="article:published_time"
+            content={article.publishedTime}
+          />
+          <meta
+            property="article:modified_time"
+            content={article.modifiedTime ?? article.publishedTime}
+          />
+          <meta property="article:author" content="https://hawksley.dev" />
+          {article.tags.map((tag) => (
+            <meta property="article:tag" content={tag} />
+          ))}
+        </>
+      )
+    }
     <meta content={canonicalUrl} property="og:url" />
     <meta content={pageTitle} property="og:title" />
     <meta content={pageDescription} property="og:description" />
