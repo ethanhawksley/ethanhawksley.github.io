@@ -16,7 +16,7 @@ const {
   pageDescription,
   highlightedLink,
   jsonLd,
-  robots = 'index, follow, max-image-preview:large',
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   ogType = 'website',
   article,
 } = Astro.props;
@@ -28,12 +28,20 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#d14100" />
+
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
+    <meta name="author" content="Ethan Hawksley" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content={robots} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
@@ -42,9 +50,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       title="Ethan Hawksley's Blog"
       href="/rss.xml"
     />
+
+    <meta name="geo.region" content="GB" />
+    <meta name="geo.placename" content="United Kingdom" />
+
     <meta name="color-scheme" content="light dark" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
     <meta
       name="theme-color"
       content="#fafafa"
@@ -55,11 +65,26 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       content="#0f0f0f"
       media="(prefers-color-scheme: dark)"
     />
-    <link rel="canonical" href={canonicalUrl} />
-    <meta name="author" content="Ethan Hawksley" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta
+      property="og:image"
+      content="https://hawksley.dev/og-image-1200x630.png"
+    />
+    <meta property="og:image:alt" content={pageTitle} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="Ethan Hawksley" />
+    <meta property="og:locale" content="en_GB" />
+
     <meta property="profile:first_name" content="Ethan" />
     <meta property="profile:last_name" content="Hawksley" />
-    <meta content={ogType} property="og:type" />
+    <meta property="profile:username" content="ethan-hawksley" />
+
     {
       article && (
         <>
@@ -78,18 +103,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         </>
       )
     }
-    <meta content={canonicalUrl} property="og:url" />
-    <meta content={pageTitle} property="og:title" />
-    <meta content={pageDescription} property="og:description" />
-    <meta
-      content="https://hawksley.dev/og-image-1200x630.png"
-      property="og:image"
-    />
-    <meta property="og:image:alt" content={pageTitle} />
-    <meta content="1200" property="og:image:width" />
-    <meta content="630" property="og:image:height" />
-    <meta content="Ethan Hawksley" property="og:site_name" />
-    <meta property="og:locale" content="en_GB" />
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Ethan_Hawksley" />
     <meta name="twitter:creator" content="@Ethan_Hawksley" />
@@ -100,10 +114,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       content="https://hawksley.dev/og-image-1200x630.png"
     />
     <meta name="twitter:image:alt" content={pageTitle} />
+
     <meta
       name="thumbnail"
       content="https://hawksley.dev/avatar-1200x1200.png"
     />
+
     <link
       rel="preload"
       href="/fonts/InterVariable.woff2"
@@ -111,6 +127,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       type="font/woff2"
       crossorigin="anonymous"
     />
+
     <script is:inline>
       function getCurrentTheme() {
         const localTheme = localStorage.getItem('theme');
@@ -138,6 +155,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         }, 0);
       });
     </script>
+
     {
       jsonLd && (
         <script

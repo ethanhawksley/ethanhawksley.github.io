@@ -24,6 +24,7 @@ export default defineConfig({
         light: 'ayu-light',
         dark: 'ayu-dark',
       },
+      wrap: true,
     },
   },
   integrations: [
@@ -34,6 +35,8 @@ export default defineConfig({
         'https://hawksley.dev/mineduo/',
         'https://hawksley.dev/tetris/',
       ],
+      changefreq: 'weekly',
+      lastmod: new Date(),
     }),
     mdx(),
     compressPlugin({
@@ -41,6 +44,10 @@ export default defineConfig({
       HTML: {
         'html-minifier-terser': {
           removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          minifyCSS: true,
+          minifyJS: true,
         },
       },
       Image: false,

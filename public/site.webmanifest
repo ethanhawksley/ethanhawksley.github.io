@@ -1,6 +1,13 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Ethan Hawksley - Software Developer",
+  "short_name": "Hawksley",
+  "description": "Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#d14100",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "developer", "blog"],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -15,7 +22,11 @@
       "purpose": "any maskable"
     }
   ],
-  "theme_color": "#fafafa",
-  "background_color": "#fafafa",
-  "display": "standalone"
+  "screenshots": [
+    {
+      "src": "/og-image-1200x630.png",
+      "sizes": "1200x630",
+      "type": "image/png"
+    }
+  ]
 }
