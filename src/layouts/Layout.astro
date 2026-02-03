@@ -127,6 +127,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       themeColorMetaTags.forEach((tag) =>
         tag.setAttribute('content', newColor),
       );
+
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          document.documentElement.classList.add('enable-transitions');
+        }, 0);
+      });
     </script>
     {
       jsonLd && (
@@ -181,6 +187,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   svg {
     display: block;
     max-width: 100%;
+    height: auto;
   }
 
   input,
@@ -231,6 +238,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   a,
   button {
     transition: transform 0.1s ease;
+    touch-action: manipulation;
+  }
+
+  a svg,
+  button svg {
+    pointer-events: none;
   }
 
   a:active,
@@ -282,16 +295,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     font-family: 'Inter';
     font-style: normal;
     font-weight: 100 900;
-    font-display: swap;
+    font-display: optional;
     src: url('/fonts/InterVariable.woff2') format('woff2');
   }
 
   html {
     background-color: var(--color-background);
     color: var(--color-text);
-    transition:
-      background-color 250ms ease-out,
-      color 250ms ease;
 
     font-family:
       'Inter',
@@ -313,6 +323,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     color-scheme: light dark;
     accent-color: var(--color-accent);
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+
+  html.enable-transitions {
+    transition:
+      background-color 250ms ease-out,
+      color 250ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -324,8 +341,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   #page {
     max-width: 900px;
     margin-inline: auto;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
   }
 
   #nav-bar {
@@ -336,7 +357,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     max-width: 900px;
     margin-inline: auto;
     padding-inline: 1.5rem;
-    margin-bottom: 1.5rem;
+    width: 100%;
+
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

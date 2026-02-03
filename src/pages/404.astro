@@ -1,4 +1,5 @@
 ---
+import A from '../components/A.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -12,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
   <p>
     Oops! Looks like you've ventured off into the wilderness and gotten lost.
   </p>
-  <a href="/">Return Home!</a>
+  <A href="/" style="font-size: 1.125rem;">Return Home!</A>
   <style>
     h1 {
       font-size: 2rem;
@@ -21,18 +22,6 @@ import Layout from '../layouts/Layout.astro';
       text-underline-offset: 0.5rem;
       line-height: 1.2;
       font-weight: 600;
-    }
-
-    a {
-      color: inherit;
-      font-size: 1.125rem;
-      transition: color 0.3s ease;
-      text-decoration: var(--color-accent) underline 2px;
-      text-underline-offset: 0.25rem;
-    }
-
-    a:hover {
-      color: var(--color-accent);
     }
   </style>
 </Layout>

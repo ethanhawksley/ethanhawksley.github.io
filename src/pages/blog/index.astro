@@ -11,6 +11,7 @@ const allPosts = (await getCollection('posts')).sort((a, b) =>
 <Layout
   pageTitle="Blog | Ethan Hawksley - Software Developer & CS Student"
   pageDescription="A technical blog by Ethan Hawksley. Articles featuring a variety of topics such as software engineering, computer science concepts, and more!"
+  highlightedLink="blog"
   ogType="website"
 >
   <h1>Blog</h1>
@@ -27,3 +28,13 @@ const allPosts = (await getCollection('posts')).sort((a, b) =>
     }
   </ul>
 </Layout>
+<style>
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-decoration: var(--color-accent) underline 3px;
+    text-underline-offset: 0.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+</style>
