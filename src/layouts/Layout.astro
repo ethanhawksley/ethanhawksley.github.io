@@ -155,12 +155,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       themeColorMetaTags.forEach((tag) =>
         tag.setAttribute('content', newColor),
       );
-
-      window.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          document.documentElement.classList.add('enable-transitions');
-        }, 0);
-      });
     </script>
 
     {
@@ -182,6 +176,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       </main>
       <Footer />
     </div>
+    <script>
+      setTimeout(() => {
+        document.documentElement.classList.add('enable-transitions');
+      }, 0);
+    </script>
   </body>
 </html>
 
