@@ -12,10 +12,9 @@ const { highlightedLink } = Astro.props;
     <a href="/" aria-label="Home - Ethan Hawksley" id="logo"
       ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
     >
-    <div role="list" aria-label="Page links">
+    <div aria-label="Page links">
       <a
         href="/"
-        role="listitem"
         class={`${highlightedLink === 'home' ? 'active' : ''}`}
         aria-current={highlightedLink === 'home' ? 'page' : undefined}
       >
@@ -23,7 +22,6 @@ const { highlightedLink } = Astro.props;
       </a>
       <a
         href="/blog/"
-        role="listitem"
         class={`${highlightedLink === 'blog' ? 'active' : ''}`}
         aria-current={highlightedLink === 'blog' ? 'page' : undefined}
       >
