@@ -79,21 +79,19 @@ const jsonLd = {
     tags: post.data.tags,
   }}
 >
-  <main>
-    <article id="post">
-      <header>
-        <h1>{post.data.title}</h1>
-        <small>
-          <time datetime={post.data.pubDate.toISOString()}>
-            Published {post.data.pubDate.toLocaleString().slice(0, 10)}
-          </time>
-          {post.data.tags && <span> - {post.data.tags.join(', ')}</span>}
-        </small>
-      </header>
-      <Content components={{ a: A }} />
-      <footer><A href="/blog/">Back to index</A></footer>
-    </article>
-  </main>
+  <article id="post">
+    <header>
+      <h1>{post.data.title}</h1>
+      <small>
+        <time datetime={post.data.pubDate.toISOString()}>
+          Published {post.data.pubDate.toLocaleString().slice(0, 10)}
+        </time>
+        {post.data.tags && <span> - {post.data.tags.join(', ')}</span>}
+      </small>
+    </header>
+    <Content components={{ a: A }} />
+    <footer><A href="/blog/">Back to index</A></footer>
+  </article>
 </Layout>
 <style is:global>
   article {
@@ -144,9 +142,9 @@ const jsonLd = {
 
   .astro-code code {
     display: block;
-    min-width: max-content;
     font-size: 0.75rem;
   }
+
   @media (min-width: 640px) {
     .astro-code code {
       font-size: 1rem;
