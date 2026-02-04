@@ -137,6 +137,20 @@ const jsonLd = {
     border: 2px solid var(--color-border);
     border-radius: 0.5rem;
     padding: 0.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+
+  .astro-code code {
+    display: block;
+    min-width: max-content;
+    font-size: 0.75rem;
+  }
+  @media (min-width: 640px) {
+    .astro-code code {
+      font-size: 1rem;
+    }
   }
 
   .astro-code,
