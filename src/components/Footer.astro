@@ -1,8 +1,12 @@
 ---
+import A from './A.astro';
+
 const year = new Date().getFullYear();
 ---
 
-<footer><small>&copy; {year} Ethan Hawksley.</small></footer>
+<footer>
+  <small>&copy; {year} Ethan Hawksley · <A href="/rss.xml">RSS</A></small>
+</footer>
 
 <style>
   footer {

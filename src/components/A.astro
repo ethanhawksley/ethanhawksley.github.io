@@ -17,7 +17,7 @@ function isExternal(linkHref: string) {
     'localhost',
     'mailto',
   ]);
-  const exactPaths = new Set(['/', '/404/']);
+  const exactPaths = new Set(['/', '/404/', '/rss.xml/']);
   const pathPrefixes = new Set(['/blog/']);
 
   const url = new URL(linkHref, 'https://hawksley.dev');

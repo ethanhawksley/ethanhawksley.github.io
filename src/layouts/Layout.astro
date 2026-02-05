@@ -170,11 +170,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     }
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="page">
       <div id="nav-bar">
         <Navigation highlightedLink={highlightedLink} />
       </div>
-      <main>
+      <main id="main-content">
         <slot />
       </main>
       <Footer />
@@ -457,6 +458,22 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: 0.25rem;
+    z-index: 9999;
+    text-decoration: none;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
   }
 
   #nav-bar {

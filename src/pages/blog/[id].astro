@@ -6,12 +6,25 @@ import A from '../../components/A.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection('posts');
-  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+  const posts = (await getCollection('posts')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+
+  return posts.map((post, index) => ({
+    params: { id: post.id },
+    props: {
+      post,
+      prevPost: posts[index + 1] ?? null,
+      nextPost: posts[index - 1] ?? null,
+    },
+  }));
 }) satisfies GetStaticPaths;
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
+
+const words = (post.body ?? '').split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(words / 200));
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -89,41 +102,43 @@ const jsonLd = {
         {
           post.data.modifiedDate && (
             <>
-              - Modified <FormattedDate date={post.data.modifiedDate} />
+              · Modified <FormattedDate date={post.data.modifiedDate} />
             </>
           )
         }
-        {post.data.tags && <span> - {post.data.tags.join(', ')}</span>}
+        <span>· {readingTime} min read</span>
+        {post.data.tags && <span> · {post.data.tags.join(', ')}</span>}
       </small>
     </header>
     <div class="content">
       <Content components={{ a: A }} />
     </div>
     <footer><A href="/blog/">Back to index</A></footer>
+    <nav class="post-nav" aria-label="Post navigation">
+      {
+        prevPost ? (
+          <A href={`/blog/${prevPost.id}/`} class="prev">
+            <small>← Previous</small>
+            <span>{prevPost.data.title}</span>
+          </A>
+        ) : (
+          <div />
+        )
+      }
+      {
+        nextPost ? (
+          <A href={`/blog/${nextPost.id}/`} class="next">
+            <small>Next →</small>
+            <span>{nextPost.data.title}</span>
+          </A>
+        ) : (
+          <div />
+        )
+      }
+    </nav>
   </article>
 </Layout>
 <style is:global>
-  article {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    h1 {
-      font-size: var(--font-size-2xl);
-      margin-bottom: 1.5rem;
-      text-decoration: var(--color-accent) underline 3px;
-      text-underline-offset: 0.5rem;
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-tight);
-      letter-spacing: var(--letter-spacing-tight);
-    }
-
-    small {
-      color: var(--color-text-muted);
-      font-size: var(--font-size-sm);
-    }
-  }
-
   .content {
     > :first-child {
       margin-top: 0;
@@ -225,7 +240,54 @@ const jsonLd = {
 </style>
 
 <style>
+  article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h1 {
+      font-size: var(--font-size-2xl);
+      margin-bottom: 1.5rem;
+      text-decoration: var(--color-accent) underline 3px;
+      text-underline-offset: 0.5rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-tight);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    small {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+  }
+
   footer {
     margin-bottom: 1.5rem;
+  }
+
+  .post-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-nav a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 45%;
+  }
+
+  .post-nav small {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .post-nav .next {
+    text-align: right;
+    margin-left: auto;
   }
 </style>
