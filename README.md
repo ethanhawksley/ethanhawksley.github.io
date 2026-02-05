@@ -1,14 +1,25 @@
-# Portfolio Site
+# hawksley.dev
 
-My personal portfolio site, ported to Astro. It can be found at [https://hawksley.dev](https://hawksley.dev).
+My personal portfolio and blog, powered by Astro. You can find it at [https://hawksley.dev](https://hawksley.dev)!
 
-Colour Palette
+## Requirements
 
-| Purpose    | Light Mode             | Dark Mode                      |
-| ---------- | ---------------------- | ------------------------------ |
-| Background | #FAFAFA (Off White)    | #0F0F0F (Soft Black)           |
-| Surface    | #F0F0F0 (Whisper)      | #1A1A1A (Jet)                  |
-| Text       | #1A1A1A (Soft Black)   | #EDEDED (Platinum)             |
-| Text Muted | #525252 (Davy's Gray)  | #B0B0B0 (Silver)               |
-| Accent     | #D14100 (Burnt Orange) | #FF4F00 (International Orange) |
-| Border     | #E0E0E0 (Silver)       | #2A2A2A (Charcoal)             |
+This site uses the [pnpm package manager](https://pnpm.io/) so ensure to install it before trying to run.
+
+## Development
+
+1. Clone the repository:
+   ```shell
+   git clone https://github.com/ethan-hawksley/ethan-hawksley.github.io
+   cd online-minesweeper
+   ```
+2. Install dependencies:
+
+   ```shell
+   pnpm i
+   ```
+
+3. Run the dev server:
+   ```shell
+   pnpm run dev
+   ```
