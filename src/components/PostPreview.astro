@@ -1,5 +1,6 @@
 ---
 import A from './A.astro';
+import FormattedDate from './FormattedDate.astro';
 
 interface Props {
   url: string;
@@ -14,9 +15,7 @@ const { url, title, description, pubDate, tags } = Astro.props;
 <li>
   <article>
     <small>
-      <time datetime={pubDate.toISOString()}>
-        {pubDate.toLocaleString().slice(0, 10)}
-      </time>
+      <FormattedDate date={pubDate} />
       {tags && <span> - {tags.join(', ')}</span>}
     </small>
     <h2><A href={url}>{title}</A></h2>
@@ -45,12 +44,20 @@ const { url, title, description, pubDate, tags } = Astro.props;
   }
 
   h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
   }
 
   small,
   p {
     color: var(--color-text-muted);
+  }
+
+  small {
+    font-size: var(--font-size-sm);
+  }
+
+  p {
+    font-size: var(--font-size-base);
   }
 </style>

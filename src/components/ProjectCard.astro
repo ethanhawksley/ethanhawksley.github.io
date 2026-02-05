@@ -42,11 +42,13 @@ const { name, description, sourceUrl, liveUrl } = Astro.props;
   }
 
   h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
   }
 
   p {
+    font-size: var(--font-size-base);
     color: var(--color-text-muted);
     flex-grow: 1;
   }

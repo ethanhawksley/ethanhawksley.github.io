@@ -194,6 +194,31 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     --color-text-muted: #525252;
     --color-accent: #d14100;
     --color-border: #e0e0e0;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: clamp(1rem, 0.956rem + 0.22vw, 1.125rem);
+    --font-size-md: clamp(1.125rem, 1.069rem + 0.28vw, 1.25rem);
+    --font-size-lg: clamp(1.25rem, 1.159rem + 0.45vw, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 1.341rem + 0.8vw, 1.944rem);
+    --font-size-2xl: clamp(1.75rem, 1.506rem + 1.22vw, 2.431rem);
+    --font-size-3xl: clamp(2rem, 1.614rem + 1.93vw, 3.038rem);
+
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.35;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.75;
+
+    --letter-spacing-tighter: -0.025em;
+    --letter-spacing-tight: -0.015em;
+    --letter-spacing-normal: -0.011em;
+    --letter-spacing-wide: 0.02em;
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
   }
 
   :root.dark {
@@ -281,8 +306,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   }
 
   body {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    font-weight: var(--font-weight-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    word-spacing: 0.05em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -295,9 +323,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   h6 {
     text-wrap: balance;
     text-rendering: optimizeLegibility;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    font-weight: 650;
+    font-weight: var(--font-weight-semibold);
+    font-variant-ligatures: common-ligatures;
     font-feature-settings:
       'kern' 1,
       'liga' 1,
@@ -315,15 +342,29 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   }
 
   h1 {
-    font-size: clamp(2rem, 5vw + 1rem, 2.75rem);
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tighter);
+    font-weight: var(--font-weight-bold);
   }
 
   h2 {
-    font-size: clamp(1.5rem, 4vw + 1rem, 2rem);
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
   }
 
   h3 {
-    font-size: clamp(1.25rem, 3vw + 1rem, 1.75rem);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  h4 {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-normal);
+    font-weight: var(--font-weight-medium);
   }
 
   p {
@@ -337,7 +378,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   }
 
   small {
-    font-weight: 450;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-normal);
+    line-height: var(--line-height-normal);
   }
 
   img,

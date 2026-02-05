@@ -112,11 +112,12 @@ const jsonLd = {
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: var(--font-size-2xl);
       margin-bottom: 1.5rem;
       text-decoration: var(--color-accent) underline 3px;
       text-underline-offset: 0.5rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-tight);
     }
 
     #contact-links {
@@ -124,9 +125,15 @@ const jsonLd = {
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: var(--font-size-xl);
       margin-bottom: 1.5rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-snug);
+    }
+
+    p {
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
     }
 
     #projects-grid {

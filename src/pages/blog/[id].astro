@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('posts');
@@ -83,9 +84,15 @@ const jsonLd = {
     <header>
       <h1>{post.data.title}</h1>
       <small>
-        <time datetime={post.data.pubDate.toISOString()}>
-          Published {post.data.pubDate.toLocaleString().slice(0, 10)}
-        </time>
+        Published
+        <FormattedDate date={post.data.pubDate} />
+        {
+          post.data.modifiedDate && (
+            <>
+              - Modified <FormattedDate date={post.data.modifiedDate} />
+            </>
+          )
+        }
         {post.data.tags && <span> - {post.data.tags.join(', ')}</span>}
       </small>
     </header>
@@ -102,15 +109,18 @@ const jsonLd = {
     gap: 1rem;
 
     h1 {
-      font-size: 2rem;
+      font-size: var(--font-size-2xl);
       margin-bottom: 1.5rem;
       text-decoration: var(--color-accent) underline 3px;
       text-underline-offset: 0.5rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-tight);
+      letter-spacing: var(--letter-spacing-tight);
     }
 
     small {
       color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
     }
   }
 
@@ -123,24 +133,39 @@ const jsonLd = {
       margin-bottom: 0;
     }
 
+    p {
+      margin-block: 1.25rem;
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-relaxed);
+    }
+
     h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
+      font-size: var(--font-size-xl);
+      margin-top: 1.75rem;
+      margin-bottom: 1rem;
       text-decoration: var(--color-accent) underline 3px;
       text-underline-offset: 0.5rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-snug);
     }
 
     h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-      text-decoration: var(--color-accent) underline 3px;
+      font-size: var(--font-size-lg);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      text-decoration: var(--color-accent) underline 2px;
       text-underline-offset: 0.5rem;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-snug);
     }
 
-    p {
-      margin-block: 1.5rem;
+    li {
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-relaxed);
+    }
+
+    img {
+      border-radius: 1rem;
     }
   }
 
@@ -162,12 +187,12 @@ const jsonLd = {
     display: block;
     content-visibility: auto;
     contain-intrinsic-size: 0 200px;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
   }
 
   @media (min-width: 640px) {
     .astro-code code {
-      font-size: 1rem;
+      font-size: var(--font-size-sm);
     }
   }
 

@@ -1,0 +1,16 @@
+---
+interface Props {
+  date: Date;
+}
+const { date } = Astro.props;
+
+const day = date.getDate();
+const suffix = [11, 12, 13].includes(day)
+  ? 'th'
+  : ['th', 'st', 'nd', 'rd'][day % 10] || 'th';
+const formatted = `${day}${suffix} ${date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}`;
+---
+
+<time datetime={date.toISOString()}>
+  {formatted}
+</time>
