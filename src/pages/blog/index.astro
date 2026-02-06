@@ -15,21 +15,10 @@ const jsonLd = {
       '@id': 'https://hawksley.dev/#website',
       url: 'https://hawksley.dev/',
       name: 'Ethan Hawksley | Software Developer & CS Student',
-      publisher: { '@id': `https://hawksley.dev/#person` },
       description:
         'Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing.',
+      publisher: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
-    },
-    {
-      '@type': 'Person',
-      '@id': `https://hawksley.dev/#person`,
-      name: 'Ethan Hawksley',
-      url: 'https://hawksley.dev/',
-      sameAs: [
-        'https://github.com/ethan-hawksley',
-        'https://www.linkedin.com/in/ethan-hawksley',
-        'https://x.com/Ethan_Hawksley',
-      ],
     },
     {
       '@type': 'Blog',
@@ -43,20 +32,31 @@ const jsonLd = {
       blogPost: allPosts.map((post) => ({
         '@type': 'BlogPosting',
         '@id': `https://hawksley.dev/blog/${post.id}/#article`,
+        mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
+        url: `https://hawksley.dev/blog/${post.id}/`,
         headline: post.data.title,
         description: post.data.description,
+        image: 'https://hawksley.dev/og-image-1200x630.png',
         datePublished: post.data.pubDate.toISOString(),
         dateModified: (
           post.data.modifiedDate || post.data.pubDate
         ).toISOString(),
         author: { '@id': 'https://hawksley.dev/#person' },
         publisher: { '@id': 'https://hawksley.dev/#person' },
-        url: `https://hawksley.dev/blog/${post.id}/`,
-        image: 'https://hawksley.dev/og-image-1200x630.png',
         keywords: post.data.tags,
-        mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
         inLanguage: 'en-GB',
       })),
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://hawksley.dev/#person',
+      name: 'Ethan Hawksley',
+      url: 'https://hawksley.dev/',
+      sameAs: [
+        'https://github.com/ethan-hawksley',
+        'https://www.linkedin.com/in/ethan-hawksley',
+        'https://x.com/Ethan_Hawksley',
+      ],
     },
     {
       '@type': 'BreadcrumbList',
@@ -81,7 +81,7 @@ const jsonLd = {
 
 <Layout
   pageTitle="Blog | Ethan Hawksley - Software Developer & CS Student"
-  pageDescription="A technical blog by Ethan Hawksley. "
+  pageDescription="A technical blog by Ethan Hawksley."
   highlightedLink="blog"
   jsonLd={jsonLd}
   ogType="website"

@@ -15,7 +15,6 @@ function isExternal(linkHref: string) {
     'www.hawksley.dev',
     '127.0.0.1',
     'localhost',
-    'mailto',
   ]);
   const exactPaths = new Set(['/', '/404/', '/rss.xml/']);
   const pathPrefixes = new Set(['/blog/']);
@@ -45,7 +44,7 @@ const isExternalLink = isExternal(href);
 
 <a
   href={href}
-  rel={(isExternalLink ? 'noopener noreferrer' : '') + (rel ?? '')}
+  rel={(isExternalLink ? 'noopener noreferrer ' : '') + (rel ?? '')}
   target={isExternalLink ? '_blank' : ''}
   style={style}
   {...rest}

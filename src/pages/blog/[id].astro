@@ -30,29 +30,6 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: 'https://hawksley.dev/',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Blog',
-          item: 'https://hawksley.dev/blog/',
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: post.data.title,
-          item: `https://hawksley.dev/blog/${post.id}/`,
-        },
-      ],
-    },
-    {
       '@type': 'BlogPosting',
       '@id': `https://hawksley.dev/blog/${post.id}/#article`,
       mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
@@ -77,6 +54,29 @@ const jsonLd = {
       '@id': 'https://hawksley.dev/#person',
       name: 'Ethan Hawksley',
       url: 'https://hawksley.dev/',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hawksley.dev/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://hawksley.dev/blog/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.data.title,
+          item: `https://hawksley.dev/blog/${post.id}/`,
+        },
+      ],
     },
   ],
 };

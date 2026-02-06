@@ -97,7 +97,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             property="article:modified_time"
             content={article.modifiedTime ?? article.publishedTime}
           />
-          <meta property="article:author" content="https://hawksley.dev" />
+          <meta property="article:author" content="https://hawksley.dev/" />
           {article.tags.map((tag) => (
             <meta property="article:tag" content={tag} />
           ))}
