@@ -16,6 +16,9 @@ const jsonLd = {
       url: 'https://hawksley.dev/',
       name: 'Ethan Hawksley | Software Developer & CS Student',
       publisher: { '@id': `https://hawksley.dev/#person` },
+      description:
+        'Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing.',
+      inLanguage: 'en-GB',
     },
     {
       '@type': 'Person',
@@ -39,6 +42,7 @@ const jsonLd = {
       inLanguage: 'en-GB',
       blogPost: allPosts.map((post) => ({
         '@type': 'BlogPosting',
+        '@id': `https://hawksley.dev/blog/${post.id}/#article`,
         headline: post.data.title,
         description: post.data.description,
         datePublished: post.data.pubDate.toISOString(),
@@ -46,9 +50,12 @@ const jsonLd = {
           post.data.modifiedDate || post.data.pubDate
         ).toISOString(),
         author: { '@id': 'https://hawksley.dev/#person' },
+        publisher: { '@id': 'https://hawksley.dev/#person' },
         url: `https://hawksley.dev/blog/${post.id}/`,
+        image: 'https://hawksley.dev/og-image-1200x630.png',
         keywords: post.data.tags,
         mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
+        inLanguage: 'en-GB',
       })),
     },
     {
