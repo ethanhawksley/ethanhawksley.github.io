@@ -65,6 +65,11 @@ const jsonLd = {
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Linux, Windows, macOS',
           url: project.data.liveUrl || project.data.sourceUrl,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'GBP',
+          },
         },
       })),
     },
