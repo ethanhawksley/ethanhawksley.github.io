@@ -11,7 +11,7 @@ This site uses the [pnpm package manager](https://pnpm.io/) so ensure to install
 1. Clone the repository:
    ```shell
    git clone https://github.com/ethan-hawksley/ethan-hawksley.github.io
-   cd online-minesweeper
+   cd ethan-hawksley.github.io
    ```
 2. Install dependencies:
 
