@@ -129,13 +129,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       crossorigin="anonymous"
       fetchpriority="high"
     />
-    <link
-      rel="preload"
-      href="/fonts/JetBrainsMono.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin="anonymous"
-    />
+    {
+      Astro.url.pathname.startsWith('/blog/') &&
+        Astro.url.pathname !== '/blog/' && (
+          <link
+            rel="preload"
+            href="/fonts/JetBrainsMono.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin="anonymous"
+          />
+        )
+    }
 
     <script is:inline>
       function getCurrentTheme() {
@@ -168,6 +173,24 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         />
       )
     }
+
+    {Astro.url.pathname !== '/' && <link rel="prefetch" href="/" />}
+    {Astro.url.pathname !== '/blog/' && <link rel="prefetch" href="/blog/" />}
+    <script is:inline type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/rss.xml" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
