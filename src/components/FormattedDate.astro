@@ -4,10 +4,16 @@ interface Props {
 }
 const { date } = Astro.props;
 
+function getOrdinalSuffix(num: number) {
+  if ([11, 12, 13].includes(num % 100)) return 'th';
+  if (num % 10 === 1) return 'st';
+  if (num % 10 === 2) return 'nd';
+  if (num % 10 === 3) return 'rd';
+  return 'th';
+}
+
 const day = date.getDate();
-const suffix = [11, 12, 13].includes(day)
-  ? 'th'
-  : ['th', 'st', 'nd', 'rd'][day % 10] || 'th';
+const suffix = getOrdinalSuffix(day);
 const formatted = `${day}${suffix} ${date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}`;
 ---
 
