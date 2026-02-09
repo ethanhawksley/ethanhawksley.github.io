@@ -16,7 +16,7 @@ const { url, title, description, pubDate, tags } = Astro.props;
   <article>
     <small>
       <FormattedDate date={pubDate} />
-      {tags && <span> - {tags.join(', ')}</span>}
+      {tags && <span> · {tags.join(', ')}</span>}
     </small>
     <h2><A href={url}>{title}</A></h2>
     <p>{description}</p>
