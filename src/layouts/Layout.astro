@@ -201,9 +201,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       <Footer />
     </div>
     <script>
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         document.documentElement.classList.add('enable-transitions');
-      }, 0);
+      });
     </script>
   </body>
 </html>
