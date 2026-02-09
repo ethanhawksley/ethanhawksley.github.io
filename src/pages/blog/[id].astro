@@ -24,7 +24,7 @@ const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 
 const words = (post.body ?? '').split(/\s+/).length;
-const readingTime = Math.max(1, Math.ceil(words / 200));
+const readingTime = Math.max(1, Math.ceil(words / 238));
 
 const jsonLd = {
   '@context': 'https://schema.org',
