@@ -390,7 +390,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     line-height: var(--line-height-normal);
     font-weight: var(--font-weight-normal);
     letter-spacing: var(--letter-spacing-normal);
-    word-spacing: 0.05em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -453,7 +452,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
   p,
   li {
-    max-width: 65ch;
     hanging-punctuation: first allow-end last;
   }
 
@@ -529,7 +527,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 <style>
   #page {
-    max-width: 900px;
+    max-width: 768px;
     margin-inline: auto;
     padding-top: 1rem;
     padding-bottom: 1.5rem;
