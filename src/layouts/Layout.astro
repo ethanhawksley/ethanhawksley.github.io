@@ -241,6 +241,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+
+    --theme-transition:
+      background-color 250ms ease-out, border-color 250ms ease, color 250ms ease;
   }
 
   :root.dark {
@@ -250,6 +253,42 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     --color-text-muted: #b0b0b0;
     --color-accent: #ff4f00;
     --color-border: #2a2a2a;
+  }
+
+  @property --color-background {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #fafafa;
+  }
+
+  @property --color-surface {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #f0f0f0;
+  }
+
+  @property --color-text {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #1a1a1a;
+  }
+
+  @property --color-text-muted {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #525252;
+  }
+
+  @property --color-accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #d14100;
+  }
+
+  @property --color-border {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #e0e0e0;
   }
 
   @font-face {
@@ -311,13 +350,28 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
   html.enable-transitions {
     transition:
-      background-color 250ms ease-out,
-      color 250ms ease;
+      --color-background 250ms ease-out,
+      --color-surface 250ms ease-out,
+      --color-text 250ms ease,
+      --color-text-muted 250ms ease,
+      --color-accent 250ms ease,
+      --color-border 250ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+
     html {
       scroll-behavior: auto;
+    }
+
+    html.enable-transitions {
+      transition-duration: 0.01ms !important;
     }
   }
 
