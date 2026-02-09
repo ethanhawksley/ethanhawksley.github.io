@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: "Ethan Hawksley's Blog",
     description:
-      'Articles featuring a variety of topics such as software engineering, computer science concepts, and more!',
+      'Technical blog of Ethan Hawksley, a UK-based CS student and developer. Explore articles on Rust, JavaScript, and computer science concepts.',
     site: context.site!,
     items: posts
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

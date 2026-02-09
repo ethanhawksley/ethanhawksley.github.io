@@ -16,7 +16,7 @@ const jsonLd = {
       url: 'https://hawksley.dev/',
       name: 'Ethan Hawksley | Software Developer & CS Student',
       description:
-        'Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing.',
+        'Portfolio and technical blog of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript.',
       publisher: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
     },
@@ -26,7 +26,7 @@ const jsonLd = {
       mainEntityOfPage: 'https://hawksley.dev/blog/',
       name: "Ethan Hawksley's Blog",
       description:
-        'A technical blog featuring articles on software engineering, Rust, and computer science.',
+        'Technical blog of Ethan Hawksley, a UK-based CS student and developer. Explore articles on Rust, JavaScript, and computer science concepts.',
       publisher: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
       blogPost: allPosts.map((post) => ({
@@ -81,7 +81,7 @@ const jsonLd = {
 
 <Layout
   pageTitle="Blog | Ethan Hawksley - Software Developer & CS Student"
-  pageDescription="A technical blog by Ethan Hawksley."
+  pageDescription="Technical blog of Ethan Hawksley, a UK-based CS student and developer. Explore articles on Rust, JavaScript, and computer science concepts."
   highlightedLink="blog"
   jsonLd={jsonLd}
   ogType="website"

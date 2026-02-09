@@ -17,7 +17,7 @@ const jsonLd = {
       url: 'https://hawksley.dev/',
       name: 'Ethan Hawksley | Software Developer & CS Student',
       description:
-        'Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore projects in Linux systems, web applications, and low-level computing.',
+        'Portfolio of Ethan Hawksley, a UK-based CS student and developer building tools with Rust and JavaScript. Explore my projects and source code.',
       publisher: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
     },
@@ -35,7 +35,9 @@ const jsonLd = {
       name: 'Ethan Hawksley',
       url: 'https://hawksley.dev/',
       jobTitle: 'Software Developer',
-      description: 'CS Student and Software Developer',
+      description:
+        'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
+      subjectOf: { '@id': 'https://hawksley.dev/#webpage' },
       affiliation: {
         '@type': 'EducationalOrganization',
         name: 'Alcester Grammar School',
@@ -79,7 +81,7 @@ const jsonLd = {
 
 <Layout
   pageTitle="Ethan Hawksley | Software Developer & CS Student"
-  pageDescription="Portfolio of Ethan Hawksley, a UK-based developer building tools with Rust and JavaScript. Explore my latest projects and source code."
+  pageDescription="Portfolio of Ethan Hawksley, a UK-based CS student and developer building tools with Rust and JavaScript. Explore my projects and source code."
   highlightedLink="home"
   jsonLd={jsonLd}
   ogType="profile"
