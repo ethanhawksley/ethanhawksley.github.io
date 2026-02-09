@@ -36,6 +36,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="generator" content={Astro.generator} />
 
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en-GB" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <meta name="robots" content={robots} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
@@ -50,10 +52,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="msapplication-TileColor" content="#d14100" />
-
-    <meta name="geo.region" content="GB" />
-    <meta name="geo.placename" content="United Kingdom" />
 
     <meta name="color-scheme" content="light dark" />
     <meta
@@ -82,9 +80,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
 
-    <meta property="profile:first_name" content="Ethan" />
-    <meta property="profile:last_name" content="Hawksley" />
-    <meta property="profile:username" content="ethan-hawksley" />
+    {
+      ogType === 'profile' && (
+        <>
+          <meta property="profile:first_name" content="Ethan" />
+          <meta property="profile:last_name" content="Hawksley" />
+          <meta property="profile:username" content="ethan-hawksley" />
+        </>
+      )
+    }
 
     <meta name="fediverse:creator" content="@ethanhawksley@mastodon.social" />
 
