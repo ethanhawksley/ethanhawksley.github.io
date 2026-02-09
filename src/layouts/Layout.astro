@@ -247,7 +247,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     --font-weight-bold: 700;
 
     --theme-transition:
-      background-color 250ms ease-out, border-color 250ms ease, color 250ms ease;
+      background-color 250ms ease-out, border-color 250ms ease-out,
+      color 250ms ease-out;
   }
 
   :root.dark {
@@ -356,10 +357,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     transition:
       --color-background 250ms ease-out,
       --color-surface 250ms ease-out,
-      --color-text 250ms ease,
-      --color-text-muted 250ms ease,
-      --color-accent 250ms ease,
-      --color-border 250ms ease;
+      --color-text 250ms ease-out,
+      --color-text-muted 250ms ease-out,
+      --color-accent 250ms ease-out,
+      --color-border 250ms ease-out;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -481,7 +482,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
   a,
   button {
-    transition: transform 0.1s ease;
     touch-action: manipulation;
   }
 
@@ -490,7 +490,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     pointer-events: none;
   }
 
-  a:active,
+  button {
+    transition: transform 0.1s ease-out;
+  }
+
   button:active {
     transform: scale(0.96);
   }

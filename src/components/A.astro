@@ -59,7 +59,9 @@ const isExternalLink = isExternal(href);
     color: inherit;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
-    transition: color 250ms ease;
+    transition:
+      color 250ms ease-out,
+      transform 0.1s ease-out;
     display: inline-flex;
     align-items: center;
     text-wrap: auto;
@@ -71,7 +73,7 @@ const isExternalLink = isExternal(href);
   }
 
   a svg {
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-out;
     width: 0.75em;
     height: 0.75em;
     margin-right: -0.15em;

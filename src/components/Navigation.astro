@@ -59,7 +59,7 @@ const { highlightedLink } = Astro.props;
     align-items: center;
     font-size: var(--font-size-md);
     line-height: var(--line-height-tight);
-    transition: color 250ms ease;
+    transition: color 250ms ease-out;
   }
 
   div {
@@ -77,5 +77,9 @@ const { highlightedLink } = Astro.props;
   .active,
   a:hover {
     color: var(--color-accent);
+  }
+
+  a:active {
+    transform: scale(0.96);
   }
 </style>
