@@ -7,6 +7,10 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://hawksley.dev',
   trailingSlash: 'always',
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
   build: {
     inlineStylesheets: 'always',
   },
