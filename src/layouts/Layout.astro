@@ -86,6 +86,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="profile:last_name" content="Hawksley" />
     <meta property="profile:username" content="ethan-hawksley" />
 
+    <meta name="fediverse:creator" content="@ethanhawksley@mastodon.social" />
+
     {
       article && (
         <>
@@ -115,11 +117,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       content="https://hawksley.dev/og-image-1200x630.png"
     />
     <meta name="twitter:image:alt" content={pageTitle} />
-
-    <meta
-      name="thumbnail"
-      content="https://hawksley.dev/avatar-1200x1200.png"
-    />
 
     <link
       rel="preload"
