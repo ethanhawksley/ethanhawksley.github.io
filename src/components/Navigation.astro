@@ -12,7 +12,7 @@ const { highlightedLink } = Astro.props;
     <a href="/" aria-label="Home - Ethan Hawksley" id="logo"
       ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
     >
-    <div>
+    <div class="page-links">
       <a
         href="/"
         class={`${highlightedLink === 'home' ? 'active' : ''}`}
@@ -48,9 +48,12 @@ const { highlightedLink } = Astro.props;
     height: 3rem;
   }
 
-  a {
+  .page-links a {
     padding: 0.75rem 0.25rem;
     margin: -0.75rem -0.25rem;
+  }
+
+  a {
     color: inherit;
     text-decoration: none;
     display: flex;
