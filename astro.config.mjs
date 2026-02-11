@@ -29,7 +29,6 @@ export default defineConfig({
         'https://hawksley.dev/cyms-interpreter/',
         'https://hawksley.dev/turing-machine/',
         'https://hawksley.dev/mineduo/',
-        'https://hawksley.dev/tetris/',
       ],
       changefreq: ChangeFreqEnum.WEEKLY,
       lastmod: new Date(),
