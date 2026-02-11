@@ -191,6 +191,19 @@ const jsonLd = {
     img {
       border-radius: 1rem;
     }
+
+    blockquote {
+      border-left: 4px solid var(--color-accent);
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      padding: 1rem 1.5rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-style: italic;
+    }
+
+    blockquote > :last-child {
+      margin-bottom: 0;
+    }
   }
 
   .astro-code {
