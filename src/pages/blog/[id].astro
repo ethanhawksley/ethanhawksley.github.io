@@ -300,11 +300,16 @@ const jsonLd = {
   .post-nav small {
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
+    transition: color 250ms ease-out;
   }
 
   .post-nav .next {
     text-align: right;
     margin-left: auto;
+  }
+
+  .post-nav :global(a:hover) small {
+    color: var(--color-accent);
   }
 
   footer :global(a:active) {
