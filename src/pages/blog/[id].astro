@@ -98,6 +98,11 @@ const jsonLd = {
   }}
 >
   <article id="post">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <A href="/blog/" style="text-decoration: none;">
+        <span aria-hidden="true">←</span> Back to blog
+      </A>
+    </nav>
     <header>
       <h1>{post.data.title}</h1>
       <small>
@@ -239,8 +244,6 @@ const jsonLd = {
   }
 
   .dark {
-    /*noinspection CssUnresolvedCustomProperty*/
-
     .astro-code,
     .astro-code span {
       color: var(--shiki-dark) !important;
@@ -256,6 +259,12 @@ const jsonLd = {
 </style>
 
 <style>
+  .breadcrumb {
+    margin-bottom: 0.5rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+
   article {
     display: flex;
     flex-direction: column;
