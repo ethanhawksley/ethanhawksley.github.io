@@ -124,24 +124,32 @@ const jsonLd = {
     </div>
     <footer><A href="/blog/">Back to index</A></footer>
     <nav class="post-nav" aria-label="Post navigation">
+      <!-- 1. Previous Post (Left) -->
       {
         prevPost ? (
-          <A href={`/blog/${prevPost.id}/`} class="prev">
+          <A href={`/blog/${prevPost.id}/`} class="nav-item prev">
             <small>← Previous</small>
             <span>{prevPost.data.title}</span>
           </A>
         ) : (
-          <div />
+          <div class="nav-item placeholder" />
         )
       }
+
+      <!-- 2. The Index Link (Center) -->
+      <div class="nav-item center">
+        <A href="/blog/" class="back-link">View all posts</A>
+      </div>
+
+      <!-- 3. Next Post (Right) -->
       {
         nextPost ? (
-          <A href={`/blog/${nextPost.id}/`} class="next">
+          <A href={`/blog/${nextPost.id}/`} class="nav-item next">
             <small>Next →</small>
             <span>{nextPost.data.title}</span>
           </A>
         ) : (
-          <div />
+          <div class="nav-item placeholder" />
         )
       }
     </nav>
@@ -291,41 +299,60 @@ const jsonLd = {
   }
 
   .post-nav {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     gap: 1rem;
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
   }
 
-  .post-nav a {
+  .nav-item {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    max-width: 45%;
   }
 
-  .post-nav small {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-    transition: color 250ms ease-out;
+  .nav-item.center {
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
   }
 
-  .post-nav .next {
+  .nav-item.next {
     text-align: right;
-    margin-left: auto;
+    align-items: flex-end;
   }
 
-  .post-nav :global(a:hover) small {
+  .nav-item.prev {
+    align-items: flex-start;
+  }
+
+  .back-link {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    border-color: var(--color-accent);
     color: var(--color-accent);
   }
 
-  footer :global(a:active) {
-    transform: scale(0.96);
-  }
+  @media (max-width: 600px) {
+    .post-nav {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 1.5rem;
+    }
 
-  .post-nav :global(a:active) {
-    transform: scale(0.96);
+    .nav-item.center {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-top: 1px dashed var(--color-border);
+      padding-top: 1rem;
+    }
   }
 </style>
