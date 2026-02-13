@@ -29,6 +29,7 @@ const { url, title, description, pubDate, tags } = Astro.props;
   }
 
   article {
+    position: relative;
     background-color: var(--color-surface);
     padding: 1rem;
     border: 2px solid var(--color-border);
@@ -59,6 +60,13 @@ const { url, title, description, pubDate, tags } = Astro.props;
 
   p {
     font-size: var(--font-size-base);
+  }
+
+  h2 :global(a)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem;
   }
 
   h2 :global(a:active) {
