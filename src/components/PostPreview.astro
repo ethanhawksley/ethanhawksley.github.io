@@ -40,10 +40,6 @@ const { url, title, description, pubDate, tags } = Astro.props;
     flex-direction: column;
   }
 
-  article:hover {
-    border-color: var(--color-accent);
-  }
-
   h2 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
@@ -60,13 +56,6 @@ const { url, title, description, pubDate, tags } = Astro.props;
 
   p {
     font-size: var(--font-size-base);
-  }
-
-  h2 :global(a)::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 0.5rem;
   }
 
   h2 :global(a:active) {
