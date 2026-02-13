@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hawksley.dev',
+  prefetch: true,
   trailingSlash: 'always',
   image: {
     layout: 'constrained',
