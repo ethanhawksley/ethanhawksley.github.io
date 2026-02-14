@@ -48,25 +48,32 @@ import Sun from '../assets/sun.svg';
   }
 </style>
 <script>
-  const button = document.getElementById('theme-toggle');
+  function initThemeToggle() {
+    const button = document.getElementById('theme-toggle');
+    if (!button) return;
 
-  function updateTheme(isDark: boolean) {
-    button?.setAttribute(
-      'aria-label',
-      `Switch to ${isDark ? 'light' : 'dark'} mode`,
-    );
-    const themeColorMetaTags = document.querySelectorAll(
-      'meta[name="theme-color"]',
-    );
-    const newColor = isDark ? '#0f0f0f' : '#fafafa';
-    themeColorMetaTags.forEach((tag) => tag.setAttribute('content', newColor));
+    function updateTheme(isDark: boolean) {
+      button?.setAttribute(
+        'aria-label',
+        `Switch to ${isDark ? 'light' : 'dark'} mode`,
+      );
+      const themeColorMetaTags = document.querySelectorAll(
+        'meta[name="theme-color"]',
+      );
+      const newColor = isDark ? '#0f0f0f' : '#fafafa';
+      themeColorMetaTags.forEach((tag) =>
+        tag.setAttribute('content', newColor),
+      );
+    }
+
+    button.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateTheme(isDark);
+    });
+
+    updateTheme(document.documentElement.classList.contains('dark'));
   }
 
-  button?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    updateTheme(isDark);
-  });
-
-  updateTheme(document.documentElement.classList.contains('dark'));
+  document.addEventListener('astro:page-load', initThemeToggle);
 </script>
