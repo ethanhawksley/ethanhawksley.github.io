@@ -26,7 +26,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      customPages: [],
+      customPages: ['https://hawksley.dev/cyms-interpreter/'],
       changefreq: ChangeFreqEnum.WEEKLY,
       lastmod: new Date(),
       priority: 0.7,
