@@ -29,6 +29,7 @@ export default defineConfig({
       customPages: [
         'https://hawksley.dev/cyms-interpreter/',
         'https://hawksley.dev/mineduo/',
+        'https://hawksley.dev/turing-machine/',
       ],
       changefreq: ChangeFreqEnum.WEEKLY,
       lastmod: new Date(),
