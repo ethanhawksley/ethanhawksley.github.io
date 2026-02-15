@@ -26,7 +26,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      customPages: ['https://hawksley.dev/cyms-interpreter/'],
+      customPages: [
+        'https://hawksley.dev/cyms-interpreter/',
+        'https://hawksley.dev/mineduo/',
+      ],
       changefreq: ChangeFreqEnum.WEEKLY,
       lastmod: new Date(),
       priority: 0.7,
