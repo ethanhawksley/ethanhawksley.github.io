@@ -53,11 +53,26 @@ const jsonLd = {
       name: 'Ethan Hawksley',
       alternateName: 'Hawksley',
       url: 'https://hawksley.dev/',
+      jobTitle: 'Software Developer',
+      description:
+        'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
+      subjectOf: { '@id': 'https://hawksley.dev/#webpage' },
+      affiliation: {
+        '@type': 'EducationalOrganization',
+        name: 'Alcester Grammar School',
+      },
+      image: 'https://hawksley.dev/logo_round.png',
       sameAs: [
         'https://github.com/ethan-hawksley',
         'https://www.linkedin.com/in/ethan-hawksley',
         'https://x.com/Ethan_Hawksley',
+        'https://mastodon.social/@ethanhawksley',
       ],
+      knowsAbout: ['Rust', 'JavaScript', 'Linux', 'Web Development'],
+      homeLocation: {
+        '@type': 'Place',
+        name: 'United Kingdom',
+      },
     },
     {
       '@type': 'BreadcrumbList',
