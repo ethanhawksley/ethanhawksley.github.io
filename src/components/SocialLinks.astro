@@ -1,6 +1,7 @@
 ---
 import Email from '../assets/email.svg';
 import Github from '../assets/github.svg';
+import Linkedin from '../assets/linkedin.svg';
 import A from './A.astro';
 ---
 
@@ -14,7 +15,13 @@ import A from './A.astro';
   <A href="https://github.com/ethan-hawksley" rel="me">
     <span>
       <Github class="github" aria-hidden="true" />
-      ethan-hawksley
+      GitHub
+    </span>
+  </A>
+  <A href="https://www.linkedin.com/in/ethan-hawksley/" rel="me">
+    <span>
+      <Linkedin class="linkedin" aria-hidden="true" />
+      LinkedIn
     </span>
   </A>
 </address>
@@ -26,7 +33,7 @@ import A from './A.astro';
     gap: 0.5rem;
   }
 
-  @media (min-width: 480px) {
+  @media (min-width: 660px) {
     address {
       flex-direction: row;
       gap: 1rem;
