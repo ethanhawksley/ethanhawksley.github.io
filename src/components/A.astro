@@ -54,7 +54,7 @@ const isExternalLink = isExternal(href);
   {
     isExternalLink && (
       <>
-        <External />
+        <External aria-hidden="true" />
         <span class="sr-only">(opens in a new tab)</span>
       </>
     )
