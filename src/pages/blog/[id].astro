@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import { personSchema, websiteSchema } from '../../lib/schema.ts';
 
 export const getStaticPaths = (async () => {
   const posts = (await getCollection('posts')).sort(
@@ -29,6 +30,14 @@ const readingTime = Math.max(1, Math.ceil(words / 238));
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    websiteSchema,
+    {
+      '@type': 'Blog',
+      '@id': 'https://hawksley.dev/blog/#blog',
+      url: 'https://hawksley.dev/blog/',
+      name: "Ethan Hawksley's Blog",
+      publisher: { '@id': 'https://hawksley.dev/#person' },
+    },
     {
       '@type': 'BlogPosting',
       '@id': `https://hawksley.dev/blog/${post.id}/#article`,
@@ -39,43 +48,27 @@ const jsonLd = {
       image: 'https://hawksley.dev/og-image-1200x630.png',
       datePublished: post.data.pubDate.toISOString(),
       dateModified: (post.data.modifiedDate || post.data.pubDate).toISOString(),
+      wordCount: words,
+      timeRequired: `PT${readingTime}M`,
+      isAccessibleForFree: true,
       author: {
         '@id': 'https://hawksley.dev/#person',
+        '@type': 'Person',
+        name: 'Ethan Hawksley',
+        url: 'https://hawksley.dev/',
       },
       publisher: {
         '@id': 'https://hawksley.dev/#person',
       },
+      isPartOf: {
+        '@id': 'https://hawksley.dev/blog/#blog',
+      },
       keywords: post.data.tags,
       inLanguage: 'en-GB',
-      copyrightYear: new Date(post.data.pubDate).getFullYear(),
+      copyrightYear: post.data.pubDate.getFullYear(),
+      copyrightHolder: { '@id': 'https://hawksley.dev/#person' },
     },
-    {
-      '@type': 'Person',
-      '@id': 'https://hawksley.dev/#person',
-      name: 'Ethan Hawksley',
-      alternateName: 'Hawksley',
-      url: 'https://hawksley.dev/',
-      jobTitle: 'Software Developer',
-      description:
-        'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
-      subjectOf: { '@id': 'https://hawksley.dev/#webpage' },
-      affiliation: {
-        '@type': 'EducationalOrganization',
-        name: 'Alcester Grammar School',
-      },
-      image: 'https://hawksley.dev/logo_round.png',
-      sameAs: [
-        'https://github.com/ethan-hawksley',
-        'https://www.linkedin.com/in/ethan-hawksley',
-        'https://x.com/Ethan_Hawksley',
-        'https://mastodon.social/@ethanhawksley',
-      ],
-      knowsAbout: ['Rust', 'JavaScript', 'Linux', 'Web Development'],
-      homeLocation: {
-        '@type': 'Place',
-        name: 'United Kingdom',
-      },
-    },
+    personSchema,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [

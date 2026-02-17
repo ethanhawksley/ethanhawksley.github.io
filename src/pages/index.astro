@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
+import { personSchema, websiteSchema } from '../lib/schema.ts';
 
 const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
@@ -11,16 +12,7 @@ const allProjects = (await getCollection('projects')).sort(
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': 'https://hawksley.dev/#website',
-      url: 'https://hawksley.dev/',
-      name: 'Ethan Hawksley',
-      description:
-        'Portfolio of Ethan Hawksley, a UK-based CS student and developer building tools with Rust and JavaScript. Explore my projects and source code.',
-      publisher: { '@id': 'https://hawksley.dev/#person' },
-      inLanguage: 'en-GB',
-    },
+    websiteSchema,
     {
       '@type': 'ProfilePage',
       '@id': 'https://hawksley.dev/#webpage',
@@ -28,34 +20,9 @@ const jsonLd = {
       name: 'About Ethan Hawksley',
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/#person' },
+      inLanguage: 'en-GB',
     },
-    {
-      '@type': 'Person',
-      '@id': 'https://hawksley.dev/#person',
-      name: 'Ethan Hawksley',
-      alternateName: 'Hawksley',
-      url: 'https://hawksley.dev/',
-      jobTitle: 'Software Developer',
-      description:
-        'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
-      subjectOf: { '@id': 'https://hawksley.dev/#webpage' },
-      affiliation: {
-        '@type': 'EducationalOrganization',
-        name: 'Alcester Grammar School',
-      },
-      image: 'https://hawksley.dev/logo_round.png',
-      sameAs: [
-        'https://github.com/ethan-hawksley',
-        'https://www.linkedin.com/in/ethan-hawksley',
-        'https://x.com/Ethan_Hawksley',
-        'https://mastodon.social/@ethanhawksley',
-      ],
-      knowsAbout: ['Rust', 'JavaScript', 'Linux', 'Web Development'],
-      homeLocation: {
-        '@type': 'Place',
-        name: 'United Kingdom',
-      },
-    },
+    personSchema,
     {
       '@type': 'ItemList',
       name: "Ethan Hawksley's Projects",
@@ -67,8 +34,11 @@ const jsonLd = {
           name: project.data.name,
           description: project.data.description,
           applicationCategory: 'DeveloperApplication',
-          operatingSystem: 'Linux, Windows, macOS',
           url: project.data.liveUrl || project.data.sourceUrl,
+          ...(project.data.sourceUrl && {
+            installUrl: project.data.sourceUrl,
+          }),
+          author: { '@id': 'https://hawksley.dev/#person' },
           offers: {
             '@type': 'Offer',
             price: '0',
