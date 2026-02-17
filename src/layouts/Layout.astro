@@ -170,6 +170,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
       document.addEventListener('astro:before-swap', (ev) => {
         applyThemeToDoc(ev.newDocument);
+        if (document.documentElement.classList.contains('enable-transitions')) {
+          ev.newDocument.documentElement.classList.add('enable-transitions');
+        }
       });
     </script>
 
