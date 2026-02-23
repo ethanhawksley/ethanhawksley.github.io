@@ -102,6 +102,9 @@ const jsonLd = {
   highlightedLink="blog"
   jsonLd={jsonLd}
   ogType="article"
+  ogImage={post.data.coverImage
+    ? new URL(post.data.coverImage, Astro.site).toString()
+    : undefined}
   article={{
     publishedTime: post.data.pubDate.toISOString(),
     modifiedTime: post.data.modifiedDate?.toISOString(),
@@ -315,6 +318,10 @@ const jsonLd = {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
+  }
+
+  .post-nav :global(a) {
+    text-decoration: none;
   }
 
   .nav-item {
