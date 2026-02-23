@@ -34,6 +34,7 @@ const jsonLd = {
           name: project.data.name,
           description: project.data.description,
           applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Any',
           url: project.data.liveUrl || project.data.sourceUrl,
           ...(project.data.sourceUrl && {
             installUrl: project.data.sourceUrl,

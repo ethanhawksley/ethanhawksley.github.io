@@ -19,14 +19,60 @@ export const personSchema = {
   jobTitle: 'Software Developer',
   description:
     'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
-  image: 'https://hawksley.dev/logo_round.png',
+  disambiguatingDescription:
+    'Computer Science student and Rust/JavaScript software developer from the United Kingdom',
+  image: {
+    '@type': 'ImageObject',
+    '@id': 'https://hawksley.dev/#avatar',
+    url: 'https://hawksley.dev/avatar-1200x1200.png',
+    caption: 'Ethan Hawksley',
+    width: 1200,
+    height: 1200,
+  },
+  email: 'ethan@hawksley.dev',
+  gender: 'Male',
+  nationality: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
+  knowsLanguage: ['English'],
   sameAs: [
     'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
     'https://x.com/Ethan_Hawksley',
     'https://mastodon.social/@ethanhawksley',
+    'https://bsky.app/profile/ethanhawksley.bsky.social',
   ],
-  knowsAbout: ['Rust', 'JavaScript', 'Linux', 'Web Development'],
+  knowsAbout: [
+    {
+      '@type': 'Thing',
+      name: 'Rust (programming language)',
+      sameAs: 'https://en.wikipedia.org/wiki/Rust_(programming_language)',
+    },
+    {
+      '@type': 'Thing',
+      name: 'JavaScript',
+      sameAs: 'https://en.wikipedia.org/wiki/JavaScript',
+    },
+    {
+      '@type': 'Thing',
+      name: 'Linux',
+      sameAs: 'https://en.wikipedia.org/wiki/Linux',
+    },
+    {
+      '@type': 'Thing',
+      name: 'Web Development',
+      sameAs: 'https://en.wikipedia.org/wiki/Web_development',
+    },
+  ],
+  alumniOf: {
+    '@type': 'EducationalOrganization',
+    name: 'Alcester Grammar School',
+    sameAs: [
+      'https://www.alcestergs.co.uk/',
+      'https://en.wikipedia.org/wiki/Alcester_Grammar_School',
+    ],
+  },
   homeLocation: {
     '@type': 'Place',
     name: 'United Kingdom',

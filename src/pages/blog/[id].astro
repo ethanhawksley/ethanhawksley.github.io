@@ -45,7 +45,9 @@ const jsonLd = {
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
       description: post.data.description,
-      image: 'https://hawksley.dev/og-image-1200x630.png?v=2',
+      image: post.data.coverImage
+        ? new URL(post.data.coverImage, 'https://hawksley.dev').toString()
+        : 'https://hawksley.dev/og-image-1200x630.png?v=2',
       datePublished: post.data.pubDate.toISOString(),
       dateModified: (post.data.modifiedDate || post.data.pubDate).toISOString(),
       wordCount: words,
@@ -58,7 +60,15 @@ const jsonLd = {
         url: 'https://hawksley.dev/',
       },
       publisher: {
-        '@id': 'https://hawksley.dev/#person',
+        '@type': 'Organization',
+        name: 'Ethan Hawksley',
+        url: 'https://hawksley.dev/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://hawksley.dev/logo_square.png',
+          width: 1024,
+          height: 1024,
+        },
       },
       isPartOf: {
         '@id': 'https://hawksley.dev/blog/#blog',
