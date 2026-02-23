@@ -59,17 +59,7 @@ const jsonLd = {
         name: 'Ethan Hawksley',
         url: 'https://hawksley.dev/',
       },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Ethan Hawksley',
-        url: 'https://hawksley.dev/',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://hawksley.dev/logo_square.png',
-          width: 1024,
-          height: 1024,
-        },
-      },
+      publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: {
         '@id': 'https://hawksley.dev/blog/#blog',
       },
