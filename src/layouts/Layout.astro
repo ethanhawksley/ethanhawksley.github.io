@@ -208,10 +208,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 <style is:global>
   :root {
     --color-background: #fafafa;
-    --color-surface: #f0f0f0;
+    --color-surface: #eaeaea;
     --color-text: #1a1a1a;
     --color-text-muted: #525252;
-    --color-accent: #d14100;
+    --color-accent: #bf3900;
     --color-border: #e0e0e0;
 
     --font-size-xs: 0.75rem;
@@ -242,7 +242,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
   :root.dark {
     --color-background: #0f0f0f;
-    --color-surface: #1a1a1a;
+    --color-surface: #1f1f1f;
     --color-text: #ededed;
     --color-text-muted: #b0b0b0;
     --color-accent: #ff4f00;
@@ -258,7 +258,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   @property --color-surface {
     syntax: '<color>';
     inherits: true;
-    initial-value: #f0f0f0;
+    initial-value: #eaeaea;
   }
 
   @property --color-text {
@@ -276,7 +276,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
   @property --color-accent {
     syntax: '<color>';
     inherits: true;
-    initial-value: #d14100;
+    initial-value: #bf3900;
   }
 
   @property --color-border {
