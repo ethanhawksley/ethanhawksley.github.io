@@ -138,34 +138,24 @@ const jsonLd = {
     </div>
     <nav class="post-nav" aria-label="Post navigation">
       {
-        prevPost ? (
-          <div class="nav-item prev">
-            <A href={`/blog/${prevPost.id}/`}>
-              <small>← Previous</small>
-              <span>{prevPost.data.title}</span>
-            </A>
+        prevPost && (
+          <div class="nav-link prev">
+            <small>← Previous</small>
+            <A href={`/blog/${prevPost.id}/`}>{prevPost.data.title}</A>
           </div>
-        ) : (
-          <div class="nav-item placeholder" />
         )
       }
-
-      <div class="nav-item center">
-        <A href="/blog/" class="back-link">View all posts</A>
-      </div>
-
       {
-        nextPost ? (
-          <div class="nav-item next">
-            <A href={`/blog/${nextPost.id}/`}>
-              <small>Next →</small>
-              <span>{nextPost.data.title}</span>
-            </A>
+        nextPost && (
+          <div class="nav-link next">
+            <small>Next →</small>
+            <A href={`/blog/${nextPost.id}/`}>{nextPost.data.title}</A>
           </div>
-        ) : (
-          <div class="nav-item placeholder" />
         )
       }
+      <div class="nav-all">
+        <A href="/blog/">View all posts</A>
+      </div>
     </nav>
   </article>
 </Layout>
@@ -310,79 +300,54 @@ const jsonLd = {
 
   .post-nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
   }
 
-  .post-nav :global(a) {
-    text-decoration: none;
+  .nav-link {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
   }
 
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .nav-item.center {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding-top: 0.5rem;
-  }
-
-  .nav-item.center :global(a) {
-    display: inline-flex;
-    justify-content: center;
-  }
-
-  .nav-item.next {
-    text-align: right;
-    align-items: flex-end;
-  }
-
-  .nav-item.next :global(a) {
-    align-items: flex-end;
-  }
-
-  .nav-item.prev {
-    align-items: flex-start;
-  }
-
-  .nav-item.prev :global(a) {
-    align-items: flex-start;
-  }
-
-  .nav-item.center :global(.back-link) {
+  .nav-link small {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
-    padding: 0.5rem 1rem;
-    transition: all 0.2s ease;
+    font-weight: var(--font-weight-medium);
   }
 
-  .nav-item.center :global(.back-link:hover) {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+  .nav-link :global(a) {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    text-wrap: pretty;
   }
 
-  @media (max-width: 600px) {
+  .nav-link :global(a:active) {
+    transform: scale(0.96);
+  }
+
+  .nav-all {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
     .post-nav {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      row-gap: 1.5rem;
     }
 
-    .nav-item.center {
+    .nav-link.next {
+      grid-column: 2;
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .nav-all {
       grid-column: 1 / -1;
-      grid-row: 2;
-      border-top: 1px dashed var(--color-border);
-      padding-top: 1rem;
     }
   }
 </style>
