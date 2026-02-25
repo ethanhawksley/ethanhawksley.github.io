@@ -13,6 +13,7 @@ interface Props {
   ogImage?: string;
   article?: { publishedTime: string; modifiedTime?: string; tags: string[] };
   preloadCodeFont?: boolean;
+  isRootPage?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   ogImage = 'https://hawksley.dev/og-image-1200x630.png?v=2',
   article,
   preloadCodeFont = false,
+  isRootPage = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -80,6 +82,7 @@ const isIndexable = !robots.includes('noindex');
     />
 
     <meta name="format-detection" content="telephone=no" />
+
     {
       isIndexable && (
         <>
@@ -125,13 +128,23 @@ const isIndexable = !robots.includes('noindex');
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@Ethan_Hawksley" />
           <meta name="twitter:creator" content="@Ethan_Hawksley" />
+
+          <meta
+            name="fediverse:creator"
+            content="@ethanhawksley@mastodon.social"
+          />
         </>
       )
     }
 
-    <link rel="me" href="https://github.com/ethan-hawksley" />
-    <link rel="me" href="https://mastodon.social/@ethanhawksley" />
-    <meta name="fediverse:creator" content="@ethanhawksley@mastodon.social" />
+    {
+      isRootPage && (
+        <>
+          <link rel="me" href="https://github.com/ethan-hawksley" />
+          <link rel="me" href="https://mastodon.social/@ethanhawksley" />
+        </>
+      )
+    }
 
     <link
       rel="preload"
