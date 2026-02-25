@@ -1,5 +1,16 @@
 ---
 import External from '../assets/external.svg';
+
+const protocols = new Set(['http:', 'https:']);
+const hostnames = new Set([
+  'hawksley.dev',
+  'www.hawksley.dev',
+  '127.0.0.1',
+  'localhost',
+]);
+const exactPaths = new Set(['/', '/404/', '/rss.xml/']);
+const pathPrefixes = new Set(['/blog/']);
+
 interface Props {
   href: string;
   rel?: string;
@@ -9,16 +20,6 @@ interface Props {
 const { href, rel, style, ...rest } = Astro.props;
 
 function isExternal(linkHref: string) {
-  const protocols = new Set(['http:', 'https:']);
-  const hostnames = new Set([
-    'hawksley.dev',
-    'www.hawksley.dev',
-    '127.0.0.1',
-    'localhost',
-  ]);
-  const exactPaths = new Set(['/', '/404/', '/rss.xml/']);
-  const pathPrefixes = new Set(['/blog/']);
-
   const url = new URL(linkHref, 'https://hawksley.dev');
 
   // Treat unknown protocols as internal
