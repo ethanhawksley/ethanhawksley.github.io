@@ -82,7 +82,7 @@ const isIndexable = !robots.includes('noindex');
 
         doc.documentElement.classList.toggle('dark', theme === 'dark');
 
-        const themeColorMetaTags = doc.querySelectorAll(
+        const themeColorMetaTags = doc.head.querySelectorAll(
           'meta[name="theme-color"]',
         );
         const newColor = theme === 'dark' ? '#0f0f0f' : '#fafafa';
