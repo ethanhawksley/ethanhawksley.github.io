@@ -12,6 +12,7 @@ interface Props {
   ogType?: 'website' | 'article' | 'profile';
   ogImage?: string;
   article?: { publishedTime: string; modifiedTime?: string; tags: string[] };
+  preloadCodeFont?: boolean;
 }
 
 const {
@@ -23,9 +24,12 @@ const {
   ogType = 'website',
   ogImage = 'https://hawksley.dev/og-image-1200x630.png?v=2',
   article,
+  preloadCodeFont = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+const isIndexable = !robots.includes('noindex');
 ---
 
 <html lang="en-GB">
@@ -39,7 +43,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={pageDescription} />
     <meta name="author" content="Ethan Hawksley" />
 
-    <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content={robots} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
@@ -77,53 +80,58 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     />
 
     <meta name="format-detection" content="telephone=no" />
-
-    <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:site_name" content="Ethan Hawksley" />
-    <meta property="og:locale" content="en_GB" />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content={pageTitle} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/png" />
-
     {
-      ogType === 'profile' && (
+      isIndexable && (
         <>
-          <meta property="profile:first_name" content="Ethan" />
-          <meta property="profile:last_name" content="Hawksley" />
-          <meta property="profile:username" content="ethan-hawksley" />
+          <link rel="canonical" href={canonicalUrl} />
+
+          <meta property="og:type" content={ogType} />
+          <meta property="og:url" content={canonicalUrl} />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={pageDescription} />
+          <meta property="og:site_name" content="Ethan Hawksley" />
+          <meta property="og:locale" content="en_GB" />
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:alt" content={pageTitle} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:image:type" content="image/png" />
+
+          {ogType === 'profile' && (
+            <>
+              <meta property="profile:first_name" content="Ethan" />
+              <meta property="profile:last_name" content="Hawksley" />
+              <meta property="profile:username" content="ethan-hawksley" />
+            </>
+          )}
+
+          {article && (
+            <>
+              <meta
+                property="article:published_time"
+                content={article.publishedTime}
+              />
+              <meta
+                property="article:modified_time"
+                content={article.modifiedTime ?? article.publishedTime}
+              />
+              <meta property="article:author" content="https://hawksley.dev/" />
+              {article.tags.map((tag) => (
+                <meta property="article:tag" content={tag} />
+              ))}
+            </>
+          )}
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Ethan_Hawksley" />
+          <meta name="twitter:creator" content="@Ethan_Hawksley" />
         </>
       )
     }
 
+    <link rel="me" href="https://github.com/ethan-hawksley" />
+    <link rel="me" href="https://mastodon.social/@ethanhawksley" />
     <meta name="fediverse:creator" content="@ethanhawksley@mastodon.social" />
-
-    {
-      article && (
-        <>
-          <meta
-            property="article:published_time"
-            content={article.publishedTime}
-          />
-          <meta
-            property="article:modified_time"
-            content={article.modifiedTime ?? article.publishedTime}
-          />
-          <meta property="article:author" content="https://hawksley.dev/" />
-          {article.tags.map((tag) => (
-            <meta property="article:tag" content={tag} />
-          ))}
-        </>
-      )
-    }
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Ethan_Hawksley" />
-    <meta name="twitter:creator" content="@Ethan_Hawksley" />
 
     <link
       rel="preload"
@@ -133,16 +141,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       crossorigin="anonymous"
     />
     {
-      Astro.url.pathname.startsWith('/blog/') &&
-        Astro.url.pathname !== '/blog/' && (
-          <link
-            rel="preload"
-            href="/fonts/JetBrainsMono.woff2"
-            as="font"
-            type="font/woff2"
-            crossorigin="anonymous"
-          />
-        )
+      preloadCodeFont && (
+        <link
+          rel="preload"
+          href="/fonts/JetBrainsMono.woff2"
+          as="font"
+          type="font/woff2"
+          crossorigin="anonymous"
+        />
+      )
     }
 
     <script is:inline>
