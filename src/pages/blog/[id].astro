@@ -140,18 +140,30 @@ const jsonLd = {
     <nav class="post-nav" aria-label="Post navigation">
       {
         prevPost && (
-          <div class="nav-link prev">
-            <small>← Previous</small>
-            <A href={`/blog/${prevPost.id}/`}>{prevPost.data.title}</A>
-          </div>
+          <A
+            href={`/blog/${prevPost.id}/`}
+            class="nav-link prev"
+            style="text-decoration: none;"
+          >
+            <span class="arrow" aria-hidden="true">
+              ←
+            </span>
+            <span class="nav-title">{prevPost.data.title}</span>
+          </A>
         )
       }
       {
         nextPost && (
-          <div class="nav-link next">
-            <small>Next →</small>
-            <A href={`/blog/${nextPost.id}/`}>{nextPost.data.title}</A>
-          </div>
+          <A
+            href={`/blog/${nextPost.id}/`}
+            class="nav-link next"
+            style="text-decoration: none;"
+          >
+            <span class="nav-title">{nextPost.data.title}</span>
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </A>
         )
       }
       <div class="nav-all">
@@ -304,26 +316,24 @@ const jsonLd = {
     border-top: 1px solid var(--color-border);
   }
 
-  .nav-link {
+  .post-nav > :global(a.nav-link) {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .nav-link small {
-    font-size: var(--font-size-sm);
+    align-items: center;
+    gap: 0.5rem;
     color: var(--color-text-muted);
-    font-weight: var(--font-weight-medium);
   }
 
-  .nav-link :global(a) {
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-snug);
-    text-wrap: pretty;
-  }
-
-  .nav-link :global(a:active) {
+  .post-nav > :global(a.nav-link:active) {
     transform: scale(0.96);
+  }
+
+  .arrow {
+    flex-shrink: 0;
+  }
+
+  .nav-title {
+    text-decoration: var(--color-accent) underline 2px;
+    text-underline-offset: 0.25em;
   }
 
   .nav-all {
@@ -337,10 +347,10 @@ const jsonLd = {
       grid-template-columns: 1fr 1fr;
     }
 
-    .nav-link.next {
+    .post-nav > :global(a.nav-link.next) {
       grid-column: 2;
+      justify-content: flex-end;
       text-align: right;
-      align-items: flex-end;
     }
 
     .nav-all {
