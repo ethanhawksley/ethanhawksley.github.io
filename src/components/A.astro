@@ -45,8 +45,9 @@ const isExternalLink = isExternal(href);
 
 <a
   href={href}
-  rel={(isExternalLink ? 'noopener noreferrer ' : '') + (rel ?? '') ||
-    undefined}
+  rel={[isExternalLink && 'noopener noreferrer', rel]
+    .filter(Boolean)
+    .join(' ') || undefined}
   target={isExternalLink ? '_blank' : undefined}
   style={style}
   {...rest}
