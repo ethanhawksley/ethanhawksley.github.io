@@ -112,12 +112,12 @@ const jsonLd = {
   }}
   preloadCodeFont={true}
 >
+  <nav aria-label="Breadcrumb" class="breadcrumb">
+    <A href="/blog/" style="text-decoration: none;">
+      <span aria-hidden="true">←</span> Back to blog
+    </A>
+  </nav>
   <article id="post">
-    <nav aria-label="Breadcrumb" class="breadcrumb">
-      <A href="/blog/" style="text-decoration: none;">
-        <span aria-hidden="true">←</span> Back to blog
-      </A>
-    </nav>
     <header>
       <h1>{post.data.title}</h1>
       <small>
@@ -137,40 +137,40 @@ const jsonLd = {
     <div class="content">
       <Content components={{ a: A }} />
     </div>
-    <nav class="post-nav" aria-label="Post navigation">
-      {
-        prevPost && (
-          <A
-            href={`/blog/${prevPost.id}/`}
-            class="nav-link prev"
-            style="text-decoration: none;"
-          >
-            <span class="arrow" aria-hidden="true">
-              ←
-            </span>
-            <span class="nav-title">{prevPost.data.title}</span>
-          </A>
-        )
-      }
-      {
-        nextPost && (
-          <A
-            href={`/blog/${nextPost.id}/`}
-            class="nav-link next"
-            style="text-decoration: none;"
-          >
-            <span class="nav-title">{nextPost.data.title}</span>
-            <span class="arrow" aria-hidden="true">
-              →
-            </span>
-          </A>
-        )
-      }
-      <div class="nav-all">
-        <A href="/blog/">View all posts</A>
-      </div>
-    </nav>
   </article>
+  <nav class="post-nav" aria-label="Post navigation">
+    {
+      prevPost && (
+        <A
+          href={`/blog/${prevPost.id}/`}
+          class="nav-link prev"
+          style="text-decoration: none;"
+        >
+          <span class="arrow" aria-hidden="true">
+            ←
+          </span>
+          <span class="nav-title">{prevPost.data.title}</span>
+        </A>
+      )
+    }
+    {
+      nextPost && (
+        <A
+          href={`/blog/${nextPost.id}/`}
+          class="nav-link next"
+          style="text-decoration: none;"
+        >
+          <span class="nav-title">{nextPost.data.title}</span>
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </A>
+      )
+    }
+    <div class="nav-all">
+      <A href="/blog/">View all posts</A>
+    </div>
+  </nav>
 </Layout>
 <style is:global>
   .content {
