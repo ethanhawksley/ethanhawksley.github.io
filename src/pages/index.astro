@@ -89,6 +89,7 @@ const jsonLd = {
             liveUrl={project.data.liveUrl}
             loading={i < 2 ? 'eager' : 'lazy'}
             fetchpriority={i < 2 ? 'high' : undefined}
+            decoding={i < 2 ? 'sync' : 'async'}
           />
         ))
       }

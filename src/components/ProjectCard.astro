@@ -8,6 +8,7 @@ interface Props {
   liveUrl?: string;
   sourceUrl: string;
   loading?: 'lazy' | 'eager';
+  decoding?: 'sync' | 'async' | 'auto';
   fetchpriority?: 'high' | 'low' | 'auto';
 }
 const {
@@ -17,6 +18,7 @@ const {
   sourceUrl,
   liveUrl,
   loading = 'lazy',
+  decoding = 'async',
   fetchpriority,
 } = Astro.props;
 ---
@@ -25,8 +27,10 @@ const {
   <Image
     src={image}
     alt={`Screenshot of ${name}.`}
+    widths={[384, 640, 1200]}
     sizes="(min-width: 750px) 348px, calc(100vw - 3.25rem)"
     loading={loading}
+    decoding={decoding}
     fetchpriority={fetchpriority}
   />
   <div class="card-body">
