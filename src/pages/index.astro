@@ -80,13 +80,15 @@ const jsonLd = {
     <h2 id="projects-heading">Projects</h2>
     <div id="projects-grid">
       {
-        allProjects.map((project) => (
+        allProjects.map((project, i) => (
           <ProjectCard
             name={project.data.name}
             image={project.data.image}
             description={project.data.description}
             sourceUrl={project.data.sourceUrl}
             liveUrl={project.data.liveUrl}
+            loading={i < 2 ? 'eager' : 'lazy'}
+            fetchpriority={i < 2 ? 'high' : undefined}
           />
         ))
       }
