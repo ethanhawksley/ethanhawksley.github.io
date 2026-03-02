@@ -139,34 +139,30 @@ const jsonLd = {
     </div>
   </article>
   <nav class="post-nav" aria-label="Post navigation">
-    {
-      prevPost && (
-        <A
-          href={`/blog/${prevPost.id}/`}
-          class="nav-link prev"
-          style="text-decoration: none;"
-        >
-          <span class="arrow" aria-hidden="true">
-            ←
-          </span>
-          <span class="nav-title">{prevPost.data.title}</span>
-        </A>
-      )
-    }
-    {
-      nextPost && (
-        <A
-          href={`/blog/${nextPost.id}/`}
-          class="nav-link next"
-          style="text-decoration: none;"
-        >
-          <span class="nav-title">{nextPost.data.title}</span>
-          <span class="arrow" aria-hidden="true">
-            →
-          </span>
-        </A>
-      )
-    }
+    <div class="nav-prev">
+      {
+        prevPost && (
+          <A href={`/blog/${prevPost.id}/`} style="text-decoration: none;">
+            <span class="arrow" aria-hidden="true">
+              ←
+            </span>
+            <span class="nav-title">{prevPost.data.title}</span>
+          </A>
+        )
+      }
+    </div>
+    <div class="nav-next">
+      {
+        nextPost && (
+          <A href={`/blog/${nextPost.id}/`} style="text-decoration: none;">
+            <span class="nav-title">{nextPost.data.title}</span>
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </A>
+        )
+      }
+    </div>
     <div class="nav-all">
       <A href="/blog/">View all posts</A>
     </div>
@@ -314,17 +310,25 @@ const jsonLd = {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-border);
+    width: 100%;
   }
 
-  .post-nav > :global(a.nav-link) {
+  .nav-prev :global(a),
+  .nav-next :global(a) {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     color: var(--color-text-muted);
   }
 
-  .post-nav > :global(a.nav-link:active) {
+  .nav-prev :global(a:active),
+  .nav-next :global(a:active) {
     transform: scale(0.96);
+  }
+
+  .nav-next :global(a) {
+    justify-content: flex-end;
+    text-align: right;
   }
 
   .arrow {
@@ -345,12 +349,6 @@ const jsonLd = {
   @media (min-width: 640px) {
     .post-nav {
       grid-template-columns: 1fr 1fr;
-    }
-
-    .post-nav > :global(a.nav-link.next) {
-      grid-column: 2;
-      justify-content: flex-end;
-      text-align: right;
     }
 
     .nav-all {
