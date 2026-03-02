@@ -4,9 +4,15 @@ import SocialLinks from '../components/SocialLinks.astro';
 import { getCollection } from 'astro:content';
 import ProjectCard from '../components/ProjectCard.astro';
 import { personSchema, websiteSchema } from '../lib/schema.ts';
+import PostPreview from '../components/PostPreview.astro';
+import A from '../components/A.astro';
 
 const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
+);
+
+const allPosts = (await getCollection('posts')).sort((a, b) =>
+  a.data.pubDate < b.data.pubDate ? 1 : -1,
 );
 
 const jsonLd = {
@@ -86,6 +92,29 @@ const jsonLd = {
       }
     </div>
   </section>
+  <section id="blog-callout">
+    <h2 id="blog-heading">Latest Posts</h2>
+    <p>
+      Writing about systems programming, web development, and all I learn along
+      the way.
+    </p>
+    <ul id="blog-preview">
+      {
+        allPosts
+          .slice(0, 2)
+          .map((post) => (
+            <PostPreview
+              url={`/blog/${post.id}/`}
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              tags={post.data.tags}
+            />
+          ))
+      }
+    </ul>
+    <A href="/blog/">View all posts →</A>
+  </section>
   <style>
     #hero {
       text-wrap: balance;
@@ -108,7 +137,7 @@ const jsonLd = {
 
     h2 {
       font-size: var(--font-size-xl);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       font-weight: var(--font-weight-semibold);
       line-height: var(--line-height-snug);
     }
@@ -116,6 +145,10 @@ const jsonLd = {
     p {
       font-size: var(--font-size-base);
       line-height: var(--line-height-normal);
+    }
+
+    #projects {
+      width: 100%;
     }
 
     #projects-grid {
@@ -128,6 +161,28 @@ const jsonLd = {
       #projects-grid {
         grid-template-columns: 1fr 1fr;
       }
+    }
+
+    #blog-callout {
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    #blog-callout > p {
+      margin-bottom: 1rem;
+    }
+
+    #blog-preview {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    #blog-callout > :global(a) {
+      margin-top: 1rem;
     }
   </style>
 </Layout>
