@@ -36,7 +36,6 @@ export default defineConfig({
         'https://hawksley.dev/nintendrust/',
       ],
       changefreq: ChangeFreqEnum.WEEKLY,
-      lastmod: new Date(),
       priority: 0.7,
       serialize: (item) => {
         if (item.url === 'https://hawksley.dev/') {
