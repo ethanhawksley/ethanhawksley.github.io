@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
+import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { personSchema, websiteSchema } from '../../lib/schema.ts';
 
@@ -135,7 +136,7 @@ const jsonLd = {
       </small>
     </header>
     <div class="content">
-      <Content components={{ a: A }} />
+      <Content components={{ a: A, img: BlogImage }} />
     </div>
   </article>
   <nav class="post-nav" aria-label="Post navigation">
