@@ -72,6 +72,14 @@ import Sun from '../assets/sun.svg';
       updateTheme(isDark);
     });
 
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'theme') {
+        const isDark = e.newValue === 'dark';
+        document.documentElement.classList.toggle('dark', isDark);
+        updateTheme(isDark);
+      }
+    });
+
     updateTheme(document.documentElement.classList.contains('dark'));
   }
 
