@@ -29,31 +29,6 @@ const jsonLd = {
       inLanguage: 'en-GB',
     },
     personSchema,
-    {
-      '@type': 'ItemList',
-      name: "Ethan Hawksley's Projects",
-      itemListElement: allProjects.map((project, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'SoftwareApplication',
-          name: project.data.name,
-          description: project.data.description,
-          applicationCategory: 'DeveloperApplication',
-          operatingSystem: 'Any',
-          url: project.data.liveUrl || project.data.sourceUrl,
-          ...(project.data.sourceUrl && {
-            installUrl: project.data.sourceUrl,
-          }),
-          author: { '@id': 'https://hawksley.dev/#person' },
-          offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'GBP',
-          },
-        },
-      })),
-    },
   ],
 };
 ---

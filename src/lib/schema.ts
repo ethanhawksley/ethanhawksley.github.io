@@ -43,28 +43,6 @@ export const personSchema = {
     'https://mastodon.social/@ethanhawksley',
     'https://bsky.app/profile/hawksley.dev',
   ],
-  knowsAbout: [
-    {
-      '@type': 'Thing',
-      name: 'Rust (programming language)',
-      sameAs: 'https://en.wikipedia.org/wiki/Rust_(programming_language)',
-    },
-    {
-      '@type': 'Thing',
-      name: 'JavaScript',
-      sameAs: 'https://en.wikipedia.org/wiki/JavaScript',
-    },
-    {
-      '@type': 'Thing',
-      name: 'Linux',
-      sameAs: 'https://en.wikipedia.org/wiki/Linux',
-    },
-    {
-      '@type': 'Thing',
-      name: 'Web Development',
-      sameAs: 'https://en.wikipedia.org/wiki/Web_development',
-    },
-  ],
   alumniOf: {
     '@type': 'EducationalOrganization',
     name: 'Alcester Grammar School',
