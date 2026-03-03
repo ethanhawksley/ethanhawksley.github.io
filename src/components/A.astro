@@ -18,6 +18,8 @@ interface Props {
 const { href, rel, style, ...rest } = Astro.props;
 
 function isExternal(linkHref: string) {
+  // All https links that are not explicitly part of this blog should be external.
+  // Links on the same domain could be different projects, so must be external too.
   const url = new URL(linkHref, 'https://hawksley.dev');
 
   // Treat unknown protocols as internal
