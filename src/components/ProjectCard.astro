@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import A from './A.astro';
 interface Props {
   name: string;
@@ -19,14 +19,17 @@ const {
   loading = 'lazy',
   fetchpriority,
 } = Astro.props;
+
+const isDev = import.meta.env.DEV;
 ---
 
 <article>
-  <Image
+  <Picture
     src={image}
     alt={`Screenshot of ${name}.`}
-    widths={[384, 640, 1200]}
-    sizes="(min-width: 750px) 348px, calc(100vw - 3.25rem)"
+    formats={isDev ? ['webp'] : ['avif']}
+    fallbackFormat="webp"
+    sizes="(min-width: 750px) 348px, calc(100vw - 3rem)"
     loading={loading}
     fetchpriority={fetchpriority}
   />

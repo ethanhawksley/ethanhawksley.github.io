@@ -7,12 +7,14 @@ type Props = {
 };
 
 const { src, alt, ...attrs } = Astro.props;
+
+const isDev = import.meta.env.DEV;
 ---
 
 <Picture
   src={src}
   alt={alt}
-  formats={['avif', 'webp']}
+  formats={isDev ? ['webp'] : ['avif']}
   fallbackFormat="webp"
   layout="constrained"
   sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
