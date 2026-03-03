@@ -25,6 +25,8 @@ export const getStaticPaths = (async () => {
 const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 
+const hasCode = (post.body ?? '').includes('`');
+
 const words = (post.body ?? '').split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(words / 238));
 
@@ -111,7 +113,7 @@ const jsonLd = {
     modifiedTime: post.data.modifiedDate?.toISOString(),
     tags: post.data.tags,
   }}
-  preloadCodeFont={true}
+  preloadCodeFont={hasCode}
 >
   <nav aria-label="Breadcrumb" class="breadcrumb">
     <A href="/blog/" style="text-decoration: none;">
