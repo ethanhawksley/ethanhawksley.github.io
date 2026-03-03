@@ -1,11 +1,28 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import { personSchema, websiteSchema } from '../../lib/schema.ts';
 
 const allPosts = (await getCollection('posts')).sort((a, b) =>
   a.data.pubDate < b.data.pubDate ? 1 : -1,
+);
+
+const postsWithOgImages = await Promise.all(
+  allPosts.map(async (post) => {
+    let ogImageUrl = 'https://hawksley.dev/og-image-1200x630.png?v=2';
+    if (post.data.coverImage) {
+      const processed = await getImage({
+        src: post.data.coverImage,
+        width: 1200,
+        height: 630,
+        format: 'png',
+      });
+      ogImageUrl = new URL(processed.src, Astro.site).toString();
+    }
+    return { post, ogImageUrl };
+  }),
 );
 
 const jsonLd = {
@@ -31,20 +48,16 @@ const jsonLd = {
       publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       inLanguage: 'en-GB',
-      blogPost: allPosts.map((post) => ({
+      blogPost: postsWithOgImages.map(({ post, ogImageUrl }) => ({
         '@type': 'BlogPosting',
         '@id': `https://hawksley.dev/blog/${post.id}/#article`,
         mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
         url: `https://hawksley.dev/blog/${post.id}/`,
         headline: post.data.title,
         description: post.data.description,
-        image: post.data.coverImage
-          ? new URL(post.data.coverImage, 'https://hawksley.dev').toString()
-          : 'https://hawksley.dev/og-image-1200x630.png?v=2',
+        image: ogImageUrl,
         datePublished: post.data.pubDate.toISOString(),
-        dateModified: (
-          post.data.modifiedDate || post.data.pubDate
-        ).toISOString(),
+        dateModified: (post.data.modDate || post.data.pubDate).toISOString(),
         author: {
           '@id': 'https://hawksley.dev/#person',
           '@type': 'Person',

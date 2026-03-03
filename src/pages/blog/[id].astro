@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
@@ -30,6 +31,17 @@ const hasCode = (post.body ?? '').includes('`');
 const words = (post.body ?? '').split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(words / 238));
 
+let ogImageUrl: string | undefined;
+if (post.data.coverImage) {
+  const processed = await getImage({
+    src: post.data.coverImage,
+    width: 1200,
+    height: 630,
+    format: 'png',
+  });
+  ogImageUrl = new URL(processed.src, Astro.site).toString();
+}
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -48,11 +60,9 @@ const jsonLd = {
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
       description: post.data.description,
-      image: post.data.coverImage
-        ? new URL(post.data.coverImage, 'https://hawksley.dev').toString()
-        : 'https://hawksley.dev/og-image-1200x630.png?v=2',
+      image: ogImageUrl,
       datePublished: post.data.pubDate.toISOString(),
-      dateModified: (post.data.modifiedDate || post.data.pubDate).toISOString(),
+      dateModified: (post.data.modDate || post.data.pubDate).toISOString(),
       wordCount: words,
       timeRequired: `PT${readingTime}M`,
       isAccessibleForFree: true,
@@ -105,12 +115,10 @@ const jsonLd = {
   highlightedLink="blog"
   jsonLd={jsonLd}
   ogType="article"
-  ogImage={post.data.coverImage
-    ? new URL(post.data.coverImage, Astro.site).toString()
-    : undefined}
+  ogImage={ogImageUrl}
   article={{
     publishedTime: post.data.pubDate.toISOString(),
-    modifiedTime: post.data.modifiedDate?.toISOString(),
+    modifiedTime: post.data.modDate?.toISOString(),
     tags: post.data.tags,
   }}
   preloadCodeFont={hasCode}
@@ -127,9 +135,9 @@ const jsonLd = {
         Published
         <FormattedDate date={post.data.pubDate} />
         {
-          post.data.modifiedDate && (
+          post.data.modDate && (
             <>
-              · Modified <FormattedDate date={post.data.modifiedDate} />
+              · Modified <FormattedDate date={post.data.modDate} />
             </>
           )
         }
