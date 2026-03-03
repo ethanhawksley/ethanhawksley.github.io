@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /404
-Disallow: /404/
-Disallow: /404.html
 
 Sitemap: https://hawksley.dev/sitemap-index.xml
