@@ -6,7 +6,7 @@ import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { personSchema, websiteSchema } from '../../lib/schema.ts';
+import { personRef, websiteRef } from '../../lib/schema.ts';
 
 export const getStaticPaths = (async () => {
   const posts = (await getCollection('posts')).sort(
@@ -45,7 +45,7 @@ if (post.data.coverImage) {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    websiteSchema,
+    websiteRef,
     {
       '@type': 'Blog',
       '@id': 'https://hawksley.dev/blog/#blog',
@@ -66,22 +66,15 @@ const jsonLd = {
       wordCount: words,
       timeRequired: `PT${readingTime}M`,
       isAccessibleForFree: true,
-      author: {
-        '@id': 'https://hawksley.dev/#person',
-        '@type': 'Person',
-        name: 'Ethan Hawksley',
-        url: 'https://hawksley.dev/',
-      },
+      author: { '@id': 'https://hawksley.dev/#person' },
       publisher: { '@id': 'https://hawksley.dev/#person' },
-      isPartOf: {
-        '@id': 'https://hawksley.dev/blog/#blog',
-      },
+      isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
       keywords: post.data.tags,
       inLanguage: 'en-GB',
       copyrightYear: post.data.pubDate.getFullYear(),
       copyrightHolder: { '@id': 'https://hawksley.dev/#person' },
     },
-    personSchema,
+    personRef,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [

@@ -1,9 +1,8 @@
 ---
-import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
-import { personSchema, websiteSchema } from '../../lib/schema.ts';
+import { personRef, websiteRef } from '../../lib/schema.ts';
 
 const allPosts = (await getCollection('posts')).sort((a, b) =>
   a.data.pubDate < b.data.pubDate ? 1 : -1,
@@ -12,7 +11,7 @@ const allPosts = (await getCollection('posts')).sort((a, b) =>
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    websiteSchema,
+    websiteRef,
     {
       '@type': 'CollectionPage',
       '@id': 'https://hawksley.dev/blog/#webpage',
@@ -34,11 +33,8 @@ const jsonLd = {
       publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       inLanguage: 'en-GB',
-      blogPost: allPosts.map((post) => ({
-        '@id': `https://hawksley.dev/blog/${post.id}/#article`,
-      })),
     },
-    personSchema,
+    personRef,
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
