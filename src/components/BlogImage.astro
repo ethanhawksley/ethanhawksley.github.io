@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 
 type Props = {
-  src: ImageMetadata;
+  src: ImageMetadata | string;
   alt: string;
 };
 
@@ -11,13 +11,19 @@ const { src, alt, ...attrs } = Astro.props;
 const isDev = import.meta.env.DEV;
 ---
 
-<Picture
-  src={src}
-  alt={alt}
-  formats={isDev ? ['webp'] : ['avif']}
-  fallbackFormat="webp"
-  layout="constrained"
-  sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
-  loading="lazy"
-  {...attrs}
-/>
+{
+  typeof src === 'string' ? (
+    <img src={src} alt={alt} loading="lazy" {...attrs} />
+  ) : (
+    <Picture
+      src={src}
+      alt={alt}
+      formats={isDev ? ['webp'] : ['avif']}
+      fallbackFormat="webp"
+      layout="constrained"
+      sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
+      loading="lazy"
+      {...attrs}
+    />
+  )
+}
