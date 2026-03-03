@@ -33,6 +33,7 @@ export default defineConfig({
         'https://hawksley.dev/cyms-interpreter/',
         'https://hawksley.dev/mineduo/',
         'https://hawksley.dev/turing-machine/',
+        'https://hawksley.dev/nintendrust/',
       ],
       changefreq: ChangeFreqEnum.WEEKLY,
       lastmod: new Date(),
