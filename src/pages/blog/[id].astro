@@ -111,6 +111,41 @@ const jsonLd = {
   }}
   preloadCodeFont={hasCode}
 >
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol
+      id="icon-copy"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </symbol>
+    <symbol
+      id="icon-check"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </symbol>
+  </svg>
+  <template id="copy-button-template">
+    <button class="copy-button" type="button" aria-label="Copy code">
+      <svg class="copy-icon" width="18" height="18" aria-hidden="true">
+        <use href="#icon-copy"></use>
+      </svg>
+      <svg class="check-icon" width="18" height="18" aria-hidden="true">
+        <use href="#icon-check"></use>
+      </svg>
+    </button>
+  </template>
   <nav aria-label="Back to blog" class="breadcrumb">
     <A href="/blog/" style="text-decoration: none;">
       <span aria-hidden="true">←</span> Back to blog
@@ -178,21 +213,23 @@ const jsonLd = {
       );
       if (!button) return;
 
-      const code =
-        button.closest('pre')?.querySelector('code')?.textContent ?? '';
+      const code = button
+        .closest('pre')
+        ?.querySelector('code')
+        ?.textContent?.trimEnd();
+      if (!code) return;
 
       try {
         await navigator.clipboard.writeText(code);
       } catch {
-        // If can't copy, return early.
         return;
       }
 
       button.dataset.copied = '';
       button.setAttribute('aria-label', 'Copied!');
 
-      const previousTimeout = timeouts.get(button);
-      if (previousTimeout) clearTimeout(previousTimeout);
+      const prev = timeouts.get(button);
+      if (prev) clearTimeout(prev);
 
       timeouts.set(
         button,
@@ -204,20 +241,21 @@ const jsonLd = {
     });
 
     document.addEventListener('astro:page-load', () => {
+      if (!navigator.clipboard) return;
+
+      const template = document.getElementById(
+        'copy-button-template',
+      ) as HTMLTemplateElement | null;
+      if (!template) return;
+
+      const buttonToClone = template.content.querySelector('.copy-button');
+      if (!buttonToClone) return;
+
       document
         .querySelectorAll<HTMLPreElement>('pre.astro-code')
         .forEach((pre) => {
-          // Don't add buttons if it already contains one.
           if (pre.querySelector('.copy-button')) return;
-
-          const button = document.createElement('button');
-          button.className = 'copy-button';
-          button.setAttribute('aria-label', 'Copy code');
-          button.innerHTML =
-            '<svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
-            '<svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-
-          pre.appendChild(button);
+          pre.appendChild(buttonToClone.cloneNode(true));
         });
     });
   </script>
