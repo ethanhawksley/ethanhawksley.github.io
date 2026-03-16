@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
+
 const protocols = new Set(['http:', 'https:']);
 const hostnames = new Set([
   'hawksley.dev',
@@ -9,11 +11,10 @@ const hostnames = new Set([
 const exactPaths = new Set(['/', '/404/', '/rss.xml/']);
 const pathPrefixes = new Set(['/blog/']);
 
-interface Props {
+interface Props extends HTMLAttributes<'a'> {
   href: string;
   rel?: string;
   style?: string;
-  [key: string]: any;
 }
 const { href, rel, style, ...rest } = Astro.props;
 
