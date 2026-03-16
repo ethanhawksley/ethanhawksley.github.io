@@ -73,20 +73,21 @@ const isIndexable = !robots.includes('noindex');
 
     <script is:inline>
       function applyThemeToDoc(doc) {
-        let theme = localStorage.getItem('theme');
-        if (!theme) {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const theme =
+          localStorage.getItem('theme') ||
+          window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light';
-        }
 
-        doc.documentElement.classList.toggle('dark', theme === 'dark');
-        doc.documentElement.classList.toggle('light', theme !== 'dark');
+        const isDark = theme === 'dark';
+
+        doc.documentElement.classList.toggle('dark', isDark);
+        doc.documentElement.classList.toggle('light', !isDark);
 
         const themeColorMetaTags = doc.head.querySelectorAll(
           'meta[name="theme-color"]',
         );
-        const newColor = theme === 'dark' ? '#0f0f0f' : '#fafafa';
+        const newColor = isDark ? '#0f0f0f' : '#fafafa';
         themeColorMetaTags.forEach((tag) =>
           tag.setAttribute('content', newColor),
         );
