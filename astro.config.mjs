@@ -25,6 +25,63 @@ export default defineConfig({
         dark: 'github-dark',
       },
       wrap: true,
+      transformers: [
+        {
+          name: 'add-copy-button',
+          // The 'pre' hook gives us the HAST node for the <pre> element
+          pre(node) {
+            // Push our button into the <pre> element's children array
+            node.children.push({
+              type: 'element',
+              tagName: 'button',
+              properties: {
+                // Note: HAST expects 'className' as an array, not a 'class' string
+                className: ['copy-button'],
+                type: 'button',
+                'aria-label': 'Copy code',
+              },
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'svg',
+                  properties: {
+                    className: ['copy-icon'],
+                    width: '18',
+                    height: '18',
+                    'aria-hidden': 'true',
+                  },
+                  children: [
+                    {
+                      type: 'element',
+                      tagName: 'use',
+                      properties: { href: '#icon-copy' },
+                      children: [],
+                    },
+                  ],
+                },
+                {
+                  type: 'element',
+                  tagName: 'svg',
+                  properties: {
+                    className: ['check-icon'],
+                    width: '18',
+                    height: '18',
+                    'aria-hidden': 'true',
+                  },
+                  children: [
+                    {
+                      type: 'element',
+                      tagName: 'use',
+                      properties: { href: '#icon-check' },
+                      children: [],
+                    },
+                  ],
+                },
+              ],
+            });
+          },
+        },
+      ],
     },
   },
   integrations: [

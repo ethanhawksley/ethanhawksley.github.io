@@ -136,16 +136,6 @@ const jsonLd = {
       <polyline points="20 6 9 17 4 12"></polyline>
     </symbol>
   </svg>
-  <template id="copy-button-template">
-    <button class="copy-button" type="button" aria-label="Copy code">
-      <svg class="copy-icon" width="18" height="18" aria-hidden="true">
-        <use href="#icon-copy"></use>
-      </svg>
-      <svg class="check-icon" width="18" height="18" aria-hidden="true">
-        <use href="#icon-check"></use>
-      </svg>
-    </button>
-  </template>
   <nav aria-label="Back to blog" class="breadcrumb">
     <A href="/blog/" style="text-decoration: none;">
       <span aria-hidden="true">←</span> Back to blog
@@ -217,6 +207,7 @@ const jsonLd = {
         .closest('pre')
         ?.querySelector('code')
         ?.textContent?.trimEnd();
+
       if (!code) return;
 
       try {
@@ -238,25 +229,6 @@ const jsonLd = {
           button.setAttribute('aria-label', 'Copy code');
         }, 2000),
       );
-    });
-
-    document.addEventListener('astro:page-load', () => {
-      if (!navigator.clipboard) return;
-
-      const template = document.getElementById(
-        'copy-button-template',
-      ) as HTMLTemplateElement | null;
-      if (!template) return;
-
-      const buttonToClone = template.content.querySelector('.copy-button');
-      if (!buttonToClone) return;
-
-      document
-        .querySelectorAll<HTMLPreElement>('pre.astro-code')
-        .forEach((pre) => {
-          if (pre.querySelector('.copy-button')) return;
-          pre.appendChild(buttonToClone.cloneNode(true));
-        });
     });
   </script>
 </Layout>
@@ -334,7 +306,6 @@ const jsonLd = {
     border-radius: 0.5rem;
     padding: 0.25rem;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     max-width: 100%;
   }
 
