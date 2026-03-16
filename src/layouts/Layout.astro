@@ -81,6 +81,7 @@ const isIndexable = !robots.includes('noindex');
         }
 
         doc.documentElement.classList.toggle('dark', theme === 'dark');
+        doc.documentElement.classList.toggle('light', theme !== 'dark');
 
         const themeColorMetaTags = doc.head.querySelectorAll(
           'meta[name="theme-color"]',
@@ -238,12 +239,14 @@ const isIndexable = !robots.includes('noindex');
 
 <style is:global>
   :root {
-    --color-background: #fafafa;
-    --color-surface: #eaeaea;
-    --color-text: #1a1a1a;
-    --color-text-muted: #525252;
-    --color-accent: #bf3900;
-    --color-border: #e0e0e0;
+    color-scheme: light;
+
+    --color-background: light-dark(#fafafa, #0f0f0f);
+    --color-surface: light-dark(#eaeaea, #1f1f1f);
+    --color-text: light-dark(#1a1a1a, #ededed);
+    --color-text-muted: light-dark(#525252, #b0b0b0);
+    --color-accent: light-dark(#bf3900, #ff4f00);
+    --color-border: light-dark(#e0e0e0, #2a2a2a);
 
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
@@ -272,12 +275,13 @@ const isIndexable = !robots.includes('noindex');
   }
 
   :root.dark {
-    --color-background: #0f0f0f;
-    --color-surface: #1f1f1f;
-    --color-text: #ededed;
-    --color-text-muted: #b0b0b0;
-    --color-accent: #ff4f00;
-    --color-border: #2a2a2a;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      color-scheme: dark;
+    }
   }
 
   @property --color-background {

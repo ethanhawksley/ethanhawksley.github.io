@@ -68,6 +68,7 @@ import Sun from '../assets/sun.svg';
 
     button.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       updateTheme(isDark);
     });
@@ -76,6 +77,7 @@ import Sun from '../assets/sun.svg';
       if (e.key === 'theme') {
         const isDark = e.newValue === 'dark';
         document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('light');
         updateTheme(isDark);
       }
     });
