@@ -1,10 +1,10 @@
 ---
 import LogoRound from '../assets/logo_round.svg';
 import ThemeToggle from './ThemeToggle.astro';
-interface Props {
-  highlightedLink?: 'home' | 'blog';
-}
-const { highlightedLink } = Astro.props;
+
+const { pathname } = Astro.url;
+const isHome = pathname === '/';
+const isBlog = pathname.startsWith('/blog/');
 ---
 
 <header>
@@ -15,15 +15,15 @@ const { highlightedLink } = Astro.props;
     <div class="page-links">
       <a
         href="/"
-        class={`${highlightedLink === 'home' ? 'active' : ''}`}
-        aria-current={highlightedLink === 'home' ? 'page' : undefined}
+        class={`${isHome ? 'active' : ''}`}
+        aria-current={isHome ? 'page' : undefined}
       >
         Home
       </a>
       <a
         href="/blog/"
-        class={`${highlightedLink === 'blog' ? 'active' : ''}`}
-        aria-current={highlightedLink === 'blog' ? 'page' : undefined}
+        class={`${isBlog ? 'active' : ''}`}
+        aria-current={isBlog ? 'page' : undefined}
       >
         Blog
       </a>

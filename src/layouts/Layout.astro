@@ -6,7 +6,6 @@ import { ClientRouter } from 'astro:transitions';
 interface Props {
   pageTitle: string;
   pageDescription: string;
-  highlightedLink?: 'home' | 'blog';
   jsonLd?: Record<string, any>;
   robots?: string;
   ogType?: 'website' | 'article' | 'profile';
@@ -19,7 +18,6 @@ interface Props {
 const {
   pageTitle,
   pageDescription,
-  highlightedLink,
   jsonLd,
   robots = 'max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   ogType = 'website',
@@ -223,7 +221,7 @@ const isIndexable = !robots.includes('noindex');
     <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="page">
       <div id="nav-bar">
-        <Navigation highlightedLink={highlightedLink} />
+        <Navigation />
       </div>
       <main id="main-content">
         <slot />
