@@ -69,7 +69,7 @@ const isIndexable = !robots.includes('noindex');
       media="(prefers-color-scheme: dark)"
     />
 
-    <script is:inline>
+    <script is:inline {...{ blocking: 'render' }}>
       function applyThemeToDoc(doc) {
         const theme =
           localStorage.getItem('theme') ||
@@ -506,6 +506,7 @@ const isIndexable = !robots.includes('noindex');
   a,
   button {
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   a svg,
