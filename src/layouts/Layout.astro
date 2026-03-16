@@ -73,9 +73,9 @@ const isIndexable = !robots.includes('noindex');
       function applyThemeToDoc(doc) {
         const theme =
           localStorage.getItem('theme') ||
-          window.matchMedia('(prefers-color-scheme: dark)').matches
+          (window.matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
-            : 'light';
+            : 'light');
 
         const isDark = theme === 'dark';
 
