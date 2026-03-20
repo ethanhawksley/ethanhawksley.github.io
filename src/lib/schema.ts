@@ -43,14 +43,6 @@ export const personSchema = {
     'https://mastodon.social/@ethanhawksley',
     'https://bsky.app/profile/hawksley.dev',
   ],
-  alumniOf: {
-    '@type': 'EducationalOrganization',
-    name: 'Alcester Grammar School',
-    sameAs: [
-      'https://www.alcestergs.co.uk/',
-      'https://en.wikipedia.org/wiki/Alcester_Grammar_School',
-    ],
-  },
   homeLocation: {
     '@type': 'Place',
     name: 'United Kingdom',
