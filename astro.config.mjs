@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://hawksley.dev',
   prefetch: {
@@ -28,14 +27,11 @@ export default defineConfig({
       transformers: [
         {
           name: 'add-copy-button',
-          // The 'pre' hook gives us the HAST node for the <pre> element
           pre(node) {
-            // Push our button into the <pre> element's children array
             node.children.push({
               type: 'element',
               tagName: 'button',
               properties: {
-                // Note: HAST expects 'className' as an array, not a 'class' string
                 className: ['copy-button'],
                 type: 'button',
                 'aria-label': 'Copy code',
