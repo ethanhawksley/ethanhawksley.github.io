@@ -6,7 +6,7 @@ import A from './A.astro';
 ---
 
 <address>
-  <A href="mailto:ethan@hawksley.dev" rel="me">
+  <A href="mailto:ethan@hawksley.dev" rel="me" id="email-link">
     <span>
       <Email class="email" aria-hidden="true" />
       ethan@hawksley.dev
@@ -53,5 +53,9 @@ import A from './A.astro';
 
   address :global(a:active) {
     transform: scale(0.96);
+  }
+
+  .email-link {
+    min-width: 228px;
   }
 </style>
