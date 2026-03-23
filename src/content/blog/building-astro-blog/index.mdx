@@ -1,0 +1,56 @@
+---
+title: 'Building An Astro Blog'
+description: 'My developer experience trying out the Astro framework and ditching my old site.'
+pubDate: 2026-2-4
+tags: ['astro', 'web']
+---
+
+I've owned the domain name hawksley.dev for a while now, but I've never done much with it aside from sending email. Over the weekend, I thought I might as well make good use of it and decided to create a blog.
+
+In the beginning, this site had a humble home page with some links to GitHub projects. A blog requires much more infrastructure for me to use it effectively. For one, it'd be great if I could just write my posts in Markdown and have them formatted by my project automatically. Having a look at the options available, the first that stood out was [GitHub's Jekyll](https://jekyllrb.com/). It looked nice and had great integration with GitHub Pages, which I'm hosting with at the time of writing. However, it just felt too rigid. I needed something modern that I felt I could get my hands dirty with.
+
+Enter Astro.
+
+## Why Astro
+
+In the grand scheme of things, [the Astro framework](https://astro.build/) is pretty new at just 5 years old. That hasn't prevented it from gaining popularity rapidly. It holds performance as a key design principle, anything that can be static will render statically. By default, it ships absolutely no JS to the browser, which felt perfect for my use case. I have no need for advertising or heavy tracking scripts weighing down my site. All I need is a place to write.
+
+Learning how to work with Astro was completely painless. I created a new GitHub repository and followed along with their very high-quality documentation to create a blog of my own. At the very end of it, I’d created a nice neat blog that loaded instantly and was easy to write for.
+
+I wasn't satisfied by using the tutorial's blog for my site, though, as it felt too cookie-cutter, and so I started again, now with confidence in the framework.
+
+## The Design Decisions
+
+There were some definite design decisions I knew I wanted from the get-go. First-class light mode and dark mode support were a must. Plenty of blogs offered just one or the other, and after a bit of digging, it didn't seem technically hard to implement at all.
+
+Another key principle was mobile-first design. Many of my previous projects started with the key assumption that the reader will be on a laptop or desktop, but that often isn't the case. Mobile devices account for approximately two-thirds of global internet traffic, with the remaining third coming from desktops. I wanted this site to stand the test of time until I inevitably rebuild it again, so it's only natural I designed it with mobile devices in mind.
+
+My final decision I knew I wanted was to have excellent performance scores, one of the very reasons that I chose Astro for the job. Components are almost a certainty in modern web design to ensure consistency across pages, but I needed to write components used at compile time, rather than at run time.
+
+## Actually Programming the Site
+
+After creating an experimental fork of my main repository and wiping the directory, I initialised a new blank Astro project with `pnpm create astro@latest` and scaffolded the directory structure I'd need.
+
+```bash
+public // Assets such as robots.txt and favicons.
+src
+  assets // Any assets displayed in the actual site.
+  components // Reusable components representing sections of UI.
+  content // Markdown files representing the blog.
+  layouts // The base layout each page uses.
+  pages // The actual pages rendered, combining all parts together.
+```
+
+Development went very smoothly over two days and 15 full hours, with only some minor hiccups along the way.
+
+Google's PageSpeed Insights flagged my planned accent colour International Orange `#FF4F00` as having insufficient contrast in light mode, so I had to split into separate accents for light and dark mode. By using global CSS variables that change depending on the theme, I implemented this change painlessly.
+
+I also encountered some <abbr title="Content Layout Shift">CLS</abbr> issues surrounding my choice of font. I personally love the look of the [Inter font](https://rsms.me/inter/) and included it in my project. However, although 300 KiB may not sound like a lot, on a slow connection it’s a noticeable delay. After some research I discovered the [fontTools library](https://github.com/fonttools/fonttools) and managed to shrink the Inter font to 70 KiB by subsetting the font to only the character sets I need.
+
+## The Conclusion
+
+Astro has been a pleasure to work with, and I can easily see myself using it in future projects now I've adjusted to it.
+
+![A screenshot of a perfect Google PageSpeed score](./pagespeed-insights.webp)
+
+[A perfect score](https://pagespeed.web.dev/analysis/https-hawksley-dev/x51rtffn8u?form_factor=mobile) has got to be one of the most satisfying feelings after doing a site redesign.
