@@ -110,7 +110,7 @@ const jsonLd = {
   }}
   preloadCodeFont={hasCode}
 >
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <Fragment slot="svg-symbols">
     <symbol
       id="icon-copy"
       viewBox="0 0 24 24"
@@ -134,7 +134,8 @@ const jsonLd = {
     >
       <polyline points="20 6 9 17 4 12"></polyline>
     </symbol>
-  </svg>
+  </Fragment>
+
   <nav aria-label="Back to blog" class="breadcrumb">
     <A href="/blog/" style="text-decoration: none;">
       <span aria-hidden="true">←</span> Back to blog
@@ -206,7 +207,6 @@ const jsonLd = {
         .closest('pre')
         ?.querySelector('code')
         ?.textContent?.trimEnd();
-
       if (!code) return;
 
       try {
