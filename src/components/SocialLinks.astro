@@ -6,10 +6,18 @@ import A from './A.astro';
 ---
 
 <address>
-  <A href="mailto:ethan@hawksley.dev" rel="me" id="email-link">
+  <A
+    href="mailto:%65%74%68%61%6E%40%68%61%77%6B%73%6C%65%79%2E%64%65%76"
+    rel="me"
+    id="email-link"
+  >
     <span>
       <Email class="email" aria-hidden="true" />
-      ethan@hawksley.dev
+      <span class="email-text">
+        ethan<span class="clear">.spambot</span>@hawksley<span class="clear"
+          >.ignore</span
+        >.dev
+      </span>
     </span>
   </A>
   <A href="https://github.com/ethan-hawksley" rel="me">
@@ -57,5 +65,9 @@ import A from './A.astro';
 
   #email-link {
     min-width: 228px;
+  }
+
+  .clear {
+    display: none;
   }
 </style>
