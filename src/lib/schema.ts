@@ -29,7 +29,6 @@ export const personSchema = {
     width: 1200,
     height: 1200,
   },
-  email: 'ethan@hawksley.dev',
   gender: 'Male',
   nationality: {
     '@type': 'Country',
