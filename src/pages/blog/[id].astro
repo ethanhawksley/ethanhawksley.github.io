@@ -60,18 +60,20 @@ const jsonLd = {
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
       description: post.data.description,
-      image: ogImageUrl,
+      ...(ogImageUrl && { image: ogImageUrl }),
       datePublished: post.data.pubDate.toISOString(),
       dateModified: (post.data.modDate || post.data.pubDate).toISOString(),
       author: { '@id': 'https://hawksley.dev/#person' },
       publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
       keywords: post.data.tags,
+      wordCount: words,
       inLanguage: 'en-GB',
     },
     personRef,
     {
       '@type': 'BreadcrumbList',
+      '@id': `https://hawksley.dev/blog/${post.id}/#breadcrumb`,
       itemListElement: [
         {
           '@type': 'ListItem',
