@@ -23,8 +23,9 @@ export const personSchema = {
   disambiguatingDescription: 'CS student & Rust/JS developer, UK',
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#avatar',
+    '@id': 'https://hawksley.dev/avatar-1200x1200.png',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
+    contentUrl: 'https://hawksley.dev/avatar-1200x1200.png',
     caption: 'Ethan Hawksley',
     width: 1200,
     height: 1200,

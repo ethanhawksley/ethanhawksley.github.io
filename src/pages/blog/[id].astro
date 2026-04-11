@@ -60,7 +60,7 @@ const jsonLd = {
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
       description: post.data.description,
-      ...(ogImageUrl && { image: ogImageUrl }),
+      image: ogImageUrl ?? 'https://hawksley.dev/og-image-1200x630.png?v=2',
       datePublished: post.data.pubDate.toISOString(),
       dateModified: (post.data.modDate || post.data.pubDate).toISOString(),
       author: { '@id': 'https://hawksley.dev/#person' },
