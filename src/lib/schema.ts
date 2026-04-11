@@ -14,13 +14,13 @@ export const personSchema = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
   name: 'Ethan Hawksley',
-  alternateName: 'Hawksley',
+  givenName: 'Ethan',
+  familyName: 'Hawksley',
   url: 'https://hawksley.dev/',
   jobTitle: 'Software Developer',
   description:
     'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
-  disambiguatingDescription:
-    'Computer Science student and Rust/JavaScript software developer from the United Kingdom',
+  disambiguatingDescription: 'CS student & Rust/JS developer, UK',
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#avatar',
@@ -29,12 +29,19 @@ export const personSchema = {
     width: 1200,
     height: 1200,
   },
-  gender: 'Male',
+  gender: 'https://schema.org/Male',
   nationality: {
     '@type': 'Country',
     name: 'United Kingdom',
   },
-  knowsLanguage: ['English'],
+  knowsLanguage: 'en-GB',
+  homeLocation: {
+    '@type': 'Place',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'GB',
+    },
+  },
   sameAs: [
     'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
@@ -42,22 +49,14 @@ export const personSchema = {
     'https://mastodon.social/@ethanhawksley',
     'https://bsky.app/profile/hawksley.dev',
   ],
-  homeLocation: {
-    '@type': 'Place',
-    name: 'United Kingdom',
-  },
 } as const;
 
 export const personRef = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
-  name: 'Ethan Hawksley',
-  url: 'https://hawksley.dev/',
 } as const;
 
 export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  url: 'https://hawksley.dev/',
-  name: 'Ethan Hawksley',
 } as const;
