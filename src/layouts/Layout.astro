@@ -37,7 +37,6 @@ const isIndexable = !robots.includes('noindex');
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
 
     <link
       rel="preload"
@@ -58,17 +57,6 @@ const isIndexable = !robots.includes('noindex');
       )
     }
 
-    <meta name="color-scheme" content="light dark" />
-    <meta
-      name="theme-color"
-      content="#fafafa"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#0f0f0f"
-      media="(prefers-color-scheme: dark)"
-    />
     <script is:inline {...{ blocking: 'render' }}>
       {
         const d = document.documentElement;
@@ -81,11 +69,21 @@ const isIndexable = !robots.includes('noindex');
       }
     </script>
 
-    <ClientRouter />
-
+    <meta name="description" content={pageDescription} />
     <meta name="author" content="Ethan Hawksley" />
     <meta name="robots" content={robots} />
     <meta name="format-detection" content="telephone=no" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      content="#fafafa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f0f"
+      media="(prefers-color-scheme: dark)"
+    />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
@@ -152,13 +150,13 @@ const isIndexable = !robots.includes('noindex');
             </>
           )}
 
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Ethan_Hawksley" />
+          <meta name="twitter:creator" content="@Ethan_Hawksley" />
           <meta name="twitter:title" content={pageTitle} />
           <meta name="twitter:description" content={pageDescription} />
           <meta name="twitter:image" content={ogImage} />
           <meta name="twitter:image:alt" content={pageTitle} />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@Ethan_Hawksley" />
-          <meta name="twitter:creator" content="@Ethan_Hawksley" />
 
           <meta
             name="fediverse:creator"
@@ -186,6 +184,8 @@ const isIndexable = !robots.includes('noindex');
         />
       )
     }
+
+    <ClientRouter />
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
