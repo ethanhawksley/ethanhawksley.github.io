@@ -5,7 +5,7 @@ export const websiteSchema = {
   name: 'Ethan Hawksley',
   alternateName: ['hawksley.dev', 'Hawksley'],
   description:
-    'Portfolio and technical blog of Ethan Hawksley, a UK-based CS student and developer building tools with Rust and JavaScript.',
+    'Portfolio and technical blog of Ethan Hawksley, a UK-based CS student focused on systems programming and cybersecurity.',
   publisher: { '@id': 'https://hawksley.dev/#person' },
   inLanguage: 'en-GB',
 } as const;
@@ -17,10 +17,11 @@ export const personSchema = {
   givenName: 'Ethan',
   familyName: 'Hawksley',
   url: 'https://hawksley.dev/',
-  jobTitle: 'Software Developer',
+  jobTitle: 'CS Student',
   description:
-    'UK-based CS Student and Software Developer specializing in Rust and JavaScript.',
-  disambiguatingDescription: 'CS student & Rust/JS developer, UK',
+    'UK-based CS student focused on systems programming and cybersecurity.',
+  disambiguatingDescription:
+    'CS student & systems/cybersecurity enthusiast, UK',
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/avatar-1200x1200.png',
