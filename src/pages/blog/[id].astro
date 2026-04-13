@@ -157,7 +157,11 @@ const jsonLd = {
           )
         }
         <span>· {readingTime} min read</span>
-        {post.data.tags && <span> · {post.data.tags.join(', ')}</span>}
+        {
+          post.data.tags.length > 0 && (
+            <span> · {post.data.tags.join(', ')}</span>
+          )
+        }
       </small>
     </header>
     <div class="content">
