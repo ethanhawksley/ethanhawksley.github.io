@@ -56,9 +56,13 @@ export const personSchema = {
 export const personRef = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
+  name: 'Ethan Hawksley',
+  url: 'https://hawksley.dev/',
 } as const;
 
 export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
+  name: 'Ethan Hawksley',
+  url: 'https://hawksley.dev/',
 } as const;
