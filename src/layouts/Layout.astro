@@ -458,7 +458,7 @@ const isIndexable = !robots.includes('noindex');
   }
 
   h1 {
-    font-size: var(--font-size-3xl);
+    font-size: var(--font-size-2xl);
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tighter);
     font-weight: var(--font-weight-bold);
@@ -552,6 +552,12 @@ const isIndexable = !robots.includes('noindex');
 
   .dark ::selection {
     background-color: #b33800;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) ::selection {
+      background-color: #b33800;
+    }
   }
 
   ::-webkit-scrollbar {
