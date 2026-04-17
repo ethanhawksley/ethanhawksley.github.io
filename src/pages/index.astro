@@ -11,8 +11,8 @@ const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
 );
 
-const allPosts = (await getCollection('posts')).sort((a, b) =>
-  a.data.pubDate < b.data.pubDate ? 1 : -1,
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const jsonLd = {
