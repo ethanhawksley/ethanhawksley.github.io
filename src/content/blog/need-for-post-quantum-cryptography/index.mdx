@@ -2,13 +2,13 @@
 title: 'The Need for Post-Quantum Cryptography'
 description: 'Quantum computers are becoming increasingly realistic. We need to be ready.'
 pubDate: 2026-04-13
-modDate: 2026-04-14
+modDate: 2026-04-17
 tags: ['cybersecurity', 'quantum']
 ---
 
 The threat quantum computers pose to encryption is growing faster than many anticipated. Historically, the internet has relied on algorithms like [RSA encryption](https://brilliant.org/wiki/rsa-encryption/) and [Elliptic Curve Cryptography (ECC)](https://blog.cloudflare.com/a-relatively-easy-to-understand-primer-on-elliptic-curve-cryptography/) to exchange encryption keys and verify identities across the web. These algorithms are in danger of being entirely broken by the new capabilities of quantum computers, leaving our communications insecure. Modern breakthroughs in research are bringing us closer to this becoming a reality than we were expecting.
 
-Quantum computers can be thought of as computers with fundamentally unique capabilities. Instead of using bits as memory, they use [qubits.](https://www.ibm.com/think/topics/qubit) Quantum computers can run specialised "quantum algorithms" which in some circumstances are much faster than conventional algorithms. RSA and ECC seemed secure when we designed them, but as we research more about quantum computers, we realise that they aren't secure at all. To resolve this, we have now designed post-quantum algorithms capable of securing data even after quantum computers are accessible. NIST [finalised its post-quantum standards](https://csrc.nist.gov/pubs/fips/203/final) in 2024, introducing new post-quantum algorithms such as ML-KEM to replace the old vulnerable ones.
+Quantum computers can be thought of as computers with fundamentally unique capabilities. Instead of using bits as memory, they use [qubits.](https://www.ibm.com/think/topics/qubit) Quantum computers can run specialised "quantum algorithms" which in some circumstances are much faster than conventional algorithms[^1]. RSA and ECC seemed secure when we designed them, but as we research more about quantum computers, we realise that they aren't secure at all. To resolve this, we have now designed post-quantum algorithms capable of securing data even after quantum computers are accessible. NIST [finalised its post-quantum standards](https://csrc.nist.gov/pubs/fips/203/final) in 2024, introducing new post-quantum algorithms such as ML-KEM to replace the old vulnerable ones.
 
 Shor's algorithm - the algorithm responsible for factorising the integers used in RSA encryption - has [been improved](https://arxiv.org/html/2603.28627v1) and requires far fewer qubits than before. Quantum algorithms used for breaking ECC have also been made [significantly more efficient](https://arxiv.org/abs/2603.28846) by Google. Major tech companies like Google, Microsoft, and IBM are competing to build bigger and faster quantum computers, bringing us closer to these quantum algorithms becoming feasible. With these developments, the advent of quantum computing is closer than we had once anticipated. In response, Google has announced a [2029 timeline](https://blog.google/innovation-and-ai/technology/safety-security/cryptography-migration-timeline/) for using post-quantum cryptography, and [Cloudflare has followed suit](https://blog.cloudflare.com/post-quantum-roadmap/) with their global network. It won't be long until other major providers follow.
 
@@ -28,4 +28,4 @@ With governments, however, the stakes are the highest. Foreign intelligence, rea
 
 No matter the scale you operate, the transition needs to happen before quantum hardware catches up. That window is narrowing.
 
-If you're interested in more details about how quantum computing works on a fundamental level, I highly recommend the [quantum.country](https://quantum.country) essay, which goes into far greater depth.
+[^1]: If you're interested in more details about how quantum computing works on a fundamental level, I highly recommend the [quantum.country](https://quantum.country) essay, which goes into far greater depth.
