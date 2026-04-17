@@ -249,34 +249,33 @@ const jsonLd = {
 
     p,
     li {
+      line-height: var(--leading-relaxed);
       max-width: 65ch;
     }
 
     p {
       margin-block: 1.5rem;
       font-size: var(--font-size-base);
-      line-height: var(--line-height-relaxed);
     }
 
     h2 {
       font-size: var(--font-size-lg);
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-snug);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-snug);
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
     }
 
     h3 {
       font-size: var(--font-size-md);
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-snug);
+      line-height: var(--leading-normal);
+      letter-spacing: var(--tracking-normal);
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
     }
 
     li {
       font-size: var(--font-size-base);
-      line-height: var(--line-height-relaxed);
     }
 
     img {
@@ -414,9 +413,9 @@ const jsonLd = {
       margin-bottom: 1.5rem;
       text-decoration: var(--color-accent) underline 3px;
       text-underline-offset: 0.5rem;
-      font-weight: var(--font-weight-semibold);
-      line-height: var(--line-height-tight);
-      letter-spacing: var(--letter-spacing-tight);
+      font-weight: var(--weight-semibold);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
     }
 
     small {
