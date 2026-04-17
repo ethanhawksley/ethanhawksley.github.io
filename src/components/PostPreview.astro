@@ -16,52 +16,86 @@ const Heading = headingLevel;
 
 <li>
   <article>
-    <small>
-      <FormattedDate date={pubDate} />
-      {tags.length > 0 && <span> · {tags.join(', ')}</span>}
-    </small>
     <Heading><A href={url}>{title}</A></Heading>
     <p>{description}</p>
+    <footer>
+      <span class="meta-item">
+        <FormattedDate date={pubDate} />
+      </span>
+      {
+        tags.length > 0 && (
+          <span class="meta-item tags">
+            <span class="separator" aria-hidden="true">
+              /
+            </span>
+            {tags.join(', ')}
+          </span>
+        )
+      }
+    </footer>
   </article>
+
+  <style>
+    li {
+      width: 100%;
+      list-style: none;
+    }
+
+    li + li {
+      border-top: 1px solid var(--color-border);
+    }
+
+    article {
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    h2,
+    h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--line-height-tight);
+      margin: 0;
+    }
+
+    h2 :global(a:active),
+    h3 :global(a:active) {
+      transform: scale(0.96);
+    }
+
+    p {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      margin: 0;
+      max-width: 65ch;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+
+      font-family:
+        'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        'Liberation Mono', 'Courier New', monospace;
+      text-transform: lowercase;
+    }
+
+    .separator {
+      color: var(--color-border);
+      margin-right: 0.25rem;
+    }
+
+    .tags {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
 </li>
-
-<style>
-  li {
-    width: 100%;
-    list-style: none;
-  }
-
-  article {
-    background-color: var(--color-surface);
-    padding: 1.25rem;
-    border: 2px solid var(--color-border);
-    gap: 0.5rem;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  h2,
-  h3 {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  small,
-  p {
-    color: var(--color-text-muted);
-  }
-
-  small {
-    font-size: var(--font-size-sm);
-  }
-
-  p {
-    font-size: var(--font-size-base);
-  }
-
-  h2 :global(a:active),
-  h3 :global(a:active) {
-    transform: scale(0.96);
-  }
-</style>

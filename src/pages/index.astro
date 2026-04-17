@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { getCollection } from 'astro:content';
-import ProjectCard from '../components/ProjectCard.astro';
+import ProjectPreview from '../components/ProjectPreview.astro';
 import { personSchema, websiteSchema } from '../lib/schema.ts';
 import PostPreview from '../components/PostPreview.astro';
 import A from '../components/A.astro';
@@ -50,21 +50,20 @@ const jsonLd = {
   </div>
   <section id="projects" aria-labelledby="projects-heading">
     <h2 id="projects-heading">Projects</h2>
-    <div id="projects-grid">
+    <ul role="list">
       {
-        allProjects.map((project, i) => (
-          <ProjectCard
+        allProjects.map((project) => (
+          <ProjectPreview
             name={project.data.name}
-            image={project.data.image}
             description={project.data.description}
             sourceUrl={project.data.sourceUrl}
             liveUrl={project.data.liveUrl}
-            loading={i < 2 ? 'eager' : 'lazy'}
-            fetchpriority={i < 2 ? 'high' : undefined}
+            type={project.data.type}
+            stack={project.data.stack}
           />
         ))
       }
-    </div>
+    </ul>
   </section>
   <section id="blog-callout" aria-labelledby="blog-heading">
     <h2 id="blog-heading">Latest Posts</h2>
@@ -126,15 +125,12 @@ const jsonLd = {
       width: 100%;
     }
 
-    #projects-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    @media (min-width: 750px) {
-      #projects-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    #projects ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
 
     #blog-callout {

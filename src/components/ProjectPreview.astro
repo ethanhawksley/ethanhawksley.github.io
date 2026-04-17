@@ -1,0 +1,99 @@
+---
+import A from './A.astro';
+
+interface Props {
+  name: string;
+  description: string;
+  sourceUrl: string;
+  liveUrl?: string;
+  type: 'Web' | 'CLI' | 'Tool';
+  stack: string[];
+}
+
+const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
+---
+
+<li>
+  <article>
+    <h3><A href={sourceUrl}>{name}</A></h3>
+    <p>{description}</p>
+    <footer>
+      <span class="meta-data">
+        <span class="type">{type}</span>
+        {stack.length > 0 && <span>/ {stack.join(', ')}</span>}
+      </span>
+      {
+        liveUrl && (
+          <span class="meta-action">
+            <A href={liveUrl} aria-label={`View ${name} live`}>
+              Live Demo
+            </A>
+          </span>
+        )
+      }
+    </footer>
+  </article>
+</li>
+
+<style>
+  li {
+    width: 100%;
+    list-style: none;
+  }
+
+  li + li {
+    border-top: 1px solid var(--color-border);
+  }
+
+  article {
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin: 0;
+  }
+
+  h3 :global(a:active) {
+    transform: scale(0.96);
+  }
+
+  p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    margin: 0;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 0.25rem;
+    font-size: var(--font-size-sm);
+
+    font-family:
+      'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+  }
+
+  .meta-data {
+    color: var(--color-text-muted);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .type {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .meta-action :global(a) {
+    font-weight: var(--font-weight-medium);
+  }
+</style>

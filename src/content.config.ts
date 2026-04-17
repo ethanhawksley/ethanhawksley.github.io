@@ -19,8 +19,9 @@ const projects = defineCollection({
   schema: ({ image }) =>
     z.object({
       name: z.string(),
-      image: image(),
       description: z.string(),
+      type: z.enum(['Web', 'CLI', 'Tool']),
+      stack: z.array(z.string()),
       sourceUrl: z.string(),
       liveUrl: z.string().optional(),
       priority: z.number(),
