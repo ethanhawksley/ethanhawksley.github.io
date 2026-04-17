@@ -382,10 +382,7 @@ const isIndexable = !robots.includes('noindex');
       'Open Sans',
       'Helvetica Neue',
       sans-serif;
-    font-feature-settings:
-      'kern' 1,
-      'liga' 1,
-      'calt' 1;
+    font-feature-settings: 'calt' 1;
     font-kerning: normal;
     font-optical-sizing: auto;
     accent-color: var(--color-accent);
@@ -441,10 +438,7 @@ const isIndexable = !robots.includes('noindex');
     text-rendering: optimizeLegibility;
     font-weight: var(--font-weight-semibold);
     font-variant-ligatures: common-ligatures;
-    font-feature-settings:
-      'kern' 1,
-      'liga' 1,
-      'ss01' 0;
+    font-feature-settings: 'ss01' 0;
   }
 
   p,
@@ -528,7 +522,7 @@ const isIndexable = !robots.includes('noindex');
   }
 
   button {
-    transition: transform 0.1s ease-out;
+    transition: transform 100ms ease-out;
   }
 
   button:active {
