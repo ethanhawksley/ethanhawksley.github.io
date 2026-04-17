@@ -8,8 +8,10 @@ interface Props {
   description: string;
   pubDate: Date;
   tags: string[];
+  headingLevel: 'h2' | 'h3';
 }
-const { url, title, description, pubDate, tags } = Astro.props;
+const { url, title, description, pubDate, tags, headingLevel } = Astro.props;
+const Heading = headingLevel;
 ---
 
 <li>
@@ -18,7 +20,7 @@ const { url, title, description, pubDate, tags } = Astro.props;
       <FormattedDate date={pubDate} />
       {tags.length > 0 && <span> · {tags.join(', ')}</span>}
     </small>
-    <h2><A href={url}>{title}</A></h2>
+    <Heading><A href={url}>{title}</A></Heading>
     <p>{description}</p>
   </article>
 </li>
@@ -39,7 +41,8 @@ const { url, title, description, pubDate, tags } = Astro.props;
     flex-direction: column;
   }
 
-  h2 {
+  h2,
+  h3 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
   }
@@ -57,7 +60,8 @@ const { url, title, description, pubDate, tags } = Astro.props;
     font-size: var(--font-size-base);
   }
 
-  h2 :global(a:active) {
+  h2 :global(a:active),
+  h3 :global(a:active) {
     transform: scale(0.96);
   }
 </style>
