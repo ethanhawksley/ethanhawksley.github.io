@@ -10,7 +10,12 @@ interface Props {
   robots?: string;
   ogType?: 'website' | 'article' | 'profile';
   ogImage?: string;
-  article?: { publishedTime: string; modifiedTime?: string; tags: string[] };
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    tags: string[];
+    readingTime: number;
+  };
   preloadCodeFont?: boolean;
   isRootPage?: boolean;
 }
@@ -133,8 +138,24 @@ const isIndexable = !robots.includes('noindex');
             </>
           )}
 
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Ethan_Hawksley" />
+          <meta name="twitter:creator" content="@Ethan_Hawksley" />
+          <meta name="twitter:title" content={pageTitle} />
+          <meta name="twitter:description" content={pageDescription} />
+          <meta name="twitter:image" content={ogImage} />
+          <meta name="twitter:image:alt" content={pageTitle} />
+
           {article && (
             <>
+              <meta name="twitter:label1" content="Author" />
+              <meta name="twitter:data1" content="Ethan Hawksley" />
+              <meta name="twitter:label2" content="Reading time" />
+              <meta
+                name="twitter:data2"
+                content={`${article.readingTime} min read`}
+              />
+
               <meta
                 property="article:published_time"
                 content={article.publishedTime}
@@ -151,14 +172,6 @@ const isIndexable = !robots.includes('noindex');
               ))}
             </>
           )}
-
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@Ethan_Hawksley" />
-          <meta name="twitter:creator" content="@Ethan_Hawksley" />
-          <meta name="twitter:title" content={pageTitle} />
-          <meta name="twitter:description" content={pageDescription} />
-          <meta name="twitter:image" content={ogImage} />
-          <meta name="twitter:image:alt" content={pageTitle} />
 
           <meta
             name="fediverse:creator"
