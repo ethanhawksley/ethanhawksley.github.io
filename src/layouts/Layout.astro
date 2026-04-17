@@ -45,22 +45,20 @@ const isIndexable = !robots.includes('noindex');
 
     <link
       rel="preload"
-      href="/fonts/InterVariable.woff2"
+      href="/fonts/IBMPlexSans.woff2"
       as="font"
       type="font/woff2"
-      crossorigin="anonymous"
+      crossorigin
+      fetchpriority="high"
     />
-    {
-      preloadCodeFont && (
-        <link
-          rel="preload"
-          href="/fonts/JetBrainsMono.woff2"
-          as="font"
-          type="font/woff2"
-          crossorigin="anonymous"
-        />
-      )
-    }
+    <link
+      rel="preload"
+      href="/fonts/IBMPlexMono.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      fetchpriority="high"
+    />
 
     <script is:inline {...{ blocking: 'render' }}>
       {
@@ -344,19 +342,19 @@ const isIndexable = !robots.includes('noindex');
   }
 
   @font-face {
-    font-family: 'Inter';
+    font-family: 'IBM Plex Sans';
     font-style: normal;
-    font-weight: 100 900;
-    font-display: optional;
-    src: url('/fonts/InterVariable.woff2') format('woff2');
+    font-weight: 100 700;
+    font-display: swap;
+    src: url('/fonts/IBMPlexSans.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'JetBrains Mono';
+    font-family: 'IBM Plex Mono';
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: 400;
     font-display: swap;
-    src: url('/fonts/JetBrainsMono.woff2') format('woff2');
+    src: url('/fonts/IBMPlexMono.woff2') format('woff2');
   }
 
   *,
@@ -373,7 +371,7 @@ const isIndexable = !robots.includes('noindex');
     background-color: var(--color-background);
     color: var(--color-text);
     font-family:
-      'Inter',
+      'IBM Plex Sans',
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
@@ -388,9 +386,7 @@ const isIndexable = !robots.includes('noindex');
     font-feature-settings:
       'kern' 1,
       'liga' 1,
-      'calt' 1,
-      'ss01' 1,
-      'cv05' 1;
+      'calt' 1;
     font-kerning: normal;
     font-optical-sizing: auto;
     accent-color: var(--color-accent);
