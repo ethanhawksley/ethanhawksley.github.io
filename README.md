@@ -2,7 +2,7 @@
 
 I'm Ethan Hawksley, a CS student with a focus on systems and cybersecurity.
 
-This repository hosts the source code for my personal portfolio & blog.
+This repository hosts the source code for my personal portfolio & technical blog.
 
 **[Live site](https://hawksley.dev)**
 
@@ -39,6 +39,26 @@ pnpm run dev
 
 Then open `http://localhost:4321` in your browser.
 
-## Licence
+## Font Subsetting
+
+The site uses a subsetted version of the IBM Plex Sans and Mono fonts for increased performance. These are both available for download on Google Fonts.
+
+To subset:
+
+```
+uv tool install pyftsubset
+
+pyftsubset IBMPlexSans.ttf \
+--output-file="IBMPlexSans.woff2" \
+--flavor="woff2" \
+--unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2193,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD" \
+--layout-features="*" \
+--no-hinting \
+--desubroutinize
+```
+
+Do the same but with IBM Plex Mono as well to have both fully subsetted fonts.
+
+## License
 
 MIT
