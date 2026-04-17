@@ -23,8 +23,8 @@ const projects = defineCollection({
       description: z.string(),
       type: z.enum(['Web', 'CLI', 'Tool']),
       stack: z.array(z.string()),
-      sourceUrl: z.string(),
-      liveUrl: z.string().optional(),
+      sourceUrl: z.url(),
+      liveUrl: z.url().optional(),
       priority: z.number(),
     }),
 });
