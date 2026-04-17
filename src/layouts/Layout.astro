@@ -16,7 +16,6 @@ interface Props {
     tags: string[];
     readingTime: number;
   };
-  preloadCodeFont?: boolean;
   isRootPage?: boolean;
 }
 
@@ -28,7 +27,6 @@ const {
   ogType = 'website',
   ogImage = 'https://hawksley.dev/og-image-1200x630.png?v=2',
   article,
-  preloadCodeFont = false,
   isRootPage = false,
 } = Astro.props;
 
