@@ -26,8 +26,6 @@ export const getStaticPaths = (async () => {
 const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 
-const hasCode = (post.body ?? '').includes('`');
-
 const words = (post.body ?? '').split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(words / 238));
 
@@ -146,23 +144,30 @@ const jsonLd = {
   <article id="post">
     <header>
       <h1>{post.data.title}</h1>
-      <small>
-        Published
-        <FormattedDate date={post.data.pubDate} />
+      <div class="post-meta">
+        <span>
+          Published <FormattedDate date={post.data.pubDate} />
+        </span>
+        ·
         {
           post.data.modDate && (
             <>
-              · Modified <FormattedDate date={post.data.modDate} />
+              <span>
+                Modified <FormattedDate date={post.data.modDate} />
+              </span>
+              ·
             </>
           )
         }
-        <span>· {readingTime} min read</span>
+        <span>{readingTime} min read</span>
         {
           post.data.tags.length > 0 && (
-            <span> · {post.data.tags.join(', ')}</span>
+            <>
+              ·<span>{post.data.tags.join(', ')}</span>
+            </>
           )
         }
-      </small>
+      </div>
     </header>
     <div class="content">
       <Content components={{ a: A, img: BlogImage }} />
@@ -418,13 +423,22 @@ const jsonLd = {
       letter-spacing: var(--tracking-tight);
     }
 
-    small {
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
       color: var(--color-text-muted);
       font-size: var(--font-size-sm);
       font-family: var(--font-mono);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
     }
   }
 
