@@ -181,6 +181,7 @@ const jsonLd = {
             <span class="arrow" aria-hidden="true">
               ←
             </span>
+            <span class="sr-only">Previous post:</span>
             <span class="nav-title">{prevPost.data.title}</span>
           </A>
         )
@@ -190,6 +191,7 @@ const jsonLd = {
       {
         nextPost && (
           <A href={`/blog/${nextPost.id}/`} style="text-decoration: none;">
+            <span class="sr-only">Next post:</span>
             <span class="nav-title">{nextPost.data.title}</span>
             <span class="arrow" aria-hidden="true">
               →
@@ -203,43 +205,51 @@ const jsonLd = {
     </div>
   </nav>
   <script>
+    function initCopyButtons() {
+      const controller = new AbortController();
+
+      document.addEventListener(
+        'click',
+        async (e: MouseEvent) => {
+          const button = (e.target as HTMLElement).closest<HTMLButtonElement>(
+            '.copy-button',
+          );
+          if (!button) return;
+          const code = button
+            .closest('pre')
+            ?.querySelector('code')
+            ?.textContent?.trimEnd();
+          if (!code) return;
+          try {
+            await navigator.clipboard.writeText(code);
+          } catch {
+            return;
+          }
+          button.dataset.copied = '';
+          button.setAttribute('aria-label', 'Copied!');
+          const prev = timeouts.get(button);
+          if (prev) clearTimeout(prev);
+          timeouts.set(
+            button,
+            setTimeout(() => {
+              delete button.dataset.copied;
+              button.setAttribute('aria-label', 'Copy code');
+            }, 2000),
+          );
+        },
+        { signal: controller.signal },
+      );
+
+      document.addEventListener('astro:before-swap', () => controller.abort(), {
+        once: true,
+      });
+    }
+
     const timeouts = new WeakMap<
       HTMLButtonElement,
       ReturnType<typeof setTimeout>
     >();
-
-    document.addEventListener('click', async (e: MouseEvent) => {
-      const button = (e.target as HTMLElement).closest<HTMLButtonElement>(
-        '.copy-button',
-      );
-      if (!button) return;
-
-      const code = button
-        .closest('pre')
-        ?.querySelector('code')
-        ?.textContent?.trimEnd();
-      if (!code) return;
-
-      try {
-        await navigator.clipboard.writeText(code);
-      } catch {
-        return;
-      }
-
-      button.dataset.copied = '';
-      button.setAttribute('aria-label', 'Copied!');
-
-      const prev = timeouts.get(button);
-      if (prev) clearTimeout(prev);
-
-      timeouts.set(
-        button,
-        setTimeout(() => {
-          delete button.dataset.copied;
-          button.setAttribute('aria-label', 'Copy code');
-        }, 2000),
-      );
-    });
+    document.addEventListener('astro:page-load', initCopyButtons);
   </script>
 </Layout>
 <style is:global>
@@ -345,8 +355,7 @@ const jsonLd = {
     }
   }
 
-  html.enable-transitions .astro-code,
-  html.enable-transitions .astro-code span {
+  html.enable-transitions .astro-code {
     transition:
       color 250ms ease-out,
       background-color 250ms ease-out;
@@ -418,7 +427,6 @@ const jsonLd = {
       margin-bottom: 1.5rem;
       text-decoration: var(--color-accent) underline 3px;
       text-underline-offset: 0.5rem;
-      font-weight: var(--weight-semibold);
       line-height: var(--leading-tight);
       letter-spacing: var(--tracking-tight);
     }
