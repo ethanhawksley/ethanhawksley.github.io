@@ -254,6 +254,9 @@ const jsonLd = {
 </Layout>
 <style is:global>
   .content {
+    width: 100%;
+    min-width: 0;
+
     > :first-child {
       margin-top: 0;
     }
@@ -322,14 +325,17 @@ const jsonLd = {
     border-radius: 0.5rem;
     padding: 0.25rem;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
+    width: 100%;
     max-width: 100%;
+    display: grid;
   }
 
   .astro-code code {
     display: block;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 200px;
+    min-width: max-content;
     font-size: var(--font-size-xs);
+    grid-area: 1/1;
   }
 
   @media (min-width: 640px) {
@@ -366,9 +372,12 @@ const jsonLd = {
   }
 
   .copy-button {
-    position: absolute;
+    grid-area: 1 / 1;
+    justify-self: start;
+    align-self: start;
+    position: sticky;
     top: 0.5rem;
-    right: 0.5rem;
+    left: calc(100% - 2.5rem);
     padding: 0.25rem;
     border: 1px solid var(--color-border);
     border-radius: 0.25em;
@@ -380,6 +389,7 @@ const jsonLd = {
     transition:
       opacity 150ms ease-out,
       color 150ms ease-out;
+    z-index: 10;
   }
 
   pre.astro-code:hover .copy-button,
@@ -416,12 +426,15 @@ const jsonLd = {
     margin-bottom: 0.5rem;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
+    width: 100%;
   }
 
   article {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    width: 100%;
+    min-width: 0;
 
     h1 {
       margin-bottom: 1.5rem;

@@ -23,7 +23,6 @@ export default defineConfig({
         light: 'github-light',
         dark: 'github-dark',
       },
-      wrap: true,
       transformers: [
         {
           name: 'add-copy-button',
