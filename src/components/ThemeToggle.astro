@@ -7,6 +7,7 @@ import Sun from '../assets/sun.svg';
   <Moon class="moon" aria-hidden="true" focusable="false" />
   <Sun class="sun" aria-hidden="true" focusable="false" />
 </button>
+
 <style>
   button {
     border: 0;
@@ -48,31 +49,32 @@ import Sun from '../assets/sun.svg';
     color: var(--color-accent);
   }
 </style>
+
 <script>
   function initThemeToggle() {
     const button = document.getElementById('theme-toggle');
     if (!button) return;
 
-    function updateTheme(isDark: boolean) {
+    function updateState(isDark: boolean) {
       button?.setAttribute('aria-pressed', String(isDark));
-
-      const themeColorMetaTags = document.querySelectorAll(
-        'meta[name="theme-color"]',
-      );
-      const newColor = isDark ? '#0f0f0f' : '#fafafa';
-      themeColorMetaTags.forEach((tag) =>
-        tag.setAttribute('content', newColor),
-      );
+      document.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
+        tag.setAttribute('content', isDark ? '#0f0f0f' : '#fafafa');
+      });
     }
+
+    updateState(document.documentElement.classList.contains('dark'));
 
     button.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
       document.documentElement.classList.toggle('light', !isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateTheme(isDark);
+      try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      } catch {}
+      updateState(isDark);
     });
 
     const controller = new AbortController();
+
     window.addEventListener(
       'storage',
       (e) => {
@@ -80,7 +82,7 @@ import Sun from '../assets/sun.svg';
           const isDark = e.newValue === 'dark';
           document.documentElement.classList.toggle('dark', isDark);
           document.documentElement.classList.toggle('light', !isDark);
-          updateTheme(isDark);
+          updateState(isDark);
         }
       },
       { signal: controller.signal },
@@ -89,8 +91,6 @@ import Sun from '../assets/sun.svg';
     document.addEventListener('astro:before-swap', () => controller.abort(), {
       once: true,
     });
-
-    updateTheme(document.documentElement.classList.contains('dark'));
   }
 
   document.addEventListener('astro:page-load', initThemeToggle);
