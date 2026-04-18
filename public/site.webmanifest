@@ -3,7 +3,7 @@
   "short_name": "Hawksley",
   "description": "Portfolio and blog of Ethan Hawksley, a UK-based CS student focused on systems programming and cybersecurity.",
   "start_url": "/",
-  "theme_color": "#d14100",
+  "theme_color": "#bf3900",
   "background_color": "#fafafa",
   "icons": [
     {
