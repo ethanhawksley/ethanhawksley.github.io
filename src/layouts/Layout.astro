@@ -61,13 +61,18 @@ const isIndexable = !robots.includes('noindex');
 
     <script is:inline {...{ blocking: 'render' }}>
       {
-        const d = document.documentElement;
         const t =
-          localStorage.getItem('theme') ||
+          (() => {
+            try {
+              return localStorage.getItem('theme');
+            } catch {
+              return null;
+            }
+          })() ||
           (matchMedia('(prefers-color-scheme:dark)').matches
             ? 'dark'
             : 'light');
-        d.classList.add(t === 'dark' ? 'dark' : 'light');
+        document.documentElement.classList.add(t === 'dark' ? 'dark' : 'light');
       }
     </script>
 
