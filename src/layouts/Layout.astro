@@ -59,6 +59,17 @@ const isIndexable = !robots.includes('noindex');
 
     <title>{pageTitle}</title>
 
+    <meta
+      name="theme-color"
+      content="#fafafa"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f0f"
+      media="(prefers-color-scheme: dark)"
+    />
+
     <script is:inline {...{ blocking: 'render' }}>
       {
         const t =
@@ -73,6 +84,10 @@ const isIndexable = !robots.includes('noindex');
             ? 'dark'
             : 'light');
         document.documentElement.classList.add(t === 'dark' ? 'dark' : 'light');
+        const c = t === 'dark' ? '#0f0f0f' : '#fafafa';
+        document.head
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((m) => m.setAttribute('content', c));
       }
     </script>
 
@@ -81,16 +96,6 @@ const isIndexable = !robots.includes('noindex');
     <meta name="robots" content={robots} />
     <meta name="format-detection" content="telephone=no" />
     <meta name="color-scheme" content="light dark" />
-    <meta
-      name="theme-color"
-      content="#fafafa"
-      media="(prefers-color-scheme: light)"
-    />
-    <meta
-      name="theme-color"
-      content="#0f0f0f"
-      media="(prefers-color-scheme: dark)"
-    />
 
     {
       isIndexable && (
