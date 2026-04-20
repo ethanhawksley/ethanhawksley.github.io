@@ -63,9 +63,11 @@ import Sun from '../assets/sun.svg';
     opacity: 1;
   }
 
-  button:hover > .sun,
-  button:hover > .moon {
-    --hover-mix: 100%;
+  @media (hover: hover) {
+    button:hover > .sun,
+    button:hover > .moon {
+      --hover-mix: 100%;
+    }
   }
 </style>
 
