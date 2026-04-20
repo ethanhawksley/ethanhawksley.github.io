@@ -16,6 +16,12 @@ import Sun from '../assets/sun.svg';
 </button>
 
 <style>
+  @property --hover-mix {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+  }
+
   button {
     border: 0;
     background: none;
@@ -31,9 +37,15 @@ import Sun from '../assets/sun.svg';
   .sun,
   .moon {
     transition:
-      color 250ms ease-out,
+      --hover-mix 250ms ease-out,
       opacity 250ms ease-out;
-    color: var(--color-text);
+
+    color: color-mix(
+      in srgb,
+      var(--color-accent) var(--hover-mix),
+      var(--color-text)
+    );
+
     width: 2rem;
     height: 2rem;
     position: absolute;
@@ -53,7 +65,7 @@ import Sun from '../assets/sun.svg';
 
   button:hover > .sun,
   button:hover > .moon {
-    color: var(--color-accent);
+    --hover-mix: 100%;
   }
 </style>
 
