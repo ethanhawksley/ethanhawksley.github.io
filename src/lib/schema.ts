@@ -5,7 +5,7 @@ export const websiteSchema = {
   name: 'Ethan Hawksley',
   alternateName: ['hawksley.dev', 'Hawksley'],
   description:
-    'Portfolio and technical blog of Ethan Hawksley, a UK-based CS student focused on systems programming and cybersecurity.',
+    'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.',
   publisher: { '@id': 'https://hawksley.dev/#person' },
   inLanguage: 'en-GB',
 } as const;
