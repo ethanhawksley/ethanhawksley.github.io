@@ -27,6 +27,7 @@ export default defineConfig({
         {
           name: 'add-copy-button',
           pre(node) {
+            node.properties.tabindex = '0';
             node.children.push({
               type: 'element',
               tagName: 'button',
