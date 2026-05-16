@@ -571,7 +571,11 @@ const isIndexable = !robots.includes('noindex');
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--color-border);
+    background-color: color-mix(
+      in srgb,
+      var(--color-border) 80%,
+      var(--color-text)
+    );
     border-radius: 10px;
     border: 2px solid var(--color-background);
   }
