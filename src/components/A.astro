@@ -15,8 +15,9 @@ interface Props extends HTMLAttributes<'a'> {
   href: string;
   rel?: string;
   style?: string;
+  pressable?: boolean;
 }
-const { href, rel, style, ...rest } = Astro.props;
+const { href, rel, style, pressable, ...rest } = Astro.props;
 
 function isExternal(linkHref: string) {
   // All https links that are not explicitly part of this blog should be external.
@@ -51,6 +52,7 @@ const isExternalLink = isExternal(href);
     .join(' ') || undefined}
   target={isExternalLink ? '_blank' : undefined}
   style={style}
+  data-pressable={pressable || undefined}
   {...rest}
   ><slot />{
     isExternalLink && (
@@ -66,11 +68,21 @@ const isExternalLink = isExternal(href);
     color: inherit;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
-    transition: color 250ms ease-out;
+    transition:
+      color 250ms ease-out,
+      transform 100ms ease-out;
   }
 
   a:hover {
     color: var(--color-accent);
+  }
+
+  a:active {
+    transform: scale(0.96);
+  }
+
+  a[data-pressable] {
+    display: inline-block;
   }
 
   a svg {
