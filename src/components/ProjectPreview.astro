@@ -15,7 +15,7 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
 
 <li>
   <article>
-    <h3><A href={sourceUrl}>{name}</A></h3>
+    <h3><A href={sourceUrl} pressable>{name}</A></h3>
     <p>{description}</p>
     <footer>
       <span class="meta-data">
@@ -25,8 +25,8 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
       {
         liveUrl && (
           <span class="meta-action">
-            <A href={liveUrl} aria-label={`View ${name} live`}>
-              View Live
+            <A href={liveUrl} aria-label={`View ${name} live`} pressable>
+              {'View Live'}
             </A>
           </span>
         )
@@ -56,10 +56,6 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
     font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
     margin: 0;
-  }
-
-  h3 :global(a:active) {
-    transform: scale(0.96);
   }
 
   p {

@@ -16,7 +16,7 @@ const Heading = headingLevel;
 
 <li>
   <article>
-    <Heading><A href={url}>{title}</A></Heading>
+    <Heading><A href={url} pressable>{title}</A></Heading>
     <p>{description}</p>
     <footer>
       <span class="meta-item">
@@ -57,11 +57,6 @@ const Heading = headingLevel;
       font-weight: var(--weight-semibold);
       line-height: var(--leading-snug);
       margin: 0;
-    }
-
-    h2 :global(a:active),
-    h3 :global(a:active) {
-      transform: scale(0.96);
     }
 
     p {

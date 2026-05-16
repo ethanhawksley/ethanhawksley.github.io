@@ -137,7 +137,7 @@ const jsonLd = {
   </Fragment>
 
   <nav aria-label="Back to blog" class="breadcrumb">
-    <A href="/blog/" style="text-decoration: none;">
+    <A href="/blog/" style="text-decoration: none;" pressable>
       <span aria-hidden="true">←</span> Back to blog
     </A>
   </nav>
@@ -201,7 +201,7 @@ const jsonLd = {
       }
     </div>
     <div class="nav-all">
-      <A href="/blog/">View all posts</A>
+      <A href="/blog/" pressable>View all posts</A>
     </div>
   </nav>
   <script>
@@ -491,11 +491,6 @@ const jsonLd = {
     align-items: center;
     gap: 0.5rem;
     color: var(--color-text-muted);
-  }
-
-  .nav-prev :global(a:active),
-  .nav-next :global(a:active) {
-    transform: scale(0.96);
   }
 
   .nav-next :global(a) {
