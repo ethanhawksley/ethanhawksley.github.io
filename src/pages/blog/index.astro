@@ -4,8 +4,8 @@ import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import { personRef, websiteRef } from '../../lib/schema.ts';
 
-const allPosts = (await getCollection('posts')).sort((a, b) =>
-  a.data.pubDate < b.data.pubDate ? 1 : -1,
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const jsonLd = {
