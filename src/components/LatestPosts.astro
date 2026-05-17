@@ -1,0 +1,35 @@
+---
+import PostPreview from './PostPreview.astro';
+import A from './A.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('posts')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<ul id="blog-preview" role="list">
+  {
+    allPosts
+      .slice(0, 2)
+      .map((post) => (
+        <PostPreview
+          url={`/blog/${post.id}/`}
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          tags={post.data.tags}
+          headingLevel="h3"
+        />
+      ))
+  }
+</ul>
+<A href="/blog/" pressable>View all posts →</A>
+
+<style>
+  #blog-preview {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+</style>

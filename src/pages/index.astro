@@ -4,15 +4,10 @@ import SocialLinks from '../components/SocialLinks.astro';
 import { getCollection } from 'astro:content';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import { personSchema, websiteSchema } from '../lib/schema.ts';
-import PostPreview from '../components/PostPreview.astro';
-import A from '../components/A.astro';
+import LatestPosts from '../components/LatestPosts.astro';
 
 const allProjects = (await getCollection('projects')).sort(
   (a, b) => a.data.priority - b.data.priority,
-);
-
-const allPosts = (await getCollection('posts')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
 const jsonLd = {
@@ -71,76 +66,46 @@ const jsonLd = {
       Writing about systems programming, web development, and all I learn along
       the way.
     </p>
-    <ul id="blog-preview" role="list">
-      {
-        allPosts
-          .slice(0, 2)
-          .map((post) => (
-            <PostPreview
-              url={`/blog/${post.id}/`}
-              title={post.data.title}
-              description={post.data.description}
-              pubDate={post.data.pubDate}
-              tags={post.data.tags}
-              headingLevel="h3"
-            />
-          ))
-      }
-    </ul>
-    <A href="/blog/" pressable>View all posts →</A>
+    <LatestPosts />
   </section>
-  <style>
-    #hero {
-      text-wrap: balance;
-      margin-bottom: 1rem;
-      max-width: 65ch;
-    }
-
-    h1 {
-      margin-bottom: 1.5rem;
-      text-decoration: var(--color-accent) underline 3px;
-      text-underline-offset: 0.25em;
-      line-height: var(--leading-tight);
-    }
-
-    #contact-links {
-      margin-bottom: 2rem;
-    }
-
-    h2 {
-      margin-bottom: 1rem;
-      font-weight: var(--weight-semibold);
-      line-height: var(--leading-snug);
-    }
-
-    p {
-      font-size: var(--font-size-base);
-      line-height: var(--leading-normal);
-    }
-
-    #projects {
-      width: 100%;
-    }
-
-    #projects ul {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    #blog-callout {
-      width: 100%;
-      margin-top: 2rem;
-    }
-
-    #blog-callout > p {
-      margin-bottom: 1rem;
-    }
-
-    #blog-preview {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-  </style>
 </Layout>
+
+<style>
+  #hero {
+    text-wrap: balance;
+    margin-bottom: 1rem;
+    max-width: 65ch;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+    text-decoration: var(--color-accent) underline 3px;
+    text-underline-offset: 0.25em;
+    line-height: var(--leading-tight);
+  }
+
+  #contact-links {
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+  }
+
+  p {
+    font-size: var(--font-size-base);
+    line-height: var(--leading-normal);
+  }
+
+  #projects {
+    width: 100%;
+  }
+
+  #projects ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+</style>

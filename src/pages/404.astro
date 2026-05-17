@@ -1,6 +1,6 @@
 ---
-import A from '../components/A.astro';
 import Layout from '../layouts/Layout.astro';
+import LatestPosts from '../components/LatestPosts.astro';
 ---
 
 <Layout
@@ -13,12 +13,6 @@ import Layout from '../layouts/Layout.astro';
   <p>
     Oops! Looks like you've ventured off into the wilderness and gotten lost.
   </p>
-  <A href="/" style="font-size: 1.125rem;" pressable>Return Home!</A>
-  <style>
-    h1 {
-      margin-bottom: 1.5rem;
-      text-decoration: var(--color-accent) underline 3px;
-      text-underline-offset: 0.25em;
-    }
-  </style>
+  <p>Whilst you're here, why not check out some of my latest posts?</p>
+  <LatestPosts />
 </Layout>
