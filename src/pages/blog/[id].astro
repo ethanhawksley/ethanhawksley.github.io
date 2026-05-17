@@ -279,9 +279,20 @@ const jsonLd = {
       line-height: var(--leading-relaxed);
     }
 
-    p {
+    p,
+    ul,
+    ol {
       margin-block: 1.5rem;
       font-size: var(--font-size-base);
+    }
+
+    li + li {
+      margin-top: 0.5rem;
+    }
+
+    li > ul,
+    li > ol {
+      margin-block: 0.5rem 0;
     }
 
     h2 {
@@ -294,8 +305,6 @@ const jsonLd = {
 
     h3 {
       font-size: var(--font-size-md);
-      line-height: var(--leading-normal);
-      letter-spacing: var(--tracking-normal);
       margin-top: 2rem;
       margin-bottom: 0.5rem;
     }
@@ -315,6 +324,10 @@ const jsonLd = {
       padding: 1rem 1.5rem;
       border-radius: 0 0.5rem 0.5rem 0;
       font-style: italic;
+    }
+
+    blockquote > :first-child {
+      margin-top: 0;
     }
 
     blockquote > :last-child {
@@ -393,7 +406,7 @@ const jsonLd = {
     left: calc(100% - 2.5rem);
     padding: 0.25rem;
     border: 1px solid var(--color-border);
-    border-radius: 0.25em;
+    border-radius: 0.25rem;
     background: var(--color-surface);
     color: var(--color-text-muted);
     opacity: 0;
