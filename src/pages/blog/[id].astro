@@ -399,8 +399,8 @@ const jsonLd = {
     opacity: 0;
     display: flex;
     transition:
-      opacity 150ms ease-out,
-      color 150ms ease-out;
+      opacity 250ms ease-out,
+      color 250ms ease-out;
     z-index: 10;
   }
 
@@ -448,14 +448,6 @@ const jsonLd = {
     width: 100%;
     min-width: 0;
 
-    h1 {
-      margin-bottom: 1.5rem;
-      text-decoration: var(--color-accent) underline 3px;
-      text-underline-offset: 0.25em;
-      line-height: var(--leading-tight);
-      letter-spacing: var(--tracking-tight);
-    }
-
     header {
       display: flex;
       flex-direction: column;
@@ -472,6 +464,7 @@ const jsonLd = {
       color: var(--color-text-muted);
       font-size: var(--font-size-sm);
       font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
     }
   }
 
