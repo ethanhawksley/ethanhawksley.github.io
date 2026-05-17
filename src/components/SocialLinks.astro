@@ -6,7 +6,11 @@ import A from './A.astro';
 ---
 
 <address>
-  <A href="mailto:..." rel="me" pressable>
+  <A
+    href="mailto:%65%74%68%61%6E%40%68%61%77%6B%73%6C%65%79%2E%64%65%76"
+    rel="me"
+    pressable
+  >
     <Email aria-hidden="true" />
     ethan<span class="punct">.dev</span>@hawksley<span class="punct">.co</span
     >.dev</A
@@ -40,8 +44,17 @@ import A from './A.astro';
     position: relative;
     display: inline-flex;
     align-items: center;
-    align-content: center;
     gap: 0.5rem;
+  }
+
+  address > :global(a:nth-child(1)) {
+    min-width: 14rem;
+  }
+  address > :global(a:nth-child(2)) {
+    min-width: 7.4rem;
+  }
+  address > :global(a:nth-child(3)) {
+    min-width: 8.2rem;
   }
 
   address :global(a > svg:first-child) {
@@ -49,8 +62,8 @@ import A from './A.astro';
     width: 24px;
     height: 24px;
     left: 0.3rem;
-    top: 1.5rem;
-    transform: translateY(calc(-50% + 0.125em + 1px)) !important;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .punct {
