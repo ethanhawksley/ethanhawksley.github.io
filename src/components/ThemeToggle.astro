@@ -110,17 +110,14 @@ import Sun from '../assets/sun.svg';
 
     if (typeof matchMedia !== 'undefined') {
       const handlePreferenceChange = (e: MediaQueryListEvent) => {
-        let isSet = false;
         try {
-          isSet = localStorage.getItem('theme') !== null;
+          if (localStorage.getItem('theme') !== null) return;
         } catch {}
 
-        if (!isSet) {
-          const isDark = e.matches;
-          document.documentElement.classList.toggle('dark', isDark);
-          document.documentElement.classList.toggle('light', !isDark);
-          updateState(isDark);
-        }
+        const isDark = e.matches;
+        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('light', !isDark);
+        updateState(isDark);
       };
 
       matchMedia('(prefers-color-scheme: dark)').addEventListener(
