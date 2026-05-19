@@ -72,7 +72,7 @@ const isIndexable = !robots.includes('noindex');
 
     <script is:inline>
       {
-        const t =
+        const theme =
           (() => {
             try {
               return localStorage.getItem('theme');
@@ -81,17 +81,17 @@ const isIndexable = !robots.includes('noindex');
             }
           })() ||
           (typeof matchMedia !== 'undefined' &&
-          matchMedia('(prefers-color-scheme:dark)').matches
+          matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light');
-        document.documentElement.classList.add(
-          t === 'dark' ? 'dark' : 'light',
-          'js',
-        );
-        const c = t === 'dark' ? '#0f0f0f' : '#fafafa';
+        document.documentElement.classList.add(theme, 'js');
+        const colour = theme === 'dark' ? '#0f0f0f' : '#fafafa';
         document.head
           .querySelectorAll('meta[name="theme-color"]')
-          .forEach((m) => m.setAttribute('content', c));
+          .forEach((tag) => {
+            tag.setAttribute('content', colour);
+            tag.removeAttribute('media');
+          });
       }
     </script>
 
@@ -241,24 +241,26 @@ const isIndexable = !robots.includes('noindex');
     <script>
       function syncMeta(doc: Document) {
         const isDark = doc.documentElement.classList.contains('dark');
-        const c = isDark ? '#0f0f0f' : '#fafafa';
-        doc.head
-          .querySelectorAll('meta[name="theme-color"]')
-          .forEach((m) => m.setAttribute('content', c));
+        const colour = isDark ? '#0f0f0f' : '#fafafa';
+        doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
+          tag.setAttribute('content', colour);
+          tag.removeAttribute('media');
+        });
       }
 
-      syncMeta(document);
-
       document.addEventListener('astro:before-swap', (ev) => {
-        const cl = document.documentElement.classList;
-        const t = cl.contains('dark') ? 'dark' : 'light';
-        ev.newDocument.documentElement.classList.add(t, 'js');
+        const classList = document.documentElement.classList;
+        const theme = classList.contains('dark') ? 'dark' : 'light';
+
+        ev.newDocument.documentElement.classList.add(theme, 'js');
         ev.newDocument.documentElement.classList.remove(
-          t === 'dark' ? 'light' : 'dark',
+          theme === 'dark' ? 'light' : 'dark',
         );
-        if (cl.contains('enable-transitions')) {
+
+        if (classList.contains('enable-transitions')) {
           ev.newDocument.documentElement.classList.add('enable-transitions');
         }
+
         syncMeta(ev.newDocument);
       });
 
