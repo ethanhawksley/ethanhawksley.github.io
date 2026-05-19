@@ -105,6 +105,7 @@ import Sun from '../assets/sun.svg';
           const isDark =
             e.newValue === 'dark' ||
             (e.newValue === null &&
+              typeof matchMedia !== 'undefined' &&
               matchMedia('(prefers-color-scheme:dark)').matches);
           document.documentElement.classList.toggle('dark', isDark);
           document.documentElement.classList.toggle('light', !isDark);
