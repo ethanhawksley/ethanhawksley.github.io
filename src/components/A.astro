@@ -47,9 +47,7 @@ const isExternalLink = isExternal(href);
 
 <a
   href={href}
-  rel={[isExternalLink && 'noopener noreferrer', rel]
-    .filter(Boolean)
-    .join(' ') || undefined}
+  rel={rel}
   target={isExternalLink ? '_blank' : undefined}
   style={style}
   data-pressable={pressable || undefined}
