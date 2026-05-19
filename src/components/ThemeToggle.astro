@@ -76,9 +76,6 @@ import Sun from '../assets/sun.svg';
         .forEach((tag) => {
           tag.setAttribute('content', isDark ? '#0f0f0f' : '#fafafa');
         });
-      document.head
-        .querySelector('meta[name="color-scheme"]')
-        ?.setAttribute('content', isDark ? 'dark' : 'light');
     }
 
     updateState(document.documentElement.classList.contains('dark'));
