@@ -5,10 +5,9 @@ import { getCollection } from 'astro:content';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import { personSchema, websiteSchema } from '../lib/schema.ts';
 import LatestPosts from '../components/LatestPosts.astro';
+import { getSortedProjects } from '../lib/content-helpers.ts';
 
-const allProjects = (await getCollection('projects')).sort(
-  (a, b) => a.data.priority - b.data.priority,
-);
+const allProjects = await getSortedProjects();
 
 const postCount = (await getCollection('posts')).length;
 

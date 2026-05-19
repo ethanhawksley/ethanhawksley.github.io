@@ -1,12 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import { personRef, websiteRef } from '../../lib/schema.ts';
+import { getSortedPosts } from '../../lib/content-helpers.ts';
 
-const allPosts = (await getCollection('posts')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const allPosts = await getSortedPosts();
 
 const jsonLd = {
   '@context': 'https://schema.org',
