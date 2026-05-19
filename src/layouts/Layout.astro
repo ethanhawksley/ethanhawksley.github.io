@@ -205,7 +205,7 @@ const isIndexable = !robots.includes('noindex');
         <script
           type="application/ld+json"
           is:inline
-          set:html={JSON.stringify(jsonLd)}
+          set:html={JSON.stringify(jsonLd).replaceAll('<', '\\u003c')}
         />
       )
     }
