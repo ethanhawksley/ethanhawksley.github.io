@@ -1,11 +1,9 @@
 ---
 import PostPreview from './PostPreview.astro';
 import A from './A.astro';
-import { getCollection } from 'astro:content';
+import { getSortedPosts } from '../lib/content-helpers.ts';
 
-const allPosts = (await getCollection('posts')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const allPosts = await getSortedPosts();
 ---
 
 <ul id="blog-preview" role="list">
