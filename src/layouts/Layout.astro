@@ -84,7 +84,10 @@ const isIndexable = !robots.includes('noindex');
           matchMedia('(prefers-color-scheme:dark)').matches
             ? 'dark'
             : 'light');
-        document.documentElement.classList.add(t === 'dark' ? 'dark' : 'light');
+        document.documentElement.classList.add(
+          t === 'dark' ? 'dark' : 'light',
+          'js',
+        );
         const c = t === 'dark' ? '#0f0f0f' : '#fafafa';
         document.head
           .querySelectorAll('meta[name="theme-color"]')
