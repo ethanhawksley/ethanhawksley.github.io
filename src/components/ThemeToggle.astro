@@ -68,7 +68,6 @@ import Sun from '../assets/sun.svg';
 <script>
   function initThemeToggle() {
     const button = document.getElementById('theme-toggle')!;
-    if (!button) return;
 
     function updateState(isDark: boolean) {
       button.setAttribute('aria-pressed', String(isDark));
@@ -103,7 +102,7 @@ import Sun from '../assets/sun.svg';
             e.newValue === 'dark' ||
             (e.newValue === null &&
               typeof matchMedia !== 'undefined' &&
-              matchMedia('(prefers-color-scheme:dark)').matches);
+              matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.classList.toggle('dark', isDark);
           document.documentElement.classList.toggle('light', !isDark);
           updateState(isDark);
@@ -111,6 +110,30 @@ import Sun from '../assets/sun.svg';
       },
       { signal: controller.signal },
     );
+
+    if (typeof matchMedia !== 'undefined') {
+      const handlePreferenceChange = (e: MediaQueryListEvent) => {
+        let isSet = false;
+        try {
+          isSet = localStorage.getItem('theme') !== null;
+        } catch {}
+
+        if (!isSet) {
+          const isDark = e.matches;
+          document.documentElement.classList.toggle('dark', isDark);
+          document.documentElement.classList.toggle('light', !isDark);
+          updateState(isDark);
+        }
+      };
+
+      matchMedia('(prefers-color-scheme: dark)').addEventListener(
+        'change',
+        handlePreferenceChange,
+        {
+          signal: controller.signal,
+        },
+      );
+    }
 
     document.addEventListener('astro:before-swap', () => controller.abort(), {
       once: true,
