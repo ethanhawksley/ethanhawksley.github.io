@@ -70,11 +70,11 @@ import Sun from '../assets/sun.svg';
 
 <script>
   function initThemeToggle() {
-    const button = document.getElementById('theme-toggle');
+    const button = document.getElementById('theme-toggle')!;
     if (!button) return;
 
     function updateState(isDark: boolean) {
-      button?.setAttribute('aria-pressed', String(isDark));
+      button.setAttribute('aria-pressed', String(isDark));
       document.head
         .querySelectorAll('meta[name="theme-color"]')
         .forEach((tag) => {
