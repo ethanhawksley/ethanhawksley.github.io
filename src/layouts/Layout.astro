@@ -80,8 +80,7 @@ const isIndexable = !robots.includes('noindex');
               return null;
             }
           })() ||
-          (typeof matchMedia !== 'undefined' &&
-          matchMedia('(prefers-color-scheme: dark)').matches
+          (matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light');
         document.documentElement.classList.add(theme, 'js');

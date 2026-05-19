@@ -99,7 +99,6 @@ import Sun from '../assets/sun.svg';
           const isDark =
             e.newValue === 'dark' ||
             (e.newValue === null &&
-              typeof matchMedia !== 'undefined' &&
               matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.classList.toggle('dark', isDark);
           document.documentElement.classList.toggle('light', !isDark);
@@ -109,26 +108,24 @@ import Sun from '../assets/sun.svg';
       { signal: controller.signal },
     );
 
-    if (typeof matchMedia !== 'undefined') {
-      const handlePreferenceChange = (e: MediaQueryListEvent) => {
-        try {
-          if (localStorage.getItem('theme') !== null) return;
-        } catch {}
+    const handlePreferenceChange = (e: MediaQueryListEvent) => {
+      try {
+        if (localStorage.getItem('theme') !== null) return;
+      } catch {}
 
-        const isDark = e.matches;
-        document.documentElement.classList.toggle('dark', isDark);
-        document.documentElement.classList.toggle('light', !isDark);
-        updateState(isDark);
-      };
+      const isDark = e.matches;
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.classList.toggle('light', !isDark);
+      updateState(isDark);
+    };
 
-      matchMedia('(prefers-color-scheme: dark)').addEventListener(
-        'change',
-        handlePreferenceChange,
-        {
-          signal: controller.signal,
-        },
-      );
-    }
+    matchMedia('(prefers-color-scheme: dark)').addEventListener(
+      'change',
+      handlePreferenceChange,
+      {
+        signal: controller.signal,
+      },
+    );
 
     document.addEventListener('astro:before-swap', () => controller.abort(), {
       once: true,
