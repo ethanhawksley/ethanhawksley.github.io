@@ -252,7 +252,7 @@ const isIndexable = !robots.includes('noindex');
       document.addEventListener('astro:before-swap', (ev) => {
         const cl = document.documentElement.classList;
         const t = cl.contains('dark') ? 'dark' : 'light';
-        ev.newDocument.documentElement.classList.add(t);
+        ev.newDocument.documentElement.classList.add(t, 'js');
         ev.newDocument.documentElement.classList.remove(
           t === 'dark' ? 'light' : 'dark',
         );
