@@ -204,54 +204,6 @@ const jsonLd = {
       <A href="/blog/" pressable>View all posts</A>
     </div>
   </nav>
-  <script>
-    const timeouts = new WeakMap<
-      HTMLButtonElement,
-      ReturnType<typeof setTimeout>
-    >();
-
-    function initCopyButtons() {
-      const controller = new AbortController();
-
-      document.addEventListener(
-        'click',
-        async (e: MouseEvent) => {
-          const button = (e.target as HTMLElement).closest<HTMLButtonElement>(
-            '.copy-button',
-          );
-          if (!button) return;
-          const code = button
-            .closest('pre')
-            ?.querySelector('code')
-            ?.textContent?.trimEnd();
-          if (!code) return;
-          try {
-            await navigator.clipboard.writeText(code);
-          } catch {
-            return;
-          }
-          button.dataset.copied = '';
-          button.setAttribute('aria-label', 'Copied!');
-          const prev = timeouts.get(button);
-          if (prev) clearTimeout(prev);
-          timeouts.set(
-            button,
-            setTimeout(() => {
-              delete button.dataset.copied;
-              button.setAttribute('aria-label', 'Copy code');
-            }, 2000),
-          );
-        },
-        { signal: controller.signal },
-      );
-
-      document.addEventListener('astro:before-swap', () => controller.abort(), {
-        once: true,
-      });
-    }
-
-    document.addEventListener('astro:page-load', initCopyButtons);
-  </script>
 </Layout>
 <style is:global>
   .content {
@@ -520,3 +472,52 @@ const jsonLd = {
     }
   }
 </style>
+
+<script>
+  const timeouts = new WeakMap<
+    HTMLButtonElement,
+    ReturnType<typeof setTimeout>
+  >();
+
+  function initCopyButtons() {
+    const controller = new AbortController();
+
+    document.addEventListener(
+      'click',
+      async (e: MouseEvent) => {
+        const button = (e.target as HTMLElement).closest<HTMLButtonElement>(
+          '.copy-button',
+        );
+        if (!button) return;
+        const code = button
+          .closest('pre')
+          ?.querySelector('code')
+          ?.textContent?.trimEnd();
+        if (!code) return;
+        try {
+          await navigator.clipboard.writeText(code);
+        } catch {
+          return;
+        }
+        button.dataset.copied = '';
+        button.setAttribute('aria-label', 'Copied!');
+        const prev = timeouts.get(button);
+        if (prev) clearTimeout(prev);
+        timeouts.set(
+          button,
+          setTimeout(() => {
+            delete button.dataset.copied;
+            button.setAttribute('aria-label', 'Copy code');
+          }, 2000),
+        );
+      },
+      { signal: controller.signal },
+    );
+
+    document.addEventListener('astro:before-swap', () => controller.abort(), {
+      once: true,
+    });
+  }
+
+  document.addEventListener('astro:page-load', initCopyButtons);
+</script>
