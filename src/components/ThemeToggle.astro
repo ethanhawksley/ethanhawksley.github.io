@@ -75,6 +75,7 @@ import Sun from '../assets/sun.svg';
         .querySelectorAll('meta[name="theme-color"]')
         .forEach((tag) => {
           tag.setAttribute('content', isDark ? '#0f0f0f' : '#fafafa');
+          tag.removeAttribute('media');
         });
     }
 
