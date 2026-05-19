@@ -205,6 +205,11 @@ const jsonLd = {
     </div>
   </nav>
   <script>
+    const timeouts = new WeakMap<
+      HTMLButtonElement,
+      ReturnType<typeof setTimeout>
+    >();
+
     function initCopyButtons() {
       const controller = new AbortController();
 
@@ -245,10 +250,6 @@ const jsonLd = {
       });
     }
 
-    const timeouts = new WeakMap<
-      HTMLButtonElement,
-      ReturnType<typeof setTimeout>
-    >();
     document.addEventListener('astro:page-load', initCopyButtons);
   </script>
 </Layout>
