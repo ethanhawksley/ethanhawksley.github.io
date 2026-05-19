@@ -317,42 +317,6 @@ const isIndexable = !robots.includes('noindex');
     }
   }
 
-  @property --color-background {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #fafafa;
-  }
-
-  @property --color-surface {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #eaeaea;
-  }
-
-  @property --color-text {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #1a1a1a;
-  }
-
-  @property --color-text-muted {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #525252;
-  }
-
-  @property --color-accent {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #bf3900;
-  }
-
-  @property --color-border {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #e0e0e0;
-  }
-
   @font-face {
     font-family: 'IBM Plex Sans';
     font-style: normal;
@@ -403,12 +367,39 @@ const isIndexable = !robots.includes('noindex');
 
   html.enable-transitions {
     transition:
-      --color-background 250ms ease-out,
-      --color-surface 250ms ease-out,
-      --color-text 250ms ease-out,
-      --color-text-muted 250ms ease-out,
-      --color-accent 250ms ease-out,
-      --color-border 250ms ease-out;
+      background-color 250ms ease-out,
+      color 250ms ease-out,
+      border-color 250ms ease-out,
+      text-decoration-color 250ms ease-out;
+
+    body,
+    header,
+    nav,
+    div,
+    blockquote,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    pre,
+    ul,
+    ol,
+    li,
+    span,
+    small,
+    a,
+    button,
+    .astro-code,
+    .copy-button {
+      transition:
+        background-color 250ms ease-out,
+        color 250ms ease-out,
+        border-color 250ms ease-out,
+        text-decoration-color 250ms ease-out;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
