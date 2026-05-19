@@ -1,24 +1,23 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { personRef, websiteRef } from '../../lib/schema.ts';
+import { getSortedPosts } from '../../lib/content-helpers.ts';
 
 export const getStaticPaths = (async () => {
-  const posts = (await getCollection('posts')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-  );
+  const allPosts = await getSortedPosts();
 
-  return posts.map((post, index) => ({
+  return allPosts.map((post, index) => ({
     params: { id: post.id },
     props: {
       post,
-      prevPost: posts[index + 1] ?? null,
-      nextPost: posts[index - 1] ?? null,
+      prevPost: allPosts[index + 1] ?? null,
+      nextPost: allPosts[index - 1] ?? null,
     },
   }));
 }) satisfies GetStaticPaths;
