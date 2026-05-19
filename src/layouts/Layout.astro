@@ -262,8 +262,6 @@ const isIndexable = !robots.includes('noindex');
         syncMeta(ev.newDocument);
       });
 
-      document.addEventListener('astro:page-load', () => syncMeta(document));
-
       requestAnimationFrame(() => {
         document.documentElement.classList.add('enable-transitions');
       });
