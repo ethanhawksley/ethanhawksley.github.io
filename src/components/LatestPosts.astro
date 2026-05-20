@@ -4,6 +4,7 @@ import A from './A.astro';
 import { getSortedPosts } from '../lib/content-helpers.ts';
 
 const allPosts = await getSortedPosts();
+const postCount = allPosts.length;
 ---
 
 <ul id="blog-preview" role="list">
@@ -22,6 +23,9 @@ const allPosts = await getSortedPosts();
       ))
   }
 </ul>
+<span class="punct">
+  {postCount} posts written so far, see full index at https://hawksley.dev/blog/</span
+>
 <A href="/blog/" pressable>View all posts →</A>
 
 <style>
@@ -29,5 +33,9 @@ const allPosts = await getSortedPosts();
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+
+  .punct {
+    display: none;
   }
 </style>
