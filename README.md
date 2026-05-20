@@ -4,7 +4,7 @@ I'm Ethan Hawksley, a CS student with a focus on systems and cybersecurity.
 
 This repository hosts the source code for my personal portfolio & technical blog.
 
-**[Live site](https://hawksley.dev)**
+**[Ethan Hawksley's portfolio & blog](https://hawksley.dev)**
 
 ---
 
