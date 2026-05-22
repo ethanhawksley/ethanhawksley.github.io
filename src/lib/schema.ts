@@ -45,6 +45,7 @@ export const personSchema = {
     },
   },
   sameAs: [
+    'https://orcid.org/0009-0005-6663-0640',
     'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
     'https://x.com/Ethan_Hawksley',
