@@ -7,19 +7,19 @@ tags: ['cybersecurity', 'packages']
 
 Supply chain attacks are a growing threat to software registries.
 
-One of the first major typosquatting attacks on npm took place in 2017 when the user "hacktask" [published a series of packages](https://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) with similar names to popular libraries (e.g. crossenv vs cross-env), misleading people into installing them.
+One of the first major typosquatting attacks on npm took place in 2017 when the user "hacktask" [published a series of packages](https://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) with similar names to popular libraries (e.g., crossenv vs cross-env), misleading people into installing them.
 
-Then, the first time an official package was compromised was in 2018, where the account of an `eslint-scope` maintainer [was hijacked](https://eslint.org/blog/2018/07/postmortem-for-malicious-package-publishes/) and used to publish malicious packages. These packages would exfiltrate the contents of developers' `.npmrc` files, often including their keys used for publishing new npm packages. This marked a turning point where attackers began harvesting credentials at scale, to fuel further attacks.
+Then the first time an official package was compromised was in 2018, when the account of an `eslint-scope` maintainer [was hijacked](https://eslint.org/blog/2018/07/postmortem-for-malicious-package-publishes/) and used to publish malicious packages. These packages would exfiltrate the contents of developers' `.npmrc` files, often including their keys used for publishing new npm packages. This marked a turning point when attackers began harvesting credentials at scale, to fuel further attacks.
 
 The recent attack - named [Mini Shai-Hulud](https://www.akamai.com/blog/security-research/mini-shai-hulud-worm-returns-goes-public) as a homage to the Dune sandworms - is a symptom of how broken the security of these registries is. It scans your system for API keys, creates public GitHub repositories containing said API keys, and abuses credentials to upload itself to other libraries, spreading its influence.
 
-Software developers are large targets for malicious actors due to their unique position as both a user and a distributor. They can easily be compromised by a singular library and spread the infection rapidly to all downstream users. Paired with keys to expensive cloud billing accounts and browser token-stealers, it's no wonder developers face these attacks so often.
+Software developers are large targets for malicious actors due to their unique position as both users and distributors. They can easily be compromised by a single library and spread the infection rapidly to all downstream users. Paired with keys to expensive cloud billing accounts and browser token-stealers, it's no wonder developers face these attacks so often.
 
 Not all registries are at equal risk, npm is the worst offender by far. A recent report shows it contained [90% of all detected malware](https://www.reversinglabs.com/blog/sscs-report-2026-takeaways) across a collection of registries. PyPI and crates.io both contain some malware, but their scale is dwarfed.
 
 ## Mitigations
 
-Despite the dangers associated with supply chain attacks, they can be mitigated. The easiest method to do so is by setting a minimum-age on new packages. Most malicious packages from hijacked libraries last no longer than a few hours, so by setting an age-requirement of a week, the vast majority of threats can be foiled.
+Despite the dangers associated with supply chain attacks, they can be mitigated. The easiest method is by setting a minimum-age on new packages. Most malicious packages from hijacked libraries last no longer than a few hours, so by setting an age-requirement of a week, the vast majority of threats can be foiled.
 
 For npm, set the contents of `~/.npmrc` to:
 
@@ -59,9 +59,9 @@ For pip, set the contents of `~/.config/pip/pip.conf` to:
 uploaded-prior-to = P7D
 ```
 
-Cargo has a minimum age feature as an RFC, but as of the time of writing, it isn't implemented in the client yet. Go has no such plans, and neither do Maven nor Gradle.
+Cargo has a minimum age feature as an RFC, but as of the time of writing it is not implemented in the client yet. Go has no such plans, nor do Maven or Gradle.
 
-This mitigation isn't without drawbacks. It's worth considering that delaying such installations by a week also leads to any critical security patches being delayed, unless otherwise overridden. It's worth weighing up whether it is worth the tradeoff.
+This mitigation is not without drawbacks. It's worth considering that delaying such installations by a week also delays any critical security patches, unless otherwise overridden. It's worth weighing up whether it is worth the trade-off.
 
 ## Other Considerations
 
@@ -69,7 +69,7 @@ Aside from a minimum-age, there are a few other key changes worth implementing.
 
 Firstly, ensure you have 2FA set up for all accounts that support it. It greatly limits the potential blast radius if you become compromised. I personally recommend [Ente Auth](https://ente.com/auth/) - it's free, cross-platform, and supports optional E2EE cloud backups.
 
-Secondly, if you aren't using [pinned versions](https://jonathan.bergknoff.com/journal/always-pin-your-versions/) or [lock-files,](https://dev.to/wilsonwangdev/lock-files-and-package-manager-migration-a-practical-risk-analysis-2ejn) you should be. They ensure that installed software versions will only change when explicitly updated. This gives you greater control over how and when you want to update, limiting your exposure to supply chain attacks.
+Secondly, if you are not using [pinned versions](https://jonathan.bergknoff.com/journal/always-pin-your-versions/) or [lock-files,](https://dev.to/wilsonwangdev/lock-files-and-package-manager-migration-a-practical-risk-analysis-2ejn) you should be. They ensure that installed software versions will only change when explicitly updated. This gives you greater control over how and when you want to update, limiting your exposure to supply chain attacks.
 
 Lastly, if your language supports [post-install scripts,](https://docs.npmjs.com/cli/v11/using-npm/scripts) it's worth disabling them unless necessary. Especially in the JS ecosystem, post-install scripts are often abused to execute payloads immediately before you have time to react. In most circumstances, the feature is just an unnecessary attack surface.
 
