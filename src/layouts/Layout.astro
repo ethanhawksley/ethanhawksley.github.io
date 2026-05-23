@@ -280,6 +280,7 @@ const isHome = Astro.url.pathname === '/';
     --color-text-muted: light-dark(#525252, #b0b0b0);
     --color-accent: light-dark(#bf3900, #ff4f00);
     --color-border: light-dark(#e0e0e0, #2a2a2a);
+    --color-selection: light-dark(#bf3900, #b33800);
 
     --font-size-xs: clamp(0.75rem, 0.7083rem + 0.2083vw, 0.875rem);
     --font-size-sm: clamp(0.875rem, 0.8333rem + 0.2083vw, 1rem);
@@ -552,18 +553,8 @@ const isHome = Astro.url.pathname === '/';
   }
 
   ::selection {
-    background-color: var(--color-accent);
+    background-color: var(--color-selection);
     color: #fff;
-  }
-
-  .dark ::selection {
-    background-color: #b33800;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light) ::selection {
-      background-color: #b33800;
-    }
   }
 
   ::-webkit-scrollbar {
