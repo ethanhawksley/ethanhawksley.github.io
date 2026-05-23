@@ -11,10 +11,25 @@ export async function GET() {
 > Website: https://hawksley.dev
 
 ## Projects
-${allProjects.map((p) => `- [${p.data.name}](${p.data.liveUrl || p.data.sourceUrl}): ${p.data.description} (${p.data.stack.join(', ')})`).join('\n')}
+${allProjects
+  .map(
+    (p) => `### ${p.data.name}
+${p.data.liveUrl ? `${p.data.liveUrl} ` : ''}${p.data.sourceUrl}
+${p.data.stack.join(', ')}
+${p.data.description}
 
-## Blog Posts
-${allPosts.map((p) => `- [${p.data.title}](https://hawksley.dev/blog/${p.id}/): ${p.data.description} (${p.data.pubDate.toISOString().split('T')[0]})`).join('\n')}
+`,
+  )
+  .join('')}## Blog Posts
+${allPosts
+  .map(
+    (p) => `### ${p.data.title}
+https://hawksley.dev/blog/${p.id}/
+${p.data.description}
+Published ${p.data.pubDate.toISOString().split('T')[0]}${p.data.modDate ? `, Modified ${p.data.modDate.toISOString().split('T')[0]}` : ''}
+`,
+  )
+  .join('\n')}
 `;
 
   return new Response(content, {
