@@ -2,9 +2,8 @@
 import LogoRound from '../assets/logo_round.svg';
 import ThemeToggle from './ThemeToggle.astro';
 
-const { pathname } = Astro.url;
-const isHome = pathname === '/';
-const isBlog = pathname.startsWith('/blog/');
+const isHome = Astro.url.pathname === '/';
+const isBlog = Astro.url.pathname.startsWith('/blog/');
 ---
 
 <header>
@@ -15,14 +14,14 @@ const isBlog = pathname.startsWith('/blog/');
     <div class="page-links">
       <a
         href="/"
-        class={`${isHome ? 'active' : ''}`}
+        class:list={[{ active: isHome }]}
         aria-current={isHome ? 'page' : undefined}
       >
         Home</a
       >
       <a
         href="/blog/"
-        class={`${isBlog ? 'active' : ''}`}
+        class:list={[{ active: isBlog }]}
         aria-current={isBlog ? 'page' : undefined}
       >
         Blog</a
