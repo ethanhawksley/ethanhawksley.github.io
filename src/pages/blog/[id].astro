@@ -59,7 +59,8 @@ const jsonLd = {
       description: post.data.description,
       image: [ogImageUrl ?? 'https://hawksley.dev/og-image-1200x630.png?v=2'],
       datePublished: post.data.pubDate.toISOString(),
-      dateModified: post.data.modDate?.toISOString(),
+      dateModified:
+        post.data.modDate?.toISOString() ?? post.data.pubDate.toISOString(),
       author: { '@id': 'https://hawksley.dev/#person' },
       publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
