@@ -45,7 +45,7 @@ Development went very smoothly over two days and 15 full hours, with only some m
 
 Google's PageSpeed Insights flagged my planned accent colour International Orange `#FF4F00` as having insufficient contrast in light mode, so I had to split into separate accents for light and dark mode. By using global CSS variables that change depending on the theme, I implemented this change painlessly.
 
-I also encountered some <abbr title="Content Layout Shift">CLS</abbr> issues surrounding my choice of font. I personally love the look of the [Inter font](https://rsms.me/inter/) and included it in my project. However, although 300 KiB may not sound like a lot, on a slow connection it’s a noticeable delay. After some research I discovered the [fontTools library](https://github.com/fonttools/fonttools) and managed to shrink the Inter font to 70 KiB by subsetting the font to only the character sets I need.
+I also encountered some <abbr title="Content Layout Shift">CLS</abbr> issues surrounding my choice of font. I personally love the look of the [Inter font](https://rsms.me/inter/) and included it in my project[^1]. However, although 300 KiB may not sound like a lot, on a slow connection it’s a noticeable delay. After some research I discovered the [fontTools library](https://github.com/fonttools/fonttools) and managed to shrink the Inter font to 70 KiB by subsetting the font to only the character sets I need.
 
 ## The Conclusion
 
@@ -54,3 +54,5 @@ Astro has been a pleasure to work with, and I can easily see myself using it in 
 ![Perfect Google PageSpeed score](./pagespeed-insights.webp)
 
 A perfect score has got to be one of the most satisfying feelings after doing a site redesign.
+
+[^1]: I'm now using IBM Plex Sans and IBM Plex Mono, but they are subsetted to 62KiB and 9KiB respectively, so the advice still holds.
