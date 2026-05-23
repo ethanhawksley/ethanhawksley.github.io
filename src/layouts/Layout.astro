@@ -84,11 +84,11 @@ const isHome = Astro.url.pathname === '/';
             ? 'dark'
             : 'light');
         document.documentElement.classList.add(theme, 'js');
-        const colour = theme === 'dark' ? '#0f0f0f' : '#fafafa';
+        const color = theme === 'dark' ? '#0f0f0f' : '#fafafa';
         document.head
           .querySelectorAll('meta[name="theme-color"]')
           .forEach((tag) => {
-            tag.setAttribute('content', colour);
+            tag.setAttribute('content', color);
             tag.removeAttribute('media');
           });
       }
@@ -240,9 +240,9 @@ const isHome = Astro.url.pathname === '/';
     <script>
       function syncMeta(doc: Document) {
         const isDark = doc.documentElement.classList.contains('dark');
-        const colour = isDark ? '#0f0f0f' : '#fafafa';
+        const color = isDark ? '#0f0f0f' : '#fafafa';
         doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
-          tag.setAttribute('content', colour);
+          tag.setAttribute('content', color);
           tag.removeAttribute('media');
         });
       }
