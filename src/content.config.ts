@@ -17,16 +17,15 @@ const posts = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
-  schema: () =>
-    z.object({
-      name: z.string(),
-      description: z.string(),
-      type: z.enum(['Web', 'CLI', 'Tool']),
-      stack: z.array(z.string()),
-      sourceUrl: z.url(),
-      liveUrl: z.url().optional(),
-      priority: z.number(),
-    }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    type: z.enum(['Web', 'CLI', 'Tool']),
+    stack: z.array(z.string()),
+    sourceUrl: z.url(),
+    liveUrl: z.url().optional(),
+    priority: z.number(),
+  }),
 });
 
 export const collections = { posts, projects };
