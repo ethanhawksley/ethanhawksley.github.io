@@ -42,7 +42,7 @@ const isHome = Astro.url.pathname === '/';
 
     <link
       rel="preload"
-      href="/fonts/IBMPlexSans.woff2"
+      href="/fonts/IBMSans-Subset.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -50,7 +50,7 @@ const isHome = Astro.url.pathname === '/';
     />
     <link
       rel="preload"
-      href="/fonts/IBMPlexMono.woff2"
+      href="/fonts/IBMMono-Subset.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -303,8 +303,8 @@ const isHome = Astro.url.pathname === '/';
     --weight-medium: 500;
     --weight-semibold: 600;
 
-    --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
+    --font-sans: 'IBM Sans Subset', system-ui, sans-serif;
+    --font-mono: 'IBM Mono Subset', ui-monospace, 'Cascadia Code', monospace;
   }
 
   :root.dark {
@@ -318,19 +318,19 @@ const isHome = Astro.url.pathname === '/';
   }
 
   @font-face {
-    font-family: 'IBM Plex Sans';
+    font-family: 'IBM Sans Subset';
     font-style: normal;
     font-weight: 100 700;
     font-display: swap;
-    src: url('/fonts/IBMPlexSans.woff2') format('woff2');
+    src: url('/fonts/IBMSans-Subset.woff2') format('woff2');
   }
 
   @font-face {
-    font-family: 'IBM Plex Mono';
+    font-family: 'IBM Mono Subset';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/IBMPlexMono.woff2') format('woff2');
+    src: url('/fonts/IBMMono-Subset.woff2') format('woff2');
   }
 
   *,
