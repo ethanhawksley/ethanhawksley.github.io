@@ -16,7 +16,6 @@ interface Props {
     tags: string[];
     readingTime: number;
   };
-  isRootPage?: boolean;
 }
 
 const {
@@ -27,12 +26,13 @@ const {
   ogType = 'website',
   ogImage = 'https://hawksley.dev/og-image-1200x630.png?v=2',
   article,
-  isRootPage = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const isIndexable = !robots.includes('noindex');
+
+const isHome = Astro.url.pathname === '/';
 ---
 
 <html lang="en-GB">
@@ -192,7 +192,7 @@ const isIndexable = !robots.includes('noindex');
     <meta name="apple-mobile-web-app-title" content="Hawksley" />
 
     {
-      isRootPage && (
+      isHome && (
         <>
           <link rel="me" href="https://github.com/ethan-hawksley" />
           <link rel="me" href="https://mastodon.social/@ethanhawksley" />
