@@ -6,8 +6,8 @@ import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { personRef, websiteRef } from '../../lib/schema.ts';
-import { getSortedPosts } from '../../lib/content-helpers.ts';
+import { personRef, websiteRef } from '../../lib/schema';
+import { getSortedPosts } from '../../lib/content-helpers';
 
 export const getStaticPaths = (async () => {
   const allPosts = await getSortedPosts();
