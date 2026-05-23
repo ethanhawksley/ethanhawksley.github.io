@@ -49,7 +49,7 @@ To subset:
 uv tool install pyftsubset
 
 pyftsubset IBMPlexSans.ttf \
---output-file="IBMPlexSans.woff2" \
+--output-file="IBMSans-Subset.woff2" \
 --flavor="woff2" \
 --unicodes="U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2190-2193,U+21A9,U+2212,U+2215,U+FEFF,U+FFFD" \
 --layout-features="*" \
@@ -61,4 +61,10 @@ Do the same but with IBM Plex Mono as well to have both fully subsetted fonts.
 
 ## License
 
-MIT
+Code is licensed under MIT.
+
+Blog posts and written content are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Code snippets embedded within blog posts are licensed under MIT.
+
+Personal branding, logos, and photographs are All Rights Reserved (see the NOTICE file). Please remove these if you fork the repository.

@@ -13,3 +13,6 @@ Language: English
 Built With: Astro, Shiki, Sharp
 Tools: JetBrains Webstorm, Prettier, Git
 Hosting: GitHub Pages, Cloudflare
+Code License: MIT
+Content License: CC BY 4.0
+Branding License: All Rights Reserved

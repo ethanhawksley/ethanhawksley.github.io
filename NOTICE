@@ -1,0 +1,26 @@
+NOTICE — Reserved Assets (All Rights Reserved)
+
+Copyright (c) 2024–2026 Ethan Hawksley. All rights reserved.
+
+The following assets are EXCLUDED from both the MIT License and the
+CC BY 4.0 License. No rights are granted for these assets. They may
+not be used, reproduced, modified, distributed, or transmitted in any
+form or by any means without explicit prior written permission from
+Ethan Hawksley.
+
+Reserved assets include, but are not limited to:
+
+  BRANDING & IDENTITY
+    - The name "Ethan Hawksley" and "Hawksley" as a brand identity
+    - All logo files (e.g. public/logo-*, src/assets/logo_round.svg)
+    - All branding assets within the _design/ directory
+
+  PERSONAL LIKENESS
+    - All personal photographs and avatars (e.g. public/avatar-*)
+    - Any image depicting Ethan Hawksley's personal likeness
+
+If you are forking or cloning this repository, you MUST remove or replace
+all assets listed in this NOTICE before publishing or distributing your fork.
+Failure to do so constitutes copyright infringement.
+
+For permissions or enquiries: ethan@hawksley.dev

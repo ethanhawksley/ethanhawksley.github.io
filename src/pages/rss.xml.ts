@@ -17,6 +17,6 @@ export async function GET(context: APIContext) {
       link: `/blog/${post.id}/`,
       categories: post.data.tags,
     })),
-    customData: `<language>en-GB</language>`,
+    customData: `<language>en-GB</language><copyright>Content licensed under CC BY 4.0</copyright>`,
   });
 }
