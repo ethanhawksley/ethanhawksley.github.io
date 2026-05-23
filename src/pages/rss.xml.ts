@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { getSortedPosts } from '../lib/content-helpers.ts';
+import { getSortedPosts } from '../lib/content-helpers';
 
 export async function GET(context: APIContext) {
   const allPosts = await getSortedPosts();

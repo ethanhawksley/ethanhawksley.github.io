@@ -1,7 +1,7 @@
 ---
 import PostPreview from './PostPreview.astro';
 import A from './A.astro';
-import { getSortedPosts } from '../lib/content-helpers.ts';
+import { getSortedPosts } from '../lib/content-helpers';
 
 const allPosts = await getSortedPosts();
 const postCount = allPosts.length;
