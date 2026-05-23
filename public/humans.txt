@@ -1,0 +1,15 @@
+/* TEAM */
+Developer: Ethan Hawksley
+Contact: ethan@hawksley.dev
+GitHub: https://github.com/ethan-hawksley
+Site: https://hawksley.dev
+Location: United Kingdom
+
+/* THANKS */
+Astro: All the developers behind such a flexible library
+
+/* SITE */
+Language: English
+Built With: Astro, Shiki, Sharp
+Tools: JetBrains Webstorm, Prettier, Git
+Hosting: GitHub Pages, Cloudflare
