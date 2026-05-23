@@ -589,6 +589,21 @@ const isHome = Astro.url.pathname === '/';
     white-space: nowrap;
     border: 0;
   }
+
+  @media print {
+    #nav-bar,
+    .skip-link,
+    button {
+      display: none !important;
+    }
+
+    .content a[href^='http']::after {
+      content: ' (' attr(href) ')';
+      font-size: var(--font-size-sm);
+      word-break: break-all;
+      color: var(--color-text-muted);
+    }
+  }
 </style>
 
 <style>
