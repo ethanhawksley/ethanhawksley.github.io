@@ -3,20 +3,20 @@ import A from './A.astro';
 import FormattedDate from './FormattedDate.astro';
 
 interface Props {
-  url: string;
+  href: string;
   title: string;
   description: string;
   pubDate: Date;
   tags: string[];
   headingLevel: 'h2' | 'h3';
 }
-const { url, title, description, pubDate, tags, headingLevel } = Astro.props;
+const { href, title, description, pubDate, tags, headingLevel } = Astro.props;
 const Heading = headingLevel;
 ---
 
 <li>
   <article>
-    <Heading><A href={url} pressable>{title}</A></Heading>
+    <Heading><A href={href} pressable>{title}</A></Heading>
     <p>{description}</p>
     <footer>
       <span class="meta-item">

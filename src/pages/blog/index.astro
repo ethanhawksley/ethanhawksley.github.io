@@ -66,7 +66,7 @@ const jsonLd = {
     {
       allPosts.map((post) => (
         <PostPreview
-          url={`/blog/${post.id}/`}
+          href={`/blog/${post.id}/`}
           title={post.data.title}
           description={post.data.description}
           pubDate={post.data.pubDate}
