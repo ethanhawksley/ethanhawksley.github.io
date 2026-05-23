@@ -9,8 +9,6 @@ import { getSortedProjects } from '../lib/content-helpers.ts';
 
 const allProjects = await getSortedProjects();
 
-const postCount = (await getCollection('posts')).length;
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
