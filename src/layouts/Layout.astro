@@ -531,7 +531,6 @@ const isHome = Astro.url.pathname === '/';
 
   button {
     background-color: transparent;
-    background-image: none;
     border: 0;
     padding: 0;
     cursor: pointer;
@@ -554,28 +553,6 @@ const isHome = Astro.url.pathname === '/';
   ::selection {
     background-color: var(--color-selection);
     color: #fff;
-  }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--color-background);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: color-mix(
-      in srgb,
-      var(--color-border) 80%,
-      var(--color-text)
-    );
-    border-radius: 10px;
-    border: 2px solid var(--color-background);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-text-muted);
   }
 
   .sr-only {
