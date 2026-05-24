@@ -106,9 +106,4 @@ export default defineConfig({
     }),
     mdx(),
   ],
-  redirects: {
-    '/blog/the-shipwrecked-hackathon-by-hack-club/':
-      '/blog/hack-club-shipwrecked/',
-    '/blog/building-an-astro-blog/': '/blog/building-astro-blog/',
-  },
 });
