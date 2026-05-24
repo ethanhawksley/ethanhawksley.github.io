@@ -272,7 +272,7 @@ const isHome = Astro.url.pathname === '/';
 
 <style is:global>
   :root {
-    color-scheme: light;
+    color-scheme: light dark;
 
     --color-background: light-dark(#fafafa, #0f0f0f);
     --color-surface: light-dark(#eaeaea, #1f1f1f);
@@ -307,14 +307,12 @@ const isHome = Astro.url.pathname === '/';
     --font-mono: 'IBM Mono Subset', ui-monospace, 'Cascadia Code', monospace;
   }
 
-  :root.dark {
-    color-scheme: dark;
+  :root.light {
+    color-scheme: light;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not(.light) {
-      color-scheme: dark;
-    }
+  :root.dark {
+    color-scheme: dark;
   }
 
   @font-face {
