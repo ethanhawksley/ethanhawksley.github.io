@@ -10,6 +10,9 @@ export async function GET(context: APIContext) {
     description:
       'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.',
     site: context.site!,
+    xmlns: {
+      atom: 'http://www.w3.org/2005/Atom',
+    },
     items: allPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
@@ -17,6 +20,10 @@ export async function GET(context: APIContext) {
       link: `/blog/${post.id}/`,
       categories: post.data.tags,
     })),
-    customData: `<language>en-GB</language><copyright>Content licensed under CC BY 4.0</copyright>`,
+    customData: [
+      `<language>en-GB</language>`,
+      `<copyright>Content licensed under CC BY 4.0</copyright>`,
+      `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
+    ].join(''),
   });
 }
