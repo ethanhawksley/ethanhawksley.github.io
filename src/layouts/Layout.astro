@@ -363,41 +363,52 @@ const isHome = Astro.url.pathname === '/';
     text-size-adjust: 100%;
   }
 
-  html.enable-transitions {
+  html.enable-transitions,
+  html.enable-transitions
+    :is(
+      body,
+      header,
+      nav,
+      main,
+      footer,
+      div,
+      section,
+      article,
+      aside,
+      hr,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a,
+      span,
+      small,
+      li,
+      blockquote,
+      pre,
+      code,
+      button,
+      .astro-code,
+      .copy-button
+    ) {
     transition:
       background-color 250ms ease-out,
       color 250ms ease-out,
       border-color 250ms ease-out,
       text-decoration-color 250ms ease-out;
+  }
 
-    body,
-    header,
-    nav,
-    div,
-    blockquote,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    pre,
-    ul,
-    ol,
-    li,
-    span,
-    small,
-    a,
-    button,
-    .astro-code,
-    .copy-button {
-      transition:
-        background-color 250ms ease-out,
-        color 250ms ease-out,
-        border-color 250ms ease-out,
-        text-decoration-color 250ms ease-out;
-    }
+  html.enable-transitions a,
+  html.enable-transitions button {
+    transition:
+      background-color 250ms ease-out,
+      color 250ms ease-out,
+      border-color 250ms ease-out,
+      text-decoration-color 250ms ease-out,
+      transform 100ms ease-out;
   }
 
   @media (prefers-reduced-motion: reduce) {
