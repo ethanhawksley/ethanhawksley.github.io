@@ -336,14 +336,14 @@ const jsonLd = {
     text-decoration: var(--shiki-light-text-decoration);
   }
 
-  .dark .astro-code span {
+  [data-theme='dark'] .astro-code span {
     font-style: var(--shiki-dark-font-style);
     font-weight: var(--shiki-dark-font-weight);
     text-decoration: var(--shiki-dark-text-decoration);
   }
 
   @media (prefers-color-scheme: dark) {
-    html:not(.light) .astro-code span {
+    html:not([data-theme='light']) .astro-code span {
       font-style: var(--shiki-dark-font-style);
       font-weight: var(--shiki-dark-font-weight);
       text-decoration: var(--shiki-dark-text-decoration);

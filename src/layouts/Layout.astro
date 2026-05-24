@@ -82,14 +82,13 @@ const isHome = Astro.url.pathname === '/';
           (matchMedia('(prefers-color-scheme: dark)').matches
             ? 'dark'
             : 'light');
-        document.documentElement.classList.add(theme, 'js');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.classList.add('js');
         const color = theme === 'dark' ? '#0f0f0f' : '#fafafa';
-        document.head
-          .querySelectorAll('meta[name="theme-color"]')
-          .forEach((tag) => {
-            tag.setAttribute('content', color);
-            tag.removeAttribute('media');
-          });
+        const tags = document.head.querySelectorAll('meta[name="theme-color"]');
+        tags[0]?.setAttribute('content', color);
+        tags[0]?.removeAttribute('media');
+        tags[1]?.remove();
       }
     </script>
 
@@ -238,32 +237,32 @@ const isHome = Astro.url.pathname === '/';
     </div>
     <script>
       function syncMeta(doc: Document) {
-        const isDark = doc.documentElement.classList.contains('dark');
+        const isDark =
+          doc.documentElement.getAttribute('data-theme') === 'dark';
         const color = isDark ? '#0f0f0f' : '#fafafa';
-        doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
-          tag.setAttribute('content', color);
-          tag.removeAttribute('media');
-        });
+        const tags = doc.head.querySelectorAll('meta[name="theme-color"]');
+        tags[0]?.setAttribute('content', color);
+        tags[0]?.removeAttribute('media');
+        tags[1]?.remove();
       }
 
       document.addEventListener('astro:before-swap', (ev) => {
-        const classList = document.documentElement.classList;
-        const theme = classList.contains('dark') ? 'dark' : 'light';
+        const theme =
+          document.documentElement.getAttribute('data-theme') || 'light';
 
-        ev.newDocument.documentElement.classList.add(theme, 'js');
-        ev.newDocument.documentElement.classList.remove(
-          theme === 'dark' ? 'light' : 'dark',
+        ev.newDocument.documentElement.setAttribute('data-theme', theme);
+        ev.newDocument.documentElement.classList.add(
+          'js',
+          'enable-transitions',
         );
-
-        if (classList.contains('enable-transitions')) {
-          ev.newDocument.documentElement.classList.add('enable-transitions');
-        }
 
         syncMeta(ev.newDocument);
       });
 
       requestAnimationFrame(() => {
-        document.documentElement.classList.add('enable-transitions');
+        requestAnimationFrame(() => {
+          document.documentElement.classList.add('enable-transitions');
+        });
       });
     </script>
   </body>
@@ -306,11 +305,11 @@ const isHome = Astro.url.pathname === '/';
     --font-mono: 'IBM Mono Subset', ui-monospace, 'Cascadia Code', monospace;
   }
 
-  :root.light {
+  :root[data-theme='light'] {
     color-scheme: light;
   }
 
-  :root.dark {
+  :root[data-theme='dark'] {
     color-scheme: dark;
   }
 
@@ -544,7 +543,6 @@ const isHome = Astro.url.pathname === '/';
     border: 0;
     padding: 0;
     cursor: pointer;
-    transition: transform 100ms ease-out;
   }
 
   button:active {
