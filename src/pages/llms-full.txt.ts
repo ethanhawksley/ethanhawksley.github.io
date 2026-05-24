@@ -31,7 +31,7 @@ ${allPosts
 https://hawksley.dev/blog/${p.id}/
 ${p.data.description}
 Published ${p.data.pubDate.toISOString().split('T')[0]}${p.data.modDate ? `, Modified ${p.data.modDate.toISOString().split('T')[0]}` : ''}
-${p.body?.replaceAll(/^#/gm, '###')}`,
+${p.body?.replaceAll(/^#/gm, '###') ?? ''}`,
   )
   .join('\n')}`;
 
