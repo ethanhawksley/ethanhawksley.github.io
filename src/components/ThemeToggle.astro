@@ -71,6 +71,8 @@ import Sun from '../assets/sun.svg';
 </style>
 
 <script>
+  const mediaQuery = matchMedia('(prefers-color-scheme: dark)');
+
   function initThemeToggle() {
     const button = document.getElementById('theme-toggle')!;
 
@@ -105,8 +107,7 @@ import Sun from '../assets/sun.svg';
         if (e.key === 'theme') {
           const isDark =
             e.newValue === 'dark' ||
-            (e.newValue === null &&
-              matchMedia('(prefers-color-scheme: dark)').matches);
+            (e.newValue === null && mediaQuery.matches);
 
           document.documentElement.setAttribute(
             'data-theme',
@@ -131,13 +132,9 @@ import Sun from '../assets/sun.svg';
       updateState(isDark);
     };
 
-    matchMedia('(prefers-color-scheme: dark)').addEventListener(
-      'change',
-      handlePreferenceChange,
-      {
-        signal: controller.signal,
-      },
-    );
+    mediaQuery.addEventListener('change', handlePreferenceChange, {
+      signal: controller.signal,
+    });
 
     document.addEventListener('astro:before-swap', () => controller.abort(), {
       once: true,
