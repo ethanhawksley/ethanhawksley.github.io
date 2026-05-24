@@ -20,6 +20,7 @@ export async function GET(context: APIContext) {
       url: `${siteUrl}blog/${post.id}/`,
       title: post.data.title,
       summary: post.data.description,
+      content_text: post.data.description,
       date_published: post.data.pubDate.toISOString(),
       tags: post.data.tags,
     })),
