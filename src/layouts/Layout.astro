@@ -550,6 +550,10 @@ const isHome = Astro.url.pathname === '/';
     outline-offset: 4px;
   }
 
+  main:focus-visible {
+    outline: none;
+  }
+
   ::selection {
     background-color: var(--color-selection);
     color: #fff;
