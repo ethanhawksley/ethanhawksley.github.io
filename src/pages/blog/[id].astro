@@ -62,7 +62,9 @@ const jsonLd = {
     {
       '@type': 'BlogPosting',
       '@id': `https://hawksley.dev/blog/${post.id}/#article`,
-      mainEntityOfPage: `https://hawksley.dev/blog/${post.id}/`,
+      mainEntityOfPage: {
+        '@id': `https://hawksley.dev/blog/${post.id}/#webpage`,
+      },
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
       description: post.data.description,
