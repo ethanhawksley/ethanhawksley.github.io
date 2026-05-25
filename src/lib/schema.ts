@@ -36,6 +36,12 @@ export const personSchema = {
     name: 'United Kingdom',
   },
   knowsLanguage: 'en-GB',
+  knowsAbout: [
+    'Systems Programming',
+    'Cybersecurity',
+    'Low-Level Computing',
+    'Computer Science',
+  ],
   homeLocation: {
     '@type': 'Place',
     address: {
