@@ -26,7 +26,6 @@ export const personSchema = {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/avatar-1200x1200.png',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
-    contentUrl: 'https://hawksley.dev/avatar-1200x1200.png',
     caption: 'Ethan Hawksley',
     width: 1200,
     height: 1200,
