@@ -4,9 +4,13 @@ import SocialLinks from '../components/SocialLinks.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import { personSchema, websiteSchema } from '../lib/schema';
 import LatestPosts from '../components/LatestPosts.astro';
-import { getSortedProjects } from '../lib/content-helpers';
+import { getSortedPosts, getSortedProjects } from '../lib/content-helpers';
 
+const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
+const lastModified =
+  allPosts[0]?.data.modDate?.toISOString() ??
+  allPosts[0]?.data.pubDate?.toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -20,6 +24,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
+      dateModified: lastModified,
     },
     personSchema,
   ],

@@ -5,6 +5,9 @@ import { personRef, websiteRef } from '../../lib/schema';
 import { getSortedPosts } from '../../lib/content-helpers';
 
 const allPosts = await getSortedPosts();
+const lastModified =
+  allPosts[0]?.data.modDate?.toISOString() ??
+  allPosts[0]?.data.pubDate?.toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -20,6 +23,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/blog/#blog' },
       inLanguage: 'en-GB',
+      dateModified: lastModified,
     },
     {
       '@type': 'Blog',
@@ -31,6 +35,7 @@ const jsonLd = {
       publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       inLanguage: 'en-GB',
+      dateModified: lastModified,
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
     personRef,
