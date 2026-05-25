@@ -64,6 +64,11 @@ export const personRef = {
   '@id': 'https://hawksley.dev/#person',
   name: 'Ethan Hawksley',
   url: 'https://hawksley.dev/',
+  image: { '@id': 'https://hawksley.dev/avatar-1200x1200.png' },
+  sameAs: [
+    'https://github.com/ethan-hawksley',
+    'https://www.linkedin.com/in/ethan-hawksley',
+  ],
 } as const;
 
 export const websiteRef = {
