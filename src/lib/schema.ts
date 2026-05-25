@@ -66,8 +66,12 @@ export const personRef = {
   url: 'https://hawksley.dev/',
   image: { '@id': 'https://hawksley.dev/avatar-1200x1200.png' },
   sameAs: [
+    'https://orcid.org/0009-0005-6663-0640',
     'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
+    'https://x.com/Ethan_Hawksley',
+    'https://mastodon.social/@ethanhawksley',
+    'https://bsky.app/profile/hawksley.dev',
   ],
 } as const;
 
