@@ -50,6 +50,7 @@ const jsonLd = {
       name: post.data.title,
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       inLanguage: 'en-GB',
+      breadcrumb: { '@id': `https://hawksley.dev/blog/${post.id}/#breadcrumb` },
     },
     {
       '@type': 'Blog',
