@@ -24,7 +24,7 @@ export const personSchema = {
     'CS student & systems/cybersecurity enthusiast, UK',
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/avatar-1200x1200.png',
+    '@id': 'https://hawksley.dev/#author-image',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
     caption: 'Ethan Hawksley',
     width: 1200,
@@ -64,7 +64,11 @@ export const personRef = {
   '@id': 'https://hawksley.dev/#person',
   name: 'Ethan Hawksley',
   url: 'https://hawksley.dev/',
-  image: { '@id': 'https://hawksley.dev/avatar-1200x1200.png' },
+  image: {
+    '@type': 'ImageObject',
+    '@id': 'https://hawksley.dev/#author-image',
+    url: 'https://hawksley.dev/avatar-1200x1200.png',
+  },
   sameAs: [
     'https://orcid.org/0009-0005-6663-0640',
     'https://github.com/ethan-hawksley',
