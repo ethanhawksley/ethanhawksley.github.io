@@ -54,8 +54,9 @@ export const personSchema = {
     'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
     'https://x.com/Ethan_Hawksley',
-    'https://mastodon.social/@ethanhawksley',
     'https://bsky.app/profile/hawksley.dev',
+    'https://mastodon.social/@ethanhawksley',
+    'https://ethanhawksley.itch.io',
   ],
 } as const;
 
