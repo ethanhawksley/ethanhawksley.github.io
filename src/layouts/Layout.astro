@@ -475,7 +475,7 @@ const isHome = Astro.url.pathname === '/';
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
     font-weight: var(--weight-semibold);
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
     text-decoration: var(--color-accent) underline 3px;
     text-underline-offset: 0.25em;
   }
@@ -613,8 +613,8 @@ const isHome = Astro.url.pathname === '/';
   #page {
     max-width: 768px;
     margin-inline: auto;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-block-start: 1rem;
+    padding-block-end: 2rem;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -637,14 +637,14 @@ const isHome = Astro.url.pathname === '/';
   }
 
   #nav-bar {
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
   }
 
   main {
     margin-inline: auto;
     padding-left: max(1.5rem, env(safe-area-inset-left));
     padding-right: max(1.5rem, env(safe-area-inset-right));
-    margin-bottom: 1.5rem;
+    margin-block-end: 1.5rem;
     width: 100%;
     flex-grow: 1;
     display: flex;
