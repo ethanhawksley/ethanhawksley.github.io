@@ -7,6 +7,12 @@ export const websiteSchema = {
   description:
     'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.',
   publisher: { '@id': 'https://hawksley.dev/#person' },
+  logo: {
+    '@type': 'ImageObject',
+    '@id': 'https://hawksley.dev/#logo',
+    url: 'https://hawksley.dev/logo-square.png',
+    caption: 'Hawksley Logo',
+  },
   inLanguage: 'en-GB',
 } as const;
 
