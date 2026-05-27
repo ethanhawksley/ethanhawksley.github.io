@@ -75,11 +75,15 @@ export const personRef = {
   },
   sameAs: [
     'https://orcid.org/0009-0005-6663-0640',
-    'https://github.com/ethan-hawksley',
     'https://www.linkedin.com/in/ethan-hawksley',
+    'https://github.com/ethan-hawksley',
+    'https://stackoverflow.com/users/27157731/ethan-hawksley',
+    'https://news.ycombinator.com/user?id=ethanhawksley',
+    'https://www.youtube.com/@Ethan-Hawksley',
+    'https://ethanhawksley.itch.io',
     'https://x.com/Ethan_Hawksley',
-    'https://mastodon.social/@ethanhawksley',
     'https://bsky.app/profile/hawksley.dev',
+    'https://mastodon.social/@ethanhawksley',
   ],
 } as const;
 
