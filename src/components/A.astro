@@ -56,7 +56,7 @@ const isExternalLink = isExternal(href);
   style={style}
   data-pressable={pressable || undefined}
   {...rest}
-  ><slot />{
+  ><span><slot /></span>{
     isExternalLink && (
       <svg width="14" height="14" aria-label="(opens in a new tab)" role="img">
         <use href="#icon-external" />
@@ -70,6 +70,11 @@ const isExternalLink = isExternal(href);
     color: inherit;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
+    white-space: nowrap;
+  }
+
+  span {
+    white-space: normal;
   }
 
   a:hover {
