@@ -357,6 +357,8 @@ const isHome = Astro.url.pathname === '/';
     color: var(--color-text);
     font-family: var(--font-sans);
     accent-color: var(--color-accent);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     scrollbar-gutter: stable;
     scrollbar-color: color-mix(
         in srgb,
@@ -364,8 +366,12 @@ const isHome = Astro.url.pathname === '/';
         var(--color-text)
       )
       var(--color-background);
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
+  }
+
+  @media (pointer: coarse) {
+    html {
+      scrollbar-gutter: auto;
+    }
   }
 
   html.enable-transitions,
