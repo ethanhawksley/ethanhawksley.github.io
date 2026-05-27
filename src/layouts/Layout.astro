@@ -309,6 +309,8 @@ const isHome = Astro.url.pathname === '/';
 
     --font-sans: 'IBM Sans Subset', system-ui, sans-serif;
     --font-mono: 'IBM Mono Subset', ui-monospace, monospace;
+
+    --img-theme-filter: none;
   }
 
   :root[data-theme='light'] {
@@ -317,6 +319,13 @@ const isHome = Astro.url.pathname === '/';
 
   :root[data-theme='dark'] {
     color-scheme: dark;
+    --img-theme-filter: opacity(0.85) contrast(1.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --img-theme-filter: opacity(0.85) contrast(1.1);
+    }
   }
 
   @font-face {
@@ -554,6 +563,16 @@ const isHome = Astro.url.pathname === '/';
 
   address {
     font-style: normal;
+  }
+
+  img {
+    filter: var(--img-theme-filter);
+    transition: filter 250ms ease-out;
+  }
+
+  img:hover,
+  img:focus {
+    filter: none;
   }
 
   :focus-visible {
