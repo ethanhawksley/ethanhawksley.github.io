@@ -17,7 +17,7 @@ export const personSchema = {
   givenName: 'Ethan',
   familyName: 'Hawksley',
   url: 'https://hawksley.dev/',
-  jobTitle: 'CS Student',
+  jobTitle: 'Computer Science Student',
   description:
     'UK-based CS student focused on systems programming and cybersecurity.',
   disambiguatingDescription:
@@ -49,6 +49,26 @@ export const personSchema = {
       addressCountry: 'GB',
     },
   },
+  affiliation: {
+    '@type': 'SecondarySchool',
+    name: 'Alcester Grammar School',
+    url: 'https://www.alcestergs.co.uk/',
+    sameAs: [
+      'https://www.wikidata.org/wiki/Q4713005',
+      'https://en.wikipedia.org/wiki/Alcester_Grammar_School',
+    ],
+  },
+  alumniOf: [
+    {
+      '@type': 'SecondarySchool',
+      name: 'Brooke Weston Academy',
+      url: 'https://www.brookeweston.org/',
+      sameAs: [
+        'https://www.wikidata.org/wiki/Q4974495',
+        'https://en.wikipedia.org/wiki/Brooke_Weston_Academy',
+      ],
+    },
+  ],
   sameAs: [
     'https://orcid.org/0009-0005-6663-0640',
     'https://www.linkedin.com/in/ethan-hawksley',
