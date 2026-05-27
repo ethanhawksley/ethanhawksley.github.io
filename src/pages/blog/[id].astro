@@ -84,14 +84,6 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
       keywords: post.data.tags,
       articleSection: post.data.tags[0] ?? 'Computer Science',
-      speakable: {
-        '@type': 'SpeakableSpecification',
-        cssSelector: [
-          '.content > p:first-of-type',
-          '.content > p:nth-of-type(2)',
-          '.content > p:nth-of-type(3)',
-        ],
-      },
       inLanguage: 'en-GB',
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
