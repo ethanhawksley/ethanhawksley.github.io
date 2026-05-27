@@ -8,9 +8,11 @@ import { getSortedPosts, getSortedProjects } from '../lib/content-helpers';
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
-const lastModified =
-  allPosts[0]?.data.modDate?.toISOString() ??
-  allPosts[0]?.data.pubDate?.toISOString();
+const lastModified = new Date(
+  Math.max(
+    ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
+  ),
+).toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -76,7 +78,7 @@ const jsonLd = {
   #hero {
     text-wrap: balance;
     margin-block-end: 1rem;
-    max-width: 65ch;
+    max-inline-size: 65ch;
   }
 
   #contact-links {
@@ -95,13 +97,13 @@ const jsonLd = {
   }
 
   #projects {
-    width: 100%;
+    inline-size: 100%;
     margin-block-end: 2rem;
   }
 
   #projects ul {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    inline-size: 100%;
   }
 </style>

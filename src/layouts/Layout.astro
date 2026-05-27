@@ -286,13 +286,13 @@ const isHome = Astro.url.pathname === '/';
     --color-border: light-dark(#e0e0e0, #2a2a2a);
     --color-selection: light-dark(#bf3900, #b33800);
 
-    --font-size-xs: clamp(0.75rem, 0.7083rem + 0.2083vw, 0.875rem);
-    --font-size-sm: clamp(0.875rem, 0.8333rem + 0.2083vw, 1rem);
-    --font-size-base: clamp(1rem, 0.9583rem + 0.2083vw, 1.125rem);
-    --font-size-md: clamp(1.1875rem, 1.1042rem + 0.4167vw, 1.4375rem);
-    --font-size-lg: clamp(1.375rem, 1.25rem + 0.625vw, 1.75rem);
-    --font-size-xl: clamp(1.625rem, 1.4167rem + 1.0417vw, 2.25rem);
-    --font-size-2xl: clamp(2rem, 1.6667rem + 1.6667vw, 3rem);
+    --font-size-xs: clamp(0.75rem, 0.7083rem + 0.2083vi, 0.875rem);
+    --font-size-sm: clamp(0.875rem, 0.8333rem + 0.2083vi, 1rem);
+    --font-size-base: clamp(1rem, 0.9583rem + 0.2083vi, 1.125rem);
+    --font-size-md: clamp(1.1875rem, 1.1042rem + 0.4167vi, 1.4375rem);
+    --font-size-lg: clamp(1.375rem, 1.25rem + 0.625vi, 1.75rem);
+    --font-size-xl: clamp(1.625rem, 1.4167rem + 1.0417vi, 2.25rem);
+    --font-size-2xl: clamp(2rem, 1.6667rem + 1.6667vi, 3rem);
 
     --leading-tight: 1.1;
     --leading-snug: 1.25;
@@ -410,7 +410,8 @@ const isHome = Astro.url.pathname === '/';
       color 250ms ease-out,
       border-color 250ms ease-out,
       text-decoration-color 250ms ease-out,
-      outline-color 250ms ease-out;
+      outline-color 250ms ease-out,
+      opacity 250ms ease-out;
   }
 
   html.enable-transitions a,
@@ -448,7 +449,7 @@ const isHome = Astro.url.pathname === '/';
     font-size: var(--font-size-base);
     line-height: var(--leading-relaxed);
     font-weight: var(--weight-normal);
-    overflow-x: clip;
+    overflow-inline: clip;
   }
 
   h1,
@@ -531,8 +532,8 @@ const isHome = Astro.url.pathname === '/';
   canvas,
   svg {
     display: block;
-    max-width: 100%;
-    height: auto;
+    max-inline-size: 100%;
+    block-size: auto;
   }
 
   input,
@@ -583,8 +584,8 @@ const isHome = Astro.url.pathname === '/';
 
   .sr-only {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     padding: 0;
     margin: -1px;
     overflow: hidden;
@@ -611,7 +612,7 @@ const isHome = Astro.url.pathname === '/';
 
 <style>
   #page {
-    max-width: 768px;
+    max-inline-size: 768px;
     margin-inline: auto;
     padding-block-start: 1rem;
     padding-block-end: 2rem;
@@ -622,9 +623,10 @@ const isHome = Astro.url.pathname === '/';
 
   .skip-link {
     position: absolute;
-    top: -100%;
-    left: 1rem;
-    padding: 0.5rem 1rem;
+    inset-block-start: -100%;
+    inset-inline-start: 1rem;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
     background: var(--color-accent);
     color: #fff;
     border-radius: 0.25rem;
@@ -633,7 +635,7 @@ const isHome = Astro.url.pathname === '/';
   }
 
   .skip-link:focus {
-    top: 1rem;
+    inset-block-start: 1rem;
   }
 
   #nav-bar {
@@ -642,10 +644,10 @@ const isHome = Astro.url.pathname === '/';
 
   main {
     margin-inline: auto;
-    padding-left: max(1.5rem, env(safe-area-inset-left));
-    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-inline-start: max(1.5rem, env(safe-area-inset-left));
+    padding-inline-end: max(1.5rem, env(safe-area-inset-right));
     margin-block-end: 1.5rem;
-    width: 100%;
+    inline-size: 100%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;

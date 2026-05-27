@@ -38,20 +38,22 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    min-height: 3rem;
-    height: auto;
+    min-block-size: 3rem;
+    block-size: auto;
     flex-wrap: wrap;
     padding-inline: 1.5rem;
   }
 
   #logo {
-    width: 3rem;
-    height: 3rem;
+    inline-size: 3rem;
+    block-size: 3rem;
   }
 
   .page-links a {
-    padding: 0.75rem 0.25rem;
-    margin: -0.75rem -0.25rem;
+    padding-block: 0.75rem;
+    padding-inline: 0.25rem;
+    margin-block: -0.75rem;
+    margin-inline: -0.25rem;
   }
 
   a {

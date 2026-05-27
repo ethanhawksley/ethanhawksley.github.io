@@ -83,13 +83,13 @@ const isExternalLink = isExternal(href);
   a svg {
     display: inline-block;
     transition: transform 250ms ease-out;
-    width: 0.75em;
-    height: 0.75em;
+    inline-size: 0.75em;
+    block-size: 0.75em;
     margin-inline-start: 0.15em;
     vertical-align: baseline;
   }
 
   a:hover svg {
-    transform: translate(2px, -2px);
+    transform: translate(calc(2px * var(--is-rtl, 1)), -2px);
   }
 </style>

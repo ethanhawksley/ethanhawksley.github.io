@@ -5,9 +5,11 @@ import { personRef, websiteRef } from '../../lib/schema';
 import { getSortedPosts } from '../../lib/content-helpers';
 
 const allPosts = await getSortedPosts();
-const lastModified =
-  allPosts[0]?.data.modDate?.toISOString() ??
-  allPosts[0]?.data.pubDate?.toISOString();
+const lastModified = new Date(
+  Math.max(
+    ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
+  ),
+).toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -88,6 +90,6 @@ const jsonLd = {
   ul {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    inline-size: 100%;
   }
 </style>

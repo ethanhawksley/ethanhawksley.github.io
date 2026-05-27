@@ -37,7 +37,7 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
 
 <style>
   li {
-    width: 100%;
+    inline-size: 100%;
   }
 
   li + li {
@@ -45,7 +45,8 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
   }
 
   article {
-    padding: 1.5rem 0;
+    padding-block: 1.5rem;
+    padding-inline: 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -62,7 +63,7 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
     color: var(--color-text-muted);
     font-size: var(--font-size-base);
     margin: 0;
-    max-width: 65ch;
+    max-inline-size: 65ch;
   }
 
   footer {
