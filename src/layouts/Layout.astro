@@ -386,6 +386,7 @@ const isHome = Astro.url.pathname === '/';
       section,
       article,
       aside,
+      pre,
       hr,
       h1,
       h2,
@@ -401,9 +402,7 @@ const isHome = Astro.url.pathname === '/';
       blockquote,
       pre,
       code,
-      button,
-      .astro-code,
-      .copy-button
+      button
     ) {
     transition:
       background-color 250ms ease-out,
@@ -411,17 +410,7 @@ const isHome = Astro.url.pathname === '/';
       border-color 250ms ease-out,
       text-decoration-color 250ms ease-out,
       outline-color 250ms ease-out,
-      opacity 250ms ease-out;
-  }
-
-  html.enable-transitions a,
-  html.enable-transitions button {
-    transition:
-      background-color 250ms ease-out,
-      color 250ms ease-out,
-      border-color 250ms ease-out,
-      text-decoration-color 250ms ease-out,
-      outline-color 250ms ease-out,
+      opacity 250ms ease-out,
       transform 100ms ease-out;
   }
 
