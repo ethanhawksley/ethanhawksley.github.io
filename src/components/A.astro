@@ -94,6 +94,10 @@ const isExternalLink = isExternal(href);
   }
 
   a:hover svg {
-    transform: translate(calc(2px * var(--is-rtl, 1)), -2px);
+    transform: translate(2px, -2px);
+  }
+
+  a:hover svg:dir(rtl) {
+    transform: translate(-2px, -2px);
   }
 </style>
