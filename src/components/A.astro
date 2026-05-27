@@ -47,8 +47,12 @@ const isExternalLink = isExternal(href);
 
 <a
   href={href}
-  rel={rel}
   target={isExternalLink ? '_blank' : undefined}
+  rel={isExternalLink
+    ? rel
+      ? `${rel} noopener noreferrer`
+      : 'noopener noreferrer'
+    : rel}
   style={style}
   data-pressable={pressable || undefined}
   {...rest}
@@ -82,7 +86,7 @@ const isExternalLink = isExternal(href);
 
   a svg {
     display: inline-block;
-    transition: transform 250ms ease-out;
+    transition: transform 250ms ease-out !important;
     inline-size: 0.75em;
     block-size: 0.75em;
     margin-inline-start: 0.15em;
