@@ -8,6 +8,35 @@ import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
+
+const projectSchemas = allProjects.map((project) => {
+  const isWeb = project.data.type === 'Web';
+  const primaryLanguage = project.data.stack[0];
+
+  return {
+    '@type': 'SoftwareSourceCode',
+    '@id': `${project.data.sourceUrl}#code`,
+    name: project.data.name,
+    description: project.data.description,
+    codeRepository: project.data.sourceUrl,
+    programmingLanguage: primaryLanguage,
+    creator: { '@id': 'https://hawksley.dev/#person' },
+    ...(project.data.liveUrl
+      ? {
+          targetProduct: {
+            '@type': 'SoftwareApplication',
+            name: project.data.name,
+            url: project.data.liveUrl,
+            applicationCategory: isWeb
+              ? 'WebApplication'
+              : 'ConsoleApplication',
+            operatingSystem: isWeb ? 'Any' : 'All',
+          },
+        }
+      : {}),
+  };
+});
+
 const lastModified = new Date(
   Math.max(
     ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
@@ -29,6 +58,7 @@ const jsonLd = {
       dateModified: lastModified,
     },
     personSchema,
+    ...projectSchemas,
   ],
 };
 ---
