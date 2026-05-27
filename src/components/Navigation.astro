@@ -38,7 +38,9 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 3rem;
+    min-height: 3rem;
+    height: auto;
+    flex-wrap: wrap;
     padding-inline: 1.5rem;
   }
 
