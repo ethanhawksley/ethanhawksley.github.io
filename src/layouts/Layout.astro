@@ -150,7 +150,6 @@ const isHome = Astro.url.pathname === '/';
                   content={article.modifiedTime}
                 />
               )}
-              <meta property="article:author" content="https://hawksley.dev/" />
               {article.tags.map((tag) => (
                 <meta property="article:tag" content={tag} />
               ))}
