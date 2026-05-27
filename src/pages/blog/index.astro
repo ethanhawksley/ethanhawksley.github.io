@@ -40,6 +40,9 @@ const jsonLd = {
       inLanguage: 'en-GB',
       dateModified: lastModified,
       license: 'https://creativecommons.org/licenses/by/4.0/',
+      blogPost: allPosts.slice(0, 10).map((post) => ({
+        '@id': `https://hawksley.dev/blog/${post.id}/#article`,
+      })),
     },
     personRef,
     {

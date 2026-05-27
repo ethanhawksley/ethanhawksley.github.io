@@ -9,39 +9,28 @@ import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
 
-const projectSchemas = allProjects.map((project) => {
-  const isWeb = project.data.type === 'Web';
-  const primaryLanguage = project.data.stack[0];
+const projectSchemas = allProjects
+  .filter((project) => project.data.liveUrl)
+  .map((project) => {
+    const isWeb = project.data.type === 'Web';
 
-  return {
-    '@type': 'SoftwareSourceCode',
-    '@id': `${project.data.sourceUrl}#code`,
-    name: project.data.name,
-    description: project.data.description,
-    codeRepository: project.data.sourceUrl,
-    programmingLanguage: {
-      '@type': 'ComputerLanguage',
-      name: primaryLanguage,
-    },
-    creator: { '@id': 'https://hawksley.dev/#person' },
-    ...(project.data.liveUrl
-      ? {
-          targetProduct: {
-            '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
-            name: project.data.name,
-            url: project.data.liveUrl,
-            applicationCategory: 'DeveloperApplication',
-            operatingSystem: isWeb ? 'Any' : 'All',
-            offers: {
-              '@type': 'Offer',
-              price: '0',
-              priceCurrency: 'GBP',
-            },
-          },
-        }
-      : {}),
-  };
-});
+    return {
+      '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
+      '@id': `${project.data.liveUrl}#app`,
+      name: project.data.name,
+      description: project.data.description,
+      url: project.data.liveUrl,
+      codeRepository: project.data.sourceUrl,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: isWeb ? 'Any' : 'All',
+      creator: { '@id': 'https://hawksley.dev/#person' },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'GBP',
+      },
+    };
+  });
 
 const lastModified = new Date(
   Math.max(
@@ -61,7 +50,11 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
+      dateCreated: '2024-09-10T00:00:00.000Z',
       dateModified: lastModified,
+      hasPart: allPosts.slice(0, 2).map((post) => ({
+        '@id': `https://hawksley.dev/blog/${post.id}/#article`,
+      })),
     },
     personSchema,
     ...projectSchemas,
