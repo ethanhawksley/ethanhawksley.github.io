@@ -4,16 +4,24 @@ import { Picture } from 'astro:assets';
 type Props = {
   src: ImageMetadata | string;
   alt: string;
+  lcp?: boolean;
 };
 
-const { src, alt, ...attrs } = Astro.props;
+const { src, alt, lcp, ...attrs } = Astro.props;
 
 const isDev = import.meta.env.DEV;
 ---
 
 {
   typeof src === 'string' ? (
-    <img src={src} alt={alt} loading="lazy" decoding="async" {...attrs} />
+    <img
+      src={src}
+      alt={alt}
+      loading={lcp ? 'eager' : 'lazy'}
+      fetchpriority={lcp ? 'high' : undefined}
+      decoding={lcp ? 'sync' : 'async'}
+      {...attrs}
+    />
   ) : (
     <Picture
       src={src}
@@ -22,6 +30,9 @@ const isDev = import.meta.env.DEV;
       fallbackFormat="webp"
       layout="constrained"
       sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
+      loading={lcp ? 'eager' : 'lazy'}
+      fetchpriority={lcp ? 'high' : undefined}
+      decoding={lcp ? 'sync' : 'async'}
       {...attrs}
     />
   )
