@@ -37,6 +37,16 @@ import A from './A.astro';
       flex-direction: row;
       gap: 1rem;
     }
+
+    address > :global(a:nth-child(1)) {
+      min-width: 14rem;
+    }
+    address > :global(a:nth-child(2)) {
+      min-width: 7.4rem;
+    }
+    address > :global(a:nth-child(3)) {
+      min-width: 8.2rem;
+    }
   }
 
   address > :global(a) {
@@ -45,16 +55,6 @@ import A from './A.astro';
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-  }
-
-  address > :global(a:nth-child(1)) {
-    min-width: 14rem;
-  }
-  address > :global(a:nth-child(2)) {
-    min-width: 7.4rem;
-  }
-  address > :global(a:nth-child(3)) {
-    min-width: 8.2rem;
   }
 
   address :global(a > svg:first-child) {
