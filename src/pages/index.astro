@@ -19,18 +19,24 @@ const projectSchemas = allProjects.map((project) => {
     name: project.data.name,
     description: project.data.description,
     codeRepository: project.data.sourceUrl,
-    programmingLanguage: primaryLanguage,
+    programmingLanguage: {
+      '@type': 'ComputerLanguage',
+      name: primaryLanguage,
+    },
     creator: { '@id': 'https://hawksley.dev/#person' },
     ...(project.data.liveUrl
       ? {
           targetProduct: {
-            '@type': 'SoftwareApplication',
+            '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
             name: project.data.name,
             url: project.data.liveUrl,
-            applicationCategory: isWeb
-              ? 'WebApplication'
-              : 'ConsoleApplication',
+            applicationCategory: 'DeveloperApplication',
             operatingSystem: isWeb ? 'Any' : 'All',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'GBP',
+            },
           },
         }
       : {}),
