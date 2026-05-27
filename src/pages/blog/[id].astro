@@ -333,7 +333,7 @@ const jsonLd = {
     position: relative;
     border: 2px solid var(--color-border);
     border-radius: 0.5rem;
-    padding: 0.25rem;
+    padding: 0.5rem;
     overflow-inline: auto;
     overscroll-behavior-inline: contain;
     inline-size: 100%;
@@ -407,7 +407,7 @@ const jsonLd = {
   }
 
   pre.astro-code:hover .copy-button,
-  .copy-button:focus-visible {
+  pre.astro-code:focus-within .copy-button {
     opacity: 1;
   }
 
