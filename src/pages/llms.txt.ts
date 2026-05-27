@@ -1,4 +1,4 @@
-import { getSortedPosts, getSortedProjects } from '../lib/content-helpers';
+import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 
 export async function GET() {
   const allPosts = await getSortedPosts();

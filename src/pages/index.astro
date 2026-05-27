@@ -2,9 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
-import { personSchema, websiteSchema } from '../lib/schema';
+import { personSchema, websiteSchema } from '../utils/schema';
 import LatestPosts from '../components/LatestPosts.astro';
-import { getSortedPosts, getSortedProjects } from '../lib/content-helpers';
+import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();

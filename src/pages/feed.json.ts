@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro';
-import { getSortedPosts } from '../lib/content-helpers';
+import { getSortedPosts } from '../utils/content-helpers';
 
 export async function GET(context: APIContext) {
   const allPosts = await getSortedPosts();
