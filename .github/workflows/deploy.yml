@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for CDN propagation
-        run: sleep 5
+        run: sleep 15
       - name: Purge Cloudflare Cache
         run: |
           curl -X POST \
