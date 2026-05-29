@@ -255,12 +255,17 @@ const isHome = Astro.url.pathname === '/';
           document.documentElement.getAttribute('data-theme') || 'light';
 
         ev.newDocument.documentElement.setAttribute('data-theme', theme);
-        ev.newDocument.documentElement.classList.add(
-          'js',
-          'enable-transitions',
-        );
+        ev.newDocument.documentElement.classList.add('js');
 
         syncMeta(ev.newDocument);
+      });
+
+      document.addEventListener('astro:after-swap', () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.add('enable-transitions');
+          });
+        });
       });
 
       requestAnimationFrame(() => {
