@@ -107,6 +107,6 @@ export default defineConfig({
       },
     }),
     mdx(),
-    compress({ Image: false }),
+    //compress({ Image: false }),
   ],
 });
