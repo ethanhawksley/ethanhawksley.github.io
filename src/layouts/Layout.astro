@@ -89,7 +89,12 @@ const isHome = Astro.url.pathname === '/';
         tags[0]?.setAttribute('content', color);
         tags[0]?.removeAttribute('media');
         tags[1]?.remove();
-        document.startViewTransition = undefined;
+        if (
+          navigator.userAgent.includes('Chrome') ||
+          navigator.userAgent.includes('Edg')
+        ) {
+          document.startViewTransition = undefined;
+        }
       }
     </script>
 
