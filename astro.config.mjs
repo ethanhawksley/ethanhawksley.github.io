@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
+import compress from 'astro-compress';
+
 export default defineConfig({
   site: 'https://hawksley.dev',
   prefetch: {
@@ -105,5 +107,6 @@ export default defineConfig({
       },
     }),
     mdx(),
+    compress({ Image: false }),
   ],
 });
