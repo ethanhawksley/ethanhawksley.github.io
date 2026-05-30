@@ -53,6 +53,8 @@ jobs:
             CURRENT_SHA=$(echo "$CURRENT_SHA" | tr -d '[:space:]')
             if [ "$CURRENT_SHA" = "$TARGET_SHA" ]; then
               echo "Site is serving the new version after $attempt attempt(s)."
+              echo "Waiting 5s for global propagation."
+              sleep 5
               exit 0
             fi
             echo "Attempt $attempt/$MAX_ATTEMPTS: site is still on the old version. Retrying in ${INTERVAL}s."
