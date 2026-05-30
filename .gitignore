@@ -20,4 +20,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# git commit sha tracker
+public/version.txt
+
 src/content/blog/draft*
