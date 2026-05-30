@@ -16,9 +16,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout repository
         uses: actions/checkout@v6
-      - name: Install, build, and upload your site
+
+      - name: Write version file
+        run: echo "${{ github.sha }}" > public/version.txt
+
+      - name: Install, build, and upload site
         uses: withastro/action@v6
 
   deploy:
@@ -36,13 +40,32 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for CDN propagation
-        run: sleep 15
-      - name: Purge Cloudflare Cache
+      - name: Wait for origin to serve new deployment
         run: |
-          curl -X POST \
-            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          TARGET_SHA="${{ github.sha }}"
+          MAX_ATTEMPTS=60
+          INTERVAL=5
+
+          echo "Polling https://hawksley.dev/version.txt for $TARGET_SHA"
+
+          for attempt in $(seq 1 "$MAX_ATTEMPTS"); do
+            CURRENT_SHA=$(curl -sSfL "https://hawksley.dev/version.txt?t=$(date +%s)" 2>/dev/null || echo "")
+            CURRENT_SHA=$(echo "$CURRENT_SHA" | tr -d '[:space:]')
+            if [ "$CURRENT_SHA" = "$TARGET_SHA" ]; then
+              echo "Site is serving the new version after $attempt attempt(s)."
+              exit 0
+            fi
+            echo "Attempt $attempt/$MAX_ATTEMPTS: site is still on the old version. Retrying in ${INTERVAL}s."
+            sleep "$INTERVAL"
+          done
+
+          echo "::warning::Site didn't update within $((MAX_ATTEMPTS * INTERVAL))s. Purging cache anyways."
+
+      - name: Purge Cloudflare cache
+        run: |
+          curl -sSf \
+            -X POST \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            --data '{"purge_everything":true}' \
-            --fail
+            -d '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
