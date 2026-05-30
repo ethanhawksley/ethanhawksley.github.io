@@ -55,7 +55,8 @@ jobs:
           echo "Polling https://hawksley.dev/version.txt for $TARGET_SHA"
 
           for attempt in $(seq 1 "$MAX_ATTEMPTS"); do
-            CURRENT_SHA=$(curl -sSfL "https://hawksley.dev/version.txt?t=$(date +%s)" 2>/dev/null || echo "")
+            CACHE_BUSTER=$(openssl rand -hex 16)
+            CURRENT_SHA=$(curl -sSfL "https://hawksley.dev/version.txt?cb=${CACHE_BUSTER}" 2>/dev/null || echo "")
             CURRENT_SHA=$(echo "$CURRENT_SHA" | tr -d '[:space:]')
             if [ "$CURRENT_SHA" = "$TARGET_SHA" ]; then
               echo "Site is serving the new version after $attempt attempt(s)."
