@@ -164,25 +164,24 @@ const jsonLd = {
     <header>
       <h1>{post.data.title}</h1>
       <div class="post-meta">
-        <span>
-          Published <FormattedDate date={post.data.pubDate} />
-        </span>
-        ·
+        <span>Published <FormattedDate date={post.data.pubDate} /></span>
         {
           post.data.modDate && (
             <>
+              <span aria-hidden="true">·</span>
               <span>
                 Modified <FormattedDate date={post.data.modDate} />
               </span>
-              ·
             </>
           )
         }
+        <span aria-hidden="true">·</span>
         <span>{readingTime} min read</span>
         {
           post.data.tags.length > 0 && (
             <>
-              ·<span>{post.data.tags.join(', ')}</span>
+              <span aria-hidden="true">·</span>
+              <span>{post.data.tags.join(', ')}</span>
             </>
           )
         }
@@ -447,25 +446,25 @@ const jsonLd = {
     gap: 1.5rem;
     inline-size: 100%;
     min-inline-size: 0;
+  }
 
-    header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-block-end: 1.5rem;
-      border-block-end: 1px solid var(--color-border);
-    }
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-block-end: 1.5rem;
+    border-block-end: 1px solid var(--color-border);
+  }
 
-    .post-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--color-text-muted);
-      font-size: var(--font-size-sm);
-      font-family: var(--font-mono);
-      font-variant-numeric: tabular-nums;
-    }
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
   }
 
   .post-nav {
