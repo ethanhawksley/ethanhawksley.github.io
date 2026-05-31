@@ -9,7 +9,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
 
 <header>
   <nav aria-label="Main navigation">
-    <a href="/" aria-label="Home - Ethan Hawksley" id="logo"
+    <a href="/" aria-label="Home - Ethan Hawksley" class="logo"
       ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
     >
     <div class="page-links">
@@ -44,9 +44,15 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     padding-inline: 1.5rem;
   }
 
-  #logo {
+  .logo {
     inline-size: 3rem;
     block-size: 3rem;
+  }
+
+  .page-links {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
   }
 
   .page-links a {
@@ -64,12 +70,6 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     align-items: center;
     font-size: var(--font-size-base);
     line-height: var(--leading-tight);
-  }
-
-  div {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
   }
 
   .active {
