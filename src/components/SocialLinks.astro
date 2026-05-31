@@ -1,15 +1,15 @@
 ---
+import A from './A.astro';
 import Email from '../assets/email.svg';
 import Github from '../assets/github.svg';
 import Linkedin from '../assets/linkedin.svg';
-import A from './A.astro';
 ---
 
 <address>
   <A
+    class="email-address"
     href="mailto:%65%74%68%61%6E%40%68%61%77%6B%73%6C%65%79%2E%64%65%76"
     rel="me"
-    class="email-address"
     pressable
   >
     <Email aria-hidden="true" />
@@ -17,17 +17,17 @@ import A from './A.astro';
     >.dev</A
   >
   <A
+    class="github-profile"
     href="https://github.com/ethan-hawksley"
     rel="me"
-    class="github-profile"
     pressable
   >
     <Github aria-hidden="true" />
     GitHub</A
   >
   <A
-    href="https://www.linkedin.com/in/ethan-hawksley/"
     class="linkedin-profile"
+    href="https://www.linkedin.com/in/ethan-hawksley/"
     pressable
   >
     <Linkedin aria-hidden="true" />
@@ -60,21 +60,21 @@ import A from './A.astro';
   }
 
   address > :global(a) {
-    padding-block: 0.75rem;
-    padding-inline-start: 2.25rem;
-    padding-inline-end: 0.5rem;
     position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    padding-block: 0.75rem;
+    padding-inline-start: 2.25rem;
+    padding-inline-end: 0.5rem;
   }
 
   address :global(a svg:first-child) {
     position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0.3rem;
     inline-size: 24px;
     block-size: 24px;
-    inset-inline-start: 0.3rem;
-    inset-block-start: 50%;
     transform: translateY(-50%);
   }
 

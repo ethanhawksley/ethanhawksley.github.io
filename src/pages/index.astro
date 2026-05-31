@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SocialLinks from '../components/SocialLinks.astro';
-import ProjectPreview from '../components/ProjectPreview.astro';
-import { personSchema, websiteSchema } from '../utils/schema';
 import LatestPosts from '../components/LatestPosts.astro';
+import ProjectPreview from '../components/ProjectPreview.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
+import { personSchema, websiteSchema } from '../utils/schema';
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
@@ -105,9 +105,9 @@ const jsonLd = {
 
 <style>
   .hero {
-    text-wrap: balance;
-    margin-block-end: 1rem;
     max-inline-size: 65ch;
+    margin-block-end: 1rem;
+    text-wrap: balance;
   }
 
   .contact-links {

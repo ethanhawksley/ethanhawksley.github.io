@@ -21,12 +21,12 @@ import Sun from '../assets/sun.svg';
   }
 
   button {
-    inline-size: 3rem;
-    block-size: 3rem;
-    align-items: center;
-    justify-content: center;
     position: relative;
     display: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: 3rem;
+    block-size: 3rem;
   }
 
   :global(.js) button {
@@ -35,19 +35,17 @@ import Sun from '../assets/sun.svg';
 
   .sun,
   .moon {
-    transition:
-      --hover-mix 250ms ease-out,
-      opacity 250ms ease-out;
-
+    position: absolute;
+    inline-size: 2rem;
+    block-size: 2rem;
     color: color-mix(
       in oklch,
       var(--color-accent) var(--hover-mix),
       var(--color-text)
     );
-
-    inline-size: 2rem;
-    block-size: 2rem;
-    position: absolute;
+    transition:
+      --hover-mix 250ms ease-out,
+      opacity 250ms ease-out;
   }
 
   .sun {

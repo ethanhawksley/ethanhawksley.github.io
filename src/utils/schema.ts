@@ -89,6 +89,13 @@ export const personSchema = {
   ],
 } as const;
 
+export const websiteRef = {
+  '@type': 'WebSite',
+  '@id': 'https://hawksley.dev/#website',
+  name: 'Ethan Hawksley',
+  url: 'https://hawksley.dev/',
+} as const;
+
 export const personRef = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
@@ -111,11 +118,4 @@ export const personRef = {
     'https://bsky.app/profile/hawksley.dev',
     'https://mastodon.social/@ethanhawksley',
   ],
-} as const;
-
-export const websiteRef = {
-  '@type': 'WebSite',
-  '@id': 'https://hawksley.dev/#website',
-  name: 'Ethan Hawksley',
-  url: 'https://hawksley.dev/',
 } as const;

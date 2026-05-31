@@ -58,7 +58,7 @@ const isExternalLink = isExternal(href);
   {...rest}
   ><span><slot /></span>{
     isExternalLink && (
-      <svg width="14" height="14" aria-label="(opens in a new tab)" role="img">
+      <svg width="14" height="14" role="img" aria-label="(opens in a new tab)">
         <use href="#icon-external" />
       </svg>
     )
@@ -73,10 +73,6 @@ const isExternalLink = isExternal(href);
     white-space: nowrap;
   }
 
-  span {
-    white-space: normal;
-  }
-
   a:hover {
     color: var(--color-accent);
   }
@@ -89,13 +85,17 @@ const isExternalLink = isExternal(href);
     display: inline-block;
   }
 
+  span {
+    white-space: normal;
+  }
+
   a svg {
     display: inline-block;
-    transition: transform 250ms ease-out !important;
     inline-size: 0.75em;
     block-size: 0.75em;
     margin-inline-start: 0.15em;
     vertical-align: baseline;
+    transition: transform 250ms ease-out !important;
   }
 
   a:hover svg {

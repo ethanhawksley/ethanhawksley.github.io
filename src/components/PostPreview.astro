@@ -46,27 +46,27 @@ const Heading = headingLevel;
   }
 
   article {
-    padding-block: 1.5rem;
-    padding-inline: 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    padding-block: 1.5rem;
+    padding-inline: 0;
   }
 
   h2,
   h3 {
+    margin: 0;
     font-size: var(--font-size-lg);
     font-weight: var(--weight-semibold);
     line-height: var(--leading-snug);
-    margin: 0;
   }
 
   p {
-    color: var(--color-text-muted);
+    max-inline-size: 65ch;
+    margin: 0;
     font-size: var(--font-size-base);
     line-height: var(--leading-normal);
-    margin: 0;
-    max-inline-size: 65ch;
+    color: var(--color-text-muted);
   }
 
   footer {
@@ -74,22 +74,21 @@ const Heading = headingLevel;
     align-items: center;
     gap: 0.5rem;
     margin-block-start: 0.25rem;
-    font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
-
     font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
   }
 
   .separator {
-    color: var(--color-text-muted);
     margin-inline-end: 0.25rem;
+    color: var(--color-text-muted);
   }
 
   .tags {
+    min-inline-size: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-inline-size: 0;
   }
 </style>

@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
-import { personRef, websiteRef } from '../../utils/schema';
 import { getSortedPosts } from '../../utils/content-helpers';
+import { personRef, websiteRef } from '../../utils/schema';
 
 const allPosts = await getSortedPosts();
 const lastModified = new Date(

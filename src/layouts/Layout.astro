@@ -172,29 +172,29 @@ const isHome = Astro.url.pathname === '/';
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="alternate"
+      href="/rss.xml"
       type="application/rss+xml"
       title="Ethan Hawksley's Blog"
-      href="/rss.xml"
     />
     <link
       rel="alternate"
+      href="/feed.json"
       type="application/feed+json"
       title="Ethan Hawksley's Blog"
-      href="/feed.json"
     />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon-v2.svg" />
+    <link rel="icon" href="/favicon-v2.svg" type="image/svg+xml" />
     <link
       rel="icon"
+      href="/favicon-48x48-v2.png"
       type="image/png"
       sizes="48x48"
-      href="/favicon-48x48-v2.png"
     />
-    <link rel="icon" type="image/x-icon" href="/favicon-v2.ico" />
+    <link rel="icon" href="/favicon-v2.ico" type="image/x-icon" />
     <link
       rel="apple-touch-icon"
-      sizes="180x180"
       href="/apple-touch-icon-v2.png"
+      sizes="180x180"
     />
     <link rel="manifest" href="/site-v2.webmanifest" />
     <meta name="apple-mobile-web-app-title" content="Hawksley" />
@@ -256,14 +256,14 @@ const isHome = Astro.url.pathname === '/';
         tags[1]?.remove();
       }
 
-      document.addEventListener('astro:before-swap', (ev) => {
+      document.addEventListener('astro:before-swap', (event) => {
         const theme =
           document.documentElement.getAttribute('data-theme') || 'light';
 
-        ev.newDocument.documentElement.setAttribute('data-theme', theme);
-        ev.newDocument.documentElement.classList.add('js');
+        event.newDocument.documentElement.setAttribute('data-theme', theme);
+        event.newDocument.documentElement.classList.add('js');
 
-        syncMeta(ev.newDocument);
+        syncMeta(event.newDocument);
       });
 
       document.addEventListener('astro:after-swap', () => {
@@ -395,36 +395,35 @@ const isHome = Astro.url.pathname === '/';
   html.enable-transitions,
   html.enable-transitions
     :is(
-      body,
-      header,
-      nav,
-      main,
-      footer,
-      div,
-      section,
+      a,
       article,
       aside,
-      pre,
-      hr,
+      blockquote,
+      body,
+      button,
+      code,
+      div,
+      footer,
       h1,
       h2,
       h3,
       h4,
       h5,
       h6,
-      p,
-      a,
-      span,
-      small,
+      header,
+      hr,
       li,
-      blockquote,
+      main,
+      nav,
+      p,
       pre,
-      code,
-      button
+      section,
+      small,
+      span
     ) {
     transition:
-      background-color 250ms ease-out,
       color 250ms ease-out,
+      background-color 250ms ease-out,
       border-color 250ms ease-out,
       text-decoration-color 250ms ease-out,
       opacity 250ms ease-out,
@@ -452,10 +451,10 @@ const isHome = Astro.url.pathname === '/';
   }
 
   body {
-    font-size: var(--font-size-base);
-    line-height: var(--leading-relaxed);
-    font-weight: var(--weight-normal);
     overflow-inline: clip;
+    font-size: var(--font-size-base);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-relaxed);
   }
 
   h1,
@@ -478,58 +477,49 @@ const isHome = Astro.url.pathname === '/';
   }
 
   h1 {
+    margin-block-end: 1.5rem;
     font-size: var(--font-size-2xl);
+    font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
-    font-weight: var(--weight-semibold);
-    margin-block-end: 1.5rem;
     text-decoration: var(--color-accent) underline 3px;
     text-underline-offset: 0.25em;
   }
 
   h2 {
     font-size: var(--font-size-xl);
+    font-weight: var(--weight-semibold);
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-snug);
-    font-weight: var(--weight-semibold);
   }
 
   h3 {
     font-size: var(--font-size-lg);
+    font-weight: var(--weight-semibold);
     line-height: var(--leading-snug);
     letter-spacing: var(--tracking-snug);
-    font-weight: var(--weight-semibold);
   }
 
   h4 {
     font-size: var(--font-size-md);
+    font-weight: var(--weight-medium);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-normal);
-    font-weight: var(--weight-medium);
   }
 
   h5,
   h6 {
     font-size: var(--font-size-base);
+    font-weight: var(--weight-medium);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-normal);
-    font-weight: var(--weight-medium);
-  }
-
-  p {
-    text-wrap: pretty;
-  }
-
-  p,
-  li {
-    hanging-punctuation: first allow-end last;
   }
 
   small {
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
-    letter-spacing: var(--tracking-normal);
     line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
   }
 
   img,
@@ -635,25 +625,25 @@ const isHome = Astro.url.pathname === '/';
 
 <style>
   .page {
+    display: flex;
+    flex-direction: column;
     max-inline-size: 768px;
+    min-block-size: 100dvb;
     margin-inline: auto;
     padding-block-start: 1rem;
     padding-block-end: 2rem;
-    min-block-size: 100dvb;
-    display: flex;
-    flex-direction: column;
   }
 
   .skip-link {
     position: absolute;
+    z-index: 9999;
     inset-block-start: -100%;
     inset-inline-start: 1rem;
     padding-block: 0.5rem;
     padding-inline: 1rem;
     background: var(--color-accent);
-    color: #fff;
     border-radius: 0.25rem;
-    z-index: 9999;
+    color: #fff;
     text-decoration: none;
   }
 
@@ -666,14 +656,14 @@ const isHome = Astro.url.pathname === '/';
   }
 
   main {
-    margin-inline: auto;
-    padding-inline-start: max(1.5rem, env(safe-area-inset-left));
-    padding-inline-end: max(1.5rem, env(safe-area-inset-right));
-    margin-block-end: 1.5rem;
-    inline-size: 100%;
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     align-items: flex-start;
+    inline-size: 100%;
+    margin-inline: auto;
+    margin-block-end: 1.5rem;
+    padding-inline-start: max(1.5rem, env(safe-area-inset-left));
+    padding-inline-end: max(1.5rem, env(safe-area-inset-right));
   }
 </style>

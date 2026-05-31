@@ -1,5 +1,5 @@
-import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
+import rss from '@astrojs/rss';
 import { getSortedPosts } from '../utils/content-helpers';
 
 export async function GET(context: APIContext) {

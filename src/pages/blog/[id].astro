@@ -1,13 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { render } from 'astro:content';
 import { getImage } from 'astro:assets';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import { personRef, websiteRef } from '../../utils/schema';
 import { getSortedPosts } from '../../utils/content-helpers';
+import { personRef, websiteRef } from '../../utils/schema';
 
 export const getStaticPaths = (async () => {
   const allPosts = await getSortedPosts();
@@ -275,17 +275,17 @@ const jsonLd = {
     }
 
     h2 {
+      margin-block-start: 2.5rem;
+      margin-block-end: 0.75rem;
       font-size: var(--font-size-lg);
       line-height: var(--leading-snug);
       letter-spacing: var(--tracking-snug);
-      margin-block-start: 2.5rem;
-      margin-block-end: 0.75rem;
     }
 
     h3 {
-      font-size: var(--font-size-md);
       margin-block-start: 2rem;
       margin-block-end: 0.5rem;
+      font-size: var(--font-size-md);
     }
 
     h4 {
@@ -309,12 +309,12 @@ const jsonLd = {
 
     blockquote {
       border-inline-start: 4px solid var(--color-accent);
-      background: var(--color-surface);
-      color: var(--color-text-muted);
-      padding-block: 1rem;
-      padding-inline: 1.5rem;
       border-start-end-radius: 0.5rem;
       border-end-end-radius: 0.5rem;
+      padding-block: 1rem;
+      padding-inline: 1.5rem;
+      background: var(--color-surface);
+      color: var(--color-text-muted);
       font-style: italic;
     }
 
@@ -334,14 +334,14 @@ const jsonLd = {
 
   .astro-code {
     position: relative;
-    border: 2px solid var(--color-border);
-    border-radius: 0.5rem;
+    display: grid;
+    inline-size: 100%;
+    max-inline-size: 100%;
     padding: 0.5rem;
     overflow-inline: auto;
     overscroll-behavior-inline: contain;
-    inline-size: 100%;
-    max-inline-size: 100%;
-    display: grid;
+    border: 2px solid var(--color-border);
+    border-radius: 0.5rem;
   }
 
   .astro-code:focus-visible {
@@ -351,9 +351,9 @@ const jsonLd = {
 
   .astro-code code {
     display: block;
+    grid-area: 1/1;
     min-inline-size: max-content;
     font-size: var(--font-size-xs);
-    grid-area: 1/1;
   }
 
   @media (min-width: 40em) {
@@ -389,10 +389,12 @@ const jsonLd = {
   }
 
   .copy-button {
-    grid-area: 1 / 1;
-    justify-self: start;
-    align-self: start;
     position: sticky;
+    z-index: 10;
+    display: none;
+    grid-area: 1 / 1;
+    align-self: start;
+    justify-self: start;
     inset-block-start: 0.5rem;
     inset-inline-start: calc(100% - 2.5rem);
     padding: 0.25rem;
@@ -401,8 +403,6 @@ const jsonLd = {
     background: var(--color-surface);
     color: var(--color-text-muted);
     opacity: 0;
-    display: none;
-    z-index: 10;
   }
 
   .js .copy-button {
@@ -440,10 +440,10 @@ const jsonLd = {
 
 <style>
   .back-nav {
+    inline-size: 100%;
     margin-block-end: 0.5rem;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
-    inline-size: 100%;
   }
 
   .back-nav :global(a) {
@@ -452,8 +452,8 @@ const jsonLd = {
 
   .back-nav .arrow {
     display: inline-block;
-    transition: transform 250ms ease-out;
     margin-inline-end: 0.15em;
+    transition: transform 250ms ease-out;
   }
 
   .back-nav :global(a:hover) .arrow {
@@ -463,9 +463,9 @@ const jsonLd = {
   article {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
     inline-size: 100%;
     min-inline-size: 0;
+    gap: 1.5rem;
   }
 
   header {
@@ -481,20 +481,20 @@ const jsonLd = {
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
     font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;
+    color: var(--color-text-muted);
   }
 
   .post-nav {
     display: flex;
     flex-direction: column;
+    inline-size: 100%;
     gap: 1rem;
     margin-block-start: 2.5rem;
     padding-block-start: 1.5rem;
     border-block-start: 1px solid var(--color-border);
-    inline-size: 100%;
   }
 
   .nav-links {
@@ -507,8 +507,8 @@ const jsonLd = {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -520,8 +520,8 @@ const jsonLd = {
     display: flex;
     align-items: center;
     gap: 0.35em;
-    font-size: var(--font-size-sm);
     font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
     color: var(--color-text-muted);
   }
 
@@ -546,9 +546,9 @@ const jsonLd = {
     font-size: var(--font-size-base);
     font-weight: var(--weight-medium);
     color: var(--color-text);
+    text-wrap: balance;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
-    text-wrap: balance;
     transition: color 250ms ease-out;
   }
 
@@ -562,8 +562,8 @@ const jsonLd = {
 
   .nav-all {
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
     text-align: center;
+    color: var(--color-text-muted);
   }
 
   @media (min-width: 40em) {
@@ -593,8 +593,8 @@ const jsonLd = {
 
     document.addEventListener(
       'click',
-      async (e: MouseEvent) => {
-        const button = (e.target as HTMLElement).closest<HTMLButtonElement>(
+      async (event: MouseEvent) => {
+        const button = (event.target as HTMLElement).closest<HTMLButtonElement>(
           '.copy-button',
         );
         if (!button) return;
