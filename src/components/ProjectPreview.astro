@@ -11,11 +11,23 @@ interface Props {
 }
 
 const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
+
+const productUrl = liveUrl ?? sourceUrl;
 ---
 
 <li>
   <article>
-    <h3><A href={sourceUrl} pressable>{name}</A></h3>
+    <h3>
+      {
+        productUrl ? (
+          <A href={productUrl} pressable>
+            {name}
+          </A>
+        ) : (
+          name
+        )
+      }
+    </h3>
     <p>{description}</p>
     <footer>
       <span class="meta-data">
@@ -32,10 +44,14 @@ const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
         }
       </span>
       {
-        liveUrl && (
+        sourceUrl && (
           <span class="meta-action">
-            <A href={liveUrl} aria-label={`View ${name} live`} pressable>
-              {'View Live'}
+            <A
+              href={sourceUrl}
+              aria-label={`View source code for ${name}`}
+              pressable
+            >
+              {'Source'}
             </A>
           </span>
         )
