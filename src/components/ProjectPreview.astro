@@ -30,16 +30,16 @@ const productUrl = liveUrl ?? sourceUrl;
     </h3>
     <p>{description}</p>
     <footer>
-      <span class="meta-data">
+      <span class="meta">
         <span class="type">{type}</span>
         {
           stack.length > 0 && (
-            <span class="separator" aria-hidden="true">
+            <>
+              <span class="separator" aria-hidden="true">
                 /
               </span>
-            <span>
-              {stack.join(', ')}
-            </span>
+              <span>{stack.join(', ')}</span>
+            </>
           )
         }
       </span>
@@ -103,7 +103,7 @@ const productUrl = liveUrl ?? sourceUrl;
     font-variant-numeric: tabular-nums;
   }
 
-  .meta-data {
+  .meta {
     color: var(--color-text-muted);
     display: flex;
     gap: 0.5rem;
