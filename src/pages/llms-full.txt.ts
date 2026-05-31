@@ -16,22 +16,22 @@ export async function GET() {
 ## Projects
 ${allProjects
   .map(
-    (p) => `### ${p.data.name}
-${p.data.liveUrl ? `${p.data.liveUrl} ` : ''}${p.data.sourceUrl ?? ''}
-${p.data.stack.join(', ')}
-${p.data.description}
+    (project) => `### ${project.data.name}
+${project.data.liveUrl ? `${project.data.liveUrl} ` : ''}${project.data.sourceUrl ?? ''}
+${project.data.stack.join(', ')}
+${project.data.description}
 
 `,
   )
   .join('')}## Blog Posts
 ${allPosts
   .map(
-    (p) => `
-### ${p.data.title}
-https://hawksley.dev/blog/${p.id}/
-${p.data.description}
-Published ${p.data.pubDate.toISOString().split('T')[0]}${p.data.modDate ? `, Modified ${p.data.modDate.toISOString().split('T')[0]}` : ''}
-${p.body?.replaceAll(/^#/gm, '###') ?? ''}`,
+    (post) => `
+### ${post.data.title}
+https://hawksley.dev/blog/${post.id}/
+${post.data.description}
+Published ${post.data.pubDate.toISOString().split('T')[0]}${post.data.modDate ? `, Modified ${post.data.modDate.toISOString().split('T')[0]}` : ''}
+${post.body?.replaceAll(/^#/gm, '###') ?? ''}`,
   )
   .join('\n')}`;
 
