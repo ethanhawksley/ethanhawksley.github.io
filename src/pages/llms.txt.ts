@@ -17,7 +17,7 @@ export async function GET() {
 ${allProjects
   .map(
     (p) => `### ${p.data.name}
-${p.data.liveUrl ? `${p.data.liveUrl} ` : ''}${p.data.sourceUrl}
+${p.data.liveUrl ? `${p.data.liveUrl} ` : ''}${p.data.sourceUrl ?? ''}
 ${p.data.stack.join(', ')}
 ${p.data.description}
 
