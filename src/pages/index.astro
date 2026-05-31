@@ -68,15 +68,15 @@ const jsonLd = {
   jsonLd={jsonLd}
   ogType="profile"
 >
-  <section id="hero" aria-labelledby="hero-heading">
+  <section class="hero" aria-labelledby="hero-heading">
     <h1 id="hero-heading">Ethan Hawksley</h1>
     <p>Hi, I'm Ethan Hawksley, a CS student in the UK.</p>
     <p>I&nbsp;use Linux, write Rust, and enjoy cybersecurity.</p>
   </section>
-  <div id="contact-links">
+  <div class="contact-links">
     <SocialLinks />
   </div>
-  <section id="projects" aria-labelledby="projects-heading">
+  <section class="projects" aria-labelledby="projects-heading">
     <h2 id="projects-heading">Projects</h2>
     <ul role="list">
       {
@@ -93,7 +93,7 @@ const jsonLd = {
       }
     </ul>
   </section>
-  <section id="blog-callout" aria-labelledby="blog-heading">
+  <section class="blog-callout" aria-labelledby="blog-heading">
     <h2 id="blog-heading">Latest Posts</h2>
     <p>
       Writing about systems programming, cybersecurity, and all I learn along
@@ -104,13 +104,13 @@ const jsonLd = {
 </Layout>
 
 <style>
-  #hero {
+  .hero {
     text-wrap: balance;
     margin-block-end: 1rem;
     max-inline-size: 65ch;
   }
 
-  #contact-links {
+  .contact-links {
     margin-block-end: 2rem;
   }
 
@@ -125,12 +125,12 @@ const jsonLd = {
     line-height: var(--leading-normal);
   }
 
-  #projects {
+  .projects {
     inline-size: 100%;
     margin-block-end: 2rem;
   }
 
-  #projects ul {
+  .projects ul {
     display: flex;
     flex-direction: column;
     inline-size: 100%;

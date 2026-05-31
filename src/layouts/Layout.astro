@@ -236,8 +236,8 @@ const isHome = Astro.url.pathname === '/';
       <slot name="svg-symbols" />
     </svg>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <div id="page">
-      <div id="nav-bar">
+    <div class="page">
+      <div class="nav-bar">
         <Navigation />
       </div>
       <main id="main-content" tabindex="-1">
@@ -611,7 +611,7 @@ const isHome = Astro.url.pathname === '/';
   }
 
   @media print {
-    #nav-bar,
+    .nav-bar,
     .skip-link,
     button {
       display: none !important;
@@ -634,7 +634,7 @@ const isHome = Astro.url.pathname === '/';
 </style>
 
 <style>
-  #page {
+  .page {
     max-inline-size: 768px;
     margin-inline: auto;
     padding-block-start: 1rem;
@@ -661,7 +661,7 @@ const isHome = Astro.url.pathname === '/';
     inset-block-start: 1rem;
   }
 
-  #nav-bar {
+  .nav-bar {
     margin-block-end: 1.5rem;
   }
 
