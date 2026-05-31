@@ -155,12 +155,12 @@ const jsonLd = {
     </symbol>
   </Fragment>
 
-  <nav aria-label="Back to blog" class="breadcrumb">
-    <A href="/blog/" style="text-decoration: none;" pressable>
-      <span aria-hidden="true">←</span> Back to blog
+  <nav aria-label="Back to blog" class="back-nav">
+    <A href="/blog/" pressable>
+      <span class="arrow" aria-hidden="true">←</span> Back to blog
     </A>
   </nav>
-  <article id="post">
+  <article>
     <header>
       <h1>{post.data.title}</h1>
       <div class="post-meta">
@@ -195,7 +195,7 @@ const jsonLd = {
     <div class="nav-prev">
       {
         prevPost && (
-          <A href={`/blog/${prevPost.id}/`} style="text-decoration: none;">
+          <A href={`/blog/${prevPost.id}/`}>
             <span class="arrow" aria-hidden="true">
               ←
             </span>
@@ -208,7 +208,7 @@ const jsonLd = {
     <div class="nav-next">
       {
         nextPost && (
-          <A href={`/blog/${nextPost.id}/`} style="text-decoration: none;">
+          <A href={`/blog/${nextPost.id}/`}>
             <span class="sr-only">Next post:</span>
             <span class="nav-title">{nextPost.data.title}</span>
             <span class="arrow" aria-hidden="true">
@@ -433,11 +433,25 @@ const jsonLd = {
 </style>
 
 <style>
-  .breadcrumb {
+  .back-nav {
     margin-block-end: 0.5rem;
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     inline-size: 100%;
+  }
+
+  .back-nav :global(a) {
+    text-decoration: none;
+  }
+
+  .back-nav .arrow {
+    display: inline-block;
+    transition: transform 250ms ease-out;
+    margin-inline-end: 0.15em;
+  }
+
+  .back-nav :global(a:hover) .arrow {
+    transform: translateX(-4px);
   }
 
   article {
