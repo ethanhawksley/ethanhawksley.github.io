@@ -6,13 +6,19 @@ const year = new Date().getFullYear();
 
 <footer>
   <small>
-    &copy; {year} Ethan Hawksley · Content: <A
-      href="https://creativecommons.org/licenses/by/4.0/"
-      pressable>CC BY 4.0</A
-    > · <A
+    <span>&copy; {year} Ethan Hawksley</span>
+    <span aria-hidden="true">·</span>
+    <span
+      >Content: <A href="https://creativecommons.org/licenses/by/4.0/" pressable
+        >CC BY 4.0</A
+      ></span
+    >
+    <span aria-hidden="true">·</span>
+    <A
       href="https://github.com/ethan-hawksley/ethan-hawksley.github.io"
       pressable>Source</A
-    > ·
+    >
+    <span aria-hidden="true">·</span>
     <A href="/rss.xml" pressable data-astro-prefetch="false">RSS</A>
   </small>
 </footer>
@@ -23,6 +29,11 @@ const year = new Date().getFullYear();
   }
 
   small {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
     color: var(--color-text-muted);
     font-size: var(--font-size-xs);
     font-family: var(--font-mono);
