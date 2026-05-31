@@ -9,7 +9,7 @@ import A from './A.astro';
   <A
     href="mailto:%65%74%68%61%6E%40%68%61%77%6B%73%6C%65%79%2E%64%65%76"
     rel="me"
-    class="link-email"
+    class="email-address"
     pressable
   >
     <Email aria-hidden="true" />
@@ -19,7 +19,7 @@ import A from './A.astro';
   <A
     href="https://github.com/ethan-hawksley"
     rel="me"
-    class="link-github"
+    class="github-profile"
     pressable
   >
     <Github aria-hidden="true" />
@@ -27,7 +27,7 @@ import A from './A.astro';
   >
   <A
     href="https://www.linkedin.com/in/ethan-hawksley/"
-    class="link-linkedin"
+    class="linkedin-profile"
     pressable
   >
     <Linkedin aria-hidden="true" />
@@ -48,13 +48,13 @@ import A from './A.astro';
       gap: 1rem;
     }
 
-    .link-email {
+    .email-address {
       min-inline-size: 14rem;
     }
-    .link-github {
+    .github-profile {
       min-inline-size: 7.4rem;
     }
-    .link-linkedin {
+    .linkedin-profile {
       min-inline-size: 8.2rem;
     }
   }
