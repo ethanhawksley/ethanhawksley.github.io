@@ -107,6 +107,11 @@ export default defineConfig({
       },
     }),
     mdx(),
-    compress({ Image: false }),
+    compress({
+      HTML: {
+        'html-minifier-terser': { collapseWhitespace: false },
+      },
+      Image: false,
+    }),
   ],
 });
