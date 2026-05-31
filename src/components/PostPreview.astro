@@ -24,10 +24,10 @@ const Heading = headingLevel;
       </span>
       {
         tags.length > 0 && (
-          <span class="meta-item tags">
-            <span class="separator" aria-hidden="true">
+          <span class="separator" aria-hidden="true">
               /
             </span>
+          <span class="meta-item tags">
             {tags.join(', ')}
           </span>
         )
@@ -82,7 +82,7 @@ const Heading = headingLevel;
   }
 
   .separator {
-    color: var(--color-border);
+    color: var(--color-muted);
     margin-inline-end: 0.25rem;
   }
 
