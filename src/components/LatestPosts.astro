@@ -7,7 +7,7 @@ const allPosts = await getSortedPosts();
 const postCount = allPosts.length;
 ---
 
-<span class="punct">
+<span class="text-only">
   Showing the 2 most recent of {postCount} posts. Full index at https://hawksley.dev/blog/
 </span>
 <ul id="blog-preview" role="list">
@@ -35,7 +35,7 @@ const postCount = allPosts.length;
     inline-size: 100%;
   }
 
-  .punct {
+  .text-only {
     display: none;
   }
 </style>
