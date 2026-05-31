@@ -19,17 +19,17 @@ const Heading = headingLevel;
     <Heading><A href={href} pressable>{title}</A></Heading>
     <p>{description}</p>
     <footer>
-      <span class="meta-item">
+      <span>
         <FormattedDate date={pubDate} />
       </span>
       {
         tags.length > 0 && (
-          <span class="separator" aria-hidden="true">
+          <>
+            <span class="separator" aria-hidden="true">
               /
             </span>
-          <span class="meta-item tags">
-            {tags.join(', ')}
-          </span>
+            <span class="tags">{tags.join(', ')}</span>
+          </>
         )
       }
     </footer>
