@@ -192,34 +192,40 @@ const jsonLd = {
     </div>
   </article>
   <nav class="post-nav" aria-label="Post navigation">
-    <div class="nav-prev">
-      {
-        prevPost && (
-          <A href={`/blog/${prevPost.id}/`}>
-            <span class="arrow" aria-hidden="true">
-              ←
-            </span>
-            <span class="sr-only">Previous post:</span>
-            <span class="nav-title">{prevPost.data.title}</span>
-          </A>
-        )
-      }
-    </div>
-    <div class="nav-next">
-      {
-        nextPost && (
-          <A href={`/blog/${nextPost.id}/`}>
-            <span class="sr-only">Next post:</span>
-            <span class="nav-title">{nextPost.data.title}</span>
-            <span class="arrow" aria-hidden="true">
-              →
-            </span>
-          </A>
-        )
-      }
+    <div class="nav-links">
+      <div class="nav-item nav-prev">
+        {
+          prevPost && (
+            <a href={`/blog/${prevPost.id}/`} class="nav-link">
+              <span class="nav-direction">
+                <span class="arrow" aria-hidden="true">
+                  ←
+                </span>
+                Previous
+              </span>
+              <span class="nav-title">{prevPost.data.title}</span>
+            </a>
+          )
+        }
+      </div>
+      <div class="nav-item nav-next">
+        {
+          nextPost && (
+            <a href={`/blog/${nextPost.id}/`} class="nav-link nav-link-next">
+              <span class="nav-direction nav-direction-next">
+                Next
+                <span class="arrow" aria-hidden="true">
+                  →
+                </span>
+              </span>
+              <span class="nav-title">{nextPost.data.title}</span>
+            </a>
+          )
+        }
+      </div>
     </div>
     <div class="nav-all">
-      <A href="/blog/" pressable>View all posts</A>
+      <A href="/blog/" pressable>All posts</A>
     </div>
   </nav>
 </Layout>
@@ -482,8 +488,8 @@ const jsonLd = {
   }
 
   .post-nav {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
     margin-block-start: 2.5rem;
     padding-block-start: 1.5rem;
@@ -491,26 +497,67 @@ const jsonLd = {
     inline-size: 100%;
   }
 
-  .nav-prev :global(a),
-  .nav-next :global(a) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-link:active {
+    transform: scale(0.96);
+  }
+
+  .nav-direction {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.35em;
+    font-size: var(--font-size-sm);
+    font-family: var(--font-mono);
     color: var(--color-text-muted);
   }
 
-  .nav-next :global(a) {
+  .nav-direction-next {
     justify-content: flex-end;
-    text-align: end;
   }
 
   .arrow {
-    flex-shrink: 0;
+    display: inline-block;
+    transition: transform 250ms ease-out;
+  }
+
+  .nav-prev .nav-link:hover .arrow {
+    transform: translateX(-4px);
+  }
+
+  .nav-next .nav-link:hover .arrow {
+    transform: translateX(4px);
   }
 
   .nav-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text);
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
+    text-wrap: balance;
+    transition: color 250ms ease-out;
+  }
+
+  .nav-link-next .nav-title {
+    text-align: end;
+  }
+
+  .nav-link:hover .nav-title {
+    color: var(--color-accent);
   }
 
   .nav-all {
@@ -520,12 +567,17 @@ const jsonLd = {
   }
 
   @media (min-width: 40em) {
-    .post-nav {
+    .nav-links {
+      display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
 
-    .nav-all {
-      grid-column: 1 / -1;
+    .nav-prev {
+      grid-column: 1;
+    }
+    .nav-next {
+      grid-column: 2;
     }
   }
 </style>
