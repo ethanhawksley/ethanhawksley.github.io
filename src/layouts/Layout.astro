@@ -85,10 +85,12 @@ const isHome = Astro.url.pathname === '/';
         document.documentElement.setAttribute('data-theme', theme);
         document.documentElement.classList.add('js');
         const color = theme === 'dark' ? '#0f0f0f' : '#fafafa';
-        const tags = document.head.querySelectorAll('meta[name="theme-color"]');
-        tags[0]?.setAttribute('content', color);
-        tags[0]?.removeAttribute('media');
-        tags[1]?.remove();
+        document.head
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((tag) => {
+            tag.setAttribute('content', color);
+            tag.removeAttribute('media');
+          });
         if (
           navigator.userAgent.includes('Chrome') ||
           navigator.userAgent.includes('Edg')
@@ -250,10 +252,10 @@ const isHome = Astro.url.pathname === '/';
         const isDark =
           doc.documentElement.getAttribute('data-theme') === 'dark';
         const color = isDark ? '#0f0f0f' : '#fafafa';
-        const tags = doc.head.querySelectorAll('meta[name="theme-color"]');
-        tags[0]?.setAttribute('content', color);
-        tags[0]?.removeAttribute('media');
-        tags[1]?.remove();
+        doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
+          tag.setAttribute('content', color);
+          tag.removeAttribute('media');
+        });
       }
 
       document.addEventListener('astro:before-swap', (event) => {
