@@ -12,15 +12,15 @@ interface Props {
 
 const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
 
-const productUrl = liveUrl ?? sourceUrl;
+const projectUrl = liveUrl ?? sourceUrl;
 ---
 
 <li>
   <article>
     <h3>
       {
-        productUrl ? (
-          <A href={productUrl} pressable>
+        projectUrl ? (
+          <A href={projectUrl} pressable>
             {name}
           </A>
         ) : (
