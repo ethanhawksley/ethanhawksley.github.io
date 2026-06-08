@@ -187,7 +187,7 @@ const jsonLd = {
         }
       </div>
     </header>
-    <div class="content">
+    <div class="prose">
       <Content components={{ a: A, img: BlogImage }} />
     </div>
   </article>
@@ -230,39 +230,39 @@ const jsonLd = {
   </nav>
 </Layout>
 <style is:global>
-  .content {
+  .prose {
     inline-size: 100%;
     min-inline-size: 0;
   }
 
-  .content > :first-child {
+  .prose > :first-child {
     margin-block-start: 0;
   }
-  .content > :last-child {
+  .prose > :last-child {
     margin-block-end: 0;
   }
 
-  .content :where(h2, h3, h4, h5, h6, p, li, blockquote) {
+  .prose :where(h2, h3, h4, h5, h6, p, li, blockquote) {
     max-inline-size: 65ch;
   }
 
-  .content :where(p, li) {
+  .prose :where(p, li) {
     line-height: var(--leading-relaxed);
   }
 
-  .content :where(p, ul, ol) {
+  .prose :where(p, ul, ol) {
     margin-block: 1.5rem;
     font-size: var(--font-size-base);
   }
 
-  .content li + li {
+  .prose li + li {
     margin-block-start: 0.5rem;
   }
-  .content li > :is(ul, ol) {
+  .prose li > :is(ul, ol) {
     margin-block: 0.5rem 0;
   }
 
-  .content h2 {
+  .prose h2 {
     margin-block-start: 2.5rem;
     margin-block-end: 0.75rem;
     font-size: var(--font-size-lg);
@@ -270,27 +270,27 @@ const jsonLd = {
     letter-spacing: var(--tracking-snug);
   }
 
-  .content h3 {
+  .prose h3 {
     margin-block-start: 2rem;
     margin-block-end: 0.5rem;
     font-size: var(--font-size-md);
   }
 
-  .content h4 {
+  .prose h4 {
     margin-block-start: 1.5rem;
     margin-block-end: 0.5rem;
   }
 
-  .content :where(h5, h6) {
+  .prose :where(h5, h6) {
     margin-block-start: 1.25rem;
     margin-block-end: 0.25rem;
   }
 
-  .content img {
+  .prose img {
     border-radius: 1rem;
   }
 
-  .content blockquote {
+  .prose blockquote {
     border-inline-start: 4px solid var(--color-accent);
     border-start-end-radius: 0.5rem;
     border-end-end-radius: 0.5rem;
@@ -301,14 +301,14 @@ const jsonLd = {
     font-style: italic;
   }
 
-  .content blockquote > :first-child {
+  .prose blockquote > :first-child {
     margin-block-start: 0;
   }
-  .content blockquote > :last-child {
+  .prose blockquote > :last-child {
     margin-block-end: 0;
   }
 
-  .content code {
+  .prose code {
     font-family: var(--font-mono);
     font-variant-numeric: slashed-zero;
   }
