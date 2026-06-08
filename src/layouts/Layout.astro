@@ -617,7 +617,7 @@ const isHome = Astro.url.pathname === '/';
       overflow-inline: visible !important;
     }
 
-    .content a[href^='http']::after {
+    .prose a[href^='http']::after {
       content: ' (' attr(href) ')';
       font-size: var(--font-size-sm);
       word-break: break-all;
