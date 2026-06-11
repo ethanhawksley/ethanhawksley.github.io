@@ -11,7 +11,7 @@ export const websiteSchema = {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#logo',
     url: 'https://hawksley.dev/logo-square.png',
-    caption: 'Hawksley Logo',
+    caption: 'Ethan Hawksley Logo',
   },
   inLanguage: 'en-GB',
 } as const;
