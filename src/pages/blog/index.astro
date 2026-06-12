@@ -74,6 +74,10 @@ const jsonLd = {
   ogType="website"
 >
   <h1>Blog</h1>
+  <p>
+    Writing about systems programming, cybersecurity, and all I learn along the
+    way.
+  </p>
   <ul role="list">
     {
       allPosts.map((post) => (
@@ -90,6 +94,13 @@ const jsonLd = {
   </ul>
 </Layout>
 <style>
+  p {
+    margin-block-end: 1rem;
+    max-inline-size: 65ch;
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
   ul {
     display: flex;
     flex-direction: column;
