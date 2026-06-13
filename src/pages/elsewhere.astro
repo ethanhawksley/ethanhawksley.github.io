@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import A from '../components/A.astro';
+import { personRef, websiteRef } from '../utils/schema';
+
+const sections = [
+  {
+    title: 'Development',
+    links: [
+      {
+        name: 'GitHub',
+        url: 'https://github.com/ethan-hawksley',
+      },
+      {
+        name: 'GitLab',
+        url: 'https://gitlab.com/ethanhawksley',
+      },
+      {
+        name: 'Stack Overflow',
+        url: 'https://stackoverflow.com/users/27157731/ethan-hawksley',
+      },
+      {
+        name: 'LeetCode',
+        url: 'https://leetcode.com/u/ethan-hawksley/',
+      },
+      {
+        name: 'itch.io',
+        url: 'https://ethanhawksley.itch.io',
+      },
+      {
+        name: 'Gravatar',
+        url: 'https://gravatar.com/ethanhawksley',
+      },
+    ],
+  },
+  {
+    title: 'Socials',
+    links: [
+      {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/ethan-hawksley',
+      },
+      {
+        name: 'Bluesky',
+        url: 'https://bsky.app/profile/hawksley.dev',
+      },
+      {
+        name: 'Mastodon',
+        url: 'https://mastodon.social/@ethanhawksley',
+      },
+      {
+        name: 'X (Twitter)',
+        url: 'https://x.com/Ethan_Hawksley',
+      },
+      {
+        name: 'YouTube',
+        url: 'https://www.youtube.com/@Ethan-Hawksley',
+      },
+      {
+        name: 'Reddit',
+        url: 'https://www.reddit.com/user/ethanhawksley/',
+      },
+      {
+        name: 'Instagram',
+        url: 'https://www.instagram.com/ethan.hawksley/',
+      },
+    ],
+  },
+  {
+    title: 'Security',
+    links: [
+      {
+        name: 'TryHackMe',
+        url: 'https://tryhackme.com/p/ethanhawksley',
+      },
+      {
+        name: 'Hack The Box',
+        url: 'https://app.hackthebox.com/public/users/3608157',
+      },
+      {
+        name: 'HackerOne',
+        url: 'https://hackerone.com/ethanhawksley',
+      },
+    ],
+  },
+  {
+    title: 'Writing',
+    links: [
+      {
+        name: 'ORCID',
+        url: 'https://orcid.org/0009-0005-6663-0640',
+      },
+      {
+        name: 'DEV Community',
+        url: 'https://dev.to/ethanhawksley',
+      },
+      {
+        name: 'Hashnode',
+        url: 'https://hashnode.com/@ethanhawksley',
+      },
+      {
+        name: 'Medium',
+        url: 'https://medium.com/@ethan-hawksley',
+      },
+      {
+        name: 'Hacker News',
+        url: 'https://news.ycombinator.com/user?id=ethanhawksley',
+      },
+    ],
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    websiteRef,
+    {
+      '@type': 'CollectionPage',
+      '@id': 'https://hawksley.dev/elsewhere/#webpage',
+      url: 'https://hawksley.dev/elsewhere/',
+      name: 'Elsewhere | Ethan Hawksley',
+      description:
+        'Other platforms, profiles, and directories where you can find Ethan Hawksley on the web.',
+      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      inLanguage: 'en-GB',
+      breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
+    },
+    personRef,
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hawksley.dev/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Elsewhere',
+          item: 'https://hawksley.dev/elsewhere/',
+        },
+      ],
+    },
+  ],
+};
+---
+
+<Layout
+  title="Elsewhere | Ethan Hawksley"
+  description="Other platforms, profiles, and directories where you can find Ethan Hawksley on the web."
+  jsonLd={jsonLd}
+  ogType="website"
+>
+  <h1>Elsewhere</h1>
+  <p class="intro">
+    You can find me on various other platforms around the web. Here is a list of
+    my profiles:
+  </p>
+
+  {
+    sections.map((section) => {
+      const slug = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const id = `heading-${slug}`;
+      return (
+        <section class="group" aria-labelledby={id}>
+          <h2 id={id}>{section.title}</h2>
+          <ul class="elsewhere-list" role="list">
+            {section.links.map((link) => (
+              <li>
+                <span class="platform">
+                  <A href={link.url} rel="me" external={false} pressable>
+                    {link.name}
+                  </A>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      );
+    })
+  }
+</Layout>
+
+<style>
+  .intro {
+    margin-block-end: 2rem;
+    max-inline-size: 65ch;
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+  }
+
+  .group {
+    inline-size: 100%;
+    margin-block-end: 2rem;
+  }
+
+  .group h2 {
+    margin-block-end: 1rem;
+    font-size: var(--font-size-lg);
+  }
+
+  .elsewhere-list li {
+    display: flex;
+    align-items: baseline;
+    padding-block: 0.75rem;
+  }
+
+  .elsewhere-list li + li {
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .platform {
+    font-weight: var(--weight-medium);
+  }
+</style>
