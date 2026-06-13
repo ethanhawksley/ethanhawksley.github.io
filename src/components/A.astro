@@ -16,8 +16,9 @@ interface Props extends HTMLAttributes<'a'> {
   rel?: string;
   style?: string;
   pressable?: boolean;
+  external?: boolean;
 }
-const { href, rel, style, pressable, ...rest } = Astro.props;
+const { href, rel, style, pressable, external, ...rest } = Astro.props;
 
 function isExternal(linkHref: string) {
   // All https links that are not explicitly part of this blog should be external.
@@ -42,17 +43,14 @@ function isExternal(linkHref: string) {
 
   return true;
 }
-const isExternalLink = isExternal(href);
+
+const isExternalLink = external !== undefined ? external : isExternal(href);
 ---
 
 <a
   href={href}
   target={isExternalLink ? '_blank' : undefined}
-  rel={isExternalLink
-    ? rel
-      ? `${rel} noopener noreferrer`
-      : 'noopener noreferrer'
-    : rel}
+  rel={rel || (isExternalLink ? 'noopener noreferrer' : undefined)}
   style={style}
   data-pressable={pressable || undefined}
   {...rest}
