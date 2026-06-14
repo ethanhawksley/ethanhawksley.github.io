@@ -408,6 +408,31 @@ const jsonLd = {
       opacity: 1;
     }
   }
+
+  @media print {
+    .back-nav,
+    .post-nav {
+      display: none !important;
+    }
+
+    .prose a[href^='http']::after {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      word-break: break-all;
+      content: ' (' attr(href) ')';
+    }
+
+    .prose pre.astro-code {
+      overflow-inline: visible !important;
+      word-break: break-all !important;
+      white-space: pre-wrap !important;
+    }
+
+    .prose a span {
+      text-decoration-thickness: 0.07em !important;
+      text-underline-offset: auto !important;
+    }
+  }
 </style>
 
 <style>

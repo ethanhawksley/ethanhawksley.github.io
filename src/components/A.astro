@@ -98,4 +98,10 @@ const isExternalLink = external !== undefined ? external : isExternal(href);
   a:hover svg {
     transform: translate(0.15em, -0.15em);
   }
+
+  @media print {
+    a svg {
+      display: none !important;
+    }
+  }
 </style>

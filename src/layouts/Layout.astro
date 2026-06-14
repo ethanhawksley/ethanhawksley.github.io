@@ -606,24 +606,26 @@ const isHome = Astro.url.pathname === '/';
   }
 
   @media print {
+    :root {
+      color-scheme: light !important;
+    }
+
+    img {
+      filter: none !important;
+    }
+
     .nav-bar,
-    .skip-link,
-    button {
+    .skip-link {
       display: none !important;
     }
 
-    pre.astro-code,
-    pre.astro-code code {
-      overflow-inline: visible !important;
-      word-break: break-all !important;
-      white-space: pre-wrap !important;
-    }
-
-    .prose a[href^='http']::after {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-muted);
-      word-break: break-all;
-      content: ' (' attr(href) ')';
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      break-after: avoid;
     }
   }
 </style>
