@@ -1,3 +1,9 @@
+import { profiles } from './profiles.ts';
+
+const links = profiles.flatMap((section) =>
+  section.links.map((link) => link.url),
+);
+
 export const websiteSchema = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
@@ -75,29 +81,7 @@ export const personSchema = {
       ],
     },
   ],
-  sameAs: [
-    'https://github.com/ethan-hawksley',
-    'https://www.linkedin.com/in/ethan-hawksley',
-    'https://orcid.org/0009-0005-6663-0640',
-    'https://gravatar.com/ethanhawksley',
-    'https://gitlab.com/ethanhawksley',
-    'https://stackoverflow.com/users/27157731/ethan-hawksley',
-    'https://dev.to/ethanhawksley',
-    'https://hashnode.com/@ethanhawksley',
-    'https://medium.com/@ethan-hawksley',
-    'https://news.ycombinator.com/user?id=ethanhawksley',
-    'https://hackerone.com/ethanhawksley',
-    'https://tryhackme.com/p/ethanhawksley',
-    'https://app.hackthebox.com/public/users/3608157',
-    'https://leetcode.com/u/ethan-hawksley/',
-    'https://ethanhawksley.itch.io',
-    'https://x.com/Ethan_Hawksley',
-    'https://bsky.app/profile/hawksley.dev',
-    'https://mastodon.social/@ethanhawksley',
-    'https://www.reddit.com/user/ethanhawksley/',
-    'https://www.youtube.com/@Ethan-Hawksley',
-    'https://www.instagram.com/ethan.hawksley/',
-  ],
+  sameAs: links,
 } as const;
 
 export const websiteRef = {
@@ -117,27 +101,5 @@ export const personRef = {
     '@id': 'https://hawksley.dev/#author-image',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
   },
-  sameAs: [
-    'https://github.com/ethan-hawksley',
-    'https://www.linkedin.com/in/ethan-hawksley',
-    'https://orcid.org/0009-0005-6663-0640',
-    'https://gravatar.com/ethanhawksley',
-    'https://gitlab.com/ethanhawksley',
-    'https://stackoverflow.com/users/27157731/ethan-hawksley',
-    'https://dev.to/ethanhawksley',
-    'https://hashnode.com/@ethanhawksley',
-    'https://medium.com/@ethan-hawksley',
-    'https://news.ycombinator.com/user?id=ethanhawksley',
-    'https://hackerone.com/ethanhawksley',
-    'https://tryhackme.com/p/ethanhawksley',
-    'https://app.hackthebox.com/public/users/3608157',
-    'https://leetcode.com/u/ethan-hawksley/',
-    'https://ethanhawksley.itch.io',
-    'https://x.com/Ethan_Hawksley',
-    'https://bsky.app/profile/hawksley.dev',
-    'https://mastodon.social/@ethanhawksley',
-    'https://www.reddit.com/user/ethanhawksley/',
-    'https://www.youtube.com/@Ethan-Hawksley',
-    'https://www.instagram.com/ethan.hawksley/',
-  ],
+  sameAs: links,
 } as const;
