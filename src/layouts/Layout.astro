@@ -592,10 +592,10 @@ const isHome = Astro.url.pathname === '/';
     block-size: 1px;
     padding: 0;
     margin: -1px;
+    border: 0;
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
-    border: 0;
   }
 
   @media print {
@@ -639,10 +639,10 @@ const isHome = Astro.url.pathname === '/';
     inset-inline-start: 1rem;
     padding-block: 0.5rem;
     padding-inline: 1rem;
-    background: var(--color-accent);
-    border-radius: 0.25rem;
     color: #fff;
     text-decoration: none;
+    background: var(--color-accent);
+    border-radius: 0.25rem;
   }
 
   .skip-link:focus {
