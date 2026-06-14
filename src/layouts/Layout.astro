@@ -91,7 +91,7 @@ const isHome = Astro.url.pathname === '/';
             tag.setAttribute('content', color);
             tag.removeAttribute('media');
           });
-        // Chrome and Edge have unbypassable FOUC during transitions.
+        // Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
         if (
           navigator.userAgent.includes('Chrome') ||
           navigator.userAgent.includes('Edg')
@@ -400,6 +400,10 @@ const isHome = Astro.url.pathname === '/';
     }
   }
 
+  html.enable-transitions {
+    scroll-behavior: smooth;
+  }
+
   html.enable-transitions,
   html.enable-transitions
     :is(
@@ -446,11 +450,15 @@ const isHome = Astro.url.pathname === '/';
       animation-duration: 0s !important;
       animation-iteration-count: 1 !important;
     }
-  }
 
-  @media (prefers-reduced-motion: no-preference) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto !important;
     }
   }
 
@@ -672,5 +680,6 @@ const isHome = Astro.url.pathname === '/';
     padding-inline-end: max(1.5rem, env(safe-area-inset-right));
     margin-block-end: 1.5rem;
     margin-inline: auto;
+    scroll-margin-block-start: 1.5rem;
   }
 </style>
