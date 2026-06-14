@@ -284,14 +284,14 @@ const jsonLd = {
   }
 
   .prose blockquote {
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
     border-inline-start: 4px solid var(--color-accent);
     border-start-end-radius: 0.5rem;
     border-end-end-radius: 0.5rem;
-    padding-block: 1rem;
-    padding-inline: 1.5rem;
-    background: var(--color-surface);
-    color: var(--color-text-muted);
-    font-style: italic;
   }
 
   .prose blockquote > :first-child {
@@ -340,9 +340,9 @@ const jsonLd = {
   }
 
   .astro-code span {
-    color: light-dark(var(--shiki-light), var(--shiki-dark));
     font-style: var(--shiki-light-font-style);
     font-weight: var(--shiki-light-font-weight);
+    color: light-dark(var(--shiki-light), var(--shiki-dark));
     text-decoration: var(--shiki-light-text-decoration);
   }
 
@@ -370,10 +370,10 @@ const jsonLd = {
     align-self: start;
     justify-self: start;
     padding: 0.25rem;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 0.25rem;
-    background: var(--color-surface);
-    color: var(--color-text-muted);
     opacity: 0;
   }
 
@@ -435,9 +435,9 @@ const jsonLd = {
   article {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
     inline-size: 100%;
     min-inline-size: 0;
-    gap: 1.5rem;
   }
 
   header {
@@ -451,8 +451,8 @@ const jsonLd = {
   .post-meta {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
+    align-items: center;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;
@@ -462,10 +462,10 @@ const jsonLd = {
   .post-nav {
     display: flex;
     flex-direction: column;
-    inline-size: 100%;
     gap: 1rem;
-    margin-block-start: 2.5rem;
+    inline-size: 100%;
     padding-block-start: 1.5rem;
+    margin-block-start: 2.5rem;
     border-block-start: 1px solid var(--color-border);
   }
 
@@ -489,8 +489,8 @@ const jsonLd = {
 
   .nav-direction {
     display: flex;
-    align-items: center;
     gap: 0.35em;
+    align-items: center;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
@@ -530,8 +530,8 @@ const jsonLd = {
 
   .nav-all {
     font-size: var(--font-size-sm);
-    text-align: center;
     color: var(--color-text-muted);
+    text-align: center;
   }
 
   @media (min-width: 40em) {
