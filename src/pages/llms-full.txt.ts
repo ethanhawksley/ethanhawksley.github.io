@@ -1,8 +1,8 @@
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
+import { profiles } from '../utils/profiles.ts';
 
 export async function GET() {
   const allPosts = await getSortedPosts();
-
   const allProjects = await getSortedProjects();
 
   const content = `# Ethan Hawksley
@@ -16,24 +16,43 @@ export async function GET() {
 ## Projects
 ${allProjects
   .map(
-    (project) => `### ${project.data.name}
-${project.data.liveUrl ? `${project.data.liveUrl} ` : ''}${project.data.sourceUrl ?? ''}
-${project.data.stack.join(', ')}
-${project.data.description}
+    (project) => `
+### ${project.data.name}
 
+${project.data.liveUrl ? `${project.data.liveUrl} ` : ''}${project.data.sourceUrl ?? ''}
+
+**Stack:** ${project.data.stack.join(', ')}
+
+${project.data.description}
 `,
   )
-  .join('')}## Blog Posts
+  .join('')}
+## Blog Posts
 ${allPosts
   .map(
     (post) => `
 ### ${post.data.title}
+
 https://hawksley.dev/blog/${post.id}/
+
 ${post.data.description}
-Published ${post.data.pubDate.toISOString().split('T')[0]}${post.data.modDate ? `, Modified ${post.data.modDate.toISOString().split('T')[0]}` : ''}
-${post.body?.replaceAll(/^#/gm, '###') ?? ''}`,
+
+*Published ${post.data.pubDate.toISOString().split('T')[0]}${post.data.modDate ? `, Modified ${post.data.modDate.toISOString().split('T')[0]}` : ''}*
+
+${post.body?.replaceAll(/^#/gm, '###') ?? ''}
+`,
   )
-  .join('\n')}`;
+  .join('\n')}
+## Profiles
+${profiles
+  .map(
+    (section) => `
+### ${section.title}
+
+${section.links.map((link) => `- [${link.name}](${link.url})`).join('\n')}`,
+  )
+  .join('\n')}
+`;
 
   return new Response(content, {
     headers: {
