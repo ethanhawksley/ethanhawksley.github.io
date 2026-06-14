@@ -4,6 +4,8 @@ import A from '../components/A.astro';
 import { personRef, websiteRef } from '../utils/schema';
 import { profiles } from '../utils/profiles';
 
+const allLinks = profiles.flatMap((section) => section.links);
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -16,10 +18,22 @@ const jsonLd = {
       description:
         'Other platforms, profiles, and directories where you can find Ethan Hawksley on the web.',
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      about: { '@id': 'https://hawksley.dev/#person' },
       inLanguage: 'en-GB',
       breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
     },
     personRef,
+    {
+      '@type': 'ItemList',
+      '@id': 'https://hawksley.dev/elsewhere/#profiles',
+      name: 'Ethan Hawksley Online Profiles',
+      itemListElement: allLinks.map((link, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: link.name,
+        url: link.url,
+      })),
+    },
     {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',
@@ -44,14 +58,13 @@ const jsonLd = {
 
 <Layout
   title="Elsewhere | Ethan Hawksley"
-  description="Other platforms, profiles, and directories where you can find Ethan Hawksley on the web."
+  description="Platforms, profiles, and communities where you can find Ethan Hawksley's work, writing, and security research across the web."
   jsonLd={jsonLd}
   ogType="website"
 >
   <h1>Elsewhere</h1>
   <p class="intro">
-    You can find me on various other platforms around the web. Here is a list of
-    my profiles:
+    You can find me on various other platforms around the web.
   </p>
   {
     profiles.map((section) => {
