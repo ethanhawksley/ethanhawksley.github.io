@@ -92,17 +92,20 @@ export default defineConfig({
         'https://hawksley.dev/turing-machine/',
         'https://hawksley.dev/nintendrust/',
       ],
-      changefreq: ChangeFreqEnum.WEEKLY,
+      changefreq: ChangeFreqEnum.MONTHLY,
       priority: 0.7,
       serialize: (item) => {
         if (item.url === 'https://hawksley.dev/') {
-          return { ...item, priority: 1.0, changefreq: ChangeFreqEnum.WEEKLY };
+          return { ...item, priority: 1.0, changefreq: ChangeFreqEnum.MONTHLY };
         }
         if (item.url === 'https://hawksley.dev/blog/') {
-          return { ...item, priority: 0.9, changefreq: ChangeFreqEnum.DAILY };
+          return { ...item, priority: 0.9, changefreq: ChangeFreqEnum.MONTHLY };
+        }
+        if (item.url === 'https://hawksley.dev/elsewhere/') {
+          return { ...item, priority: 0.8, changefreq: ChangeFreqEnum.MONTHLY };
         }
         if (item.url.includes('/blog/')) {
-          return { ...item, priority: 0.8, changefreq: ChangeFreqEnum.MONTHLY };
+          return { ...item, priority: 0.7, changefreq: ChangeFreqEnum.MONTHLY };
         }
         return item;
       },
