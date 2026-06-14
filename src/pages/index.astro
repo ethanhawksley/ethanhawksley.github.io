@@ -4,7 +4,7 @@ import LatestPosts from '../components/LatestPosts.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
-import { personSchema, websiteSchema } from '../utils/schema';
+import { personJsonLd, websiteJsonLd } from '../utils/jsonLd.ts';
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
@@ -41,7 +41,7 @@ const lastModified = new Date(
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
-    websiteSchema,
+    websiteJsonLd,
     {
       '@type': 'ProfilePage',
       '@id': 'https://hawksley.dev/#webpage',
@@ -56,7 +56,7 @@ const jsonLd = {
         '@id': `https://hawksley.dev/blog/${post.id}/#article`,
       })),
     },
-    personSchema,
+    personJsonLd,
     ...projectSchemas,
   ],
 };

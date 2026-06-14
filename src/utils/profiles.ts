@@ -1,4 +1,4 @@
-export const profiles = [
+export const profileSections = [
   {
     title: 'Development',
     links: [
@@ -104,3 +104,9 @@ export const profiles = [
     ],
   },
 ];
+
+export const allProfileLinks = profileSections.flatMap(
+  (section) => section.links,
+);
+
+export const allProfileUrls = allProfileLinks.map((link) => link.url);

@@ -1,5 +1,5 @@
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
-import { profiles } from '../utils/profiles';
+import { profileSections } from '../utils/profiles';
 
 export async function GET() {
   const allPosts = await getSortedPosts();
@@ -44,7 +44,7 @@ ${post.body?.replaceAll(/^#/gm, '###') ?? ''}
   )
   .join('\n')}
 ## Profiles
-${profiles
+${profileSections
   .map(
     (section) => `
 ### ${section.title}

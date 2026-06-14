@@ -1,10 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import A from '../components/A.astro';
-import { personRef, websiteRef } from '../utils/schema';
-import { profiles } from '../utils/profiles';
-
-const allLinks = profiles.flatMap((section) => section.links);
+import { personRef, websiteRef } from '../utils/jsonLd.ts';
+import { allProfileLinks, profileSections } from '../utils/profiles';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -27,7 +25,7 @@ const jsonLd = {
       '@type': 'ItemList',
       '@id': 'https://hawksley.dev/elsewhere/#profiles',
       name: 'Ethan Hawksley Online Profiles',
-      itemListElement: allLinks.map((link, i) => ({
+      itemListElement: allProfileLinks.map((link, i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: link.name,
@@ -67,7 +65,7 @@ const jsonLd = {
     You can find me on various other platforms around the web.
   </p>
   {
-    profiles.map((section) => {
+    profileSections.map((section) => {
       const slug = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       const id = `heading-${slug}`;
       // Internal links are used instead of external for profiles.

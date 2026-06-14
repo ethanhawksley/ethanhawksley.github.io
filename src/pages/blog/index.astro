@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import { getSortedPosts } from '../../utils/content-helpers';
-import { personRef, websiteRef } from '../../utils/schema';
+import { personRef, websiteRef } from '../../utils/jsonLd.ts';
 
 const allPosts = await getSortedPosts();
 const lastModified = new Date(

@@ -7,7 +7,7 @@ import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { getSortedPosts } from '../../utils/content-helpers';
-import { personRef, websiteRef } from '../../utils/schema';
+import { personRef, websiteRef } from '../../utils/jsonLd.ts';
 
 export const getStaticPaths = (async () => {
   const allPosts = await getSortedPosts();

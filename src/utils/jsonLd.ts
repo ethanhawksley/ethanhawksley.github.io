@@ -1,10 +1,6 @@
-import { profiles } from './profiles.ts';
+import { allProfileUrls } from './profiles.ts';
 
-const links = profiles.flatMap((section) =>
-  section.links.map((link) => link.url),
-);
-
-export const websiteSchema = {
+export const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
   url: 'https://hawksley.dev/',
@@ -22,7 +18,7 @@ export const websiteSchema = {
   inLanguage: 'en-GB',
 } as const;
 
-export const personSchema = {
+export const personJsonLd = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
   name: 'Ethan Hawksley',
@@ -81,7 +77,7 @@ export const personSchema = {
       ],
     },
   ],
-  sameAs: links,
+  sameAs: allProfileUrls,
 } as const;
 
 export const websiteRef = {
@@ -101,5 +97,5 @@ export const personRef = {
     '@id': 'https://hawksley.dev/#author-image',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
   },
-  sameAs: links,
+  sameAs: allProfileUrls,
 } as const;
