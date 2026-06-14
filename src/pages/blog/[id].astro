@@ -68,7 +68,7 @@ const jsonLd = {
       },
       url: `https://hawksley.dev/blog/${post.id}/`,
       headline: post.data.title,
-      description: post.data.description,
+      description: post.data.metaDescription,
       image: {
         '@type': 'ImageObject',
         '@id': ogImageUrl ?? 'https://hawksley.dev/og-image-1200x630-v2.png',
@@ -118,7 +118,7 @@ const jsonLd = {
 
 <Layout
   title={`${post.data.title} | Ethan Hawksley`}
-  description={post.data.description}
+  description={post.data.metaDescription}
   jsonLd={jsonLd}
   ogType="article"
   ogImage={ogImageUrl}
