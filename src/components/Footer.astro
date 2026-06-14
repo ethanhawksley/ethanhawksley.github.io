@@ -37,10 +37,11 @@ const year = new Date().getFullYear();
 
   small {
     display: inline-flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 0.4em;
+    gap: 0.5em;
     font-family: var(--font-mono);
     font-size: var(--font-size-xs);
     font-variant-numeric: tabular-nums;
@@ -55,13 +56,18 @@ const year = new Date().getFullYear();
     gap: 0.4em;
   }
 
-  @media (max-width: 34rem) {
+  .mid-dot {
+    display: none;
+  }
+
+  @media (min-width: 34em) {
     small {
-      flex-direction: column;
-      gap: 0.5em;
+      flex-direction: row;
+      gap: 0.4em;
     }
+
     .mid-dot {
-      display: none;
+      display: inline;
     }
   }
 </style>
