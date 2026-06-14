@@ -1,5 +1,5 @@
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
-import { profiles } from '../utils/profiles.ts';
+import { profiles } from '../utils/profiles';
 
 export async function GET() {
   const allPosts = await getSortedPosts();
