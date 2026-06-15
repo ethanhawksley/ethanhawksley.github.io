@@ -9,28 +9,27 @@ import { personJsonLd, websiteJsonLd } from '../utils/jsonLd.ts';
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
 
-const projectSchemas = allProjects
-  .filter((project) => project.data.liveUrl)
-  .map((project) => {
-    const isWeb = project.data.type === 'Web';
+const projectSchemas = allProjects.map((project) => {
+  const isWeb = project.data.type === 'Web';
+  const url = project.data.liveUrl || project.data.sourceUrl;
 
-    return {
-      '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
-      '@id': `${project.data.liveUrl}#app`,
-      name: project.data.name,
-      description: project.data.description,
-      url: project.data.liveUrl,
-      codeRepository: project.data.sourceUrl,
-      applicationCategory: 'DeveloperApplication',
-      operatingSystem: isWeb ? 'Any' : 'All',
-      creator: { '@id': 'https://hawksley.dev/#person' },
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'GBP',
-      },
-    };
-  });
+  return {
+    '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
+    '@id': `${url}#app`,
+    name: project.data.name,
+    description: project.data.description,
+    url: url,
+    codeRepository: project.data.sourceUrl,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: isWeb ? 'Any' : 'All',
+    creator: { '@id': 'https://hawksley.dev/#person' },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'GBP',
+    },
+  };
+});
 
 const lastModified = new Date(
   Math.max(
