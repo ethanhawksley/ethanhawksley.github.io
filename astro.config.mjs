@@ -5,6 +5,8 @@ import mdx from '@astrojs/mdx';
 
 import compress from 'astro-compress';
 
+import { externalPages } from './src/utils/site-urls.ts';
+
 export default defineConfig({
   site: 'https://hawksley.dev',
   prefetch: {
@@ -86,12 +88,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      customPages: [
-        'https://hawksley.dev/cyms-interpreter/',
-        'https://hawksley.dev/mineduo/',
-        'https://hawksley.dev/turing-machine/',
-        'https://hawksley.dev/nintendrust/',
-      ],
+      customPages: externalPages,
       changefreq: ChangeFreqEnum.MONTHLY,
       priority: 0.7,
       serialize: (item) => {
