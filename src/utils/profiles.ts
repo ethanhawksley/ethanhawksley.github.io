@@ -7,6 +7,10 @@ export const profileSections = [
         url: 'https://github.com/ethan-hawksley',
       },
       {
+        name: 'Codeberg',
+        url: 'https://codeberg.org/ethanhawksley',
+      },
+      {
         name: 'GitLab',
         url: 'https://gitlab.com/ethanhawksley',
       },
