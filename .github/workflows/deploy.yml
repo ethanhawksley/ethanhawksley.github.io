@@ -78,3 +78,32 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"purge_everything":true}' \
             "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
+  submit-indexnow:
+    needs: purge-cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit URLs to IndexNow
+        run: |
+          # Fetch sitemap index and get each child sitemap URL
+          SITEMAPS=$(curl -sSf https://hawksley.dev/sitemap-index.xml \
+            | grep -oP '(?<=<loc>)[^<]+')
+  
+          # Extract all page URLs from each sitemap
+          URLS=()
+          while IFS= read -r sitemap; do
+            while IFS= read -r url; do
+              URLS+=("\"$url\"")
+            done < <(curl -sSf "$sitemap" | grep -oP '(?<=<loc>)[^<]+')
+          done <<< "$SITEMAPS"
+  
+          URL_JSON=$(IFS=,; echo "[${URLS[*]}]")
+  
+          curl -sSf \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{
+              \"host\": \"hawksley.dev\",
+              \"key\": \"${{ secrets.INDEXNOW_KEY }}\",
+              \"keyLocation\": \"https://hawksley.dev/${{ secrets.INDEXNOW_KEY }}.txt\",
+              \"urlList\": $URL_JSON
+            }"
