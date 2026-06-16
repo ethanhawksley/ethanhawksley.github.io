@@ -84,20 +84,11 @@ jobs:
     steps:
       - name: Submit URLs to IndexNow
         run: |
-          # Fetch sitemap index and get each child sitemap URL
-          SITEMAPS=$(curl -sSf https://hawksley.dev/sitemap-index.xml \
-            | grep -oP '(?<=<loc>)[^<]+')
-  
-          # Extract all page URLs from each sitemap
-          URLS=()
-          while IFS= read -r sitemap; do
-            while IFS= read -r url; do
-              URLS+=("\"$url\"")
-            done < <(curl -sSf "$sitemap" | grep -oP '(?<=<loc>)[^<]+')
-          done <<< "$SITEMAPS"
-  
-          URL_JSON=$(IFS=,; echo "[${URLS[*]}]")
-  
+          URLS_RAW=$(curl -sSf https://hawksley.dev/sitemap.txt | tr -d '\r' | grep -v '^$')
+
+          URL_JSON=$(echo "$URLS_RAW" | sed 's/\(.*\)/"\1"/' | paste -sd, -)
+          URL_JSON="[$URL_JSON]"
+
           curl -sSf \
             -X POST "https://api.indexnow.org/indexnow" \
             -H "Content-Type: application/json; charset=utf-8" \
