@@ -22,17 +22,6 @@ const jsonLd = {
     },
     personRef,
     {
-      '@type': 'ItemList',
-      '@id': 'https://hawksley.dev/elsewhere/#profiles',
-      name: 'Ethan Hawksley Online Profiles',
-      itemListElement: allProfileLinks.map((link, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        name: link.name,
-        url: link.url,
-      })),
-    },
-    {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',
       itemListElement: [

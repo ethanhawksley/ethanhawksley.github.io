@@ -58,7 +58,7 @@ export const personJsonLd = {
     },
   },
   affiliation: {
-    '@type': 'SecondarySchool',
+    '@type': 'HighSchool',
     name: 'Alcester Grammar School',
     url: 'https://www.alcestergs.co.uk/',
     sameAs: [
@@ -68,7 +68,7 @@ export const personJsonLd = {
   },
   alumniOf: [
     {
-      '@type': 'SecondarySchool',
+      '@type': 'HighSchool',
       name: 'Brooke Weston Academy',
       url: 'https://www.brookeweston.org/',
       sameAs: [
@@ -92,6 +92,17 @@ export const personRef = {
   '@id': 'https://hawksley.dev/#person',
   name: 'Ethan Hawksley',
   url: 'https://hawksley.dev/',
+  jobTitle: 'Computer Science Student',
+  nationality: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
+  knowsAbout: [
+    'Systems Programming',
+    'Cybersecurity',
+    'Low-Level Computing',
+    'Computer Science',
+  ],
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#author-image',

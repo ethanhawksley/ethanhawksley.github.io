@@ -19,13 +19,16 @@ const projectSchemas = allProjects.map((project) => {
     name: project.data.name,
     description: project.data.description,
     url: url,
-    codeRepository: project.data.sourceUrl,
+    isBasedOn: {
+      '@type': 'SoftwareSourceCode',
+      codeRepository: project.data.sourceUrl,
+    },
     applicationCategory: 'DeveloperApplication',
     operatingSystem: isWeb ? 'Any' : 'All',
     creator: { '@id': 'https://hawksley.dev/#person' },
     offers: {
       '@type': 'Offer',
-      price: '0',
+      price: 0,
       priceCurrency: 'GBP',
     },
   };
@@ -51,9 +54,6 @@ const jsonLd = {
       inLanguage: 'en-GB',
       dateCreated: '2024-09-10T00:00:00.000Z',
       dateModified: lastModified,
-      hasPart: allPosts.slice(0, 2).map((post) => ({
-        '@id': `https://hawksley.dev/blog/${post.id}/#article`,
-      })),
     },
     personJsonLd,
     ...projectSchemas,
