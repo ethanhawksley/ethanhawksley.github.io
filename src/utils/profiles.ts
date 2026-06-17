@@ -102,6 +102,10 @@ export const profileSections = [
         url: 'https://medium.com/@ethan-hawksley',
       },
       {
+        name: 'Lobsters',
+        url: 'https://lobste.rs/~ethanhawksley',
+      },
+      {
         name: 'Hacker News',
         url: 'https://news.ycombinator.com/user?id=ethanhawksley',
       },
