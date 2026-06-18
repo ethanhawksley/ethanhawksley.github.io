@@ -12,6 +12,9 @@ const allProjects = await getSortedProjects();
 const projectJsonLds = allProjects.map((project) => {
   const isWeb = project.data.type === 'Web';
   const url = project.data.liveUrl || project.data.sourceUrl;
+  const secondaryUrl = project.data.liveUrl
+    ? project.data.sourceUrl
+    : undefined;
   const slug = project.data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return {
@@ -21,10 +24,12 @@ const projectJsonLds = allProjects.map((project) => {
     name: project.data.name,
     description: project.data.description,
     creator: { '@id': 'https://hawksley.dev/#person' },
-    isBasedOn: project.data.sourceUrl && {
-      '@type': 'SoftwareSourceCode',
-      codeRepository: project.data.sourceUrl,
-    },
+    hasPart: project.data.sourceUrl
+      ? {
+          '@type': 'SoftwareSourceCode',
+          codeRepository: project.data.sourceUrl,
+        }
+      : undefined,
     applicationCategory: 'DeveloperApplication',
     operatingSystem: isWeb ? 'Any' : 'All',
     offers: {
@@ -32,7 +37,7 @@ const projectJsonLds = allProjects.map((project) => {
       price: 0,
       priceCurrency: 'GBP',
     },
-    sameAs: project.data.liveUrl && project.data.sourceUrl,
+    sameAs: secondaryUrl,
   };
 });
 
