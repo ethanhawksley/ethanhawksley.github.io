@@ -44,15 +44,16 @@ if (post.data.coverImage) {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    personJsonLd,
     websiteRef,
     {
       '@type': 'WebPage',
       '@id': `${postUrl}#webpage`,
-      url: `https://hawksley.dev/blog/${post.id}/`,
+      url: postUrl,
       name: post.data.title,
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
-      inLanguage: 'en-GB',
       breadcrumb: { '@id': `${postUrl}#breadcrumb` },
+      inLanguage: 'en-GB',
     },
     {
       '@type': 'Blog',
@@ -65,12 +66,13 @@ const jsonLd = {
     {
       '@type': 'BlogPosting',
       '@id': `${postUrl}#blogposting`,
-      mainEntityOfPage: {
-        '@id': `https://hawksley.dev/blog/${post.id}/#webpage`,
-      },
       url: postUrl,
       headline: post.data.title,
       description: post.data.metaDescription,
+      isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
+      mainEntityOfPage: { '@id': `${postUrl}#webpage` },
+      author: { '@id': 'https://hawksley.dev/#person' },
+      publisher: { '@id': 'https://hawksley.dev/#person' },
       image: {
         '@type': 'ImageObject',
         '@id': `${postUrl}#blogposting-image`,
@@ -81,15 +83,11 @@ const jsonLd = {
       datePublished: post.data.pubDate.toISOString(),
       dateModified:
         post.data.modDate?.toISOString() ?? post.data.pubDate.toISOString(),
-      author: { '@id': 'https://hawksley.dev/#person' },
-      publisher: { '@id': 'https://hawksley.dev/#person' },
-      isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
-      keywords: post.data.tags.join(', '),
-      articleSection: post.data.tags[0] ?? 'Computer Science',
       inLanguage: 'en-GB',
+      articleSection: post.data.tags[0] ?? 'Computer Science',
+      ...(post.data.tags.length > 0 && { keywords: post.data.tags.join(', ') }),
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
-    personJsonLd,
     {
       '@type': 'BreadcrumbList',
       '@id': `${postUrl}#breadcrumb`,

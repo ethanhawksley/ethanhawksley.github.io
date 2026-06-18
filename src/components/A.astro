@@ -42,7 +42,7 @@ function isExternal(linkHref: string) {
   return true;
 }
 
-const isExternalLink = external !== undefined ? external : isExternal(href);
+const isExternalLink = external ?? isExternal(href);
 ---
 
 <a

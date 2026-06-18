@@ -7,6 +7,7 @@ import { allProfileLinks, profileSections } from '../utils/profiles';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    personJsonLd,
     websiteRef,
     {
       '@type': 'CollectionPage',
@@ -17,10 +18,9 @@ const jsonLd = {
         'Online profiles of Ethan Hawksley, a UK-based CS student. Links to his development, social media, technical writing, and security accounts.',
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       about: { '@id': 'https://hawksley.dev/#person' },
-      inLanguage: 'en-GB',
       breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
+      inLanguage: 'en-GB',
     },
-    personJsonLd,
     {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',

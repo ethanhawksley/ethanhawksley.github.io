@@ -5,15 +5,19 @@ import { getSortedPosts } from '../../utils/content-helpers';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd.ts';
 
 const allPosts = await getSortedPosts();
-const lastModified = new Date(
-  Math.max(
-    ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
-  ),
-).toISOString();
+const lastModified =
+  allPosts.length > 0
+    ? new Date(
+        Math.max(
+          ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
+        ),
+      ).toISOString()
+    : new Date().toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    personJsonLd,
     websiteRef,
     {
       '@type': 'CollectionPage',
@@ -24,24 +28,23 @@ const jsonLd = {
         'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.',
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/blog/#blog' },
-      inLanguage: 'en-GB',
-      dateModified: lastModified,
       breadcrumb: { '@id': 'https://hawksley.dev/blog/#breadcrumb' },
+      dateModified: lastModified,
+      inLanguage: 'en-GB',
     },
     {
       '@type': 'Blog',
       '@id': 'https://hawksley.dev/blog/#blog',
-      mainEntityOfPage: { '@id': 'https://hawksley.dev/blog/#webpage' },
       name: "Ethan Hawksley's Blog",
       description:
         'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.',
-      publisher: { '@id': 'https://hawksley.dev/#person' },
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
-      inLanguage: 'en-GB',
+      mainEntityOfPage: { '@id': 'https://hawksley.dev/blog/#webpage' },
+      publisher: { '@id': 'https://hawksley.dev/#person' },
       dateModified: lastModified,
+      inLanguage: 'en-GB',
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
-    personJsonLd,
     {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/blog/#breadcrumb',

@@ -21,11 +21,10 @@ export const websiteJsonLd = {
 export const personJsonLd = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
+  url: 'https://hawksley.dev/',
   name: 'Ethan Hawksley',
   givenName: 'Ethan',
   familyName: 'Hawksley',
-  url: 'https://hawksley.dev/',
-  jobTitle: 'Computer Science Student',
   description:
     'UK-based CS student focused on systems programming and cybersecurity.',
   disambiguatingDescription:
@@ -38,18 +37,20 @@ export const personJsonLd = {
     width: 1200,
     height: 1200,
   },
-  gender: 'https://schema.org/Male',
-  nationality: {
-    '@type': 'Country',
-    name: 'United Kingdom',
-  },
+  inLanguage: 'en-GB',
   knowsLanguage: 'en-GB',
+  gender: 'https://schema.org/Male',
+  jobTitle: 'Computer Science Student',
   knowsAbout: [
     'Systems Programming',
     'Cybersecurity',
     'Low-Level Computing',
     'Computer Science',
   ],
+  nationality: {
+    '@type': 'Country',
+    name: 'United Kingdom',
+  },
   homeLocation: {
     '@type': 'Place',
     address: {
@@ -83,6 +84,6 @@ export const personJsonLd = {
 export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  name: 'Ethan Hawksley',
   url: 'https://hawksley.dev/',
+  name: 'Ethan Hawksley',
 } as const;
