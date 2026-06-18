@@ -9,9 +9,9 @@ export const websiteJsonLd = {
   description:
     'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.',
   publisher: { '@id': 'https://hawksley.dev/#person' },
-  logo: {
+  image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#logo',
+    '@id': 'https://hawksley.dev/#website-image',
     url: 'https://hawksley.dev/logo-square.png',
     caption: 'Ethan Hawksley Logo',
   },
@@ -32,7 +32,7 @@ export const personJsonLd = {
     'CS student & systems/cybersecurity enthusiast, UK',
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#author-image',
+    '@id': 'https://hawksley.dev/#person-image',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
     caption: 'Ethan Hawksley',
     width: 1200,
@@ -105,7 +105,7 @@ export const personRef = {
   ],
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#author-image',
+    '@id': 'https://hawksley.dev/#person-image',
     url: 'https://hawksley.dev/avatar-1200x1200.png',
   },
   sameAs: allProfileUrls,
