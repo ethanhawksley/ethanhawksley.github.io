@@ -86,27 +86,3 @@ export const websiteRef = {
   name: 'Ethan Hawksley',
   url: 'https://hawksley.dev/',
 } as const;
-
-export const personRef = {
-  '@type': 'Person',
-  '@id': 'https://hawksley.dev/#person',
-  name: 'Ethan Hawksley',
-  url: 'https://hawksley.dev/',
-  jobTitle: 'Computer Science Student',
-  nationality: {
-    '@type': 'Country',
-    name: 'United Kingdom',
-  },
-  knowsAbout: [
-    'Systems Programming',
-    'Cybersecurity',
-    'Low-Level Computing',
-    'Computer Science',
-  ],
-  image: {
-    '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#person-image',
-    url: 'https://hawksley.dev/avatar-1200x1200.png',
-  },
-  sameAs: allProfileUrls,
-} as const;

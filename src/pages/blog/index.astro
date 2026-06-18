@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PostPreview from '../../components/PostPreview.astro';
 import { getSortedPosts } from '../../utils/content-helpers';
-import { personRef, websiteRef } from '../../utils/jsonLd.ts';
+import { personJsonLd, websiteRef } from '../../utils/jsonLd.ts';
 
 const allPosts = await getSortedPosts();
 const lastModified = new Date(
@@ -41,7 +41,7 @@ const jsonLd = {
       dateModified: lastModified,
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
-    personRef,
+    personJsonLd,
     {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/blog/#breadcrumb',
