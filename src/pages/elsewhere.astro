@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import A from '../components/A.astro';
-import { personRef, websiteRef } from '../utils/jsonLd.ts';
+import { personJsonLd, websiteRef } from '../utils/jsonLd.ts';
 import { allProfileLinks, profileSections } from '../utils/profiles';
 
 const jsonLd = {
@@ -20,7 +20,7 @@ const jsonLd = {
       inLanguage: 'en-GB',
       breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
     },
-    personRef,
+    personJsonLd,
     {
       '@type': 'BreadcrumbList',
       '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',
