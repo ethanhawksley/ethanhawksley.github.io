@@ -12,13 +12,15 @@ const allProjects = await getSortedProjects();
 const projectSchemas = allProjects.map((project) => {
   const isWeb = project.data.type === 'Web';
   const url = project.data.liveUrl || project.data.sourceUrl;
+  const slug = project.data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return {
     '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
-    '@id': `${url}#app`,
+    '@id': `https://hawksley.dev/#project-${slug}`,
     name: project.data.name,
     description: project.data.description,
     url: url,
+    sameAs: project.data.liveUrl ? project.data.sourceUrl : undefined,
     isBasedOn: {
       '@type': 'SoftwareSourceCode',
       codeRepository: project.data.sourceUrl,
