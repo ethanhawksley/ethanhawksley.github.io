@@ -14,7 +14,8 @@ export async function GET(context: APIContext) {
     feed_url: `${siteUrl}feed.json`,
     authors: [{ name: 'Ethan Hawksley', url: siteUrl }],
     language: 'en-GB',
-    favicon: 'https://hawksley.dev/favicon-v2.ico',
+    favicon: 'https://hawksley.dev/favicon-48x48-v2.png',
+    icon: 'https://hawksley.dev/android-chrome-512x512-v2.png',
     items: await Promise.all(
       allPosts.map(async (post) => ({
         id: `${siteUrl}blog/${post.id}/`,
