@@ -14,7 +14,7 @@ function getOrdinalSuffix(num: number) {
 
 const day = date.getUTCDate();
 const suffix = getOrdinalSuffix(day);
-const formatted = `${day}${suffix} ${date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'Europe/London' })}`;
+const formatted = `${day}${suffix} ${date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' })}`;
 ---
 
 <time datetime={date.toISOString().split('T')[0]}>
