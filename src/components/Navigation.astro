@@ -23,7 +23,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
       <a
         href="/blog/"
         class:list={[{ active: isBlog }]}
-        aria-current={isBlogIndex ? 'page' : isBlog ? 'true' : undefined}
+        aria-current={isBlogIndex ? 'page' : undefined}
       >
         Blog</a
       >
