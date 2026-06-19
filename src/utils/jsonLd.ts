@@ -37,9 +37,7 @@ export const personJsonLd = {
     width: 1200,
     height: 1200,
   },
-  inLanguage: 'en-GB',
   knowsLanguage: 'en-GB',
-  gender: 'https://schema.org/Male',
   jobTitle: 'Computer Science Student',
   knowsAbout: [
     'Systems Programming',
