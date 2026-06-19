@@ -92,7 +92,7 @@ const isHome = Astro.url.pathname === '/';
             tag.setAttribute('content', color);
             tag.removeAttribute('media');
           });
-        // Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
+        // 06/2026: Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
         if (
           navigator.userAgent.includes('Chrome') ||
           navigator.userAgent.includes('Edg')
