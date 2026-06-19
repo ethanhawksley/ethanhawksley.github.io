@@ -30,7 +30,7 @@ const projectJsonLds = allProjects.map((project) => {
           codeRepository: project.data.sourceUrl,
         }
       : undefined,
-    applicationCategory: 'DeveloperApplication',
+    applicationCategory: project.data.applicationCategory,
     operatingSystem: isWeb ? 'Any' : 'All',
     offers: {
       '@type': 'Offer',
