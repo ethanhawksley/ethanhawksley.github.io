@@ -7,22 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@resvg/resvg-js':
-        specifier: ^2.6.2
-        version: 2.6.2
-      astro-compress:
-        specifier: ^2.4.1
-        version: 2.4.1(@types/node@25.9.3)(rollup@4.62.0)(yaml@2.9.0)
-      canvaskit-wasm:
-        specifier: ^0.41.1
-        version: 0.41.1
-      marked:
-        specifier: ^18.0.5
-        version: 18.0.5
-      satori:
-        specifier: ^0.26.0
-        version: 0.26.0
     devDependencies:
       '@astrojs/check':
         specifier: ^0.9.9
@@ -39,9 +23,21 @@ importers:
       '@astrojs/ts-plugin':
         specifier: ^1.10.9
         version: 1.10.9
+      '@resvg/resvg-js':
+        specifier: ^2.6.2
+        version: 2.6.2
       astro:
         specifier: ^6.4.8
         version: 6.4.8(@types/node@25.9.3)(lightningcss@1.32.0)(rollup@4.62.0)(terser@5.46.1)(yaml@2.9.0)
+      astro-compress:
+        specifier: ^2.4.1
+        version: 2.4.1(@types/node@25.9.3)(rollup@4.62.0)(yaml@2.9.0)
+      canvaskit-wasm:
+        specifier: ^0.41.1
+        version: 0.41.1
+      marked:
+        specifier: ^18.0.5
+        version: 18.0.5
       postcss-html:
         specifier: ^1.8.1
         version: 1.8.1
@@ -51,6 +47,9 @@ importers:
       prettier-plugin-astro:
         specifier: 0.14.1
         version: 0.14.1
+      satori:
+        specifier: ^0.26.0
+        version: 0.26.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -975,8 +974,8 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
-  anynum@1.0.0:
-    resolution: {integrity: sha512-xjR9/zBVnUOP6ztMIIgShjsxui80nQUQH+5xJnvrYLs+90bF25/KJqaAi8mk+B4RDtX1Nspi6fmp4YTEts8SfA==}
+  anynum@1.0.1:
+    resolution: {integrity: sha512-N6//FLET/tXYNM/F6ABca1oH6fWB+KlTt909Le28WMDBk8oaT4vY17DCrwg2MvmuqUKt3Ni4N5dGJ/EoBgcO6A==}
 
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
@@ -2298,8 +2297,8 @@ packages:
     resolution: {integrity: sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==}
     engines: {node: '>=12'}
 
-  strnum@2.4.0:
-    resolution: {integrity: sha512-sHrVyWWdq28RbhjuJdZsA1SnGRJV6NiXbk6AXBxDOsgAcA+lmpUZCYjOdLBxkXMwis6RRe7dlZt4VlIWFVzkmg==}
+  strnum@2.4.1:
+    resolution: {integrity: sha512-M9eUSMT2dCB2cTNPG7UYj6KuK7RJR2SN2+yCV/fTW3xzTCS6EaGZ5pSMgDIjB7r8zSfTGk+dvvn9rTjpVS9Mwg==}
 
   style-to-js@1.1.21:
     resolution: {integrity: sha512-RjQetxJrrUJLQPHbLku6U/ocGtzyjbJMP9lCNK7Ag0CNh690nSH8woqWH9u16nMjYBAok+i7JO1NP2pOy8IsPQ==}
@@ -3547,7 +3546,7 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
-  anynum@1.0.0: {}
+  anynum@1.0.1: {}
 
   arg@5.0.2: {}
 
@@ -4043,7 +4042,7 @@ snapshots:
       fast-xml-builder: 1.2.0
       is-unsafe: 1.0.1
       path-expression-matcher: 1.5.0
-      strnum: 2.4.0
+      strnum: 2.4.1
       xml-naming: 0.1.0
 
   fastest-levenshtein@1.0.16: {}
@@ -5414,9 +5413,9 @@ snapshots:
     dependencies:
       ansi-regex: 6.2.2
 
-  strnum@2.4.0:
+  strnum@2.4.1:
     dependencies:
-      anynum: 1.0.0
+      anynum: 1.0.1
 
   style-to-js@1.1.21:
     dependencies:
