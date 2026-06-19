@@ -1,5 +1,5 @@
 import type { APIContext } from 'astro';
-import { getSortedPosts } from '../utils/content-helpers';
+import { getSortedPosts, getPostHtml } from '../utils/content-helpers';
 
 export async function GET(context: APIContext) {
   const allPosts = await getSortedPosts();
@@ -15,15 +15,18 @@ export async function GET(context: APIContext) {
     authors: [{ name: 'Ethan Hawksley', url: siteUrl }],
     language: 'en-GB',
     favicon: 'https://hawksley.dev/favicon-v2.ico',
-    items: allPosts.map((post) => ({
-      id: `${siteUrl}blog/${post.id}/`,
-      url: `${siteUrl}blog/${post.id}/`,
-      title: post.data.title,
-      summary: post.data.description,
-      content_text: post.data.description,
-      date_published: post.data.pubDate.toISOString(),
-      tags: post.data.tags,
-    })),
+    items: await Promise.all(
+      allPosts.map(async (post) => ({
+        id: `${siteUrl}blog/${post.id}/`,
+        url: `${siteUrl}blog/${post.id}/`,
+        title: post.data.title,
+        summary: post.data.description,
+        content_text: post.data.description,
+        content_html: await getPostHtml(post, siteUrl),
+        date_published: post.data.pubDate.toISOString(),
+        tags: post.data.tags,
+      })),
+    ),
   };
 
   return new Response(JSON.stringify(feed), {
