@@ -4,24 +4,15 @@ import { readFileSync, existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
+import type { APIRoute } from 'astro';
 import { getSortedPosts } from '../../utils/content-helpers';
 
 const VERSION = 'v1';
-
-const bgBuffer = readFileSync('./src/assets/og-background.png');
-const fontBold = readFileSync('./src/assets/IBMPlexSans-Bold.ttf');
-const fontRegular = readFileSync('./src/assets/IBMPlexSans-Regular.ttf');
-
-const bgBase64 = `data:image/png;base64,${bgBuffer.toString('base64')}`;
-
-const baseAssetsHash = createHash('sha256')
-  .update(bgBuffer)
-  .update(fontBold)
-  .update(fontRegular)
-  .update(VERSION)
-  .digest('hex');
-
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
+
+let bgBase64: string | null = null;
+let fontBold: Buffer | null = null;
+let fontRegular: Buffer | null = null;
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
@@ -72,15 +63,12 @@ export async function getStaticPaths() {
   return [...staticPaths, ...blogPaths];
 }
 
-export async function GET({
-  props,
-}: {
-  props: { page: { title: string; description?: string } };
-}) {
-  const { title, description = '' } = props.page;
+export const GET: APIRoute = async ({ props }) => {
+  const page = props.page as { title: string; description?: string };
+  const { title, description = '' } = page;
 
   const hash = createHash('sha256')
-    .update(baseAssetsHash)
+    .update(VERSION)
     .update(title)
     .update(description)
     .digest('hex');
@@ -91,11 +79,27 @@ export async function GET({
     if (existsSync(cacheFilePath)) {
       const cachedPng = await readFile(cacheFilePath);
       return new Response(new Uint8Array(cachedPng), {
-        headers: { 'Content-Type': 'image/png' },
+        headers: {
+          'Content-Type': 'image/png',
+        },
       });
     }
   } catch (error) {
-    console.warn('cache read error:', error);
+    console.warn('Cache read error:', error);
+  }
+
+  if (!bgBase64 || !fontBold || !fontRegular) {
+    const bgBuffer = readFileSync(
+      path.join(process.cwd(), 'src/assets/og-background.png'),
+    );
+    bgBase64 = `data:image/png;base64,${bgBuffer.toString('base64')}`;
+
+    fontBold = readFileSync(
+      path.join(process.cwd(), 'src/assets/IBMPlexSans-Bold.ttf'),
+    );
+    fontRegular = readFileSync(
+      path.join(process.cwd(), 'src/assets/IBMPlexSans-Regular.ttf'),
+    );
   }
 
   const backgroundNode = {
@@ -104,7 +108,8 @@ export async function GET({
       src: bgBase64,
       style: {
         position: 'absolute',
-        inset: 0,
+        top: 0,
+        left: 0,
         width: '1200px',
         height: '630px',
       },
@@ -156,7 +161,6 @@ export async function GET({
         padding: '80px',
         boxSizing: 'border-box',
       },
-
       children: [titleNode, descriptionNode].filter(Boolean),
     },
   };
@@ -178,7 +182,12 @@ export async function GET({
     width: 1200,
     height: 630,
     fonts: [
-      { name: 'IBM Plex Sans', data: fontBold, weight: 700, style: 'normal' },
+      {
+        name: 'IBM Plex Sans',
+        data: fontBold,
+        weight: 700,
+        style: 'normal',
+      },
       {
         name: 'IBM Plex Sans',
         data: fontRegular,
@@ -193,10 +202,12 @@ export async function GET({
   try {
     await writeFile(cacheFilePath, png);
   } catch (error) {
-    console.warn('cache write error:', error);
+    console.warn('Cache write error:', error);
   }
 
   return new Response(new Uint8Array(png), {
-    headers: { 'Content-Type': 'image/png' },
+    headers: {
+      'Content-Type': 'image/png',
+    },
   });
-}
+};
