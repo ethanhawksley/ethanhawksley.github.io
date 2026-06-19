@@ -1,4 +1,4 @@
-import { allProfileUrls } from '../utils/profiles.ts';
+import { allProfileUrls } from '../utils/profiles';
 
 export async function GET() {
   return new Response(allProfileUrls.join('\n') + '\n', {

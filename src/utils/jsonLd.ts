@@ -1,4 +1,4 @@
-import { allProfileUrls } from './profiles.ts';
+import { allProfileUrls } from './profiles';
 
 export const websiteJsonLd = {
   '@type': 'WebSite',
