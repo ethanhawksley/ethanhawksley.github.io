@@ -62,12 +62,6 @@ const jsonLd = {
       name: 'About Ethan Hawksley',
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       mainEntity: { '@id': 'https://hawksley.dev/#person' },
-      hasPart: allPosts.slice(0, 2).map((post) => ({
-        '@type': 'Article',
-        headline: post.data.title,
-        url: `https://hawksley.dev/blog/${post.id}/`,
-        author: { '@id': 'https://hawksley.dev/#person' },
-      })),
       dateCreated: '2024-09-10T00:00:00.000Z',
       dateModified: lastModified,
       inLanguage: 'en-GB',
