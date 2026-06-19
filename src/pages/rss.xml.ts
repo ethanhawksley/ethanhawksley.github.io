@@ -1,9 +1,10 @@
 import type { APIContext } from 'astro';
 import rss from '@astrojs/rss';
-import { getSortedPosts } from '../utils/content-helpers';
+import { getSortedPosts, getPostHtml } from '../utils/content-helpers';
 
 export async function GET(context: APIContext) {
   const allPosts = await getSortedPosts();
+  const siteUrl = context.site!.toString();
 
   return rss({
     title: "Ethan Hawksley's Blog",
@@ -13,13 +14,16 @@ export async function GET(context: APIContext) {
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom',
     },
-    items: allPosts.map((post) => ({
-      title: post.data.title,
-      pubDate: post.data.pubDate,
-      description: post.data.description,
-      link: `/blog/${post.id}/`,
-      categories: post.data.tags,
-    })),
+    items: await Promise.all(
+      allPosts.map(async (post) => ({
+        title: post.data.title,
+        pubDate: post.data.pubDate,
+        description: post.data.description,
+        link: `/blog/${post.id}/`,
+        categories: post.data.tags,
+        content: await getPostHtml(post, siteUrl),
+      })),
+    ),
     customData: [
       `<language>en-GB</language>`,
       `<copyright>Content licensed under CC BY 4.0</copyright>`,
