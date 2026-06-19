@@ -4,7 +4,7 @@ import LatestPosts from '../components/LatestPosts.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
-import { personJsonLd, websiteJsonLd } from '../utils/jsonLd.ts';
+import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
 
 const ogImageUrl = new URL('/og/home.png', Astro.site).toString();
 

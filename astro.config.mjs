@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 
 import compress from 'astro-compress';
 
-import { externalPages } from './src/utils/site-urls.ts';
+import { externalPages } from './src/utils/site-urls';
 
 export default defineConfig({
   site: 'https://hawksley.dev',

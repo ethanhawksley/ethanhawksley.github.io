@@ -1,4 +1,4 @@
-import { getAllPages } from '../utils/site-urls.ts';
+import { getAllPages } from '../utils/site-urls';
 
 export async function GET() {
   const allPages = await getAllPages();
