@@ -18,17 +18,18 @@ interface Props {
   };
 }
 
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const defaultOgImage = new URL('/og/home.png', Astro.site);
+
 const {
   title,
   description,
   jsonLd,
   robots = 'max-image-preview:large, max-snippet:-1',
   ogType = 'website',
-  ogImage = 'https://hawksley.dev/og-image-1200x630-v2.png',
+  ogImage = defaultOgImage,
   article,
 } = Astro.props;
-
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 const isIndexable = !robots.includes('noindex');
 

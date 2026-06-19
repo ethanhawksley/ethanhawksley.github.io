@@ -6,6 +6,8 @@ import SocialLinks from '../components/SocialLinks.astro';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 import { personJsonLd, websiteJsonLd } from '../utils/jsonLd.ts';
 
+const ogImageUrl = new URL('/og/home.png', Astro.site).toString();
+
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
 
@@ -76,6 +78,7 @@ const jsonLd = {
   description="The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity."
   jsonLd={jsonLd}
   ogType="profile"
+  ogImage={ogImageUrl}
 >
   <section class="hero" aria-labelledby="hero-heading">
     <h1 id="hero-heading">Ethan Hawksley</h1>

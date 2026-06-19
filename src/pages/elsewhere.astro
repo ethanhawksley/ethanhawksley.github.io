@@ -41,6 +41,8 @@ const jsonLd = {
     },
   ],
 };
+
+const ogImageUrl = new URL('/og/elsewhere.png', Astro.site).toString();
 ---
 
 <Layout
@@ -48,6 +50,7 @@ const jsonLd = {
   description="Online profiles of Ethan Hawksley, a UK-based CS student. Links to his development, social media, technical writing, and security accounts."
   jsonLd={jsonLd}
   ogType="website"
+  ogImage={ogImageUrl}
 >
   <h1>Elsewhere</h1>
   <p class="intro">
