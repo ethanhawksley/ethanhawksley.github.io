@@ -37,6 +37,7 @@ export default defineConfig({
                 className: ['copy-button'],
                 type: 'button',
                 'aria-label': 'Copy code',
+                'aria-live': 'polite',
               },
               children: [
                 {
