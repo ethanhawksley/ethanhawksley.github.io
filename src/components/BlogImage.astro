@@ -26,7 +26,7 @@ const isDev = import.meta.env.DEV;
     <Picture
       src={src}
       alt={alt}
-      formats={isDev ? ['webp'] : ['avif']}
+      formats={isDev ? ['webp'] : ['avif', 'webp']}
       fallbackFormat={isDev ? 'webp' : 'jpeg'}
       layout="constrained"
       sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
