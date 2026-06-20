@@ -23,6 +23,10 @@ export const profileSections = [
         url: 'https://leetcode.com/u/ethan-hawksley/',
       },
       {
+        name: 'crates.io',
+        url: 'https://crates.io/users/ethan-hawksley',
+      },
+      {
         name: 'itch.io',
         url: 'https://ethanhawksley.itch.io',
       },
