@@ -1,11 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-
 import compress from 'astro-compress';
-
-import { externalPages } from './src/utils/site-urls';
 
 export default defineConfig({
   site: 'https://hawksley.dev',
@@ -87,26 +83,6 @@ export default defineConfig({
     },
   },
   integrations: [
-    sitemap({
-      customPages: externalPages,
-      changefreq: ChangeFreqEnum.MONTHLY,
-      priority: 0.7,
-      serialize: (item) => {
-        if (item.url === 'https://hawksley.dev/') {
-          return { ...item, priority: 1.0, changefreq: ChangeFreqEnum.MONTHLY };
-        }
-        if (item.url === 'https://hawksley.dev/blog/') {
-          return { ...item, priority: 0.9, changefreq: ChangeFreqEnum.MONTHLY };
-        }
-        if (item.url === 'https://hawksley.dev/elsewhere/') {
-          return { ...item, priority: 0.8, changefreq: ChangeFreqEnum.MONTHLY };
-        }
-        if (item.url.includes('/blog/')) {
-          return { ...item, priority: 0.7, changefreq: ChangeFreqEnum.MONTHLY };
-        }
-        return item;
-      },
-    }),
     mdx(),
     compress({
       Image: false,
