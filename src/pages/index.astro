@@ -13,25 +13,15 @@ const allProjects = await getSortedProjects();
 
 const projectJsonLds = allProjects.map((project) => {
   const isWeb = project.data.type === 'Web';
-  const url = project.data.liveUrl || project.data.sourceUrl;
-  const secondaryUrl = project.data.liveUrl
-    ? project.data.sourceUrl
-    : undefined;
   const slug = project.data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return {
     '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
     '@id': `https://hawksley.dev/#project-${slug}`,
-    url: url,
+    url: project.data.url,
     name: project.data.name,
     description: project.data.description,
     creator: { '@id': 'https://hawksley.dev/#person' },
-    hasPart: project.data.sourceUrl
-      ? {
-          '@type': 'SoftwareSourceCode',
-          codeRepository: project.data.sourceUrl,
-        }
-      : undefined,
     applicationCategory: project.data.applicationCategory,
     operatingSystem: isWeb ? 'Any' : 'All',
     offers: {
@@ -39,7 +29,7 @@ const projectJsonLds = allProjects.map((project) => {
       price: 0,
       priceCurrency: 'GBP',
     },
-    sameAs: secondaryUrl,
+    sameAs: project.data.links?.map((link) => link.url),
   };
 });
 
@@ -96,8 +86,8 @@ const jsonLd = {
           <ProjectPreview
             name={project.data.name}
             description={project.data.description}
-            sourceUrl={project.data.sourceUrl}
-            liveUrl={project.data.liveUrl}
+            links={project.data.links}
+            url={project.data.url}
             type={project.data.type}
             stack={project.data.stack}
           />

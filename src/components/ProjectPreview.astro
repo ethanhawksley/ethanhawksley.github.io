@@ -1,30 +1,31 @@
 ---
 import A from './A.astro';
 
+interface ProjectLink {
+  name: string;
+  url: string;
+}
+
 interface Props {
   name: string;
   description: string;
-  sourceUrl?: string;
-  liveUrl?: string;
+  url: string;
+  links?: ProjectLink[];
   type: 'Web' | 'CLI' | 'Tool';
   stack: string[];
 }
 
-const { name, description, sourceUrl, liveUrl, type, stack } = Astro.props;
-
-const projectUrl = liveUrl ?? sourceUrl;
+const { name, description, links = [], url, type, stack } = Astro.props;
 ---
 
 <li>
   <article>
     <h3>
       {
-        projectUrl ? (
-          <A href={projectUrl} pressable>
+        (
+          <A href={url} pressable>
             {name}
           </A>
-        ) : (
-          name
         )
       }
     </h3>
@@ -44,17 +45,17 @@ const projectUrl = liveUrl ?? sourceUrl;
         }
       </span>
       {
-        sourceUrl && (
+        links.map((link) => (
           <span class="meta-action">
             <A
-              href={sourceUrl}
-              aria-label={`View source code for ${name}`}
+              href={link.url}
+              aria-label={`View ${name} ${link.name.toLowerCase()}`}
               pressable
             >
-              {'Source'}
+              {link.name}
             </A>
           </span>
-        )
+        ))
       }
     </footer>
   </article>
