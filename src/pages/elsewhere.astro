@@ -63,7 +63,7 @@ const ogImageUrl = new URL('/og/elsewhere.png', Astro.site).toString();
       // Internal links are used instead of external for profiles.
       // It reduces the visual clutter of arrows, whilst staying consistent UX.
       return (
-        <section class="group" aria-labelledby={id}>
+        <section class="group">
           <h2 id={id}>{section.title}</h2>
           <ul class="elsewhere-list" role="list">
             {section.links.map((link) => (
