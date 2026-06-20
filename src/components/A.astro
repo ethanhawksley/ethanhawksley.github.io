@@ -44,9 +44,13 @@ const isExternalLink = external ?? isExternal(href);
   style={style}
   data-pressable={pressable || undefined}
   {...rest}
-  ><span><slot /></span>{
+  ><span
+    ><slot />{
+      isExternalLink && <span class="sr-only">, opens in new tab</span>
+    }</span
+  >{
     isExternalLink && (
-      <svg width="14" height="14" role="img" aria-label="(opens in a new tab)">
+      <svg width="14" height="14" role="img" aria-hidden="true">
         <use href="#icon-external" />
       </svg>
     )
