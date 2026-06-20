@@ -4,6 +4,9 @@ description: 'A high-performance CLI utility written in Rust that synchronises Y
 type: 'CLI'
 stack: ['Rust']
 applicationCategory: 'MultimediaApplication'
-sourceUrl: 'https://github.com/ethan-hawksley/yt-play'
+url: 'https://crates.io/crates/yt-play'
+links:
+  - name: 'Source'
+    url: 'https://github.com/ethan-hawksley/yt-play'
 priority: 3
 ---

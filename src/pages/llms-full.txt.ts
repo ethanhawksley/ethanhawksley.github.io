@@ -15,17 +15,22 @@ export async function GET() {
 
 ## Projects
 ${allProjects
-  .map(
-    (project) => `
+  .map((project) => {
+    const projectUrls = [
+      project.data.url,
+      ...(project.data.links?.map((link) => link.url) || []),
+    ];
+
+    return `
 ### ${project.data.name}
 
-${project.data.liveUrl ? `${project.data.liveUrl} ` : ''}${project.data.sourceUrl ?? ''}
+${projectUrls.join(', ')}
 
 **Stack:** ${project.data.stack.join(', ')}
 
 ${project.data.description}
-`,
-  )
+`;
+  })
   .join('')}
 ## Blog Posts
 ${allPosts
