@@ -582,25 +582,31 @@ const jsonLd = {
           '.copy-button',
         );
         if (!button) return;
+
         const code = button
           .closest('pre')
           ?.querySelector('code')
           ?.textContent?.trimEnd();
         if (!code) return;
+
         try {
           await navigator.clipboard.writeText(code);
         } catch {
           return;
         }
+
         button.dataset.copied = '';
-        button.setAttribute('aria-label', 'Copied');
+        const liveRegion = document.getElementById('a11y-status-announce')!;
+        liveRegion.textContent = 'Code copied to clipboard';
+
         const prev = timeouts.get(button);
         if (prev) clearTimeout(prev);
+
         timeouts.set(
           button,
           setTimeout(() => {
             delete button.dataset.copied;
-            button.setAttribute('aria-label', 'Copy code');
+            liveRegion.textContent = '';
           }, 2000),
         );
       },

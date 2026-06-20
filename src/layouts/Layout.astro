@@ -255,6 +255,7 @@ const isHome = Astro.url.pathname === '/';
       </main>
       <Footer />
     </div>
+    <div id="a11y-status-announce" class="sr-only" aria-live="polite"></div>
     <script>
       function syncMeta(doc: Document) {
         const isDark =

@@ -28,6 +28,7 @@ export default defineConfig({
         {
           name: 'add-copy-button',
           pre(node) {
+            node.properties.role = 'region';
             node.properties.tabindex = '0';
             node.properties['aria-label'] = 'Code snippet';
             node.children.push({
@@ -37,7 +38,6 @@ export default defineConfig({
                 className: ['copy-button'],
                 type: 'button',
                 'aria-label': 'Copy code',
-                'aria-live': 'polite',
               },
               children: [
                 {
