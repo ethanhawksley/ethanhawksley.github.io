@@ -39,6 +39,7 @@ const { name, description, links = [], url, type, stack } = Astro.props;
               <span class="separator" aria-hidden="true">
                 /
               </span>
+              <span class="sr-only">Stack: </span>
               <span>{stack.join(', ')}</span>
             </>
           )
