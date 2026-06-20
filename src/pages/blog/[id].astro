@@ -593,7 +593,7 @@ const jsonLd = {
           return;
         }
         button.dataset.copied = '';
-        button.setAttribute('aria-label', 'Copied!');
+        button.setAttribute('aria-label', 'Copied');
         const prev = timeouts.get(button);
         if (prev) clearTimeout(prev);
         timeouts.set(
