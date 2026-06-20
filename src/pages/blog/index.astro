@@ -5,14 +5,7 @@ import { getSortedPosts } from '../../utils/content-helpers';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 
 const allPosts = await getSortedPosts();
-const lastModified =
-  allPosts.length > 0
-    ? new Date(
-        Math.max(
-          ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
-        ),
-      ).toISOString()
-    : new Date().toISOString();
+const lastModified = allPosts[0].data.pubDate.toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',

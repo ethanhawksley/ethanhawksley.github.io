@@ -33,14 +33,7 @@ const projectJsonLds = allProjects.map((project) => {
   };
 });
 
-const lastModified =
-  allPosts.length > 0
-    ? new Date(
-        Math.max(
-          ...allPosts.map((p) => (p.data.modDate || p.data.pubDate).getTime()),
-        ),
-      ).toISOString()
-    : new Date().toISOString();
+const lastModified = allPosts[0].data.pubDate.toISOString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
