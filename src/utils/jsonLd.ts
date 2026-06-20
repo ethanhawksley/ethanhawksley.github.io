@@ -8,6 +8,7 @@ export const websiteJsonLd = {
   alternateName: ['hawksley.dev', 'Hawksley'],
   description:
     'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.',
+  inLanguage: 'en-GB',
   publisher: { '@id': 'https://hawksley.dev/#person' },
   image: {
     '@type': 'ImageObject',
@@ -15,7 +16,6 @@ export const websiteJsonLd = {
     url: 'https://hawksley.dev/logo-square.png',
     caption: 'Ethan Hawksley Logo',
   },
-  inLanguage: 'en-GB',
 } as const;
 
 export const personJsonLd = {
@@ -29,16 +29,8 @@ export const personJsonLd = {
     'UK-based CS student focused on systems programming and cybersecurity.',
   disambiguatingDescription:
     'CS student & systems/cybersecurity enthusiast, UK',
-  image: {
-    '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#person-image',
-    url: 'https://hawksley.dev/avatar-1200x1200.png',
-    caption: 'Ethan Hawksley',
-    width: 1200,
-    height: 1200,
-  },
-  knowsLanguage: 'en-GB',
   jobTitle: 'Computer Science Student',
+  knowsLanguage: 'en-GB',
   knowsAbout: [
     'Systems Programming',
     'Cybersecurity',
@@ -58,8 +50,8 @@ export const personJsonLd = {
   },
   affiliation: {
     '@type': 'HighSchool',
-    name: 'Alcester Grammar School',
     url: 'https://www.alcestergs.co.uk/',
+    name: 'Alcester Grammar School',
     sameAs: [
       'https://www.wikidata.org/wiki/Q4713005',
       'https://en.wikipedia.org/wiki/Alcester_Grammar_School',
@@ -68,14 +60,22 @@ export const personJsonLd = {
   alumniOf: [
     {
       '@type': 'HighSchool',
-      name: 'Brooke Weston Academy',
       url: 'https://www.brookeweston.org/',
+      name: 'Brooke Weston Academy',
       sameAs: [
         'https://www.wikidata.org/wiki/Q4974495',
         'https://en.wikipedia.org/wiki/Brooke_Weston_Academy',
       ],
     },
   ],
+  image: {
+    '@type': 'ImageObject',
+    '@id': 'https://hawksley.dev/#person-image',
+    url: 'https://hawksley.dev/avatar-1200x1200.png',
+    caption: 'Ethan Hawksley',
+    width: 1200,
+    height: 1200,
+  },
   sameAs: allProfileUrls,
 } as const;
 

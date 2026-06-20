@@ -13,13 +13,18 @@ const jsonLd = {
       '@type': 'CollectionPage',
       '@id': 'https://hawksley.dev/elsewhere/#webpage',
       url: 'https://hawksley.dev/elsewhere/',
+      isPartOf: { '@id': 'https://hawksley.dev/#website' },
       name: 'Elsewhere',
       description:
         'Online profiles of Ethan Hawksley, a UK-based CS student. Links to his development, social media, technical writing, and security accounts.',
-      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      inLanguage: 'en-GB',
       about: { '@id': 'https://hawksley.dev/#person' },
       breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
-      inLanguage: 'en-GB',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: 'https://hawksley.dev/logo-square.png',
+        caption: 'Ethan Hawksley Logo',
+      },
     },
     {
       '@type': 'BreadcrumbList',
@@ -27,15 +32,15 @@ const jsonLd = {
       itemListElement: [
         {
           '@type': 'ListItem',
+          item: 'https://hawksley.dev/',
           position: 1,
           name: 'Home',
-          item: 'https://hawksley.dev/',
         },
         {
           '@type': 'ListItem',
+          item: 'https://hawksley.dev/elsewhere/',
           position: 2,
           name: 'Elsewhere',
-          item: 'https://hawksley.dev/elsewhere/',
         },
       ],
     },
