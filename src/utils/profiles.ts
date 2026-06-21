@@ -113,6 +113,10 @@ export const profileSections = [
         name: 'Hacker News',
         url: 'https://news.ycombinator.com/user?id=ethanhawksley',
       },
+      {
+        name: 'Hack Club Scrapbook',
+        url: 'https://scrapbook.hackclub.com/EthanHawksley',
+      },
     ],
   },
 ];
