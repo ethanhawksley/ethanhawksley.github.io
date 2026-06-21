@@ -66,7 +66,7 @@ The site's home page includes an inline base64 2.5 KB AVIF photo of `src/assets/
 ```sh
 sudo dnf install ImageMagick libavif-tools
 
-magick src/assets/ethan-hawksley.png -filter LanczosSharp -resize 120x120 /tmp/r.png; low=0; high=63; best=63; while (( low <= high )); do mid=$(( (low + high) / 2 )); avifenc --min $mid --max $mid --speed 0 --yuv 420 /tmp/r.png /tmp/t.avif 2>/dev/null; size=$(stat -c%s /tmp/t.avif); if (( size <= 2560 )); then best=$mid; high=$(( mid - 1 )); else low=$(( mid + 1 )); fi; done; avifenc --min $best --max $best --speed 0 --yuv 420 /tmp/r.png src/assets/ethan-hawksley-120.avif && echo "Done: quantizer=$best, $(stat -c%s output.avif) bytes"
+magick src/assets/ethan-hawksley.png -filter LanczosSharp -resize 120x120 -strip /tmp/r.png; low=0; high=63; best=63; while (( low <= high )); do mid=$(( (low + high) / 2 )); avifenc --min $mid --max $mid --speed 0 --yuv 420 --ignore-icc /tmp/r.png /tmp/t.avif 2>/dev/null; size=$(stat -c%s /tmp/t.avif); if (( size <= 2560 )); then best=$mid; high=$(( mid - 1 )); else low=$(( mid + 1 )); fi; done; avifenc --min $best --max $best --speed 0 --yuv 420 --ignore-icc /tmp/r.png src/assets/ethan-hawksley-120.avif && echo "Done: quantizer=$best, $(stat -c%s src/assets/ethan-hawksley-120.avif) bytes"
 ```
 
 ## License
