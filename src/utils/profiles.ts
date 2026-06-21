@@ -41,7 +41,7 @@ export const profileSections = [
     links: [
       {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/ethanhawksley/',
+        url: 'https://www.linkedin.com/in/ethanhawksley',
       },
       {
         name: 'Bluesky',
