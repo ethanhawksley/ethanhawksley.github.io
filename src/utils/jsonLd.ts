@@ -23,6 +23,7 @@ export const personJsonLd = {
   '@id': 'https://hawksley.dev/#person',
   url: 'https://hawksley.dev/',
   name: 'Ethan Hawksley',
+  alternateName: 'ethanhawksley',
   givenName: 'Ethan',
   familyName: 'Hawksley',
   description:
