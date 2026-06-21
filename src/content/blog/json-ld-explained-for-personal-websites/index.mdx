@@ -1,0 +1,429 @@
+---
+title: 'JSON-LD Explained for Personal Websites'
+description: 'Everything you need to know about JSON-LD and how to implement it.'
+metaDescription: 'A guide to implementing JSON-LD on your personal website for better SEO, covering WebSite, Person, BlogPosting, and more with ready-to-use code snippets.'
+pubDate: 2026-06-20
+tags: ['seo', 'web']
+---
+
+JSON-LD, also known as JSON Linked Data, is a format for adding structured data to webpages. It can aid web crawlers in understanding the semantic structure of your site, qualifying you for richer link previews, and even potentially improving your search ranking.
+
+It's been 4 months since my first post where I described building this site, and Wakatime estimates I've spent ~100 hours coding now, not including time spent researching and testing. Since then, this site has been receiving plenty of polish, including the addition of JSON-LD on each page.
+
+## JSON-LD Fundamentals
+
+To add JSON-LD to a page, add the following somewhere in your `<head>` section:
+
+```json
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://hawksley.dev/#website",
+        "url": "https://hawksley.dev/",
+        "name": "Ethan Hawksley"
+      },
+      // Insert more nodes here.
+    ]
+  }
+</script>
+```
+
+Let’s break down what each part does.
+
+```json
+<script type="application/ld+json">
+```
+
+This declares a new script with MIME type `application/ld+json`. Since it has this type specified, the browser's JS engine won't run it. Specialised crawlers like Googlebot look out for these elements and parse the contents.
+
+```json
+{
+  "@context": "https://schema.org"
+}
+```
+
+Here, a JSON object is initialised and the property `@context` is set to `https://schema.org`. In JSON-LD, the structure of data is determined by assigning the appropriate context. Web crawlers are standardised on [Schema.org,](https://schema.org) which defines all the valid key-value pairs for the JSON.
+
+Now that we've defined the schema our JSON-LD is following, we can describe our webpage!
+
+```json
+{
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://hawksley.dev/#website",
+      "url": "https://hawksley.dev/",
+      "name": "Ethan Hawksley"
+    },
+    // Insert more nodes here.
+  ]
+}
+```
+
+A JSON-LD document can be thought of as a labelled, directed graph, stored under `@graph`. The graph contains multiple nodes, connected to each other with directed arcs.
+
+Nodes have:
+
+- `@type` - Describes what the node is, e.g. `WebSite` or `SoftwareApplication`
+- `@id` - A unique identifier for the node, typically a URL with a unique hash value at the end
+- Properties - Key/Value pairs that describe the attributes of the node
+
+In the example above, the type is `WebSite`, the ID is `https://hawksley.dev/#website`, and it has two properties, `url` and `name`.
+
+Web crawlers can merge the properties of a node across multiple pages, as long as they share an ID. However, scrapers that only read one page - such as LLMs - will not merge the properties. When JSON-LD is reused across pages, striking this balance is important to keep in mind. It is best practice for the ID to be a URL followed by a hash, such as `#website`, that uniquely identifies the node.
+
+Although the Schema.org context defines many types of nodes, this guide will only be covering nodes that have noticeable SEO impact. If you're interested in more, look up the semantic web - it's a fun rabbit hole.
+
+Let's move on to which nodes each page on our site should include. For each type, I've included the JSON-LD from this site, so you can copy-paste and edit it to fit your own.
+
+## WebSite
+
+You've seen an extract of `WebSite` earlier! Now here's the full version:
+
+```json
+{
+  "@type": "WebSite",
+  "@id": "https://hawksley.dev/#website",
+  "url": "https://hawksley.dev/",
+  "name": "Ethan Hawksley",
+  "alternateName": ["hawksley.dev", "Hawksley"],
+  "description": "The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.",
+  "inLanguage": "en-GB",
+  "publisher": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "@id": "https://hawksley.dev/#website-image",
+    "url": "https://hawksley.dev/logo-square.png",
+    "caption": "Ethan Hawksley Logo"
+  }
+}
+```
+
+`WebSite` explains the metadata about the site. It gives crawlers hints on how to display your site.
+
+![Google search results showing hawksley.dev, with the site's name "Ethan Hawksley" highlighted](./ethan-hawksley-sitename.png)
+
+Here, you can see that Google has interpreted the name field as representative of the domain and is labelling the result appropriately.
+
+Although `WebSite` applies to every page, you don't need to include the full version of it on every page. The root page of the domain should be fully detailed, but it is perfectly acceptable for other pages to have a slimmed-down version:
+
+```json
+{
+  "@type": "WebSite",
+  "@id": "https://hawksley.dev/#website",
+  "url": "https://hawksley.dev/",
+  "name": "Ethan Hawksley"
+}
+```
+
+This gives sufficient context to single-page crawlers so they correctly name the site, but they don't need the full details.
+
+## WebPage
+
+`WebPage` describes the current page, but it's important to distinguish it from other types like `BlogPosting` (covered later). `WebPage` represents the physical page itself, the HTML. It contains the content of the page.
+
+```json
+{
+  "@type": "WebPage",
+  "@id": "https://hawksley.dev/blog/hack-club-campfire/#webpage",
+  "url": "https://hawksley.dev/blog/hack-club-campfire/",
+  "isPartOf": {
+    "@id": "https://hawksley.dev/#website"
+  },
+  "name": "Winning the Hack Club Campfire Hackathon",
+  "inLanguage": "en-GB",
+  "breadcrumb": {
+    "@id": "https://hawksley.dev/blog/hack-club-campfire/#breadcrumb"
+  }
+}
+```
+
+There are more specific subtypes of `WebPage`. In this post, I'll cover `ProfilePage` and `CollectionPage`. You can find less common ones at the bottom of [Schema.org's definition for WebPage.](https://schema.org/WebPage)
+
+## Person
+
+Another node that every page on a personal website should have is `Person`. It describes who you are, which Google uses as part of their content quality metric. Increasingly, LLM crawlers are also using it to decide who to cite in their answers.
+
+Unlike `WebSite`, it is important enough context that you should include it on all of your site's pages.
+
+<details>
+  <summary>Warning - Quite Long!</summary>
+
+```json
+{
+  "@type": "Person",
+  "@id": "https://hawksley.dev/#person",
+  "url": "https://hawksley.dev/",
+  "name": "Ethan Hawksley",
+  "alternateName": "ethanhawksley",
+  "givenName": "Ethan",
+  "familyName": "Hawksley",
+  "description": "Long Description",
+  "disambiguatingDescription": "Shorter Description",
+  "jobTitle": "Computer Science Student",
+  "knowsLanguage": "en-GB",
+  "knowsAbout": [
+    // Keywords
+  ],
+  "nationality": {
+    "@type": "Country",
+    "name": "United Kingdom"
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB"
+    }
+  },
+  "affiliation": {
+    "@type": "HighSchool",
+    "url": "https://www.alcestergs.co.uk/",
+    "name": "Alcester Grammar School",
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q4713005",
+      "https://en.wikipedia.org/wiki/Alcester_Grammar_School"
+    ]
+  },
+  "alumniOf": [
+    {
+      "@type": "HighSchool",
+      "url": "https://www.brookeweston.org/",
+      "name": "Brooke Weston Academy",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4974495",
+        "https://en.wikipedia.org/wiki/Brooke_Weston_Academy"
+      ]
+    }
+  ],
+  "image": {
+    "@type": "ImageObject",
+    "@id": "https://hawksley.dev/#person-image",
+    "url": "https://hawksley.dev/avatar-1200x1200.png",
+    "caption": "Ethan Hawksley",
+    "width": 1200,
+    "height": 1200
+  },
+  "sameAs": [
+    "https://github.com/ethan-hawksley",
+    "https://www.linkedin.com/in/ethanhawksley",
+    "https://lobste.rs/~ethanhawksley",
+    "https://news.ycombinator.com/user?id=ethanhawksley"
+    // etc. etc.
+  ]
+}
+```
+
+</details>
+
+Phew! There's plenty of properties for `Person`. I find that it helps to be more descriptive, rather than less, when it comes to filling it out. Let’s look at the most important properties:
+
+- `url` - Points to your root page, anchoring the node.
+- `name`, `givenName`, `familyName` - Clearly describes your name.
+- `image` - Preferably a photo of you, or a logo you are affiliated with. Connects you to a canonical image of you.
+- `sameAs` - Immensely useful for disambiguation, especially if you have a common name. It cleanly informs crawlers what your other profiles are, letting them build a knowledge graph representation of you across multiple pages. At the time of writing, [/g/11m62cgdtf](https://www.google.com/search?kgmid=/g/11m62cgdtf) is my Google knowledge graph ID.
+
+The other properties of `Person` are useful for adding more detail, but aren't strictly necessary. You can trim them if you wish with only minor impact.
+
+## ProfilePage
+
+A `ProfilePage`, as you may expect, describes a page on the site about a person. For instance, I use this node on my home page, as that's where I talk about myself. On your site, putting it on an about page could be more appropriate.
+
+```json
+{
+  "@type": "ProfilePage",
+  "@id": "https://hawksley.dev/#webpage",
+  "url": "https://hawksley.dev/",
+  "isPartOf": {
+    "@id": "https://hawksley.dev/#website"
+  },
+  "name": "About Ethan Hawksley",
+  "inLanguage": "en-GB",
+  "dateCreated": "2024-09-10T00:00:00.000Z",
+  "dateModified": "2026-05-17T00:00:00.000Z",
+  "mainEntity": {
+    "@id": "https://hawksley.dev/#person"
+  }
+}
+```
+
+It's important to use `isPartOf` to link it to your broader `WebSite` node, to create a relationship between the two nodes. The same applies for `mainEntity`, it lets crawlers know who the page is about. Including `dateCreated` and `dateModified` is a good freshness signal for crawlers, but if your site doesn't have them readily available, don't worry too much about it.
+
+## SoftwareApplication
+
+If you are showcasing any software on your page, it's a good idea to include a `SoftwareApplication` node to describe the metadata about it.
+
+```json
+{
+  "@type": "SoftwareApplication",
+  "@id": "https://hawksley.dev/#project-yt-play",
+  "url": "https://crates.io/crates/yt-play",
+  "name": "yt-play",
+  "description": "A CLI utility written in Rust that synchronises YouTube playlists to local directories.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "All",
+  "creator": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "sameAs": ["https://github.com/ethan-hawksley/yt-play"],
+  "offers": {
+    "@type": "Offer",
+    "price": 0,
+    "priceCurrency": "GBP"
+  }
+}
+```
+
+If you want to be more specific than `SoftwareApplication`, other valid types for this node are `MobileApplication`, `WebApplication`, and `VideoGame`.
+
+The `url` property should be a link to where the project is deployed, e.g. crates.io. `sameAs` is for any other pages associated with the project, like its source code repository.
+
+There are lots of valid values for `applicationCategory`, you can find a list on [Google's definition for SoftwareApplication.](https://developers.google.com/search/docs/appearance/structured-data/software-app)
+
+Even if your project is FOSS, include `offers` but make sure to set the price to 0.
+
+## BreadcrumbList
+
+`BreadcrumbList` is widely useful and should be included on all pages aside from the root page. It is used to describe the categorisation of a page, which isn't necessarily the actual path to the page.
+
+```json
+{
+  "@type": "BreadcrumbList",
+  "@id": "https://hawksley.dev/blog/hack-club-shipwrecked/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "item": "https://hawksley.dev/",
+      "position": 1,
+      "name": "Home"
+    },
+    {
+      "@type": "ListItem",
+      "item": "https://hawksley.dev/blog/",
+      "position": 2,
+      "name": "Blog"
+    },
+    {
+      "@type": "ListItem",
+      "item": "https://hawksley.dev/blog/hack-club-shipwrecked/",
+      "position": 3,
+      "name": "The Shipwrecked Hackathon by Hack Club"
+    }
+  ]
+}
+```
+
+`BreadcrumbList` describes the path of a page. By including one, you can control how search engines represent the path of a specific page.
+
+![Google search results for The Shipwrecked Hackathon by Hack Club, with the breadcrumbs highlighted](./hawksley-dev-breadcrumbs.png)
+
+Here, the search result for my blog post contains the path `https://hawksley.dev › Blog`. If your site already uses short paths, this node is a minor gain and can be omitted. However, if your paths are longer, `BreadcrumbList` is useful for shortening them.
+
+## CollectionPage
+
+The `CollectionPage` node is a subtype of `WebPage`, usable for pages that primarily contain lists. For example, my /elsewhere/ page lists all my other profiles, and /blog/ lists all my blog posts.
+
+```json
+{
+  "@type": "CollectionPage",
+  "@id": "https://hawksley.dev/elsewhere/#webpage",
+  "url": "https://hawksley.dev/elsewhere/",
+  "isPartOf": {
+    "@id": "https://hawksley.dev/#website"
+  },
+  "name": "Elsewhere",
+  "description": "Online profiles of Ethan Hawksley, a UK-based CS student. Links to his development, social media, technical writing, and security accounts.",
+  "inLanguage": "en-GB",
+  "about": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "breadcrumb": {
+    "@id": "https://hawksley.dev/elsewhere/#breadcrumb"
+  }
+}
+```
+
+You've met most of these properties already, so they are largely self-explanatory. Make sure you link `breadcrumb` to the correct `BreadcrumbList`! It needs to be the one on the current page for it to make any sense.
+
+## Blog
+
+You should add the `Blog` node to your blog's index or home page. It acts as a stepping stone between your `WebSite` and the individual blog posts you publish.
+
+```json
+{
+  "@type": "Blog",
+  "@id": "https://hawksley.dev/blog/#blog",
+  "isPartOf": {
+    "@id": "https://hawksley.dev/#website"
+  },
+  "mainEntityOfPage": {
+    "@id": "https://hawksley.dev/blog/#webpage"
+  },
+  "name": "Ethan Hawksley's Blog",
+  "description": "Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.",
+  "inLanguage": "en-GB",
+  "dateModified": "2026-05-17T00:00:00.000Z",
+  "publisher": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
+```
+
+`dateModified` is a good freshness signal, but if you don't have it handy, don't worry. Including `license` lets crawlers know under what circumstances they can use your prose.
+
+![Definition of publisher property, where available types include Organization and Person](./jsonld-publisher-organization-person.png)
+
+If you've done prior research into JSON-LD, you may be surprised that the `publisher` property is set to be a `Person`, not an `Organization`. Although it used to require one, Google's documentation has since been relaxed and `Person` is entirely valid too, and arguably more accurate for a personal website.
+
+## BlogPosting
+
+The last node we'll be covering is `BlogPosting`. It should be included on all published blog posts, providing added information to crawlers so they can more accurately represent them, including both more accurate placement and richer details in search results.
+
+```json
+{
+  "@type": "BlogPosting",
+  "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/#blogposting",
+  "url": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/",
+  "mainEntityOfPage": {
+    "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/#webpage"
+  },
+  "isPartOf": {
+    "@id": "https://hawksley.dev/blog/#blog"
+  },
+  "headline": "The Need for Post-Quantum Cryptography",
+  "description": "Quantum computers are closer to breaking RSA and ECC than we thought. Learn what post-quantum cryptography is and how to start migrating.",
+  "articleSection": "cybersecurity",
+  "keywords": "cybersecurity, quantum",
+  "inLanguage": "en-GB",
+  "datePublished": "2026-04-13T00:00:00.000Z",
+  "dateModified": "2026-04-17T00:00:00.000Z",
+  "author": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "publisher": {
+    "@id": "https://hawksley.dev/#person"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/#blogposting-image",
+    "url": "https://hawksley.dev/og/blog/need-for-post-quantum-cryptography.png",
+    "width": 1200,
+    "height": 630
+  },
+  "license": "https://creativecommons.org/licenses/by/4.0/"
+}
+```
+
+Since this is a personal site, it is alright for `author` and `publisher` to both point towards the same `Person` node. The `image` property should mirror the OG image that the post already uses for link previews.
+
+## Conclusion
+
+Congrats, that's all the JSON-LD a personal site needs! I've structured this post to make it as easy as possible for you to copy-paste and implement into your own personal site. Even if you run a static site without a build step, you can still benefit from adding at a minimum `WebSite`, `ProfilePage`, and `Person` to the root page of your site.
+
+If you have any questions, you can get in touch via email, and I'll do my best to help.
