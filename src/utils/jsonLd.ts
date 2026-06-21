@@ -3,7 +3,7 @@ import { allProfileUrls } from './profiles';
 export const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  url: 'https://hawksley.dev/',
+  url: 'https://hawksley.dev',
   name: 'Ethan Hawksley',
   alternateName: ['hawksley.dev', 'Hawksley'],
   description:
@@ -21,7 +21,7 @@ export const websiteJsonLd = {
 export const personJsonLd = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
-  url: 'https://hawksley.dev/',
+  url: 'https://hawksley.dev',
   name: 'Ethan Hawksley',
   alternateName: 'ethanhawksley',
   givenName: 'Ethan',
@@ -53,7 +53,7 @@ export const personJsonLd = {
   },
   affiliation: {
     '@type': 'HighSchool',
-    url: 'https://www.alcestergs.co.uk/',
+    url: 'https://www.alcestergs.co.uk',
     name: 'Alcester Grammar School',
     sameAs: [
       'https://www.wikidata.org/wiki/Q4713005',
@@ -63,7 +63,7 @@ export const personJsonLd = {
   alumniOf: [
     {
       '@type': 'HighSchool',
-      url: 'https://www.brookeweston.org/',
+      url: 'https://www.brookeweston.org',
       name: 'Brooke Weston Academy',
       sameAs: [
         'https://www.wikidata.org/wiki/Q4974495',
@@ -85,6 +85,6 @@ export const personJsonLd = {
 export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  url: 'https://hawksley.dev/',
+  url: 'https://hawksley.dev',
   name: 'Ethan Hawksley',
 } as const;
