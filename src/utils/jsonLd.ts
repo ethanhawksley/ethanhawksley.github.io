@@ -45,6 +45,8 @@ export const personJsonLd = {
     '@type': 'Place',
     address: {
       '@type': 'PostalAddress',
+      addressLocality: 'Warwick',
+      addressRegion: 'Warwickshire',
       addressCountry: 'GB',
     },
   },
