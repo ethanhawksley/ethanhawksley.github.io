@@ -63,7 +63,6 @@ Do the same but with IBM Plex Mono as well to have both fully subsetted fonts.
 
 The site's home page includes an inline base64 2.5 KB AVIF photo of `src/assets/ethan-hawksley.png`. To generate it, install the following packages and run the corresponding one-liner.
 
-
 ```sh
 sudo dnf install ImageMagick libavif-tools
 
