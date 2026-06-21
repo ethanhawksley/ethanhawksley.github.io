@@ -90,10 +90,12 @@ import Sun from '../assets/sun.svg';
       const nextTheme = isDark ? 'light' : 'dark';
 
       document.documentElement.setAttribute('data-theme', nextTheme);
-      try {
-        localStorage.setItem('theme', nextTheme);
-      } catch {}
       updateState(!isDark);
+      setTimeout(() => {
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch {}
+      });
     });
 
     const controller = new AbortController();

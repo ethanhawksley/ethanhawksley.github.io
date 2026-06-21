@@ -429,21 +429,13 @@ const isHome = Astro.url.pathname === '/';
   html.enable-transitions,
   html.enable-transitions
     :is(
-      a,
       article,
       aside,
       blockquote,
       body,
-      button,
       code,
       div,
       footer,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
       header,
       hr,
       li,
@@ -455,6 +447,13 @@ const isHome = Astro.url.pathname === '/';
       small,
       span
     ) {
+    transition:
+      color 250ms ease-out,
+      background-color 250ms ease-out,
+      border-color 250ms ease-out;
+  }
+
+  html.enable-transitions :is(a, button) {
     transition:
       color 250ms ease-out,
       background-color 250ms ease-out,
