@@ -7,7 +7,7 @@ import path from 'node:path';
 import type { APIRoute } from 'astro';
 import { getSortedPosts } from '../../utils/content-helpers';
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
 
 let bgBase64: string | null = null;
