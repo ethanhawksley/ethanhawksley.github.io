@@ -1,10 +1,36 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import LatestPosts from '../components/LatestPosts.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import ethanHawksleyPhoto from '../assets/ethan-hawksley.png';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
+
+const optimizedAvif = await getImage({
+  src: ethanHawksleyPhoto,
+  width: 320,
+  height: 320,
+  format: 'avif',
+});
+
+const optimizedPng = await getImage({
+  src: ethanHawksleyPhoto,
+  width: 320,
+  height: 320,
+  format: 'png',
+});
+
+// Inline low quality avif since home page fits into 1 TCP packet.
+const fallbackPath = path.join(
+  process.cwd(),
+  'src/assets/ethan-hawksley-120.avif',
+);
+const fallbackBuffer = fs.readFileSync(fallbackPath);
+const fallbackBase64 = `data:image/avif;base64,${fallbackBuffer.toString('base64')}`;
 
 const ogImageUrl = new URL('/og/home.png', Astro.site).toString();
 
@@ -69,11 +95,29 @@ const jsonLd = {
   jsonLd={jsonLd}
   ogType="profile"
   ogImage={ogImageUrl}
+  preloadImage={optimizedAvif.src}
+  preloadType="image/avif"
 >
   <section class="hero">
-    <h1 id="hero-heading">Ethan Hawksley</h1>
-    <p>Hi, I'm Ethan Hawksley, a CS student in the UK.</p>
-    <p>I&nbsp;use Linux, write Rust, and enjoy cybersecurity.</p>
+    <div class="hero-content">
+      <h1 id="hero-heading">Ethan Hawksley</h1>
+      <p>Hi, I'm Ethan Hawksley, a CS student in the UK.</p>
+      <p>I&nbsp;use Linux, write Rust, and enjoy cybersecurity.</p>
+    </div>
+    <picture>
+      <source srcset={optimizedAvif.src} type="image/avif" />
+      <img
+        src={optimizedPng.src}
+        width={optimizedPng.attributes.width}
+        height={optimizedPng.attributes.height}
+        alt="Ethan Hawksley"
+        loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+        class="hero-avatar"
+        style={`background-image: url(${fallbackBase64});`}
+      />
+    </picture>
   </section>
   <div class="contact-links">
     <SocialLinks />
@@ -107,9 +151,44 @@ const jsonLd = {
 
 <style>
   .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    align-items: flex-start;
+    inline-size: 100%;
+    margin-block-end: 1.5rem;
+  }
+
+  .hero-content {
     max-inline-size: 65ch;
-    margin-block-end: 1rem;
     text-wrap: balance;
+  }
+
+  .hero-avatar {
+    inline-size: 120px;
+    block-size: 120px;
+    color: transparent;
+    object-fit: cover;
+    background-color: #3e631f;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+    filter: none !important;
+  }
+
+  @media (min-width: 38em) {
+    .hero {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-avatar {
+      inline-size: 160px;
+      block-size: 160px;
+    }
   }
 
   .contact-links {
