@@ -1,6 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import LogoRound from '../assets/ethan-hawksley.svg';
+import MonogramRound from '../assets/ethan-hawksley-monogram-round.svg';
 
 const isHome = Astro.url.pathname === '/';
 const isBlogIndex = Astro.url.pathname === '/blog/';
@@ -9,8 +9,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
 
 <header>
   <nav aria-label="Main">
-    <a href="/" aria-label="Home" class="logo"
-      ><LogoRound width="3rem" height="3rem" aria-hidden="true" /></a
+    <a href="/" aria-label="Home" class="monogram"
+      ><MonogramRound width="3rem" height="3rem" aria-hidden="true" /></a
     >
     <div class="page-links">
       <a
@@ -44,7 +44,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     padding-inline: 1.5rem;
   }
 
-  .logo {
+  .monogram {
     inline-size: 3rem;
     block-size: 3rem;
   }

@@ -13,8 +13,8 @@ export const websiteJsonLd = {
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#website-image',
-    url: 'https://hawksley.dev/logo-square.png',
-    caption: 'Ethan Hawksley Logo',
+    url: 'https://hawksley.dev/ethan-hawksley-monogram-square.png',
+    caption: 'Ethan Hawksley Monogram',
   },
 } as const;
 
@@ -74,7 +74,7 @@ export const personJsonLd = {
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#person-image',
-    url: 'https://hawksley.dev/avatar-1200x1200.png',
+    url: 'https://hawksley.dev/ethan-hawksley.png',
     caption: 'Ethan Hawksley',
     width: 1200,
     height: 1200,
