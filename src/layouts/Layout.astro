@@ -16,6 +16,8 @@ interface Props {
     tags: string[];
     readingTime: number;
   };
+  preloadImage?: string;
+  preloadType?: string;
 }
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -29,6 +31,8 @@ const {
   ogType = 'website',
   ogImage = defaultOgImage,
   article,
+  preloadImage,
+  preloadType,
 } = Astro.props;
 
 const isIndexable = !robots.includes('noindex');
@@ -41,13 +45,23 @@ const isHome = Astro.url.pathname === '/';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    {
+      preloadImage && (
+        <link
+          rel="preload"
+          href={preloadImage}
+          as="image"
+          type={preloadType}
+          fetchpriority="high"
+        />
+      )
+    }
     <link
       rel="preload"
       href="/fonts/IBMSans-Subset.woff2"
       as="font"
       type="font/woff2"
       crossorigin
-      fetchpriority="high"
     />
     <link
       rel="preload"
@@ -585,7 +599,12 @@ const isHome = Astro.url.pathname === '/';
 
   img {
     filter: var(--img-theme-filter);
-    transition: filter 250ms ease-out;
+  }
+
+  html.enable-transitions img {
+    transition:
+      filter 250ms ease-out,
+      border-color 250ms ease-out;
   }
 
   img:hover,
