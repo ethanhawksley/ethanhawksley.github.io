@@ -5,6 +5,7 @@ import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import BlogImage from '../../components/BlogImage.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { getSortedPosts } from '../../utils/content-helpers';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 
@@ -187,6 +188,11 @@ const jsonLd = {
       <Content components={{ a: A, img: BlogImage }} />
     </div>
   </article>
+
+  <div class="newsletter-wrapper">
+    <NewsletterSignup />
+  </div>
+
   <nav class="post-pager" aria-label="Blog post pagination">
     <div class="pager-links">
       <div class="pager-prev">
@@ -504,13 +510,20 @@ const jsonLd = {
     color: var(--color-text-muted);
   }
 
+  .newsletter-wrapper {
+    inline-size: 100%;
+    padding-block-start: 1.5rem;
+    margin-block-start: 2.5rem;
+    border-block-start: 1px solid var(--color-border);
+  }
+
   .post-pager {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     inline-size: 100%;
     padding-block-start: 1.5rem;
-    margin-block-start: 2.5rem;
+    margin-block-start: 1.5rem;
     border-block-start: 1px solid var(--color-border);
   }
 
