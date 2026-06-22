@@ -150,7 +150,7 @@ const jsonLd = {
     </symbol>
   </Fragment>
 
-  <div class="back-nav">
+  <div class="back-to-blog">
     <A href="/blog/" pressable>
       <span class="arrow" aria-hidden="true">←</span> Back to blog
     </A>
@@ -187,40 +187,43 @@ const jsonLd = {
       <Content components={{ a: A, img: BlogImage }} />
     </div>
   </article>
-  <nav class="post-nav" aria-label="Post">
-    <div class="nav-links">
-      <div class="nav-item nav-prev">
+  <nav class="post-pager" aria-label="Blog post pagination">
+    <div class="pager-links">
+      <div class="pager-prev">
         {
           prevPost && (
-            <a href={`/blog/${prevPost.id}/`} class="nav-link">
-              <span class="nav-direction">
+            <a href={`/blog/${prevPost.id}/`} class="pager-link">
+              <span class="pager-link-label">
                 <span class="arrow" aria-hidden="true">
                   ←
                 </span>
                 Previous
               </span>
-              <span class="nav-title">{prevPost.data.title}</span>
+              <span class="pager-link-title">{prevPost.data.title}</span>
             </a>
           )
         }
       </div>
-      <div class="nav-item nav-next">
+      <div class="pager-next">
         {
           nextPost && (
-            <a href={`/blog/${nextPost.id}/`} class="nav-link nav-link-next">
-              <span class="nav-direction nav-direction-next">
+            <a
+              href={`/blog/${nextPost.id}/`}
+              class="pager-link pager-link-next"
+            >
+              <span class="pager-link-label pager-link-label-next">
                 Next
                 <span class="arrow" aria-hidden="true">
                   →
                 </span>
               </span>
-              <span class="nav-title">{nextPost.data.title}</span>
+              <span class="pager-link-title">{nextPost.data.title}</span>
             </a>
           )
         }
       </div>
     </div>
-    <div class="nav-all">
+    <div class="pager-view-all">
       <A href="/blog/" pressable>All posts</A>
     </div>
   </nav>
@@ -342,32 +345,12 @@ const jsonLd = {
     font-variant-ligatures: none;
   }
 
-  @media (min-width: 40em) {
-    .astro-code code {
-      font-size: var(--font-size-sm);
-    }
-  }
-
   .astro-code span {
     font-style: var(--shiki-light-font-style);
     font-weight: var(--shiki-light-font-weight);
     color: light-dark(var(--shiki-light), var(--shiki-dark));
     text-decoration: var(--shiki-light-text-decoration);
     transition: none !important;
-  }
-
-  [data-theme='dark'] .astro-code span {
-    font-style: var(--shiki-dark-font-style);
-    font-weight: var(--shiki-dark-font-weight);
-    text-decoration: var(--shiki-dark-text-decoration);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) .astro-code span {
-      font-style: var(--shiki-dark-font-style);
-      font-weight: var(--shiki-dark-font-weight);
-      text-decoration: var(--shiki-dark-text-decoration);
-    }
   }
 
   .copy-button {
@@ -413,6 +396,26 @@ const jsonLd = {
     color: #22c55e;
   }
 
+  [data-theme='dark'] .astro-code span {
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .astro-code span {
+      font-style: var(--shiki-dark-font-style);
+      font-weight: var(--shiki-dark-font-weight);
+      text-decoration: var(--shiki-dark-text-decoration);
+    }
+  }
+
+  @media (min-width: 40em) {
+    .astro-code code {
+      font-size: var(--font-size-sm);
+    }
+  }
+
   @media (hover: none) {
     .copy-button {
       opacity: 1;
@@ -420,9 +423,9 @@ const jsonLd = {
   }
 
   @media print {
-    .back-nav,
+    .back-to-blog,
     .copy-button,
-    .post-nav {
+    .post-pager {
       display: none !important;
     }
 
@@ -447,27 +450,30 @@ const jsonLd = {
 </style>
 
 <style>
-  .back-nav {
+  .arrow {
+    display: inline-block;
+    transition: transform 250ms ease-out;
+  }
+
+  .back-to-blog {
     inline-size: 100%;
     margin-block-end: 0.5rem;
     font-size: var(--font-size-sm);
   }
 
-  .back-nav :global(a) {
+  .back-to-blog :global(a) {
     color: var(--color-text-muted);
   }
 
-  .back-nav :global(a:hover) {
+  .back-to-blog :global(a:hover) {
     color: var(--color-accent);
   }
 
-  .back-nav .arrow {
-    display: inline-block;
+  .back-to-blog .arrow {
     margin-inline-end: 0.15em;
-    transition: transform 250ms ease-out;
   }
 
-  .back-nav :global(a:hover) .arrow {
+  .back-to-blog :global(a:hover) .arrow {
     transform: translateX(-0.25em);
   }
 
@@ -498,7 +504,7 @@ const jsonLd = {
     color: var(--color-text-muted);
   }
 
-  .post-nav {
+  .post-pager {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -508,13 +514,13 @@ const jsonLd = {
     border-block-start: 1px solid var(--color-border);
   }
 
-  .nav-links {
+  .pager-links {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  .nav-link {
+  .pager-link {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
@@ -522,11 +528,11 @@ const jsonLd = {
     text-decoration: none;
   }
 
-  .nav-link:active {
+  .pager-link:active {
     transform: scale(0.96);
   }
 
-  .nav-direction {
+  .pager-link-label {
     display: flex;
     gap: 0.35em;
     align-items: center;
@@ -535,54 +541,49 @@ const jsonLd = {
     color: var(--color-text-muted);
   }
 
-  .nav-direction-next {
+  .pager-link-label-next {
     justify-content: flex-end;
   }
 
-  .arrow {
-    display: inline-block;
-    transition: transform 250ms ease-out;
-  }
-
-  .nav-prev .nav-link:hover .arrow {
+  .pager-prev .pager-link:hover .arrow {
     transform: translateX(-0.25em);
   }
 
-  .nav-next .nav-link:hover .arrow {
+  .pager-next .pager-link:hover .arrow {
     transform: translateX(0.25em);
   }
 
-  .nav-title {
+  .pager-link-title {
     font-weight: var(--weight-medium);
     text-wrap: balance;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
   }
 
-  .nav-link-next .nav-title {
+  .pager-link-next .pager-link-title {
     text-align: end;
   }
 
-  .nav-link:hover .nav-title {
+  .pager-link:hover .pager-link-title {
     color: var(--color-accent);
   }
 
-  .nav-all {
+  .pager-view-all {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     text-align: center;
   }
 
   @media (min-width: 40em) {
-    .nav-links {
+    .pager-links {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
 
-    .nav-prev {
+    .pager-prev {
       grid-column: 1;
     }
-    .nav-next {
+    .pager-next {
       grid-column: 2;
     }
   }

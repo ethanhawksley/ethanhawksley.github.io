@@ -43,23 +43,6 @@ import Linkedin from '../assets/linkedin.svg';
     gap: 0.5rem;
   }
 
-  @media (min-width: 40em) {
-    address {
-      flex-direction: row;
-      gap: 1rem;
-    }
-
-    .email-address {
-      min-inline-size: 14rem;
-    }
-    .github-profile {
-      min-inline-size: 7.4rem;
-    }
-    .linkedin-profile {
-      min-inline-size: 8.2rem;
-    }
-  }
-
   address > :global(a) {
     position: relative;
     display: inline-flex;
@@ -81,5 +64,22 @@ import Linkedin from '../assets/linkedin.svg';
 
   .bait {
     display: none;
+  }
+
+  @media (min-width: 40em) {
+    address {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .email-address {
+      min-inline-size: 14rem;
+    }
+    .github-profile {
+      min-inline-size: 7.4rem;
+    }
+    .linkedin-profile {
+      min-inline-size: 8.2rem;
+    }
   }
 </style>

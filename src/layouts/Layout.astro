@@ -309,6 +309,28 @@ const isHome = Astro.url.pathname === '/';
 </html>
 
 <style is:global>
+  @font-face {
+    font-family: 'IBM Sans Subset';
+    font-style: normal;
+    font-weight: 100 700;
+    src:
+      local('IBM Plex Sans'),
+      local('IBMPlexSans'),
+      url('/fonts/IBMSans-Subset.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'IBM Mono Subset';
+    font-style: normal;
+    font-weight: 400;
+    src:
+      local('IBM Plex Mono'),
+      local('IBMPlexMono'),
+      url('/fonts/IBMMono-Subset.woff2') format('woff2');
+    font-display: swap;
+  }
+
   :root {
     color-scheme: light dark;
 
@@ -362,28 +384,6 @@ const isHome = Astro.url.pathname === '/';
     }
   }
 
-  @font-face {
-    font-family: 'IBM Sans Subset';
-    font-style: normal;
-    font-weight: 100 700;
-    src:
-      local('IBM Plex Sans'),
-      local('IBMPlexSans'),
-      url('/fonts/IBMSans-Subset.woff2') format('woff2');
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'IBM Mono Subset';
-    font-style: normal;
-    font-weight: 400;
-    src:
-      local('IBM Plex Mono'),
-      local('IBMPlexMono'),
-      url('/fonts/IBMMono-Subset.woff2') format('woff2');
-    font-display: swap;
-  }
-
   *,
   *::before,
   *::after {
@@ -419,67 +419,6 @@ const isHome = Astro.url.pathname === '/';
   @media (pointer: coarse) {
     html {
       scrollbar-gutter: auto;
-    }
-  }
-
-  html.enable-transitions {
-    scroll-behavior: smooth;
-  }
-
-  html.enable-transitions,
-  html.enable-transitions
-    :is(
-      article,
-      aside,
-      blockquote,
-      body,
-      code,
-      div,
-      footer,
-      header,
-      hr,
-      li,
-      main,
-      nav,
-      p,
-      pre,
-      section,
-      small,
-      span
-    ) {
-    transition:
-      color 250ms ease-out,
-      background-color 250ms ease-out,
-      border-color 250ms ease-out;
-  }
-
-  html.enable-transitions :is(a, button) {
-    transition:
-      color 250ms ease-out,
-      background-color 250ms ease-out,
-      border-color 250ms ease-out,
-      text-decoration-color 250ms ease-out,
-      opacity 250ms ease-out,
-      transform 100ms ease-out;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      transition-duration: 0s !important;
-      animation-duration: 0s !important;
-      animation-iteration-count: 1 !important;
-    }
-
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation: none !important;
-    }
-
-    html {
-      scroll-behavior: auto !important;
     }
   }
 
@@ -554,12 +493,8 @@ const isHome = Astro.url.pathname === '/';
     letter-spacing: var(--tracking-normal);
   }
 
-  img,
-  picture,
-  svg {
-    display: block;
-    max-inline-size: 100%;
-    block-size: auto;
+  address {
+    font-style: normal;
   }
 
   a,
@@ -584,12 +519,62 @@ const isHome = Astro.url.pathname === '/';
     transform: scale(0.96);
   }
 
-  address {
-    font-style: normal;
+  img,
+  picture,
+  svg {
+    display: block;
+    max-inline-size: 100%;
+    block-size: auto;
   }
 
   img {
     filter: var(--img-theme-filter);
+  }
+
+  img:hover,
+  img:focus {
+    filter: none;
+  }
+
+  html.enable-transitions {
+    scroll-behavior: smooth;
+  }
+
+  html.enable-transitions,
+  html.enable-transitions
+    :is(
+      article,
+      aside,
+      blockquote,
+      body,
+      code,
+      div,
+      footer,
+      header,
+      hr,
+      li,
+      main,
+      nav,
+      p,
+      pre,
+      section,
+      small,
+      span
+    ) {
+    transition:
+      color 250ms ease-out,
+      background-color 250ms ease-out,
+      border-color 250ms ease-out;
+  }
+
+  html.enable-transitions :is(a, button) {
+    transition:
+      color 250ms ease-out,
+      background-color 250ms ease-out,
+      border-color 250ms ease-out,
+      text-decoration-color 250ms ease-out,
+      opacity 250ms ease-out,
+      transform 100ms ease-out;
   }
 
   html.enable-transitions img {
@@ -598,9 +583,24 @@ const isHome = Astro.url.pathname === '/';
       border-color 250ms ease-out;
   }
 
-  img:hover,
-  img:focus {
-    filter: none;
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0s !important;
+      animation-duration: 0s !important;
+      animation-iteration-count: 1 !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
+
+    html {
+      scroll-behavior: auto !important;
+    }
   }
 
   :focus-visible {
