@@ -17,13 +17,6 @@ const optimizedAvif = await getImage({
   format: 'avif',
 });
 
-const optimizedPng = await getImage({
-  src: ethanHawksleyPhoto,
-  width: 320,
-  height: 320,
-  format: 'png',
-});
-
 // Inline low quality avif since home page fits into 1 TCP packet.
 const fallbackPath = path.join(
   process.cwd(),
@@ -107,9 +100,9 @@ const jsonLd = {
     <picture>
       <source srcset={optimizedAvif.src} type="image/avif" />
       <img
-        src={optimizedPng.src}
-        width={optimizedPng.attributes.width}
-        height={optimizedPng.attributes.height}
+        src="/ethan-hawksley"
+        width="1536"
+        height="1536"
         alt="Ethan Hawksley"
         loading="eager"
         fetchpriority="high"
