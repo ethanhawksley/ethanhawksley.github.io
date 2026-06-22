@@ -28,7 +28,6 @@ const isDev = import.meta.env.DEV;
       alt={alt}
       formats={isDev ? ['webp'] : ['avif', 'webp']}
       fallbackFormat={isDev ? 'webp' : 'jpeg'}
-      layout="constrained"
       sizes="(min-width: 768px) 720px, calc(100vw - 3rem)"
       loading={lcp ? 'eager' : 'lazy'}
       fetchpriority={lcp ? 'high' : undefined}
