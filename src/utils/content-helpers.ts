@@ -19,6 +19,7 @@ export async function getPostHtml(
 ) {
   if (!post.body) return '';
 
+  // Safe since no MDX tags are used in posts.
   let parsed = marked.parse(post.body);
   if (parsed instanceof Promise) {
     parsed = await parsed;
