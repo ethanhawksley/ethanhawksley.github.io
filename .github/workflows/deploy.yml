@@ -84,7 +84,8 @@ jobs:
     steps:
       - name: Submit URLs to IndexNow
         run: |
-          URLS_RAW=$(curl -sSf https://hawksley.dev/sitemap.txt | tr -d '\r' | grep -v '^$')
+          CACHE_BUSTER=$(openssl rand -hex 16)
+          URLS_RAW=$(curl -sSf "https://hawksley.dev/sitemap.txt?cb=${CACHE_BUSTER}" | tr -d '\r' | grep -v '^$')
 
           URL_JSON=$(echo "$URLS_RAW" | sed 's/\(.*\)/"\1"/' | paste -sd, -)
           URL_JSON="[$URL_JSON]"
