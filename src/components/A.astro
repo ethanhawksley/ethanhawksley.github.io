@@ -59,7 +59,7 @@ const isExternalLink = external ?? isExternal(href);
 
 <style>
   a {
-    color: inherit;
+    color: var(--color-text);
     white-space: nowrap;
     text-decoration: none;
   }
@@ -80,6 +80,7 @@ const isExternalLink = external ?? isExternal(href);
     white-space: normal;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
+    transition: none !important;
   }
 
   a svg {

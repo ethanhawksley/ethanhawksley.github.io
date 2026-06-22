@@ -451,11 +451,14 @@ const jsonLd = {
     inline-size: 100%;
     margin-block-end: 0.5rem;
     font-size: var(--font-size-sm);
-    color: var(--color-text-muted);
   }
 
   .back-nav :global(a) {
-    text-decoration: none;
+    color: var(--color-text-muted);
+  }
+
+  .back-nav :global(a:hover) {
+    color: var(--color-accent);
   }
 
   .back-nav .arrow {
