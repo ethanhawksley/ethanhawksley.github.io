@@ -10,10 +10,6 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   trailingSlash: 'always',
-  image: {
-    layout: 'constrained',
-    responsiveStyles: true,
-  },
   build: {
     inlineStylesheets: 'always',
   },
