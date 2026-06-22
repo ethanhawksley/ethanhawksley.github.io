@@ -8,7 +8,7 @@ import path from 'node:path';
 import type { APIRoute } from 'astro';
 import { getSortedPosts } from '../../utils/content-helpers';
 
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
 
 let bgBase64: string | null = null;
@@ -202,7 +202,7 @@ export const GET: APIRoute = async ({ props }) => {
 
   const jpeg = await sharp(png)
     .jpeg({
-      quality: 96,
+      quality: 90,
       mozjpeg: true,
       chromaSubsampling: '4:4:4',
       progressive: true,
