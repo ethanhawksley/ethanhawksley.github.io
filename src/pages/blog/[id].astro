@@ -249,13 +249,6 @@ const jsonLd = {
     margin-block: 1.5rem;
   }
 
-  .prose li + li {
-    margin-block-start: 0.5rem;
-  }
-  .prose li > :is(ul, ol) {
-    margin-block: 0.5rem 0;
-  }
-
   .prose h2 {
     margin-block-start: 2.5rem;
     margin-block-end: 0.75rem;
@@ -276,6 +269,13 @@ const jsonLd = {
   .prose :where(h5, h6) {
     margin-block-start: 1.25rem;
     margin-block-end: 0.25rem;
+  }
+
+  .prose li + li {
+    margin-block-start: 0.5rem;
+  }
+  .prose li > :is(ul, ol) {
+    margin-block: 0.5rem 0;
   }
 
   .prose img {
@@ -545,14 +545,6 @@ const jsonLd = {
     justify-content: flex-end;
   }
 
-  .pager-prev .pager-link:hover .arrow {
-    transform: translateX(-0.25em);
-  }
-
-  .pager-next .pager-link:hover .arrow {
-    transform: translateX(0.25em);
-  }
-
   .pager-link-title {
     font-weight: var(--weight-medium);
     text-wrap: balance;
@@ -566,6 +558,14 @@ const jsonLd = {
 
   .pager-link:hover .pager-link-title {
     color: var(--color-accent);
+  }
+
+  .pager-prev .pager-link:hover .arrow {
+    transform: translateX(-0.25em);
+  }
+
+  .pager-next .pager-link:hover .arrow {
+    transform: translateX(0.25em);
   }
 
   .pager-view-all {
