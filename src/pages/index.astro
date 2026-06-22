@@ -25,7 +25,7 @@ const fallbackPath = path.join(
 const fallbackBuffer = fs.readFileSync(fallbackPath);
 const fallbackBase64 = `data:image/avif;base64,${fallbackBuffer.toString('base64')}`;
 
-const ogImageUrl = new URL('/og/home.png', Astro.site).toString();
+const ogImageUrl = new URL('/og/home.jpg', Astro.site).toString();
 
 const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();

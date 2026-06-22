@@ -29,7 +29,7 @@ const readingTime = Math.max(1, Math.ceil(words / 238));
 
 const postUrl = `https://hawksley.dev/blog/${post.id}/`;
 
-const ogImageUrl = new URL(`/og/blog/${post.id}.png`, Astro.site).toString();
+const ogImageUrl = new URL(`/og/blog/${post.id}.jpg`, Astro.site).toString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
