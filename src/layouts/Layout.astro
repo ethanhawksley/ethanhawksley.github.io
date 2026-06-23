@@ -486,6 +486,12 @@ const isHome = Astro.url.pathname === '/';
     letter-spacing: var(--tracking-normal);
   }
 
+  p,
+  li,
+  blockquote {
+    text-wrap: pretty;
+  }
+
   small {
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
