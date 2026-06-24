@@ -47,8 +47,9 @@ The site uses a subsetted version of the IBM Plex Sans and Mono fonts for increa
 
 To subset:
 
-- Install pyftsubset
-  - `uv tool install pyftsubset`
+- Install fonttools
+  - `sudo dnf install fonttools`
+  - `sudo apt install fonttools`
 - Download IBMPlexSans.ttf and IBMPlexMono.ttf from Google Fonts
 - Place both in the project root
 - Run `bash scripts/subset-fonts.sh`
@@ -62,6 +63,7 @@ To generate it:
 
 - Install ImageMagick and libavif-tools
   - `sudo dnf install ImageMagick libavif-tools`
+  - `sudo apt install imagemagick libavif-bin`
 - Run `bash scripts/gen-avif.sh`
 - Generated AVIF will be placed in `src/assets`
 
