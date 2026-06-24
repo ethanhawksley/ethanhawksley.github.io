@@ -6,8 +6,6 @@ This repository hosts the source code for my personal portfolio and technical bl
 
 **[Ethan Hawksley's portfolio & blog](https://hawksley.dev)**
 
----
-
 ## Features
 
 - JS-free by default, progressively enhanced
