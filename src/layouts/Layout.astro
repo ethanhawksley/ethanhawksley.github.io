@@ -8,7 +8,7 @@ interface Props {
   description: string;
   jsonLd?: Record<string, any>;
   robots?: string;
-  ogType?: 'website' | 'article' | 'profile';
+  ogType?: 'website' | 'article';
   ogImage?: string;
   article?: {
     publishedTime: string;
@@ -136,14 +136,6 @@ const isHome = Astro.url.pathname === '/';
           <meta property="og:image:alt" content={title} />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
-
-          {ogType === 'profile' && (
-            <>
-              <meta property="profile:first_name" content="Ethan" />
-              <meta property="profile:last_name" content="Hawksley" />
-              <meta property="profile:username" content="ethanhawksley" />
-            </>
-          )}
 
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@Ethan_Hawksley" />
