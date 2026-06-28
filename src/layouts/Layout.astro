@@ -522,7 +522,8 @@ const isHome = Astro.url.pathname === '/';
     :is(body, div, header, nav, main, section, article, footer, aside) {
     transition:
       background-color 250ms ease-out,
-      border-color 250ms ease-out;
+      border-color 250ms ease-out,
+      scrollbar-color 250ms ease-out;
   }
 
   html.enable-transitions :is(p, span, li, h1, h2, h3, h4, h5, h6) {
