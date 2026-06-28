@@ -96,10 +96,10 @@ export const GET: APIRoute = async ({ props }) => {
     bgBase64 = `data:image/png;base64,${bgBuffer.toString('base64')}`;
 
     fontBold = readFileSync(
-      path.join(process.cwd(), 'src/assets/IBMPlexSans-Bold.ttf'),
+      path.join(process.cwd(), 'src/assets/ibm-plex-sans-bold.ttf'),
     );
     fontRegular = readFileSync(
-      path.join(process.cwd(), 'src/assets/IBMPlexSans-Regular.ttf'),
+      path.join(process.cwd(), 'src/assets/ibm-plex-sans-regular.ttf'),
     );
   }
 

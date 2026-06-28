@@ -58,14 +58,14 @@ const isHome = Astro.url.pathname === '/';
     }
     <link
       rel="preload"
-      href="/fonts/IBMSans-Subset.woff2"
+      href="/fonts/ibm-sans-subset.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/IBMMono-Subset.woff2"
+      href="/fonts/ibm-mono-subset.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -203,20 +203,10 @@ const isHome = Astro.url.pathname === '/';
       title="Ethan Hawksley's Blog"
     />
 
-    <link rel="icon" href="/favicon-v2.svg" type="image/svg+xml" />
-    <link
-      rel="icon"
-      href="/favicon-48x48-v2.png"
-      type="image/png"
-      sizes="48x48"
-    />
-    <link rel="icon" href="/favicon-v2.ico" type="image/x-icon" />
-    <link
-      rel="apple-touch-icon"
-      href="/apple-touch-icon-v2.png"
-      sizes="180x180"
-    />
-    <link rel="manifest" href="/site-v2.webmanifest" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     {
       isHome && (
@@ -308,7 +298,7 @@ const isHome = Astro.url.pathname === '/';
     font-family: 'IBM Sans Subset';
     font-style: normal;
     font-weight: 100 700;
-    src: url('/fonts/IBMSans-Subset.woff2') format('woff2');
+    src: url('/fonts/ibm-sans-subset.woff2') format('woff2');
     font-display: swap;
   }
 
@@ -316,7 +306,7 @@ const isHome = Astro.url.pathname === '/';
     font-family: 'IBM Mono Subset';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/IBMMono-Subset.woff2') format('woff2');
+    src: url('/fonts/ibm-mono-subset.woff2') format('woff2');
     font-display: swap;
   }
 

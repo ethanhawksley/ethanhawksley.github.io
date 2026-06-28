@@ -50,7 +50,7 @@ To subset:
 - Install fonttools
   - `sudo dnf install fonttools`
   - `sudo apt install fonttools`
-- Download IBMPlexSans.ttf and IBMPlexMono.ttf from Google Fonts
+- Download ibm-plex-sans.ttf and ibm-plex-mono.ttf from Google Fonts
 - Place both in the project root
 - Run `bash scripts/subset-fonts.sh`
 - Generated fonts will be placed in `public/fonts`

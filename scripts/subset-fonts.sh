@@ -20,14 +20,14 @@ subset() {
   echo "Done"
 }
 
-for f in IBMPlexSans.ttf IBMPlexMono.ttf; do
+for f in ibm-plex-sans.ttf ibm-plex-mono.ttf; do
   if [[ ! -f "$f" ]]; then
     echo "Error: $f not found" >&2
     exit 1
   fi
 done
 
-subset "IBMPlexSans.ttf" "$OUT_DIR/IBMSans-Subset.woff2"
-subset "IBMPlexMono.ttf" "$OUT_DIR/IBMMono-Subset.woff2"
+subset "ibm-plex-sans.ttf" "$OUT_DIR/ibm-sans-subset.woff2"
+subset "ibm-plex-mono.ttf" "$OUT_DIR/ibm-mono-subset.woff2"
 
 echo "Subsetted successfully"
