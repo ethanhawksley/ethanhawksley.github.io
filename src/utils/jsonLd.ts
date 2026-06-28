@@ -15,6 +15,8 @@ export const websiteJsonLd = {
     '@id': 'https://hawksley.dev/#website-image',
     url: 'https://hawksley.dev/ethan-hawksley-monogram-square.png',
     caption: 'Ethan Hawksley Monogram',
+    width: 1024,
+    height: 1024,
   },
 } as const;
 
