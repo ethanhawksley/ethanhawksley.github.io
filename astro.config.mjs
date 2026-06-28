@@ -83,6 +83,11 @@ export default defineConfig({
     mdx(),
     compress({
       Image: false,
+      HTML: {
+        'html-minifier-terser': {
+          removeAttributeQuotes: false,
+        },
+      },
     }),
   ],
 });
