@@ -25,9 +25,7 @@ const Heading = headingLevel;
       {
         tags.length > 0 && (
           <>
-            <span class="separator" aria-hidden="true">
-              /
-            </span>
+            <span aria-hidden="true">/</span>
             <span class="sr-only">Tags: </span>
             <span class="tags">{tags.join(', ')}</span>
           </>
@@ -68,10 +66,6 @@ const Heading = headingLevel;
     font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;
     color: var(--color-text-muted);
-  }
-
-  .separator {
-    margin-inline-end: 0.25rem;
   }
 
   .tags {

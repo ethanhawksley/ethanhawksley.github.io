@@ -36,9 +36,7 @@ const { name, description, links = [], url, type, stack } = Astro.props;
         {
           stack.length > 0 && (
             <>
-              <span class="separator" aria-hidden="true">
-                /
-              </span>
+              <span aria-hidden="true">/</span>
               <span class="sr-only">Stack: </span>
               <span>{stack.join(', ')}</span>
             </>
@@ -89,17 +87,13 @@ const { name, description, links = [], url, type, stack } = Astro.props;
 
   .meta {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
     color: var(--color-text-muted);
   }
 
   .type {
     font-weight: var(--weight-semibold);
     color: var(--color-text);
-  }
-
-  .separator {
-    margin-inline: 0.25rem;
   }
 
   .meta-action :global(a) {
