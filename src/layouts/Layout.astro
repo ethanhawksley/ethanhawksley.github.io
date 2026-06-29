@@ -398,6 +398,8 @@ const isHome = Astro.url.pathname === '/';
     font-size: var(--font-size-base);
     font-weight: var(--weight-normal);
     line-height: var(--leading-relaxed);
+    text-wrap: pretty;
+    overflow-wrap: break-word;
   }
 
   h1,
@@ -408,16 +410,6 @@ const isHome = Astro.url.pathname === '/';
   h6 {
     text-wrap: balance;
     scroll-margin-block-start: var(--font-size-md);
-  }
-
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    overflow-wrap: break-word;
   }
 
   h1 {
@@ -455,12 +447,6 @@ const isHome = Astro.url.pathname === '/';
     font-weight: var(--weight-medium);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-normal);
-  }
-
-  p,
-  li,
-  blockquote {
-    text-wrap: pretty;
   }
 
   small {
