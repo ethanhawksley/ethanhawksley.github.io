@@ -14,7 +14,7 @@ import Linkedin from '../assets/linkedin.svg';
         rel="me"
         pressable
       >
-        <Email aria-hidden="true" />
+        <Email class="social-icon" aria-hidden="true" />
         ethan<span class="bait">.dev</span>@hawksley<span class="bait">.co</span
         >.dev</A
       >
@@ -26,7 +26,7 @@ import Linkedin from '../assets/linkedin.svg';
         rel="me noopener"
         pressable
       >
-        <Github aria-hidden="true" />
+        <Github class="social-icon" aria-hidden="true" />
         GitHub</A
       >
     </li>
@@ -37,7 +37,7 @@ import Linkedin from '../assets/linkedin.svg';
         rel="me noopener"
         pressable
       >
-        <Linkedin aria-hidden="true" />
+        <Linkedin class="social-icon" aria-hidden="true" />
         LinkedIn</A
       >
     </li>
@@ -63,7 +63,7 @@ import Linkedin from '../assets/linkedin.svg';
     padding-inline-end: 0.5rem;
   }
 
-  li > :global(a svg:first-child) {
+  .social-icon {
     position: absolute;
     inset-block-start: 50%;
     inset-inline-start: 0.3rem;
