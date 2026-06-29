@@ -3,38 +3,34 @@ const FORM_ID = '9595926';
 const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 ---
 
-<section class="newsletter-section" aria-label="Newsletter Subscription">
-  <h3 class="newsletter-heading">Get new posts in your inbox</h3>
+<section aria-label="Newsletter Subscription">
+  <h3>Get new posts in your inbox</h3>
 
-  <form class="newsletter-form" action={action} method="post" data-kit-form>
-    <div class="input-group">
-      <label for="newsletter-signup-email" class="sr-only">Email address</label>
-      <input
-        id="newsletter-signup-email"
-        type="email"
-        name="email_address"
-        placeholder="your@email.com"
-        required
-        autocomplete="email"
-      />
-      <button type="submit">Subscribe</button>
-    </div>
+  <form action={action} method="post" data-kit-form>
+    <label for="newsletter-signup-email" class="sr-only">Email address</label>
+    <input
+      id="newsletter-signup-email"
+      type="email"
+      name="email_address"
+      placeholder="your@email.com"
+      required
+      autocomplete="email"
+    />
+    <button type="submit">Subscribe</button>
   </form>
 
-  <footer class="newsletter-meta">
-    <div class="newsletter-feedback" aria-live="polite">
-      <span class="newsletter-success" tabindex="-1" hidden>
-        Thanks, check your inbox to confirm.
-      </span>
-      <span class="newsletter-error" tabindex="-1" hidden>
-        Something went wrong. Please try again.
-      </span>
-    </div>
+  <footer aria-live="polite">
+    <span class="newsletter-success" tabindex="-1" hidden>
+      Thanks, check your inbox to confirm.
+    </span>
+    <span class="newsletter-error" tabindex="-1" hidden>
+      Something went wrong. Please try again.
+    </span>
   </footer>
 </section>
 
 <style>
-  .newsletter-section {
+  section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -42,17 +38,13 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     max-inline-size: 65ch;
   }
 
-  .newsletter-heading {
+  h3 {
     font-size: var(--font-size-base);
     font-weight: var(--weight-medium);
     color: var(--color-text);
   }
 
-  .newsletter-form {
-    inline-size: 100%;
-  }
-
-  .input-group {
+  form {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -60,7 +52,7 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     inline-size: 100%;
   }
 
-  .input-group input {
+  input {
     flex: 1;
     min-inline-size: 200px;
     padding-block: 0.25rem;
@@ -75,12 +67,12 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     transition: border-color 250ms ease-out;
   }
 
-  .input-group input:focus {
+  input:focus {
     outline: none;
     border-block-end-color: var(--color-accent);
   }
 
-  .input-group button {
+  button {
     padding: 0;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
@@ -96,15 +88,15 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
       transform 100ms ease-out;
   }
 
-  .input-group button:hover {
+  button:hover {
     color: var(--color-accent);
   }
 
-  .input-group button:active {
+  button:active {
     transform: scale(0.96);
   }
 
-  .newsletter-meta {
+  footer {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -113,27 +105,26 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     color: var(--color-text-muted);
   }
 
-  .newsletter-success {
-    color: var(--color-text-muted);
-  }
-
   .newsletter-error {
     color: var(--color-accent);
   }
 
-  .newsletter-success:focus,
-  .newsletter-error:focus {
+  span:focus {
     outline: none;
   }
 
-  .input-group button[aria-disabled='true'] {
+  form[hidden] {
+    display: none;
+  }
+
+  button[aria-disabled='true'] {
     color: var(--color-text-muted);
     text-decoration-color: var(--color-border);
     cursor: not-allowed;
   }
 
   @media print {
-    .newsletter-section {
+    section {
       display: none !important;
     }
   }
@@ -151,7 +142,7 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const container = form.closest('.newsletter-section')!;
+        const container = form.closest('section')!;
         const success = container.querySelector<HTMLElement>(
           '.newsletter-success',
         )!;
