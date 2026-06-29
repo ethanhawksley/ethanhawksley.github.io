@@ -660,15 +660,10 @@ const isHome = Astro.url.pathname === '/';
   }
 
   main {
-    display: flex;
     flex-grow: 1;
-    flex-direction: column;
-    align-items: flex-start;
-    inline-size: 100%;
     padding-inline-start: max(1.5rem, env(safe-area-inset-left));
     padding-inline-end: max(1.5rem, env(safe-area-inset-right));
     margin-block-end: 1.5rem;
-    margin-inline: auto;
     scroll-margin-block-start: 1.5rem;
   }
 </style>
