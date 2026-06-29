@@ -76,14 +76,14 @@ const isExternalLink = external ?? isExternal(href);
     display: inline-block;
   }
 
-  span {
+  a > span {
     white-space: normal;
     text-decoration: var(--color-accent) underline 2px;
     text-underline-offset: 0.25em;
-    transition: text-decoration-color 250ms ease-out !important;
+    transition: text-decoration-color 250ms ease-out;
   }
 
-  a svg {
+  a > svg {
     display: inline-block;
     inline-size: 0.75em;
     block-size: 0.75em;
