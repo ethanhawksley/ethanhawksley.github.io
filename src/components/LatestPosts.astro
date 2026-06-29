@@ -7,7 +7,7 @@ const allPosts = await getSortedPosts();
 const postCount = allPosts.length;
 ---
 
-<ul class="blog-preview" role="list">
+<ul role="list">
   {
     allPosts
       .slice(0, 2)
@@ -26,7 +26,7 @@ const postCount = allPosts.length;
 <A href="/blog/" pressable>View all posts ({postCount})</A>
 
 <style>
-  .blog-preview {
+  ul {
     display: flex;
     flex-direction: column;
     inline-size: 100%;
