@@ -58,9 +58,7 @@ const ogImageUrl = new URL('/og/elsewhere.jpg', Astro.site).toString();
   ogImage={ogImageUrl}
 >
   <h1>Elsewhere</h1>
-  <p class="intro">
-    You can find me on various other platforms around the web.
-  </p>
+  <p>You can find me on various other platforms around the web.</p>
   {
     profileSections.map((section) => {
       const slug = section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
@@ -68,12 +66,12 @@ const ogImageUrl = new URL('/og/elsewhere.jpg', Astro.site).toString();
       // Internal links are used instead of external for profiles.
       // It reduces the visual clutter of arrows, whilst staying consistent UX.
       return (
-        <section class="group">
+        <section>
           <h2 id={id}>{section.title}</h2>
-          <ul class="elsewhere-list" role="list">
+          <ul role="list">
             {section.links.map((link) => (
               <li>
-                <span class="platform">
+                <span>
                   <A href={link.url} rel="me" external={false} pressable>
                     {link.name}
                   </A>
@@ -88,7 +86,7 @@ const ogImageUrl = new URL('/og/elsewhere.jpg', Astro.site).toString();
 </Layout>
 
 <style>
-  .intro {
+  p {
     max-inline-size: 65ch;
     margin-block-end: 2rem;
     line-height: var(--leading-normal);
@@ -96,27 +94,27 @@ const ogImageUrl = new URL('/og/elsewhere.jpg', Astro.site).toString();
     text-wrap: balance;
   }
 
-  .group {
+  section {
     inline-size: 100%;
     margin-block-end: 2rem;
   }
 
-  .group h2 {
+  h2 {
     margin-block-end: 1rem;
     font-size: var(--font-size-lg);
   }
 
-  .elsewhere-list li {
+  li {
     display: flex;
     align-items: baseline;
     padding-block: 0.75rem;
   }
 
-  .elsewhere-list li + li {
+  li + li {
     border-block-start: 1px solid var(--color-border);
   }
 
-  .platform {
+  span {
     font-weight: var(--weight-medium);
   }
 </style>
