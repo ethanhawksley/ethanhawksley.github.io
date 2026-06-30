@@ -24,7 +24,7 @@ export const profileSections = [
       },
       {
         name: 'crates.io',
-        url: 'https://crates.io/users/ethan-hawksley',
+        url: 'https://crates.io/users/ethanhawksley',
       },
       {
         name: 'itch.io',
