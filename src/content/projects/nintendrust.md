@@ -7,6 +7,6 @@ applicationCategory: 'GameApplication'
 url: 'https://hawksley.dev/nintendrust/'
 links:
   - name: 'Source'
-    url: 'https://github.com/ethan-hawksley/nintendrust'
+    url: 'https://github.com/ethanhawksley/nintendrust'
 priority: 1
 ---

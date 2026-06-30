@@ -7,6 +7,6 @@ applicationCategory: 'GameApplication'
 url: 'https://hawksley.dev/mineduo/'
 links:
   - name: 'Source'
-    url: 'https://github.com/ethan-hawksley/mineduo'
+    url: 'https://github.com/ethanhawksley/mineduo'
 priority: 2
 ---

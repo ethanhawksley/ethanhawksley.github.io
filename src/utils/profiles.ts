@@ -4,7 +4,7 @@ export const profileSections = [
     links: [
       {
         name: 'GitHub',
-        url: 'https://github.com/ethan-hawksley',
+        url: 'https://github.com/ethanhawksley',
       },
       {
         name: 'Codeberg',

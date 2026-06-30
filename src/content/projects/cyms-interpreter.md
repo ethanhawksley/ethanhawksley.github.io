@@ -7,6 +7,6 @@ applicationCategory: 'DeveloperApplication'
 url: 'https://hawksley.dev/cyms-interpreter/'
 links:
   - name: 'Source'
-    url: 'https://github.com/ethan-hawksley/cyms-interpreter'
+    url: 'https://github.com/ethanhawksley/cyms-interpreter'
 priority: 4
 ---

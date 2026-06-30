@@ -33,8 +33,8 @@ This repository hosts the source code for my personal portfolio and technical bl
 Requires [Node.js 22+](https://nodejs.org) and [pnpm](https://pnpm.io).
 
 ```shell
-git clone https://github.com/ethan-hawksley/ethan-hawksley.github.io
-cd ethan-hawksley.github.io
+git clone https://github.com/ethanhawksley/ethanhawksley.github.io
+cd ethanhawksley.github.io
 pnpm install
 pnpm run dev
 ```

@@ -1,7 +1,7 @@
 /* TEAM */
 Developer: Ethan Hawksley
 Contact: ethan@hawksley.dev
-GitHub: https://github.com/ethan-hawksley
+GitHub: https://github.com/ethanhawksley
 Site: https://hawksley.dev
 Location: United Kingdom
 

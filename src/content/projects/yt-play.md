@@ -7,6 +7,6 @@ applicationCategory: 'MultimediaApplication'
 url: 'https://crates.io/crates/yt-play'
 links:
   - name: 'Source'
-    url: 'https://github.com/ethan-hawksley/yt-play'
+    url: 'https://github.com/ethanhawksley/yt-play'
 priority: 3
 ---
