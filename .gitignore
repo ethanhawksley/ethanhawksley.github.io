@@ -17,8 +17,11 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# jetbrains settings directory
 .idea/
+
+# vscode settings directory
+.vscode/
 
 # git commit sha tracker
 public/version.txt
