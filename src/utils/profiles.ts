@@ -115,7 +115,7 @@ export const profileSections = [
       },
       {
         name: 'Hack Club Scrapbook',
-        url: 'https://scrapbook.hackclub.com/EthanHawksley',
+        url: 'https://scrapbook.hackclub.com/ethanhawksley',
       },
     ],
   },
