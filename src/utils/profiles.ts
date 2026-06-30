@@ -20,7 +20,7 @@ export const profileSections = [
       },
       {
         name: 'LeetCode',
-        url: 'https://leetcode.com/u/ethan-hawksley/',
+        url: 'https://leetcode.com/u/ethanhawksley/',
       },
       {
         name: 'crates.io',
