@@ -99,3 +99,15 @@ jobs:
               \"keyLocation\": \"https://hawksley.dev/${{ secrets.INDEXNOW_KEY }}.txt\",
               \"urlList\": $URL_JSON
             }"
+  notify-profile-readme-repo:
+    needs: submit-indexnow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify profile README repo
+        run: |
+          curl -sSf \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.NOTIFY_README_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/ethanhawksley/ethanhawksley/dispatches" \
+            -d '{"event_type": "site_deployed"}'
