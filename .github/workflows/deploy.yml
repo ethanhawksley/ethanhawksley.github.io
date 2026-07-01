@@ -78,6 +78,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"purge_everything":true}' \
             "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
+
   submit-indexnow:
     needs: purge-cache
     runs-on: ubuntu-latest
@@ -99,6 +100,7 @@ jobs:
               \"keyLocation\": \"https://hawksley.dev/${{ secrets.INDEXNOW_KEY }}.txt\",
               \"urlList\": $URL_JSON
             }"
+
   notify-profile-readme-repo:
     needs: submit-indexnow
     runs-on: ubuntu-latest
