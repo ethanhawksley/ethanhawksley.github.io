@@ -96,6 +96,7 @@ const jsonLd = {
       <h1 id="hero-heading">Ethan Hawksley</h1>
       <p>Hi, I'm Ethan Hawksley, a CS student in the UK.</p>
       <p>I&nbsp;use Linux, write Rust, and enjoy cybersecurity.</p>
+      <SocialLinks />
     </div>
     <picture>
       <source srcset={optimizedAvif.src} type="image/avif" />
@@ -111,9 +112,6 @@ const jsonLd = {
       />
     </picture>
   </section>
-  <div class="contact-links">
-    <SocialLinks />
-  </div>
   <section class="projects" aria-labelledby="projects-heading">
     <h2 id="projects-heading">Projects</h2>
     <ul role="list">
@@ -173,7 +171,6 @@ const jsonLd = {
   @media (min-width: 38em) {
     .hero {
       flex-direction: row;
-      align-items: center;
       justify-content: space-between;
     }
 
@@ -181,10 +178,6 @@ const jsonLd = {
       inline-size: 160px;
       block-size: 160px;
     }
-  }
-
-  .contact-links {
-    margin-block-end: 2rem;
   }
 
   h2 {
