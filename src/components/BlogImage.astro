@@ -17,7 +17,7 @@ const isDev = import.meta.env.DEV;
     <img
       src={src}
       alt={alt}
-      loading={lcp ? 'eager' : 'lazy'}
+      loading={lcp ? undefined : 'lazy'}
       fetchpriority={lcp ? 'high' : undefined}
       decoding={lcp ? 'sync' : 'async'}
       {...attrs}
