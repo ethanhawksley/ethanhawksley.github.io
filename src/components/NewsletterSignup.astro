@@ -53,10 +53,11 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
   input {
     flex: 1;
     min-inline-size: 200px;
-    padding-block: 0.25rem;
+    padding-block: 0.15rem 0.1rem;
     padding-inline: 0.15rem;
     font-family: var(--font-sans);
     font-size: var(--font-size-base);
+    line-height: var(--leading-snug);
     color: var(--color-text);
     background: transparent;
     border: none;
@@ -71,12 +72,13 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
   }
 
   button {
+    padding-block: 0.15rem 0.1rem;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
+    line-height: var(--leading-snug);
     color: var(--color-text);
-    text-decoration: var(--color-accent) underline 2px;
-    text-underline-offset: 0.25em;
+    border-block-end: 2px solid var(--color-accent);
     transition:
       color 250ms ease-out,
       transform 100ms ease-out;
