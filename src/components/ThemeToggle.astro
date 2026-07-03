@@ -69,33 +69,19 @@ import Sun from '../assets/sun.svg';
   function initThemeToggle() {
     const button = document.getElementById('theme-toggle')!;
 
-    function updateState(isDark: boolean) {
+    const updateAria = (theme: 'light' | 'dark') => {
       button.setAttribute(
         'aria-label',
-        isDark ? 'Switch to light theme' : 'Switch to dark theme',
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme',
       );
+    };
 
-      document.head
-        .querySelectorAll('meta[name="theme-color"]')
-        .forEach((tag) => {
-          tag.setAttribute('content', isDark ? '#0f0f0f' : '#fafafa');
-        });
-    }
-
-    updateState(document.documentElement.getAttribute('data-theme') === 'dark');
+    updateAria(window.__getTheme());
 
     button.addEventListener('click', () => {
-      const isDark =
-        document.documentElement.getAttribute('data-theme') === 'dark';
-      const nextTheme = isDark ? 'light' : 'dark';
-
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      updateState(!isDark);
-      setTimeout(() => {
-        try {
-          localStorage.setItem('theme', nextTheme);
-        } catch {}
-      });
+      const nextTheme = window.__getTheme() === 'dark' ? 'light' : 'dark';
+      window.__setTheme(nextTheme, true);
+      updateAria(nextTheme);
     });
 
     const controller = new AbortController();
@@ -107,33 +93,28 @@ import Sun from '../assets/sun.svg';
           const isDark =
             e.newValue === 'dark' ||
             (e.newValue === null && mediaQuery.matches);
+          const theme = isDark ? 'dark' : 'light';
 
-          document.documentElement.setAttribute(
-            'data-theme',
-            isDark ? 'dark' : 'light',
-          );
-          updateState(isDark);
+          window.__setTheme(theme, false);
+          updateAria(theme);
         }
       },
       { signal: controller.signal },
     );
 
-    const handlePreferenceChange = (e: MediaQueryListEvent) => {
-      try {
-        if (localStorage.getItem('theme') !== null) return;
-      } catch {}
+    mediaQuery.addEventListener(
+      'change',
+      (e) => {
+        try {
+          if (localStorage.getItem('theme') !== null) return;
+        } catch {}
 
-      const isDark = e.matches;
-      document.documentElement.setAttribute(
-        'data-theme',
-        isDark ? 'dark' : 'light',
-      );
-      updateState(isDark);
-    };
-
-    mediaQuery.addEventListener('change', handlePreferenceChange, {
-      signal: controller.signal,
-    });
+        const theme = e.matches ? 'dark' : 'light';
+        window.__setTheme(theme, false);
+        updateAria(theme);
+      },
+      { signal: controller.signal },
+    );
 
     document.addEventListener('astro:before-swap', () => controller.abort(), {
       once: true,

@@ -85,34 +85,48 @@ const isHome = Astro.url.pathname === '/';
     />
 
     <script is:inline>
-      {
-        const theme =
-          (() => {
-            try {
-              return localStorage.getItem('theme');
-            } catch {
-              return null;
-            }
-          })() ||
-          (matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.classList.add('js');
+      window.__getTheme = () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        if (current === 'dark' || current === 'light') return current;
+
+        try {
+          const stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') return stored;
+        } catch {}
+
+        return matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+      };
+
+      window.__setTheme = (theme, save = true, doc = document) => {
+        doc.documentElement.setAttribute('data-theme', theme);
+
         const color = theme === 'dark' ? '#0f0f0f' : '#fafafa';
-        document.head
-          .querySelectorAll('meta[name="theme-color"]')
-          .forEach((tag) => {
-            tag.setAttribute('content', color);
-            tag.removeAttribute('media');
+        doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
+          tag.setAttribute('content', color);
+          tag.removeAttribute('media');
+        });
+
+        if (save) {
+          setTimeout(() => {
+            try {
+              localStorage.setItem('theme', theme);
+            } catch {}
           });
-        // 06/2026: Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
-        if (
-          navigator.userAgent.includes('Chrome') ||
-          navigator.userAgent.includes('Edg')
-        ) {
-          document.startViewTransition = undefined;
         }
+      };
+
+      window.__setTheme(window.__getTheme(), false);
+      document.documentElement.classList.add('js');
+
+      // 07/2026: Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
+      if (
+        navigator.userAgentData?.brands.some(
+          (item) => item.brand === 'Chromium',
+        )
+      ) {
+        document.startViewTransition = undefined;
       }
     </script>
 
@@ -248,24 +262,9 @@ const isHome = Astro.url.pathname === '/';
     </div>
     <div id="a11y-status-announce" class="sr-only" aria-live="polite"></div>
     <script>
-      function syncMeta(doc: Document) {
-        const isDark =
-          doc.documentElement.getAttribute('data-theme') === 'dark';
-        const color = isDark ? '#0f0f0f' : '#fafafa';
-        doc.head.querySelectorAll('meta[name="theme-color"]').forEach((tag) => {
-          tag.setAttribute('content', color);
-          tag.removeAttribute('media');
-        });
-      }
-
       document.addEventListener('astro:before-swap', (event) => {
-        const theme =
-          document.documentElement.getAttribute('data-theme') || 'light';
-
-        event.newDocument.documentElement.setAttribute('data-theme', theme);
+        window.__setTheme(window.__getTheme(), false, event.newDocument);
         event.newDocument.documentElement.classList.add('js');
-
-        syncMeta(event.newDocument);
       });
 
       document.addEventListener('astro:after-swap', () => {
