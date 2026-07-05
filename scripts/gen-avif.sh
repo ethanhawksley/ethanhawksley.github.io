@@ -6,11 +6,11 @@ set -euo pipefail
 SRC="src/assets/ethan-hawksley.png"
 TMP_PNG="/tmp/r.png"
 TMP_AVIF="/tmp/t.avif"
-OUT="src/assets/ethan-hawksley-120.avif"
-TARGET_SIZE=2560
+OUT="src/assets/ethan-hawksley-320.avif"
+TARGET_SIZE=5500
 
 echo "Resizing"
-magick "$SRC" -filter LanczosSharp -resize 120x120 -strip "$TMP_PNG"
+magick "$SRC" -filter LanczosSharp -resize 320x320 -strip "$TMP_PNG"
 
 echo "Searching for optimal compression"
 low=0
@@ -19,7 +19,15 @@ best=63
 
 while (( low <= high )); do
   mid=$(( (low + high) / 2 ))
-  avifenc --min "$mid" --max "$mid" --speed 0 --yuv 420 --ignore-icc "$TMP_PNG" "$TMP_AVIF" 2>/dev/null
+  avifenc \
+    --min 0 --max 63 \
+    -a end-usage=q -a cq-level="$mid" \
+    -a tune=ssim \
+    --depth 10 \
+    --yuv 444 \
+    --speed 0 \
+    --ignore-icc \
+    "$TMP_PNG" "$TMP_AVIF" 2>/dev/null
   size=$(stat -c%s "$TMP_AVIF")
   if (( size <= TARGET_SIZE )); then
     best=$mid
@@ -30,6 +38,14 @@ while (( low <= high )); do
 done
 
 echo "Encoding final AVIF at $best"
-avifenc --min "$best" --max "$best" --speed 0 --yuv 420 --ignore-icc "$TMP_PNG" "$OUT"
+avifenc \
+  --min 0 --max 63 \
+  -a end-usage=q -a cq-level="$best" \
+  -a tune=ssim \
+  --depth 10 \
+  --yuv 444 \
+  --speed 0 \
+  --ignore-icc \
+  "$TMP_PNG" "$OUT"
 
 echo "Compressed successfully"
