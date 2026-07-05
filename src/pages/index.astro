@@ -1,29 +1,21 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import LatestPosts from '../components/LatestPosts.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-import ethanHawksleyPhoto from '../assets/ethan-hawksley.png';
 import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
 import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
 
-const optimizedAvif = await getImage({
-  src: ethanHawksleyPhoto,
-  width: 320,
-  height: 320,
-  format: 'avif',
-});
-
-// Inline low quality avif since home page fits into 1 TCP packet.
-const fallbackPath = path.join(
+// Inline low quality avif since home page fits into initcwd
+// On Cloudflare, initcwd is ~40KB.
+const inlineImagePath = path.join(
   process.cwd(),
-  'src/assets/ethan-hawksley-120.avif',
+  'src/assets/ethan-hawksley-320.avif',
 );
-const fallbackBuffer = fs.readFileSync(fallbackPath);
-const fallbackBase64 = `data:image/avif;base64,${fallbackBuffer.toString('base64')}`;
+const inlineImageBuffer = fs.readFileSync(inlineImagePath);
+const inlineImageBase64 = `data:image/avif;base64,${inlineImageBuffer.toString('base64')}`;
 
 const ogImageUrl = new URL('/og/home.jpg', Astro.site).toString();
 
@@ -88,8 +80,6 @@ const jsonLd = {
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
-  preloadImage={optimizedAvif.src}
-  preloadType="image/avif"
 >
   <section class="hero">
     <div class="hero-content">
@@ -99,7 +89,7 @@ const jsonLd = {
       <SocialLinks />
     </div>
     <picture>
-      <source srcset={optimizedAvif.src} type="image/avif" />
+      <source srcset={inlineImageBase64} type="image/avif" />
       <img
         src="/ethan-hawksley.png"
         width="1536"
@@ -108,7 +98,6 @@ const jsonLd = {
         fetchpriority="high"
         decoding="sync"
         class="hero-avatar"
-        style={`background-image: url(${fallbackBase64});`}
       />
     </picture>
   </section>
