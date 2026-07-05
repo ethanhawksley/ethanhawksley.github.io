@@ -1,9 +1,5 @@
 # hawksley.dev
 
-I'm Ethan Hawksley, a CS student with a focus on systems and cybersecurity.
-
-This repository hosts the source code for my personal portfolio and technical blog.
-
 **[Ethan Hawksley's portfolio & blog](https://hawksley.dev)**
 
 ## Features
