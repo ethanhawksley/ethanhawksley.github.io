@@ -61,6 +61,7 @@ const isHome = Astro.url.pathname === '/';
       href="/fonts/ibm-sans-subset.woff2"
       as="font"
       type="font/woff2"
+      fetchpriority={preloadImage ? undefined : 'high'}
       crossorigin
     />
     <link
