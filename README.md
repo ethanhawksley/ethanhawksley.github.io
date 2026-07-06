@@ -53,7 +53,7 @@ To subset:
 
 ## AVIF Minification
 
-The site's home page includes an inline base64 2.5 KB AVIF photo of `src/assets/ethan-hawksley.png`.
+The site's home page includes an inline base64 AVIF photo of `src/assets/ethan-hawksley.png`.
 
 To generate it:
 
