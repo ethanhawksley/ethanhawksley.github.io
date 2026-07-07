@@ -159,29 +159,30 @@ const jsonLd = {
   <article>
     <header>
       <h1>{post.data.title}</h1>
-      <div class="post-meta">
-        <span>Published <FormattedDate date={post.data.pubDate} /></span>
-        {
-          post.data.modDate && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>
+      <div class="post-meta-wrapper">
+        <ul class="post-meta" role="list">
+          <li>Published <FormattedDate date={post.data.pubDate} /></li>
+          {
+            post.data.modDate && (
+              <li>
                 Modified <FormattedDate date={post.data.modDate} />
-              </span>
-            </>
-          )
-        }
-        <span aria-hidden="true">·</span>
-        <span>{readingTime} min read</span>
-        {
-          post.data.tags.length > 0 && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span class="sr-only">Tags: </span>
-              <span>{post.data.tags.join(', ')}</span>
-            </>
-          )
-        }
+              </li>
+            )
+          }
+          <li>
+            <span>{readingTime} min read</span>
+            {
+              post.data.tags.length > 0 && (
+                <>
+                  <span class="nested-meta">
+                    <span class="sr-only">Tags: </span>
+                    <span>{post.data.tags.join(', ')}</span>
+                  </span>
+                </>
+              )
+            }
+          </li>
+        </ul>
       </div>
     </header>
     <div class="prose">
@@ -482,20 +483,45 @@ const jsonLd = {
   header {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
     padding-block-end: 1.5rem;
     border-block-end: 1px solid var(--color-border);
+  }
+
+  .post-meta-wrapper {
+    overflow: hidden;
   }
 
   .post-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    row-gap: 0.5rem;
     align-items: center;
+    margin-inline-start: -1.25rem;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;
     color: var(--color-text-muted);
+  }
+
+  .post-meta > li,
+  .nested-meta {
+    position: relative;
+    padding-inline-start: 1.25rem;
+  }
+
+  .post-meta > li::before,
+  .nested-meta::before {
+    position: absolute;
+    inset-inline-start: 0.625rem;
+    top: 50%;
+    content: '·';
+    transform: translate(-50%, -50%);
+  }
+
+  .meta-separator {
+    display: inline-block;
+    inline-size: 1.25rem;
+    text-align: center;
   }
 
   .newsletter-wrapper {
