@@ -25,7 +25,7 @@ export async function GET(context: APIContext) {
       })),
     ),
     customData: [
-      `<language>en-GB</language>`,
+      `<language>en</language>`,
       `<copyright>Content licensed under CC BY 4.0</copyright>`,
       `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
     ].join(''),

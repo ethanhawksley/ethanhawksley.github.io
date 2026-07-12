@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
     home_page_url: siteUrl,
     feed_url: `${siteUrl}feed.json`,
     authors: [{ name: 'Ethan Hawksley', url: siteUrl }],
-    language: 'en-GB',
+    language: 'en',
     favicon: 'https://hawksley.dev/icon-48x48.png',
     icon: 'https://hawksley.dev/icon-512x512.png',
     items: await Promise.all(

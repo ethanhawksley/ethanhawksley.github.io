@@ -40,7 +40,7 @@ const isIndexable = !robots.includes('noindex');
 const isHome = Astro.url.pathname === '/';
 ---
 
-<html lang="en-GB" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -147,6 +147,7 @@ const isHome = Astro.url.pathname === '/';
           <meta property="og:description" content={description} />
           <meta property="og:site_name" content="Ethan Hawksley" />
           <meta property="og:locale" content="en_GB" />
+          <meta property="og:locale:alternate" content="en_US" />
           <meta property="og:image" content={ogImage} />
           <meta property="og:image:alt" content={title} />
           <meta property="og:image:width" content="1200" />

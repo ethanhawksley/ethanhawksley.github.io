@@ -8,7 +8,7 @@ export const websiteJsonLd = {
   alternateName: ['hawksley.dev', 'Hawksley'],
   description:
     'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity.',
-  inLanguage: 'en-GB',
+  inLanguage: 'en',
   publisher: { '@id': 'https://hawksley.dev/#person' },
   image: {
     '@type': 'ImageObject',
@@ -33,7 +33,7 @@ export const personJsonLd = {
   disambiguatingDescription:
     'CS student & systems/cybersecurity enthusiast, UK',
   jobTitle: 'Computer Science Student',
-  knowsLanguage: 'en-GB',
+  knowsLanguage: 'en',
   knowsAbout: [
     'Systems Programming',
     'Cybersecurity',
