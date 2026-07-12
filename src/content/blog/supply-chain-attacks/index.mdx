@@ -8,7 +8,7 @@ tags: ['cybersecurity', 'packages']
 
 Supply chain attacks are a growing threat to software registries.
 
-One of the first major typosquatting attacks on npm took place in 2017 when the user "hacktask" [published a series of packages](https://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) with similar names to popular libraries (e.g., crossenv vs cross-env), misleading people into installing them.
+One of the first major typosquatting attacks on npm took place in 2017 when the user "hacktask" [published a series of packages](https://blog.npmjs.org/post/163723642530/crossenv-malware-on-the-npm-registry) with similar names to popular libraries (e.g. crossenv vs cross-env), misleading people into installing them.
 
 Then the first time an official package was compromised was in 2018, when the account of an `eslint-scope` maintainer [was hijacked](https://eslint.org/blog/2018/07/postmortem-for-malicious-package-publishes/) and used to publish malicious packages. These packages would exfiltrate the contents of developers' `.npmrc` files, often including their keys used for publishing new npm packages. This marked a turning point when attackers began harvesting credentials at scale, to fuel further attacks.
 
@@ -60,7 +60,7 @@ For pip, set the contents of `~/.config/pip/pip.conf` to:
 uploaded-prior-to = P7D
 ```
 
-Cargo has a minimum age feature as an RFC, but as of the time of writing it is not implemented in the client yet. Go has no such plans, nor do Maven or Gradle.
+Cargo has a minimum age feature as an RFC, but as of the time of writing, it is not implemented in the client yet. Go has no such plans, nor do Maven or Gradle.
 
 This mitigation is not without drawbacks. It's worth considering that delaying such installations by a week also delays any critical security patches, unless otherwise overridden. It's worth weighing up whether it is worth the trade-off.
 
