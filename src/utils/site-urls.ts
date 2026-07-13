@@ -15,6 +15,7 @@ export const endpointUrls = [
   'https://hawksley.dev/elsewhere.txt',
   'https://hawksley.dev/.well-known/security.txt',
   'https://hawksley.dev/.well-known/webfinger',
+  'https://hawksley.dev/blog/confirm-subscription/',
 ];
 
 export async function getInternalPages() {
