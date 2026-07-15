@@ -43,7 +43,10 @@ const isHome = Astro.url.pathname === '/';
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
     {
       preloadImage && (
@@ -633,15 +636,15 @@ const isHome = Astro.url.pathname === '/';
     flex-direction: column;
     max-inline-size: 48rem;
     min-block-size: 100dvb;
-    padding-block-start: 1rem;
-    padding-block-end: 2rem;
+    padding-block-start: max(1rem, env(safe-area-inset-top));
+    padding-block-end: max(2rem, env(safe-area-inset-bottom));
     margin-inline: auto;
   }
 
   .skip-link {
     position: absolute;
     inset-block-start: -100%;
-    inset-inline-start: 1rem;
+    inset-inline-start: max(1rem, env(safe-area-inset-left));
     z-index: 9999;
     padding-block: 0.5rem;
     padding-inline: 1rem;
@@ -652,7 +655,7 @@ const isHome = Astro.url.pathname === '/';
   }
 
   .skip-link:focus {
-    inset-block-start: 1rem;
+    inset-block-start: max(1rem, env(safe-area-inset-top));
   }
 
   .nav-bar {

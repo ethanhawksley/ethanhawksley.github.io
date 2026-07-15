@@ -39,7 +39,8 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
     align-items: center;
     justify-content: space-between;
     min-block-size: 3rem;
-    padding-inline: 1.5rem;
+    padding-inline-start: max(1.5rem, env(safe-area-inset-left));
+    padding-inline-end: max(1.5rem, env(safe-area-inset-right));
   }
 
   .monogram {
