@@ -71,4 +71,4 @@ Blog posts and written content are licensed under [CC BY 4.0](https://creativeco
 
 Code snippets embedded within blog posts are licensed under MIT.
 
-Personal branding, logos, and photographs are All Rights Reserved (see the NOTICE file). Please remove these if you fork the repository.
+Personal branding, logos, and photographs are All Rights Reserved (see the NOTICE file). Please remove these if you fork the repository. `/public/ethan-hawksley.png` is excluded, and instead licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
