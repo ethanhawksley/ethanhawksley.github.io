@@ -59,18 +59,19 @@ const { name, description, links = [], url, type, stack } = Astro.props;
 
 <style>
   li + li {
-    border-block-start: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
   }
 
   article {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding-block: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   p {
-    max-inline-size: 65ch;
+    max-width: 65ch;
     color: var(--color-text-muted);
   }
 
@@ -79,7 +80,7 @@ const { name, description, links = [], url, type, stack } = Astro.props;
     flex-wrap: wrap;
     gap: 1.5rem;
     align-items: center;
-    margin-block-start: 0.25rem;
+    margin-top: 0.25rem;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     font-variant-numeric: tabular-nums;

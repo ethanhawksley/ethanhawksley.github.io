@@ -34,7 +34,7 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-inline-size: 65ch;
+    max-width: 65ch;
   }
 
   h3 {
@@ -52,32 +52,32 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 
   input {
     flex: 1;
-    min-inline-size: 200px;
-    padding-block: 0.15rem 0.1rem;
-    padding-inline: 0.15rem;
+    min-width: 200px;
+    padding: 0.15rem 0.15rem 0.1rem;
     font-family: var(--font-sans);
     font-size: var(--font-size-base);
     line-height: var(--leading-snug);
     color: var(--color-text);
     background: transparent;
     border: none;
-    border-block-end: 2px solid var(--color-border-control);
+    border-bottom: 2px solid var(--color-border-control);
     border-radius: 0;
   }
 
   input:focus {
     outline: none;
-    border-block-end-color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
   }
 
   button {
-    padding-block: 0.15rem 0.1rem;
+    padding-top: 0.15rem;
+    padding-bottom: 0.1rem;
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
     font-weight: var(--weight-medium);
     line-height: var(--leading-snug);
     color: var(--color-text);
-    border-block-end: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
   }
 
   button:hover {

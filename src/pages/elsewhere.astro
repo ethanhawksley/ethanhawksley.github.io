@@ -87,30 +87,31 @@ const ogImageUrl = new URL('/og/elsewhere.jpg', Astro.site).toString();
 
 <style>
   p {
-    max-inline-size: 65ch;
-    margin-block-end: 2rem;
+    max-width: 65ch;
+    margin-bottom: 2rem;
     line-height: var(--leading-normal);
     color: var(--color-text-muted);
     text-wrap: balance;
   }
 
   section {
-    margin-block-end: 2rem;
+    margin-bottom: 2rem;
   }
 
   h2 {
-    margin-block-end: 1rem;
+    margin-bottom: 1rem;
     font-size: var(--font-size-lg);
   }
 
   li {
     display: flex;
     align-items: baseline;
-    padding-block: 0.75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
   }
 
   li + li {
-    border-block-start: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
   }
 
   span {
