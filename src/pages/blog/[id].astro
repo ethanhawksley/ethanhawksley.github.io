@@ -235,6 +235,7 @@ const jsonLd = {
     </div>
   </nav>
 </Layout>
+
 <style is:global>
   .prose {
     min-inline-size: 0;
@@ -324,8 +325,8 @@ const jsonLd = {
     padding: 0.5rem;
     overflow-inline: auto;
     overscroll-behavior-inline: contain;
-    color: light-dark(var(--shiki-light), var(--shiki-dark));
-    background-color: light-dark(var(--shiki-light-bg), var(--shiki-dark-bg));
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
     border: 2px solid var(--color-border);
     border-radius: 0.5rem;
   }
@@ -344,11 +345,17 @@ const jsonLd = {
   }
 
   .astro-code span {
-    font-style: var(--shiki-light-font-style);
-    font-weight: var(--shiki-light-font-weight);
-    color: light-dark(var(--shiki-light), var(--shiki-dark));
-    text-decoration: var(--shiki-light-text-decoration);
+    color: var(--shiki-light);
     transition: none !important;
+  }
+
+  [data-theme='dark'] .astro-code {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+
+  [data-theme='dark'] .astro-code span {
+    color: var(--shiki-dark);
   }
 
   .copy-button {
@@ -394,17 +401,13 @@ const jsonLd = {
     color: #22c55e;
   }
 
-  [data-theme='dark'] .astro-code span {
-    font-style: var(--shiki-dark-font-style);
-    font-weight: var(--shiki-dark-font-weight);
-    text-decoration: var(--shiki-dark-text-decoration);
-  }
-
   @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .astro-code {
+      color: var(--shiki-dark);
+      background-color: var(--shiki-dark-bg);
+    }
     :root:not([data-theme='light']) .astro-code span {
-      font-style: var(--shiki-dark-font-style);
-      font-weight: var(--shiki-dark-font-weight);
-      text-decoration: var(--shiki-dark-text-decoration);
+      color: var(--shiki-dark);
     }
   }
 
@@ -518,12 +521,6 @@ const jsonLd = {
     transform: translate(-50%, -50%);
   }
 
-  .meta-separator {
-    display: inline-block;
-    inline-size: 1.25rem;
-    text-align: center;
-  }
-
   .newsletter-wrapper {
     padding-block-start: 1.5rem;
     margin-block-start: 2.5rem;
@@ -608,6 +605,7 @@ const jsonLd = {
     .pager-prev {
       grid-column: 1;
     }
+
     .pager-next {
       grid-column: 2;
     }
