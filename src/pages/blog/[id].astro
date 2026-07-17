@@ -241,19 +241,30 @@ const jsonLd = {
     min-width: 0;
   }
 
-  :is(.prose, .prose blockquote) > :first-child {
+  .prose > :first-child,
+  .prose blockquote > :first-child {
     margin-top: 0;
   }
 
-  :is(.prose, .prose blockquote) > :last-child {
+  .prose > :last-child,
+  .prose blockquote > :last-child {
     margin-bottom: 0;
   }
 
-  .prose :where(h2, h3, h4, h5, h6, p, li, blockquote) {
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6,
+  .prose p,
+  .prose li,
+  .prose blockquote {
     max-width: 65ch;
   }
 
-  .prose :where(p, ul, ol) {
+  .prose p,
+  .prose ul,
+  .prose ol {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -275,7 +286,8 @@ const jsonLd = {
     margin-bottom: 0.5rem;
   }
 
-  .prose :where(h5, h6) {
+  .prose h5,
+  .prose h6 {
     margin-top: 1.25rem;
     margin-bottom: 0.25rem;
   }
@@ -284,7 +296,8 @@ const jsonLd = {
     margin-top: 0.5rem;
   }
 
-  .prose li > :is(ul, ol) {
+  .prose li > ul,
+  .prose li > ol {
     margin-top: 0.5rem;
     margin-bottom: 0;
   }
