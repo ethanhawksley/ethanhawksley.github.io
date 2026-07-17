@@ -311,15 +311,16 @@ const isHome = Astro.url.pathname === '/';
   :root {
     color-scheme: light dark;
 
-    --color-background: light-dark(#fafafa, #0f0f0f);
-    --color-surface: light-dark(#eaeaea, #1f1f1f);
-    --color-text: light-dark(#1a1a1a, #ededed);
-    --color-text-muted: light-dark(#525252, #b0b0b0);
-    --color-accent: light-dark(#bf3900, #ff4f00);
-    --color-border: light-dark(#e0e0e0, #2a2a2a);
-    --color-border-control: light-dark(#8c8c8c, #6b6b6b);
-    --color-scrollbar-thumb: light-dark(#b3b3b3, #4d4d4d);
-    --color-selection: light-dark(#bf3900, #b33800);
+    --color-background: #fafafa;
+    --color-surface: #eaeaea;
+    --color-text: #1a1a1a;
+    --color-text-contrasted: #ffffff;
+    --color-text-muted: #525252;
+    --color-accent: #bf3900;
+    --color-border: #e0e0e0;
+    --color-border-control: #8c8c8c;
+    --color-scrollbar-thumb: #b3b3b3;
+    --color-selection: #bf3900;
 
     --font-size-xs: clamp(0.75rem, 0.7083rem + 0.2083vi, 0.875rem);
     --font-size-sm: clamp(0.875rem, 0.8333rem + 0.2083vi, 1rem);
@@ -354,11 +355,36 @@ const isHome = Astro.url.pathname === '/';
 
   :root[data-theme='dark'] {
     color-scheme: dark;
+
+    --color-background: #0f0f0f;
+    --color-surface: #1f1f1f;
+    --color-text: #ededed;
+    --color-text-contrasted: #0f0f0f;
+    --color-text-muted: #b0b0b0;
+    --color-accent: #ff4f00;
+    --color-border: #2a2a2a;
+    --color-border-control: #6b6b6b;
+    --color-scrollbar-thumb: #4d4d4d;
+    --color-selection: #b33800;
+
     --img-theme-filter: opacity(0.85) contrast(1.1);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) {
+      color-scheme: dark;
+
+      --color-background: #0f0f0f;
+      --color-surface: #1f1f1f;
+      --color-text: #ededed;
+      --color-text-contrasted: #0f0f0f;
+      --color-text-muted: #b0b0b0;
+      --color-accent: #ff4f00;
+      --color-border: #2a2a2a;
+      --color-border-control: #6b6b6b;
+      --color-scrollbar-thumb: #4d4d4d;
+      --color-selection: #b33800;
+
       --img-theme-filter: opacity(0.85) contrast(1.1);
     }
   }
@@ -648,7 +674,7 @@ const isHome = Astro.url.pathname === '/';
     z-index: 9999;
     padding-block: 0.5rem;
     padding-inline: 1rem;
-    color: light-dark(#ffffff, #0f0f0f);
+    color: var(--color-text-contrasted);
     text-decoration: none;
     background: var(--color-accent);
     border-radius: 0.25rem;
