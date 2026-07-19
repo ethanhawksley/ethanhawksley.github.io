@@ -1,4 +1,4 @@
-# hawksley.dev
+# Hawksley.dev
 
 **[Ethan Hawksley's portfolio & blog](https://hawksley.dev)**
 
