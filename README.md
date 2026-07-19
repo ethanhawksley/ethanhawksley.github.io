@@ -63,12 +63,14 @@ To generate it:
 - Run `bash scripts/gen-avif.sh`
 - Generated AVIF will be placed in `src/assets`
 
-## License
+## Licenses
 
-Code is licensed under MIT.
+Code and all blog code snippets are licensed under MIT.
 
-Blog posts and written content are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Blog posts, documentation, project descriptions, and other written content are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-Code snippets embedded within blog posts are licensed under MIT.
+The files `/public/ethan-hawksley.png`, `/src/assets/ethan-hawksley.png`, and `/src/assets/ethan-hawksley-320.avif` are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-Personal branding, logos, and photographs are All Rights Reserved (see the NOTICE file). Please remove these if you fork the repository. `/public/ethan-hawksley.png` is excluded, and instead licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+Other personal branding, logos, and photographs are All Rights Reserved. Please remove these if you fork the repository.
+
+The full criteria for each is explained in the [LICENSE](LICENSE) additional terms.

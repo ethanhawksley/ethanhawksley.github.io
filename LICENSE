@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024–2026 Ethan Hawksley
+Copyright (c) 2024–present Ethan Hawksley
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,62 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
----
+==============================================================================
+ADDITIONAL TERMS - CONTENT, BRANDING, AND RESERVED ASSETS
+==============================================================================
 
-ADDITIONAL TERMS — CONTENT, BRANDING, AND RESERVED ASSETS
-See LICENSE-CONTENT and NOTICE for full terms governing non-code assets.
+The written content, non-code assets, and branding in this repository are
+explicitly excluded from the MIT License above and are governed as follows:
+
+1. Creative Commons Attribution 4.0 International (CC BY 4.0)
+   The following assets are licensed under CC BY 4.0:
+   - All original blog posts, articles, and MDX files
+   - All project descriptions
+   - All documentation and written content
+   - Any imagery created by Ethan Hawksley not covered per Section 2 or 3
+
+   Code snippets embedded within blog posts or MDX files (e.g. fenced
+   code blocks, inline code examples) are excluded from this CC BY 4.0
+   grant and are instead licensed under the MIT License above.
+
+   Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+   Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+2. Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+   The following assets are licensed under CC BY-SA 4.0:
+   - The files /public/ethan-hawksley.png, /src/assets/ethan-hawksley.png,
+     and /src/assets/ethan-hawksley-320.avif
+
+   Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
+   Full legal code: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+3. All Rights Reserved
+
+   Copyright (c) 2024–present Ethan Hawksley. All rights reserved.
+
+   The following assets are EXCLUDED from the MIT License and both CC
+   licenses above. No rights are granted for these assets. They may not
+   be used, reproduced, modified, distributed, or transmitted in any
+   form or by any means without explicit prior written permission from
+   Ethan Hawksley.
+
+   Reserved assets include, but are not limited to:
+
+   BRANDING & IDENTITY
+     - All logo files (e.g. /public/ethan-hawksley-monogram-*,
+       /src/assets/ethan-hawksley-monogram-round.svg)
+     - All assets within the _design/ directory
+
+   PERSONAL LIKENESS
+     - All personal photographs and avatars
+     - Any image depicting Ethan Hawksley's personal likeness
+     - (Exception: /public/ethan-hawksley.png, /src/assets/ethan-hawksley.png,
+       and /src/assets/ethan-hawksley-320.avif licensed under CC BY-SA 4.0
+       per Section 2 above. Any other derivatives of these files are
+       licensed under All Rights Reserved.)
+
+   You are welcome to fork this repository! However, please ensure to remove
+   or replace the assets listed in this section before hosting or publishing
+   your own version.
+
+For permissions or enquiries: ethan@hawksley.dev
