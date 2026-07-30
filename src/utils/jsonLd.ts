@@ -5,7 +5,7 @@ export const websiteJsonLd = {
   '@id': 'https://hawksley.dev/#website',
   url: 'https://hawksley.dev',
   name: 'Hawksley.dev',
-  alternateName: ["Ethan Hawksley's Website", 'hawksley.dev', 'Hawksley'],
+  alternateName: ["Ethan Hawksley's Website", 'Hawksley'],
   description:
     'The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming and cybersecurity.',
   inLanguage: 'en',
