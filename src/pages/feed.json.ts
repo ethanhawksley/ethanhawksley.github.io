@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
     version: 'https://jsonfeed.org/version/1.1',
     title: "Ethan Hawksley's Blog",
     description:
-      'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
+      'Technical blog of Ethan Hawksley, a CS student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
     home_page_url: siteUrl,
     feed_url: `${siteUrl}feed.json`,
     authors: [{ name: 'Ethan Hawksley', url: siteUrl }],
