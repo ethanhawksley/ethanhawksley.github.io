@@ -76,16 +76,19 @@ const jsonLd = {
 
 <Layout
   title="Ethan Hawksley | CS Student, Systems & Cybersecurity"
-  description="The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming, low-level computing, and cybersecurity."
+  description="The personal site and technical blog of Ethan Hawksley, a UK-based CS student with a focus on systems programming and cybersecurity."
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
 >
   <section class="hero">
     <div class="hero-content">
-      <h1 id="hero-heading">Ethan Hawksley</h1>
-      <p>Hi, I'm Ethan Hawksley, a CS student in the UK.</p>
-      <p>I&nbsp;use Linux, write Rust, and enjoy cybersecurity.</p>
+      <h1>Ethan Hawksley</h1>
+      <p class="hero-lead">
+        Ethan Hawksley is a CS student in the UK with a focus on systems
+        programming and cybersecurity.
+      </p>
+      <p>That's me! I&nbsp;use this site to share all my projects.</p>
       <SocialLinks />
     </div>
     <picture>
@@ -120,10 +123,7 @@ const jsonLd = {
   </section>
   <section aria-labelledby="blog-heading">
     <h2 id="blog-heading">Latest Posts</h2>
-    <p>
-      Writing about systems programming, cybersecurity, and all I learn along
-      the way.
-    </p>
+    <p>Articles primarily on tech, but also whatever grabs my attention.</p>
     <LatestPosts />
   </section>
 </Layout>
@@ -138,8 +138,15 @@ const jsonLd = {
   }
 
   .hero-content {
-    max-width: 65ch;
+    max-width: 39ch;
     text-wrap: balance;
+  }
+
+  .hero-lead {
+    width: fit-content;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
   }
 
   .hero-avatar {
@@ -160,6 +167,7 @@ const jsonLd = {
   @media (min-width: 38em) {
     .hero {
       flex-direction: row;
+      gap: 0;
       justify-content: space-between;
     }
 

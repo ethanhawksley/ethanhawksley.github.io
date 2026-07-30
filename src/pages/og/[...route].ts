@@ -45,7 +45,7 @@ export async function getStaticPaths() {
         page: {
           title: 'Blog',
           description:
-            'Writing about systems programming, cybersecurity, and computer science.',
+            'Articles primarily on tech, but also whatever grabs my attention.',
         },
       },
     },

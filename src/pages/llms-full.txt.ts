@@ -7,7 +7,7 @@ export async function GET() {
 
   const content = `# Ethan Hawksley
 
-> Personal site and technical blog of Ethan Hawksley, a UK-based CS student focusing on systems programming, low-level computing, and cybersecurity.
+> Personal site and technical blog of Ethan Hawksley, a UK-based CS student focusing on systems programming and cybersecurity.
 > Website: https://hawksley.dev
 > License (Code): MIT
 > License (Content): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

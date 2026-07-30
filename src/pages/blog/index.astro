@@ -19,7 +19,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       name: "Ethan Hawksley's Blog",
       description:
-        'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.',
+        'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
       inLanguage: 'en',
       dateModified: lastModified,
       mainEntity: { '@id': 'https://hawksley.dev/blog/#blog' },
@@ -37,7 +37,7 @@ const jsonLd = {
       mainEntityOfPage: { '@id': 'https://hawksley.dev/blog/#webpage' },
       name: "Ethan Hawksley's Blog",
       description:
-        'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science.',
+        'Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
       inLanguage: 'en',
       dateModified: lastModified,
       publisher: { '@id': 'https://hawksley.dev/#person' },
@@ -69,16 +69,13 @@ const ogImageUrl = new URL('/og/blog.jpg', Astro.site).toString();
 
 <Layout
   title="Blog | Ethan Hawksley"
-  description="Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, low-level computing, cybersecurity, and computer science."
+  description="Technical blog of Ethan Hawksley, a UK-based CS student. Articles on systems programming, cybersecurity, and whatever else grabs my attention."
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
 >
   <h1>Blog</h1>
-  <p>
-    Writing about systems programming, cybersecurity, and all I learn along the
-    way.
-  </p>
+  <p>Articles primarily on tech, but also whatever grabs my attention.</p>
   <ul role="list">
     {
       allPosts.map((post) => (
