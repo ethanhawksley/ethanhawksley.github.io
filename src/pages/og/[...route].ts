@@ -8,7 +8,7 @@ import path from 'node:path';
 import type { APIRoute } from 'astro';
 import { getSortedPosts } from '../../utils/content-helpers';
 
-const VERSION = 'v4';
+const VERSION = 'v5';
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
 
 let bgBase64: string | null = null;
@@ -125,6 +125,7 @@ export const GET: APIRoute = async ({ props }) => {
         fontWeight: 700,
         color: '#ffffff',
         lineHeight: 1.3,
+        textWrap: 'balance',
         fontFamily: 'IBM Plex Sans',
       },
       children: title,
@@ -140,6 +141,7 @@ export const GET: APIRoute = async ({ props }) => {
             color: '#a1a1aa',
             marginTop: 24,
             lineHeight: 1.5,
+            textWrap: 'balance',
             fontFamily: 'IBM Plex Sans',
           },
           children: description,
