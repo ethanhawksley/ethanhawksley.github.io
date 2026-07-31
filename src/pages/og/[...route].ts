@@ -35,7 +35,7 @@ export async function getStaticPaths() {
         page: {
           title: 'Ethan Hawksley',
           description:
-            'CS student in the UK focusing on systems programming and cybersecurity.',
+            'Computer Science student in the UK focusing on systems programming and cybersecurity.',
         },
       },
     },
