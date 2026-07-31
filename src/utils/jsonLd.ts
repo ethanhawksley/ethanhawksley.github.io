@@ -76,7 +76,7 @@ export const personJsonLd = {
   image: {
     '@type': 'ImageObject',
     '@id': 'https://hawksley.dev/#person-image',
-    url: 'https://hawksley.dev/ethan-hawksley.png',
+    url: 'https://hawksley.dev/ethan-hawksley.jpg',
     caption: 'Ethan Hawksley',
     width: 1536,
     height: 1536,
