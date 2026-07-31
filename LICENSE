@@ -43,8 +43,9 @@ explicitly excluded from the MIT License above and are governed as follows:
 
 2. Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
    The following assets are licensed under CC BY-SA 4.0:
-   - The files /public/ethan-hawksley.png, /src/assets/ethan-hawksley.png,
-     and /src/assets/ethan-hawksley-320.avif
+   - The files /public/ethan-hawksley.png, /public/ethan-hawksley.jpg,
+     /public/ethan-hawksley.webp, /public/ethan-hawksley.avif,
+     /src/assets/ethan-hawksley.png, and /src/assets/ethan-hawksley-320.avif
 
    Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
    Full legal code: https://creativecommons.org/licenses/by-sa/4.0/legalcode

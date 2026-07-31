@@ -63,7 +63,7 @@ const jsonLd = {
       mainEntity: { '@id': 'https://hawksley.dev/#person' },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://hawksley.dev/ethan-hawksley.png',
+        url: 'https://hawksley.dev/ethan-hawksley.jpg',
         caption: 'Ethan Hawksley',
         width: 1536,
         height: 1536,
@@ -92,15 +92,17 @@ const jsonLd = {
       <SocialLinks />
     </div>
     <picture>
-      <source srcset={inlineImageBase64} type="image/avif" />
+      <source srcset="/ethan-hawksley.avif" type="image/avif" />
       <img
-        src="/ethan-hawksley.png"
+        class="hero-avatar"
+        src="/ethan-hawksley.jpg"
+        alt="Ethan Hawksley"
         width="1536"
         height="1536"
-        alt="Ethan Hawksley"
-        fetchpriority="high"
-        decoding="sync"
-        class="hero-avatar"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+        style={`background-image:url(${inlineImageBase64})`}
       />
     </picture>
   </section>

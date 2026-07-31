@@ -69,7 +69,7 @@ Code and all blog code snippets are licensed under MIT.
 
 Blog posts, documentation, project descriptions, and other written content are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-The files `/public/ethan-hawksley.png`, `/src/assets/ethan-hawksley.png`, and `/src/assets/ethan-hawksley-320.avif` are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+The files `/public/ethan-hawksley.png`, `/public/ethan-hawksley.jpg`, `/public/ethan-hawksley.webp`, `/public/ethan-hawksley.avif`, `/src/assets/ethan-hawksley.png`, and `/src/assets/ethan-hawksley-320.avif` are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 Other personal branding, logos, and photographs are All Rights Reserved. Please remove these if you fork the repository.
 
