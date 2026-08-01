@@ -70,10 +70,11 @@ explicitly excluded from the MIT License above and are governed as follows:
    PERSONAL LIKENESS
      - All personal photographs and avatars
      - Any image depicting Ethan Hawksley's personal likeness
-     - (Exception: /public/ethan-hawksley.png, /src/assets/ethan-hawksley.png,
-       and /src/assets/ethan-hawksley-320.avif licensed under CC BY-SA 4.0
-       per Section 2 above. Any other derivatives of these files are
-       licensed under All Rights Reserved.)
+     - (Exception: /public/ethan-hawksley.png, /public/ethan-hawksley.jpg,
+       /public/ethan-hawksley.webp, /public/ethan-hawksley.avif,
+       /src/assets/ethan-hawksley.png, and /src/assets/ethan-hawksley-320.avif
+       licensed under CC BY-SA 4.0 per Section 2 above. Any other derivatives
+       of these files are licensed under All Rights Reserved.)
 
    You are welcome to fork this repository! However, please ensure to remove
    or replace the assets listed in this section before hosting or publishing
