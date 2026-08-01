@@ -7,26 +7,30 @@ interface SitemapPage {
   priority: number;
   changefreq: string;
   lastmod?: string;
+  images?: string[];
 }
 
 export async function GET(context: APIContext) {
   const siteUrl = context.site!.toString();
   const allPosts = await getSortedPosts();
 
-  const blogLastModified = allPosts[0].data.pubDate.toISOString().split('T')[0];
+  const blogLastPublished = allPosts[0].data.pubDate
+    .toISOString()
+    .split('T')[0];
 
   const staticPages: SitemapPage[] = [
     {
       url: '',
       priority: 1.0,
       changefreq: 'monthly',
-      lastmod: blogLastModified,
+      lastmod: blogLastPublished,
+      images: ['https://hawksley.dev/ethan-hawksley.jpg'],
     },
     {
       url: 'blog/',
       priority: 0.9,
       changefreq: 'monthly',
-      lastmod: blogLastModified,
+      lastmod: blogLastPublished,
     },
     { url: 'elsewhere/', priority: 0.8, changefreq: 'monthly' },
   ];
@@ -50,7 +54,7 @@ export async function GET(context: APIContext) {
   const allPages = [...staticPages, ...postPages, ...externalSitemapPages];
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   ${allPages
     .map((page) => {
       const loc = page.url.startsWith('http')
@@ -60,8 +64,17 @@ export async function GET(context: APIContext) {
         ? `\n    <lastmod>${page.lastmod}</lastmod>`
         : '';
 
+      const imagesTag = page.images
+        ? page.images
+            .map(
+              (imgUrl) =>
+                `\n    <image:image>\n      <image:loc>${imgUrl}</image:loc>\n    </image:image>`,
+            )
+            .join('')
+        : '';
+
       return `<url>
-    <loc>${loc}</loc>${lastmodTag}
+    <loc>${loc}</loc>${imagesTag}${lastmodTag}
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority.toFixed(1)}</priority>
   </url>`;
