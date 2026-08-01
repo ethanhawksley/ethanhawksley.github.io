@@ -44,6 +44,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/#website' },
       name: post.data.title,
       inLanguage: 'en',
+      mainEntity: { '@id': `${postUrl}#blogposting` },
       breadcrumb: { '@id': `${postUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
