@@ -48,11 +48,11 @@ const jsonLd = {
       breadcrumb: { '@id': `${postUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://hawksley.dev/hawksley-dev-logo.png',
-        name: 'Hawksley.dev Logo',
-        caption: 'The official EH monogram logo for Hawksley.dev',
-        width: 1024,
-        height: 1024,
+        url: ogImageUrl,
+        name: `${post.data.title} - Cover Image`,
+        caption: post.data.metaDescription,
+        width: 1200,
+        height: 630,
       },
     },
     {
