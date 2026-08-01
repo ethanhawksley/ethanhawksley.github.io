@@ -3,7 +3,7 @@ import { allProfileUrls } from './profiles';
 export const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  url: 'https://hawksley.dev',
+  url: 'https://hawksley.dev/',
   name: 'Hawksley.dev',
   alternateName: ["Ethan Hawksley's Website", 'Hawksley'],
   description:
@@ -23,7 +23,7 @@ export const websiteJsonLd = {
 export const personJsonLd = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
-  url: 'https://hawksley.dev',
+  url: 'https://hawksley.dev/',
   name: 'Ethan Hawksley',
   alternateName: ['ethanhawksley', 'ethan-hawksley', 'Ethan_Hawksley'],
   givenName: 'Ethan',
@@ -87,6 +87,6 @@ export const personJsonLd = {
 export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
-  url: 'https://hawksley.dev',
+  url: 'https://hawksley.dev/',
   name: 'Hawksley.dev',
 } as const;
