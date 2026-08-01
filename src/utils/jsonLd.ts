@@ -12,7 +12,6 @@ export const websiteJsonLd = {
   publisher: { '@id': 'https://hawksley.dev/#person' },
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#website-image',
     url: 'https://hawksley.dev/ethan-hawksley-monogram-square.png',
     caption: 'Ethan Hawksley Monogram',
     width: 1024,
@@ -75,7 +74,6 @@ export const personJsonLd = {
   ],
   image: {
     '@type': 'ImageObject',
-    '@id': 'https://hawksley.dev/#person-image',
     url: 'https://hawksley.dev/ethan-hawksley.jpg',
     name: 'Ethan Hawksley',
     caption: 'Headshot of Ethan Hawksley, Computer Science student',

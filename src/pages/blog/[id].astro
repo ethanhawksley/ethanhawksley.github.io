@@ -48,9 +48,10 @@ const jsonLd = {
       breadcrumb: { '@id': `${postUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        '@id': `${postUrl}#primaryimage`,
         url: 'https://hawksley.dev/ethan-hawksley-monogram-square.png',
         caption: 'Ethan Hawksley Monogram',
+        width: 1024,
+        height: 1024,
       },
     },
     {
@@ -79,7 +80,6 @@ const jsonLd = {
       publisher: { '@id': 'https://hawksley.dev/#person' },
       image: {
         '@type': 'ImageObject',
-        '@id': `${postUrl}#blogposting-image`,
         url: ogImageUrl,
         width: 1200,
         height: 630,
