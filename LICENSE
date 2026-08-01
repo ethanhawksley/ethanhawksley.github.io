@@ -63,8 +63,8 @@ explicitly excluded from the MIT License above and are governed as follows:
    Reserved assets include, but are not limited to:
 
    BRANDING & IDENTITY
-     - All logo files (e.g. /public/ethan-hawksley-monogram-*,
-       /src/assets/ethan-hawksley-monogram-round.svg)
+     - All logo files (e.g. /public/hawksley-dev-logo*,
+       /src/assets/hawksley-dev-logo-rounded.svg)
      - All assets within the _design/ directory
 
    PERSONAL LIKENESS

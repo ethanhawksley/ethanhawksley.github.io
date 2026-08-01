@@ -12,8 +12,9 @@ export const websiteJsonLd = {
   publisher: { '@id': 'https://hawksley.dev/#person' },
   image: {
     '@type': 'ImageObject',
-    url: 'https://hawksley.dev/ethan-hawksley-monogram-square.png',
-    caption: 'Ethan Hawksley Monogram',
+    url: 'https://hawksley.dev/hawksley-dev-logo.png',
+    name: 'Hawksley.dev Logo',
+    caption: 'The official EH monogram logo for Hawksley.dev',
     width: 1024,
     height: 1024,
   },
