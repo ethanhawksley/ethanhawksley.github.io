@@ -4,8 +4,8 @@ export const websiteJsonLd = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
   url: 'https://hawksley.dev/',
-  name: 'Hawksley.dev',
-  alternateName: ["Ethan Hawksley's Website", 'Hawksley'],
+  name: 'Ethan Hawksley',
+  alternateName: ['Hawksley.dev', 'Hawksley'],
   description:
     'The personal site and technical blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity.',
   inLanguage: 'en',
@@ -88,5 +88,5 @@ export const websiteRef = {
   '@type': 'WebSite',
   '@id': 'https://hawksley.dev/#website',
   url: 'https://hawksley.dev/',
-  name: 'Hawksley.dev',
+  name: 'Ethan Hawksley',
 } as const;
