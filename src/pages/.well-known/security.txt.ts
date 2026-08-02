@@ -5,7 +5,7 @@ export const GET: APIRoute = () => {
   expires.setFullYear(expires.getFullYear() + 1);
 
   const content = `Contact: mailto:ethan@hawksley.dev
-Encryption: https://hawksley.dev/pgp-key.asc
+Encryption: https://hawksley.dev/key.asc
 Expires: ${expires.toISOString()}
 Preferred-Languages: en
 Canonical: https://hawksley.dev/.well-known/security.txt

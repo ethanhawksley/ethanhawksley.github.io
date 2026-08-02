@@ -9,21 +9,16 @@ const year = new Date().getFullYear();
     <span class="group">
       <span>&copy; {year} Ethan Hawksley</span>
       <span aria-hidden="true" class="dot">·</span>
-      <span>
-        Content: <A
-          href="https://creativecommons.org/licenses/by/4.0/"
-          pressable>CC BY 4.0</A
-        >
-      </span>
-    </span>
-    <span aria-hidden="true" class="dot mid-dot">·</span>
-    <span class="group">
       <A
         href="https://github.com/ethanhawksley/ethanhawksley.github.io"
         pressable>Source</A
       >
-      <span aria-hidden="true" class="dot">·</span>
+    </span>
+    <span aria-hidden="true" class="dot mid-dot">·</span>
+    <span class="group">
       <A href="/rss.xml" pressable data-astro-prefetch="false">RSS</A>
+      <span aria-hidden="true" class="dot">·</span>
+      <A href="/key.asc" pressable data-astro-prefetch="false">PGP</A>
       <span aria-hidden="true" class="dot">·</span>
       <A href="/elsewhere/" pressable>Elsewhere</A>
     </span>
@@ -62,7 +57,7 @@ const year = new Date().getFullYear();
     display: none;
   }
 
-  @media (min-width: 34em) {
+  @media (min-width: 30em) {
     small {
       flex-direction: row;
       gap: 0.4em;

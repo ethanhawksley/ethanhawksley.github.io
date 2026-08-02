@@ -8,6 +8,7 @@ export const externalPages = [
 export const endpointUrls = [
   'https://hawksley.dev/sitemap.xml',
   'https://hawksley.dev/sitemap.txt',
+  'https://hawksley.dev/key.asc',
   'https://hawksley.dev/rss.xml',
   'https://hawksley.dev/feed.json',
   'https://hawksley.dev/llms.txt',
