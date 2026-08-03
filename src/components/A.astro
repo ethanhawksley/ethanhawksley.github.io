@@ -78,7 +78,9 @@ const isExternalLink = external ?? isExternal(href);
 
   a > span {
     white-space: normal;
-    text-decoration: var(--color-accent) underline 2px;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--color-accent);
     text-underline-offset: 0.25em;
     transition: text-decoration-color 250ms ease-out;
   }
