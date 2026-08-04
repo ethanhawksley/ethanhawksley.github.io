@@ -9,7 +9,7 @@ export async function GET(context: APIContext) {
   return rss({
     title: "Ethan Hawksley's Blog",
     description:
-      'Technical blog of Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
+      'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
     site: context.site!,
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom',
