@@ -68,12 +68,12 @@ const isExternalLink = external ?? isExternal(href);
     color: var(--color-accent);
   }
 
-  a:active {
-    transform: scale(0.96);
-  }
-
   a[data-pressable] {
     display: inline-block;
+  }
+
+  a[data-pressable]:active {
+    transform: scale(0.96);
   }
 
   a > span {
