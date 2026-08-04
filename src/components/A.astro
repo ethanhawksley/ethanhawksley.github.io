@@ -87,15 +87,12 @@ const isExternalLink = external ?? isExternal(href);
 
   a > svg {
     display: inline-block;
-    width: 0.75em;
-    height: 0.75em;
-    margin-left: 0.15em;
+    width: 0.85em;
+    height: 0.85em;
+    margin-left: 0.1em;
     vertical-align: baseline;
+    transform: translateY(calc(0.5lh - 0.6em));
     transition: transform 250ms ease-out !important;
-  }
-
-  a:hover svg {
-    transform: translate(0.15em, -0.15em);
   }
 
   @media print {
