@@ -37,7 +37,7 @@ pnpm run dev
 
 Then open `http://localhost:4321` in your browser.
 
-## Font Subsetting
+## Subset Fonts
 
 The site uses a subsetted version of the IBM Plex Sans and Mono fonts for increased performance. These are both available for download on Google Fonts.
 
@@ -51,19 +51,22 @@ To subset:
 - Run `bash scripts/subset-fonts.sh`
 - Generated fonts will be placed in `public/fonts`
 
-## AVIF Minification
+## Generate Derivative Images
 
-The site's home page includes an inline base64 AVIF photo of `src/assets/ethan-hawksley.png`.
+The site uses many derivates of the `src/assets/ethan-hawksley.png` photo. It is transcoded and compressed to various other formats and sizes.
 
-To generate it:
+To generate them:
 
 - Install ImageMagick and libavif-tools
-  - `sudo dnf install ImageMagick libavif-tools`
-  - `sudo apt install imagemagick libavif-bin`
-- Run `bash scripts/gen-avif.sh`
-- Generated AVIF will be placed in `src/assets`
+  - `sudo dnf install libavif-tools libwebp-tools ImageMagick`
+  - `sudo apt install libavif-bin webp imagemagick`
+- You will also need to install `cjpegli`, which may require building `jpegli` from source
+- Run `bash scripts/generate-assets.sh`
+- Derivative assets will be placed within `public` and `src/assets`
 
 ## Licenses
+
+Thanks to Lucide and Tabler for their icons.
 
 Code and all blog code snippets are licensed under MIT.
 
