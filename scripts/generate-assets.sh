@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
-# Generates the low-resolution placeholder for the home page.
+# Generates the derivatives of ethan-hawksley.png
 
 set -euo pipefail
 
 SRC="src/assets/ethan-hawksley.png"
+
+avifenc -q 30 -a tune=ssim --depth 10 --yuv 420 --speed 0 --ignore-icc "$SRC" public/ethan-hawksley.avif
+
+cwebp -q 80 -m 6 -sharp_yuv -metadata none -mt "$SRC" -o public/ethan-hawksley.webp
+
+cjpegli "$SRC" public/ethan-hawksley.jpg -q 80
+
+cp "$SRC" public/ethan-hawksley.png
+
 TMP_PNG="/tmp/r.png"
 TMP_AVIF="/tmp/t.avif"
 OUT="src/assets/ethan-hawksley-320.avif"
