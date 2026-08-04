@@ -5,9 +5,25 @@ set -euo pipefail
 
 SRC="src/assets/ethan-hawksley.png"
 
-avifenc -q 30 -a tune=ssim --depth 10 --yuv 420 --speed 0 --ignore-icc "$SRC" public/ethan-hawksley.avif
+avifenc \
+  -q 30 \
+  -a tune=ssim \
+  --depth 10 \
+  --yuv 420 \
+  --speed 0 \
+  --ignore-icc \
+  "$SRC" public/ethan-hawksley.avif
 
-cwebp -q 80 -m 6 -sharp_yuv -metadata none -mt "$SRC" -o public/ethan-hawksley.webp
+cwebp \
+  -preset photo \
+  -q 80 \
+  -m 6 \
+  -pass 10 \
+  -af \
+  -sns 100 \
+  -sharp_yuv \
+  -metadata none \
+  -mt "$SRC" -o public/ethan-hawksley.webp
 
 cjpegli "$SRC" public/ethan-hawksley.jpg -q 80
 
