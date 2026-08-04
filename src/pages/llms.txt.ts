@@ -11,6 +11,7 @@ export async function GET() {
 > Website: https://hawksley.dev
 > License (Code): MIT
 > License (Content): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+> License (Headshot): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 > License (Assets/Branding): All Rights Reserved
 
 ## Projects
