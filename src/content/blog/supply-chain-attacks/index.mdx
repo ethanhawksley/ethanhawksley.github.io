@@ -70,8 +70,8 @@ Aside from a minimum-age, there are a few other key changes worth implementing.
 
 Firstly, ensure you have 2FA set up for all accounts that support it. It greatly limits the potential blast radius if you become compromised. I personally recommend [Ente Auth](https://ente.com/auth/) - it's free, cross-platform, and supports optional E2EE cloud backups.
 
-Secondly, if you are not using [pinned versions](https://jonathan.bergknoff.com/journal/always-pin-your-versions/) or [lock-files,](https://dev.to/wilsonwangdev/lock-files-and-package-manager-migration-a-practical-risk-analysis-2ejn) you should be. They ensure that installed software versions will only change when explicitly updated. This gives you greater control over how and when you want to update, limiting your exposure to supply chain attacks.
+Secondly, if you are not using [pinned versions](https://jonathan.bergknoff.com/journal/always-pin-your-versions/) or [lock-files](https://dev.to/wilsonwangdev/lock-files-and-package-manager-migration-a-practical-risk-analysis-2ejn), you should be. They ensure that installed software versions will only change when explicitly updated. This gives you greater control over how and when you want to update, limiting your exposure to supply chain attacks.
 
-Lastly, if your language supports [post-install scripts,](https://docs.npmjs.com/cli/v11/using-npm/scripts) it's worth disabling them unless necessary. Especially in the JS ecosystem, post-install scripts are often abused to execute payloads immediately before you have time to react. In most circumstances, the feature is just an unnecessary attack surface.
+Lastly, if your language supports [post-install scripts](https://docs.npmjs.com/cli/v11/using-npm/scripts), it's worth disabling them unless necessary. Especially in the JS ecosystem, post-install scripts are often abused to execute payloads immediately before you have time to react. In most circumstances, the feature is just an unnecessary attack surface.
 
 Even with these mitigations, no project is immune. However, with enough common sense and precautions, you should be able to keep reasonably safe.
