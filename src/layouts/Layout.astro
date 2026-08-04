@@ -291,24 +291,19 @@ const isHome = Astro.url.pathname === '/';
             history = [];
             console.log('* (Well, there is a man here.)');
             console.log('* (He offered you something.)');
-            console.log('Yes   No');
-
-            Object.defineProperty(window, 'Yes', {
-              get() {
-                console.log('* (You received an Easter Egg.)');
-                delete window.Yes;
-                delete window.No;
-              },
-              configurable: true,
-            });
-            Object.defineProperty(window, 'No', {
-              get() {
-                console.log("* (Then he needn't be here.)");
-                delete window.Yes;
-                delete window.No;
-              },
-              configurable: true,
-            });
+            console.log('yes   no');
+            function setupResponse(option: string, reply: string) {
+              Object.defineProperty(window, option, {
+                get() {
+                  console.log(reply);
+                  delete window.yes;
+                  delete window.no;
+                },
+                configurable: true,
+              });
+            }
+            setupResponse('yes', '* (You received an Easter Egg.)');
+            setupResponse('no', "* (Then he needn't be here.)");
           }
         }
         requestAnimationFrame(() => {
