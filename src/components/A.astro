@@ -46,7 +46,7 @@ const isExternalLink = external ?? isExternal(href);
   {...rest}
   ><span
     ><slot />{
-      isExternalLink && <span class="sr-only">, opens in new tab</span>
+      isExternalLink && <span class="sr-only"> (opens in a new tab)</span>
     }</span
   >{
     isExternalLink && (
