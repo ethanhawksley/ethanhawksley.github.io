@@ -79,6 +79,16 @@ export default defineConfig({
       ],
     },
   },
+  vite: {
+    build: {
+      assetsInlineLimit(filePath) {
+        console.log(filePath);
+        if (filePath.includes('EasterEgg')) {
+          return false;
+        }
+      },
+    },
+  },
   integrations: [
     mdx(),
     compress({

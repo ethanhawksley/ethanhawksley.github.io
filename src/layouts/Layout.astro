@@ -1,6 +1,7 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import EasterEgg from '../components/EasterEgg.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -270,42 +271,12 @@ const isHome = Astro.url.pathname === '/';
     </div>
     <div id="a11y-status-announce" class="sr-only" aria-live="polite"></div>
     <script>
-      let history = [window.location.href];
-
       document.addEventListener('astro:before-swap', (event) => {
         window.__setTheme(window.__getTheme(), false, event.newDocument);
         event.newDocument.documentElement.classList.add('js');
       });
 
       document.addEventListener('astro:after-swap', () => {
-        if (history.length > 0) {
-          if (
-            history.length >= 2 &&
-            history[history.length - 2] !== window.location.href
-          ) {
-            history = [window.location.href];
-          } else {
-            history.push(window.location.href);
-          }
-          if (history.length === 16) {
-            history = [];
-            console.log('* (Well, there is a man here.)');
-            console.log('* (He offered you something.)');
-            console.log('yes   no');
-            function setupResponse(option: string, reply: string) {
-              Object.defineProperty(window, option, {
-                get() {
-                  console.log(reply);
-                  delete window.yes;
-                  delete window.no;
-                },
-                configurable: true,
-              });
-            }
-            setupResponse('yes', '* (You received an Easter Egg.)');
-            setupResponse('no', "* (Then he needn't be here.)");
-          }
-        }
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             document.documentElement.classList.add('enable-transitions');
@@ -318,9 +289,8 @@ const isHome = Astro.url.pathname === '/';
           document.documentElement.classList.add('enable-transitions');
         });
       });
-
-      console.log('Welcome to the console! :)');
     </script>
+    <EasterEgg />
   </body>
 </html>
 
