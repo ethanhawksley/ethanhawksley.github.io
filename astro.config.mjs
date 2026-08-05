@@ -83,7 +83,7 @@ export default defineConfig({
     build: {
       assetsInlineLimit(filePath) {
         console.log(filePath);
-        if (filePath.includes('EasterEgg')) {
+        if (filePath.includes('Misc')) {
           return false;
         }
       },
