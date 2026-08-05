@@ -2,6 +2,7 @@
   console.log('Welcome to the console! :)');
 
   let pageHistory = [window.location.href];
+  let hasChosen = false;
 
   document.addEventListener('astro:after-swap', () => {
     if (pageHistory.length > 0) {
@@ -21,9 +22,12 @@
         function setupResponse(option: string, reply: string) {
           Object.defineProperty(window, option, {
             get() {
-              console.log(reply);
-              delete window.yes;
-              delete window.no;
+              if (hasChosen) {
+                console.log('* (Well, there is not a man here.)');
+              } else {
+                console.log(reply);
+                hasChosen = true;
+              }
             },
             configurable: true,
           });
