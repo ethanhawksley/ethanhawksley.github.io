@@ -5,7 +5,7 @@ export const websiteJsonLd = {
   '@id': 'https://hawksley.dev/#website',
   url: 'https://hawksley.dev/',
   name: 'Ethan Hawksley',
-  alternateName: ['Hawksley.dev', 'Hawksley'],
+  alternateName: ['hawksley.dev', 'Hawksley'],
   description:
     'The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity.',
   inLanguage: 'en',
@@ -13,8 +13,8 @@ export const websiteJsonLd = {
   image: {
     '@type': 'ImageObject',
     url: 'https://hawksley.dev/hawksley-dev-logo.png',
-    name: 'Hawksley.dev Logo',
-    caption: 'The official EH monogram logo for Hawksley.dev',
+    name: 'Logo of hawksley.dev',
+    caption: 'The official EH monogram logo for hawksley.dev',
     width: 1024,
     height: 1024,
   },
