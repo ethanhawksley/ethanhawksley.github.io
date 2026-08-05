@@ -1,8 +1,12 @@
 import type { APIRoute } from 'astro';
 
+const user = 'ethan';
+const at = '@';
+const domain = 'hawksley.dev';
+
 export const GET: APIRoute = () => {
   const webfinger = {
-    subject: 'acct:ethan@hawksley.dev',
+    subject: `acct:${user}${at}${domain}`,
     aliases: [
       'https://mastodon.social/@ethanhawksley',
       'https://mastodon.social/ap/users/116039738772915554',
