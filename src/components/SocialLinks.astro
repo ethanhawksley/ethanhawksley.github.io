@@ -10,9 +10,10 @@ import Linkedin from '../assets/linkedin.svg';
     <li>
       <A
         class="email-address"
-        href="mailto:%65%74%68%61%6E%40%68%61%77%6B%73%6C%65%79%2E%64%65%76"
+        href="mailto:ethan-REMOVE-THIS@hawksley.REMOVE-THIS.dev"
         rel="me"
         pressable
+        data-nosnippet
       >
         <Email class="social-icon" aria-hidden="true" />
         ethan<span class="bait">-REMOVE-THIS</span>@hawksley<span class="bait"
@@ -96,3 +97,24 @@ import Linkedin from '../assets/linkedin.svg';
     }
   }
 </style>
+
+<script>
+  const user = 'ZXRoYW4=';
+  const domain = 'aGF3a3NsZXkuZGV2';
+  const mailto = `mailto:${atob(user)}@${atob(domain)}`;
+
+  document
+    .querySelectorAll<HTMLAnchorElement>('.email-address')
+    .forEach((link) => {
+      const controller = new AbortController();
+
+      const fixEmail = () => {
+        link.href = mailto;
+        controller.abort();
+      };
+
+      for (const event of ['mouseover', 'touchstart', 'focus', 'click']) {
+        link.addEventListener(event, fixEmail, { signal: controller.signal });
+      }
+    });
+</script>
