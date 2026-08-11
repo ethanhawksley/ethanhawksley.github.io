@@ -24,6 +24,7 @@ export const personJsonLd = {
   '@type': 'Person',
   '@id': 'https://hawksley.dev/#person',
   url: 'https://hawksley.dev/',
+  mainEntityOfPage: { '@id': 'https://hawksley.dev/#webpage' },
   name: 'Ethan Hawksley',
   alternateName: ['ethanhawksley', 'ethan-hawksley', 'Ethan_Hawksley'],
   givenName: 'Ethan',
