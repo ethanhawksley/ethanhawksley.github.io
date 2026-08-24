@@ -124,24 +124,28 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 
 <script>
   function initNewsletter() {
-    const forms = document.querySelectorAll<HTMLFormElement>(
-      '[data-kit-form]:not([data-initialized])',
-    );
+    const controller = new AbortController();
 
-    forms.forEach((form) => {
-      form.setAttribute('data-initialized', 'true');
+    document.addEventListener(
+      'submit',
+      async (event: SubmitEvent) => {
+        const form = (event.target as HTMLElement).closest<HTMLFormElement>(
+          '[data-kit-form]',
+        );
+        if (!form) return;
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        event.preventDefault();
 
-        const container = form.closest('section')!;
+        const container = form.closest('section');
+        if (!container) return;
+
         const success = container.querySelector<HTMLElement>(
           '.newsletter-success',
-        )!;
-        const error =
-          container.querySelector<HTMLElement>('.newsletter-error')!;
-        const button = form.querySelector('button')!;
+        );
+        const error = container.querySelector<HTMLElement>('.newsletter-error');
+        const button = form.querySelector('button');
 
+        if (!button || !success || !error) return;
         if (button.getAttribute('aria-disabled') === 'true') return;
 
         button.setAttribute('aria-disabled', 'true');
@@ -160,16 +164,19 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 
           form.hidden = true;
           success.hidden = false;
-
           success.focus();
         } catch {
           error.hidden = false;
           button.removeAttribute('aria-disabled');
           button.textContent = originalText;
-
           error.focus();
         }
-      });
+      },
+      { signal: controller.signal },
+    );
+
+    document.addEventListener('astro:before-swap', () => controller.abort(), {
+      once: true,
     });
   }
 
