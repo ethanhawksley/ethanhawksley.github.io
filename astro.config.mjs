@@ -83,7 +83,6 @@ export default defineConfig({
     build: {
       cssTarget: ['chrome60', 'firefox60', 'safari11', 'edge16'],
       assetsInlineLimit(filePath) {
-        console.log(filePath);
         if (filePath.includes('Misc')) {
           return false;
         }
