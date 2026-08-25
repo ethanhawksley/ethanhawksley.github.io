@@ -4,7 +4,8 @@ description: 'A real-time cooperative Minesweeper port. Built with vanilla JavaS
 type: 'Web'
 stack: ['JS', 'PeerJS']
 applicationCategory: 'GameApplication'
-url: 'https://hawksley.dev/mineduo/'
+url: 'https://mineduo.hawksley.dev'
+id: 'https://mineduo.hawksley.dev#app'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/mineduo'

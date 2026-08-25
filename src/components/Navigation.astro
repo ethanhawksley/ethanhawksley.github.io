@@ -3,8 +3,8 @@ import ThemeToggle from './ThemeToggle.astro';
 import LogoRounded from '../assets/hawksley-dev-logo-rounded.svg';
 
 const isHome = Astro.url.pathname === '/';
-const isBlogIndex = Astro.url.pathname === '/blog/';
-const isBlog = Astro.url.pathname.startsWith('/blog/');
+const isBlogIndex = Astro.url.pathname === '/blog';
+const isBlog = isBlogIndex || Astro.url.pathname.startsWith('/blog/');
 ---
 
 <header>
@@ -21,7 +21,7 @@ const isBlog = Astro.url.pathname.startsWith('/blog/');
         Home</a
       >
       <a
-        href="/blog/"
+        href="/blog"
         class:list={[{ active: isBlog }]}
         aria-current={isBlogIndex ? 'page' : isBlog ? 'true' : undefined}
       >

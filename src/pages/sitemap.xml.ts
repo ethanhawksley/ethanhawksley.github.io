@@ -1,6 +1,5 @@
 import type { APIContext } from 'astro';
 import { getSortedPosts } from '../utils/content-helpers';
-import { externalPages } from '../utils/site-urls';
 
 interface SitemapPage {
   url: string;
@@ -27,31 +26,25 @@ export async function GET(context: APIContext) {
       images: ['https://hawksley.dev/ethan-hawksley.jpg'],
     },
     {
-      url: 'blog/',
+      url: 'blog',
       priority: 0.9,
       changefreq: 'monthly',
       lastmod: blogLastPublished,
     },
-    { url: 'elsewhere/', priority: 0.8, changefreq: 'monthly' },
+    { url: 'elsewhere', priority: 0.8, changefreq: 'monthly' },
   ];
 
   const postPages: SitemapPage[] = allPosts.map((post) => {
     const lastMod = post.data.modDate || post.data.pubDate;
     return {
-      url: `blog/${post.id}/`,
+      url: `blog/${post.id}`,
       priority: 0.7,
       changefreq: 'monthly',
       lastmod: lastMod.toISOString().split('T')[0],
     };
   });
 
-  const externalSitemapPages: SitemapPage[] = externalPages.map((url) => ({
-    url,
-    priority: 0.7,
-    changefreq: 'monthly',
-  }));
-
-  const allPages = [...staticPages, ...postPages, ...externalSitemapPages];
+  const allPages = [...staticPages, ...postPages];
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">

@@ -1,9 +1,9 @@
-import { getAllPages } from '../utils/site-urls';
+import { getContentUrls } from '../utils/site-urls';
 
 export async function GET() {
-  const allPages = await getAllPages();
+  const contentUrls = await getContentUrls();
 
-  return new Response(allPages.join('\n') + '\n', {
+  return new Response(contentUrls.join('\n') + '\n', {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },
   });
 }

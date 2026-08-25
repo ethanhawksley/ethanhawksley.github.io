@@ -22,8 +22,8 @@ To add JSON-LD to a page, add the following somewhere in your `<head>` section:
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://hawksley.dev/#website",
-        "url": "https://hawksley.dev/",
+        "@id": "https://hawksley.dev#website",
+        "url": "https://hawksley.dev",
         "name": "Ethan Hawksley"
       },
       // Insert more nodes here.
@@ -55,8 +55,8 @@ Now that we've defined the schema our JSON-LD is following, we can describe our 
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://hawksley.dev/#website",
-      "url": "https://hawksley.dev/",
+      "@id": "https://hawksley.dev#website",
+      "url": "https://hawksley.dev",
       "name": "Ethan Hawksley"
     }
     // Insert more nodes here.
@@ -72,7 +72,7 @@ Nodes have:
 - `@id` - A unique identifier for the node, typically a URL with a unique hash value at the end
 - Properties - Key/Value pairs that describe the attributes of the node
 
-In the example above, the type is `WebSite`, the ID is `https://hawksley.dev/#website`, and it has two properties, `url` and `name`.
+In the example above, the type is `WebSite`, the ID is `https://hawksley.dev#website`, and it has two properties, `url` and `name`.
 
 Web crawlers can merge the properties of a node across multiple pages, as long as they share an ID. However, scrapers that only read one page - such as LLMs - will not merge the properties. When JSON-LD is reused across pages, striking this balance is important to keep in mind. It is best practice for the ID to be a URL followed by a hash, such as `#website`, that uniquely identifies the node.
 
@@ -87,14 +87,14 @@ You've seen an extract of `WebSite` earlier! Now here's the full version:
 ```json
 {
   "@type": "WebSite",
-  "@id": "https://hawksley.dev/#website",
-  "url": "https://hawksley.dev/",
+  "@id": "https://hawksley.dev#website",
+  "url": "https://hawksley.dev",
   "name": "hawksley.dev",
   "alternateName": ["Ethan Hawksley's Website", "Hawksley"],
   "description": "The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity.",
   "inLanguage": "en",
   "publisher": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
   "image": {
     "@type": "ImageObject",
@@ -118,8 +118,8 @@ Although `WebSite` applies to every page, you don't need to include the full ver
 ```json
 {
   "@type": "WebSite",
-  "@id": "https://hawksley.dev/#website",
-  "url": "https://hawksley.dev/",
+  "@id": "https://hawksley.dev#website",
+  "url": "https://hawksley.dev",
   "name": "Ethan Hawksley"
 }
 ```
@@ -133,15 +133,15 @@ This gives sufficient context to single-page crawlers so they correctly name the
 ```json
 {
   "@type": "WebPage",
-  "@id": "https://hawksley.dev/blog/hack-club-campfire/#webpage",
-  "url": "https://hawksley.dev/blog/hack-club-campfire/",
+  "@id": "https://hawksley.dev/blog/hack-club-campfire#webpage",
+  "url": "https://hawksley.dev/blog/hack-club-campfire",
   "isPartOf": {
-    "@id": "https://hawksley.dev/#website"
+    "@id": "https://hawksley.dev#website"
   },
   "name": "Winning the Hack Club Campfire Hackathon",
   "inLanguage": "en",
   "breadcrumb": {
-    "@id": "https://hawksley.dev/blog/hack-club-campfire/#breadcrumb"
+    "@id": "https://hawksley.dev/blog/hack-club-campfire#breadcrumb"
   }
 }
 ```
@@ -160,8 +160,8 @@ Unlike `WebSite`, it is important enough context that you should include it on a
 ```json
 {
   "@type": "Person",
-  "@id": "https://hawksley.dev/#person",
-  "url": "https://hawksley.dev/",
+  "@id": "https://hawksley.dev#person",
+  "url": "https://hawksley.dev",
   "name": "Ethan Hawksley",
   "alternateName": "ethanhawksley",
   "givenName": "Ethan",
@@ -185,15 +185,24 @@ Unlike `WebSite`, it is important enough context that you should include it on a
     }
   },
   "affiliation": {
-    "@type": "HighSchool",
-    "url": "https://www.alcestergs.co.uk",
-    "name": "Alcester Grammar School",
+    "@type": "CollegeOrUniversity",
+    "url": "https://warwick.ac.uk",
+    "name": "University of Warwick",
     "sameAs": [
-      "https://www.wikidata.org/wiki/Q4713005",
-      "https://en.wikipedia.org/wiki/Alcester_Grammar_School"
+      "https://www.wikidata.org/wiki/Q865528",
+      "https://en.wikipedia.org/wiki/University_of_Warwick"
     ]
   },
   "alumniOf": [
+    {
+      "@type": "HighSchool",
+      "url": "https://www.alcestergs.co.uk",
+      "name": "Alcester Grammar School",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4713005",
+        "https://en.wikipedia.org/wiki/Alcester_Grammar_School"
+      ]
+    },
     {
       "@type": "HighSchool",
       "url": "https://www.brookeweston.org",
@@ -240,17 +249,17 @@ A `ProfilePage`, as you may expect, describes a page on the site about a person.
 ```json
 {
   "@type": "ProfilePage",
-  "@id": "https://hawksley.dev/#webpage",
-  "url": "https://hawksley.dev/",
+  "@id": "https://hawksley.dev#webpage",
+  "url": "https://hawksley.dev",
   "isPartOf": {
-    "@id": "https://hawksley.dev/#website"
+    "@id": "https://hawksley.dev#website"
   },
   "name": "About Ethan Hawksley",
   "inLanguage": "en",
   "dateCreated": "2024-09-10T00:00:00.000Z",
   "dateModified": "2026-05-17T00:00:00.000Z",
   "mainEntity": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   }
 }
 ```
@@ -264,21 +273,15 @@ If you are showcasing any software on your page, it's a good idea to include a `
 ```json
 {
   "@type": "SoftwareApplication",
-  "@id": "https://hawksley.dev/#project-yt-play",
+  "@id": "https://hawksley.dev#project-yt-play",
   "url": "https://crates.io/crates/yt-play",
   "name": "yt-play",
   "description": "A CLI utility written in Rust that synchronises YouTube playlists to local directories.",
   "applicationCategory": "MultimediaApplication",
-  "operatingSystem": "All",
   "creator": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
-  "sameAs": ["https://github.com/ethanhawksley/yt-play"],
-  "offers": {
-    "@type": "Offer",
-    "price": 0,
-    "priceCurrency": "GBP"
-  }
+  "sameAs": ["https://github.com/ethanhawksley/yt-play"]
 }
 ```
 
@@ -297,23 +300,23 @@ Even if your project is FOSS, include `offers` but make sure to set the price to
 ```json
 {
   "@type": "BreadcrumbList",
-  "@id": "https://hawksley.dev/blog/hack-club-shipwrecked/#breadcrumb",
+  "@id": "https://hawksley.dev/blog/hack-club-shipwrecked#breadcrumb",
   "itemListElement": [
     {
       "@type": "ListItem",
-      "item": "https://hawksley.dev/",
+      "item": "https://hawksley.dev",
       "position": 1,
       "name": "Home"
     },
     {
       "@type": "ListItem",
-      "item": "https://hawksley.dev/blog/",
+      "item": "https://hawksley.dev/blog",
       "position": 2,
       "name": "Blog"
     },
     {
       "@type": "ListItem",
-      "item": "https://hawksley.dev/blog/hack-club-shipwrecked/",
+      "item": "https://hawksley.dev/blog/hack-club-shipwrecked",
       "position": 3,
       "name": "The Shipwrecked Hackathon by Hack Club"
     }
@@ -334,19 +337,19 @@ The `CollectionPage` node is a subtype of `WebPage`, usable for pages that prima
 ```json
 {
   "@type": "CollectionPage",
-  "@id": "https://hawksley.dev/elsewhere/#webpage",
-  "url": "https://hawksley.dev/elsewhere/",
+  "@id": "https://hawksley.dev/elsewhere#webpage",
+  "url": "https://hawksley.dev/elsewhere",
   "isPartOf": {
-    "@id": "https://hawksley.dev/#website"
+    "@id": "https://hawksley.dev#website"
   },
   "name": "Elsewhere",
   "description": "Online profiles of Ethan Hawksley, a Computer Science student in the UK. Links to his development, social media, blogging, and security accounts.",
   "inLanguage": "en",
   "about": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
   "breadcrumb": {
-    "@id": "https://hawksley.dev/elsewhere/#breadcrumb"
+    "@id": "https://hawksley.dev/elsewhere#breadcrumb"
   }
 }
 ```
@@ -360,19 +363,19 @@ You should add the `Blog` node to your blog's index or home page. It acts as a s
 ```json
 {
   "@type": "Blog",
-  "@id": "https://hawksley.dev/blog/#blog",
+  "@id": "https://hawksley.dev/blog#blog",
   "isPartOf": {
-    "@id": "https://hawksley.dev/#website"
+    "@id": "https://hawksley.dev#website"
   },
   "mainEntityOfPage": {
-    "@id": "https://hawksley.dev/blog/#webpage"
+    "@id": "https://hawksley.dev/blog#webpage"
   },
   "name": "Ethan Hawksley's Blog",
   "description": "A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.",
   "inLanguage": "en",
   "dateModified": "2026-05-17T00:00:00.000Z",
   "publisher": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
   "license": "https://creativecommons.org/licenses/by/4.0/"
 }
@@ -391,13 +394,13 @@ The last node we'll be covering is `BlogPosting`. It should be included on all p
 ```json
 {
   "@type": "BlogPosting",
-  "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/#blogposting",
-  "url": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/",
+  "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography#blogposting",
+  "url": "https://hawksley.dev/blog/need-for-post-quantum-cryptography",
   "mainEntityOfPage": {
-    "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography/#webpage"
+    "@id": "https://hawksley.dev/blog/need-for-post-quantum-cryptography#webpage"
   },
   "isPartOf": {
-    "@id": "https://hawksley.dev/blog/#blog"
+    "@id": "https://hawksley.dev/blog#blog"
   },
   "headline": "The Need for Post-Quantum Cryptography",
   "description": "Quantum computers are closer to breaking RSA and ECC than we thought. Learn what post-quantum cryptography is and how to start migrating.",
@@ -407,10 +410,10 @@ The last node we'll be covering is `BlogPosting`. It should be included on all p
   "datePublished": "2026-04-13T00:00:00.000Z",
   "dateModified": "2026-04-17T00:00:00.000Z",
   "author": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
   "publisher": {
-    "@id": "https://hawksley.dev/#person"
+    "@id": "https://hawksley.dev#person"
   },
   "image": {
     "@type": "ImageObject",

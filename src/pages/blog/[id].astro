@@ -28,7 +28,7 @@ const { Content } = await render(post);
 const words = (post.body ?? '').split(/\s+/).length;
 const readingTime = Math.max(1, Math.ceil(words / 238));
 
-const postUrl = `https://hawksley.dev/blog/${post.id}/`;
+const postUrl = `https://hawksley.dev/blog/${post.id}`;
 
 const ogImageUrl = new URL(`/og/blog/${post.id}.jpg`, Astro.site).toString();
 
@@ -41,7 +41,7 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': `${postUrl}#webpage`,
       url: postUrl,
-      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      isPartOf: { '@id': 'https://hawksley.dev#website' },
       name: post.data.title,
       inLanguage: 'en',
       mainEntity: { '@id': `${postUrl}#blogposting` },
@@ -57,18 +57,18 @@ const jsonLd = {
     },
     {
       '@type': 'Blog',
-      '@id': 'https://hawksley.dev/blog/#blog',
-      url: 'https://hawksley.dev/blog/',
+      '@id': 'https://hawksley.dev/blog#blog',
+      url: 'https://hawksley.dev/blog',
       name: "Ethan Hawksley's Blog",
       inLanguage: 'en',
-      publisher: { '@id': 'https://hawksley.dev/#person' },
+      publisher: { '@id': 'https://hawksley.dev#person' },
     },
     {
       '@type': 'BlogPosting',
       '@id': `${postUrl}#blogposting`,
       url: postUrl,
       mainEntityOfPage: { '@id': `${postUrl}#webpage` },
-      isPartOf: { '@id': 'https://hawksley.dev/blog/#blog' },
+      isPartOf: { '@id': 'https://hawksley.dev/blog#blog' },
       headline: post.data.title,
       description: post.data.metaDescription,
       articleSection: post.data.tags[0] ?? 'Computer Science',
@@ -77,8 +77,8 @@ const jsonLd = {
       datePublished: post.data.pubDate.toISOString(),
       dateModified:
         post.data.modDate?.toISOString() ?? post.data.pubDate.toISOString(),
-      author: { '@id': 'https://hawksley.dev/#person' },
-      publisher: { '@id': 'https://hawksley.dev/#person' },
+      author: { '@id': 'https://hawksley.dev#person' },
+      publisher: { '@id': 'https://hawksley.dev#person' },
       image: {
         '@type': 'ImageObject',
         url: ogImageUrl,
@@ -93,13 +93,13 @@ const jsonLd = {
       itemListElement: [
         {
           '@type': 'ListItem',
-          item: 'https://hawksley.dev/',
+          item: 'https://hawksley.dev',
           position: 1,
           name: 'Home',
         },
         {
           '@type': 'ListItem',
-          item: 'https://hawksley.dev/blog/',
+          item: 'https://hawksley.dev/blog',
           position: 2,
           name: 'Blog',
         },
@@ -155,7 +155,7 @@ const jsonLd = {
   </Fragment>
 
   <div class="back-to-blog">
-    <A href="/blog/" pressable>
+    <A href="/blog" pressable>
       <span class="arrow" aria-hidden="true">←</span> Back to blog
     </A>
   </div>
@@ -202,7 +202,7 @@ const jsonLd = {
       <div class="pager-prev">
         {
           prevPost && (
-            <a href={`/blog/${prevPost.id}/`} class="pager-link">
+            <a href={`/blog/${prevPost.id}`} class="pager-link">
               <span class="pager-link-label">
                 <span class="arrow" aria-hidden="true">
                   ←
@@ -217,10 +217,7 @@ const jsonLd = {
       <div class="pager-next">
         {
           nextPost && (
-            <a
-              href={`/blog/${nextPost.id}/`}
-              class="pager-link pager-link-next"
-            >
+            <a href={`/blog/${nextPost.id}`} class="pager-link pager-link-next">
               <span class="pager-link-label pager-link-label-next">
                 Next
                 <span class="arrow" aria-hidden="true">
@@ -234,7 +231,7 @@ const jsonLd = {
       </div>
     </div>
     <div class="pager-view-all">
-      <A href="/blog/" pressable>All posts</A>
+      <A href="/blog" pressable>All posts</A>
     </div>
   </nav>
 </Layout>

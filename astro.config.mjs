@@ -9,9 +9,10 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   build: {
     inlineStylesheets: 'always',
+    format: 'file',
   },
   markdown: {
     shikiConfig: {

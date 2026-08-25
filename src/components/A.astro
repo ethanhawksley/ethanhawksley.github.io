@@ -1,10 +1,8 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-import { getInternalUrls } from '../utils/site-urls';
 
 const protocols = new Set(['http:', 'https:']);
-const localHostnames = new Set(['127.0.0.1', 'localhost']);
-const internalUrls = new Set(await getInternalUrls());
+const internalHostnames = new Set(['hawksley.dev', '127.0.0.1', 'localhost']);
 
 interface Props extends HTMLAttributes<'a'> {
   href: string;
@@ -14,24 +12,12 @@ interface Props extends HTMLAttributes<'a'> {
 const { href, rel, style, pressable, external, ...rest } = Astro.props;
 
 function isExternal(linkHref: string) {
-  // All https links that are not explicitly part of this blog should be external.
-  // Links on the same domain could be different projects, so must be external too.
   const url = new URL(linkHref, Astro.url);
 
   // Treat unknown protocols as internal
   if (!protocols.has(url.protocol)) return false;
 
-  // Treat 127.0.0.1 and localhost as internal
-  if (localHostnames.has(url.hostname)) {
-    return false;
-  }
-
-  url.protocol = 'https:';
-  url.port = '';
-  url.search = '';
-  url.hash = '';
-
-  return !internalUrls.has(url.toString());
+  return !internalHostnames.has(url.hostname);
 }
 
 const isExternalLink = external ?? isExternal(href);

@@ -39,7 +39,7 @@ ${allPosts
     (post) => `
 ### ${post.data.title}
 
-https://hawksley.dev/blog/${post.id}/
+https://hawksley.dev/blog/${post.id}
 
 ${post.data.description}
 

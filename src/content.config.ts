@@ -23,6 +23,7 @@ const projects = defineCollection({
     stack: z.array(z.string()),
     applicationCategory: z.string(),
     url: z.url(),
+    id: z.url(),
     links: z
       .array(
         z.object({

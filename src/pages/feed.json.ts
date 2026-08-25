@@ -18,8 +18,8 @@ export async function GET(context: APIContext) {
     icon: 'https://hawksley.dev/icon-512x512.png',
     items: await Promise.all(
       allPosts.map(async (post) => ({
-        id: `${siteUrl}blog/${post.id}/`,
-        url: `${siteUrl}blog/${post.id}/`,
+        id: `${siteUrl}blog/${post.id}`,
+        url: `${siteUrl}blog/${post.id}`,
         title: post.data.title,
         summary: post.data.description,
         content_text: post.data.description,

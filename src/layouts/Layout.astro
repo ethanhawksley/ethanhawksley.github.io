@@ -21,7 +21,6 @@ interface Props {
   preloadType?: string;
 }
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const defaultOgImage = new URL('/og/home.jpg', Astro.site);
 
 const {
@@ -36,9 +35,13 @@ const {
   preloadType,
 } = Astro.props;
 
-const isIndexable = !robots.includes('noindex');
-
 const isHome = Astro.url.pathname === '/';
+
+const canonicalUrl = isHome
+  ? 'https://hawksley.dev'
+  : new URL(Astro.url.pathname, Astro.site);
+
+const isIndexable = !robots.includes('noindex');
 ---
 
 <html lang="en" dir="ltr">
@@ -182,7 +185,7 @@ const isHome = Astro.url.pathname === '/';
                   content={article.modifiedTime}
                 />
               )}
-              <meta property="article:author" content="https://hawksley.dev/" />
+              <meta property="article:author" content="https://hawksley.dev" />
               <meta
                 property="article:section"
                 content={article.tags[0] ?? 'Computer Science'}

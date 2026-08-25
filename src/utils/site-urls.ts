@@ -1,11 +1,4 @@
-export const externalPages = [
-  'https://hawksley.dev/cyms-interpreter/',
-  'https://hawksley.dev/mineduo/',
-  'https://hawksley.dev/turing-machine/',
-  'https://hawksley.dev/nintendrust/',
-];
-
-export const endpointUrls = [
+export const NON_CONTENT_URLS = [
   'https://hawksley.dev/sitemap.xml',
   'https://hawksley.dev/sitemap.txt',
   'https://hawksley.dev/key.asc',
@@ -16,31 +9,26 @@ export const endpointUrls = [
   'https://hawksley.dev/elsewhere.txt',
   'https://hawksley.dev/.well-known/security.txt',
   'https://hawksley.dev/.well-known/webfinger',
-  'https://hawksley.dev/blog/confirm-subscription/',
+  'https://hawksley.dev/blog/confirm-subscription',
 ];
 
-export async function getInternalPages() {
+export async function getContentUrls() {
   const { getSortedPosts } = await import('./content-helpers');
   const allPosts = await getSortedPosts();
 
-  const internalPaths = [
+  const contentPaths = [
     '',
-    'blog/',
-    'elsewhere/',
-    ...allPosts.map((post) => `blog/${post.id}/`),
+    'blog',
+    'elsewhere',
+    ...allPosts.map((post) => `blog/${post.id}`),
   ];
 
-  return internalPaths.map((path) =>
+  return contentPaths.map((path) =>
     new URL(path, 'https://hawksley.dev').toString(),
   );
 }
 
-export async function getInternalUrls() {
-  const internalPages = await getInternalPages();
-  return [...endpointUrls, ...internalPages];
-}
-
-export async function getAllPages() {
-  const internalPages = await getInternalPages();
-  return [...internalPages, ...externalPages];
+export async function getAllSiteUrls() {
+  const contentUrls = await getContentUrls();
+  return [...NON_CONTENT_URLS, ...contentUrls];
 }

@@ -4,7 +4,8 @@ description: 'A browser-based NES emulator built with Rust and WebAssembly, port
 type: 'Web'
 stack: ['Rust', 'WASM']
 applicationCategory: 'GameApplication'
-url: 'https://hawksley.dev/nintendrust/'
+url: 'https://nintendrust.hawksley.dev'
+id: 'https://nintendrust.hawksley.dev#app'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/nintendrust'

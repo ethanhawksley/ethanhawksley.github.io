@@ -24,23 +24,16 @@ const allProjects = await getSortedProjects();
 
 const projectJsonLds = allProjects.map((project) => {
   const isWeb = project.data.type === 'Web';
-  const slug = project.data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return {
     '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
-    '@id': `https://hawksley.dev/#project-${slug}`,
+    '@id': project.data.id,
     url: project.data.url,
     name: project.data.name,
     description: project.data.description,
     applicationCategory: project.data.applicationCategory,
-    operatingSystem: isWeb ? 'Any' : 'All',
-    creator: { '@id': 'https://hawksley.dev/#person' },
+    creator: { '@id': 'https://hawksley.dev#person' },
     sameAs: project.data.links?.map((link) => link.url),
-    offers: {
-      '@type': 'Offer',
-      price: 0,
-      priceCurrency: 'GBP',
-    },
   };
 });
 
@@ -53,14 +46,14 @@ const jsonLd = {
     websiteJsonLd,
     {
       '@type': 'ProfilePage',
-      '@id': 'https://hawksley.dev/#webpage',
-      url: 'https://hawksley.dev/',
-      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      '@id': 'https://hawksley.dev#webpage',
+      url: 'https://hawksley.dev',
+      isPartOf: { '@id': 'https://hawksley.dev#website' },
       name: 'About Ethan Hawksley',
       inLanguage: 'en',
       dateCreated: '2024-09-10T00:00:00.000Z',
       dateModified: lastModified,
-      mainEntity: { '@id': 'https://hawksley.dev/#person' },
+      mainEntity: { '@id': 'https://hawksley.dev#person' },
       primaryImageOfPage: {
         '@type': 'ImageObject',
         url: 'https://hawksley.dev/ethan-hawksley.jpg',

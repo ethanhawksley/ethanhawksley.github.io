@@ -13,7 +13,7 @@ const postCount = allPosts.length;
       .slice(0, 2)
       .map((post) => (
         <PostPreview
-          href={`/blog/${post.id}/`}
+          href={`/blog/${post.id}`}
           title={post.data.title}
           description={post.data.description}
           pubDate={post.data.pubDate}
@@ -23,4 +23,4 @@ const postCount = allPosts.length;
       ))
   }
 </ul>
-<A href="/blog/" pressable>View all posts ({postCount})</A>
+<A href="/blog" pressable>View all posts ({postCount})</A>

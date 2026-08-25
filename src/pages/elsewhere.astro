@@ -11,15 +11,15 @@ const jsonLd = {
     websiteRef,
     {
       '@type': 'CollectionPage',
-      '@id': 'https://hawksley.dev/elsewhere/#webpage',
-      url: 'https://hawksley.dev/elsewhere/',
-      isPartOf: { '@id': 'https://hawksley.dev/#website' },
+      '@id': 'https://hawksley.dev/elsewhere#webpage',
+      url: 'https://hawksley.dev/elsewhere',
+      isPartOf: { '@id': 'https://hawksley.dev#website' },
       name: 'Elsewhere',
       description:
         'Online profiles of Ethan Hawksley, a Computer Science student in the UK. Links to his development, social media, blogging, and security accounts.',
       inLanguage: 'en',
-      about: { '@id': 'https://hawksley.dev/#person' },
-      breadcrumb: { '@id': 'https://hawksley.dev/elsewhere/#breadcrumb' },
+      about: { '@id': 'https://hawksley.dev#person' },
+      breadcrumb: { '@id': 'https://hawksley.dev/elsewhere#breadcrumb' },
       primaryImageOfPage: {
         '@type': 'ImageObject',
         url: 'https://hawksley.dev/ethan-hawksley.jpg',
@@ -31,17 +31,17 @@ const jsonLd = {
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://hawksley.dev/elsewhere/#breadcrumb',
+      '@id': 'https://hawksley.dev/elsewhere#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
-          item: 'https://hawksley.dev/',
+          item: 'https://hawksley.dev',
           position: 1,
           name: 'Home',
         },
         {
           '@type': 'ListItem',
-          item: 'https://hawksley.dev/elsewhere/',
+          item: 'https://hawksley.dev/elsewhere',
           position: 2,
           name: 'Elsewhere',
         },

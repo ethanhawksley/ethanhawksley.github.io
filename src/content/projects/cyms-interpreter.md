@@ -4,7 +4,8 @@ description: 'A browser-based interpreter for a custom, assembly-like syntax (CY
 type: 'Web'
 stack: ['JS']
 applicationCategory: 'DeveloperApplication'
-url: 'https://hawksley.dev/cyms-interpreter/'
+url: 'https://cyms-interpreter.hawksley.dev'
+id: 'https://cyms-interpreter.hawksley.dev#app'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/cyms-interpreter'
