@@ -89,8 +89,8 @@ You've seen an extract of `WebSite` earlier! Now here's the full version:
   "@type": "WebSite",
   "@id": "https://hawksley.dev#website",
   "url": "https://hawksley.dev",
-  "name": "hawksley.dev",
-  "alternateName": ["Ethan Hawksley's Website", "Hawksley"],
+  "name": "Ethan Hawksley",
+  "alternateName": ["hawksley.dev", "Hawksley"],
   "description": "The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity.",
   "inLanguage": "en",
   "publisher": {
@@ -140,6 +140,9 @@ This gives sufficient context to single-page crawlers so they correctly name the
   },
   "name": "Winning the Hack Club Campfire Hackathon",
   "inLanguage": "en",
+  "mainEntity": {
+    "@id": "https://hawksley.dev/blog/hack-club-campfire#blogposting"
+  },
   "breadcrumb": {
     "@id": "https://hawksley.dev/blog/hack-club-campfire#breadcrumb"
   }
@@ -180,6 +183,8 @@ Unlike `WebSite`, it is important enough context that you should include it on a
     "@type": "Place",
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "Warwick",
+      "addressRegion": "Warwickshire",
       "addressCountry": "GB"
     }
   },
@@ -272,7 +277,7 @@ If you are showcasing any software on your page, it's a good idea to include a `
 ```json
 {
   "@type": "SoftwareApplication",
-  "@id": "https://hawksley.dev#project-yt-play",
+  "@id": "https://hawksley.dev#app-yt-play",
   "url": "https://crates.io/crates/yt-play",
   "name": "yt-play",
   "description": "A CLI utility written in Rust that synchronises YouTube playlists to local directories.",
@@ -289,8 +294,6 @@ If you want to be more specific than `SoftwareApplication`, other valid types fo
 The `url` property should be a link to where the project is deployed, e.g. crates.io. `sameAs` is for any other pages associated with the project, like its source code repository.
 
 There are lots of valid values for `applicationCategory`, you can find a list on [Google's definition for SoftwareApplication](https://developers.google.com/search/docs/appearance/structured-data/software-app).
-
-Even if your project is FOSS, include `offers` but make sure to set the price to 0.
 
 ## BreadcrumbList
 
