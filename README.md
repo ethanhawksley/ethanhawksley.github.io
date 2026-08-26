@@ -29,8 +29,8 @@
 Requires [Node.js 22+](https://nodejs.org) and [pnpm](https://pnpm.io).
 
 ```shell
-git clone https://github.com/ethanhawksley/ethanhawksley.github.io
-cd ethanhawksley.github.io
+git clone https://github.com/ethanhawksley/hawksley.dev
+cd hawksley.dev
 pnpm install
 pnpm run dev
 ```
