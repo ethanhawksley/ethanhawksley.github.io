@@ -28,7 +28,7 @@ jobs:
           cache: true
 
       - name: Build Astro site
-        run: pnpm run build
+        run: pnpm run build && tree -a
 
       - name: Deploy to Cloudflare Pages
         env:
