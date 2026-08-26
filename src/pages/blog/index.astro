@@ -5,7 +5,7 @@ import { getSortedPosts } from '../../utils/content-helpers';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 
 const allPosts = await getSortedPosts();
-const lastModified = allPosts[0].data.pubDate.toISOString();
+const lastModified = allPosts[0].data.pubDate.toISOString().split('T')[0];
 
 const jsonLd = {
   '@context': 'https://schema.org',

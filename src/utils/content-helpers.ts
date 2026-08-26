@@ -13,30 +13,30 @@ export async function getSortedProjects() {
   return projects.toSorted((a, b) => a.data.priority - b.data.priority);
 }
 
-export async function getPostHtml(
-  post: CollectionEntry<'posts'>,
-  siteUrl: string,
-) {
+export async function getPostHtml(post: CollectionEntry<'posts'>) {
   if (!post.body) return '';
 
-  // Safe since no MDX tags are used in posts.
-  let parsed = marked.parse(post.body);
-  if (parsed instanceof Promise) {
-    parsed = await parsed;
-  }
-  let html = parsed as string;
+  let html = await marked.parse(post.body);
 
   html = html.replace(/(src|href)="([^"]+)"/g, (match, attr, url) => {
-    if (/^(https?:|mailto:|#)/.test(url)) {
+    // External protocols
+    if (/^[a-z]+:/i.test(url)) {
       return match;
     }
-    if (url.startsWith('./')) {
-      return `${attr}="${siteUrl}blog/${post.id}/${url.slice(2)}"`;
+
+    // Anchor links
+    if (url.startsWith('#')) {
+      return `${attr}="https://hawksley.dev/blog/${post.id}${url}"`;
     }
+
+    // Root-relative links
     if (url.startsWith('/')) {
-      return `${attr}="${siteUrl.slice(0, -1)}${url}"`;
+      return `${attr}="https://hawksley.dev${url}"`;
     }
-    return `${attr}="${siteUrl}blog/${post.id}/${url}"`;
+
+    // Relative links
+    const cleanRel = url.replace(/^\.\//, '');
+    return `${attr}="https://hawksley.dev/blog/${post.id}/${cleanRel}"`;
   });
 
   return html;

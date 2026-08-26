@@ -13,7 +13,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/mdx": "^7.0.8",
-    "@astrojs/rss": "^4.0.19",
     "@astrojs/ts-plugin": "^1.10.11",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^7.2.6",

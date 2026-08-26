@@ -37,7 +37,7 @@ const projectJsonLds = allProjects.map((project) => {
   };
 });
 
-const lastModified = allPosts[0].data.pubDate.toISOString();
+const lastModified = allPosts[0].data.pubDate.toISOString().split('T')[0];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -51,7 +51,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev#website' },
       name: 'About Ethan Hawksley',
       inLanguage: 'en',
-      dateCreated: '2024-09-10T00:00:00.000Z',
+      dateCreated: '2024-09-10',
       dateModified: lastModified,
       mainEntity: { '@id': 'https://hawksley.dev#person' },
       primaryImageOfPage: {

@@ -22,7 +22,7 @@ export async function GET() {
         title: post.data.title,
         summary: post.data.description,
         content_text: post.data.description,
-        content_html: await getPostHtml(post, siteUrl),
+        content_html: await getPostHtml(post),
         date_published: post.data.pubDate.toISOString(),
         tags: post.data.tags,
       })),

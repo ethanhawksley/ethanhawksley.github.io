@@ -21,7 +21,7 @@ export async function GET() {
     await Promise.all(
       allPosts.map(async (post) => {
         const postUrl = `${siteUrl}/blog/${post.id}`;
-        const contentHtml = await getPostHtml(post, siteUrl);
+        const contentHtml = await getPostHtml(post);
         const categories = post.data.tags
           .map((tag) => `<category>${escapeXml(tag)}</category>`)
           .join('');
