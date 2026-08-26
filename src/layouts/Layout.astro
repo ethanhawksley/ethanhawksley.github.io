@@ -35,11 +35,14 @@ const {
   preloadType,
 } = Astro.props;
 
-const isHome = Astro.url.pathname === '/';
+const cleanPath = Astro.url.pathname
+  .replace(/(index)?\.html$/, '')
+  .replace(/\/$/, '');
+const isHome = cleanPath === '';
 
 const canonicalUrl = isHome
   ? 'https://hawksley.dev'
-  : new URL(Astro.url.pathname, Astro.site);
+  : new URL(cleanPath, Astro.site);
 
 const isIndexable = !robots.includes('noindex');
 ---

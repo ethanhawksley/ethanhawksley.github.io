@@ -2,9 +2,12 @@
 import ThemeToggle from './ThemeToggle.astro';
 import LogoRounded from '../assets/hawksley-dev-logo-rounded.svg';
 
-const isHome = Astro.url.pathname === '/';
-const isBlogIndex = Astro.url.pathname === '/blog';
-const isBlog = isBlogIndex || Astro.url.pathname.startsWith('/blog/');
+const cleanPath =
+  Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/\/$/, '') || '/';
+
+const isHome = cleanPath === '/';
+const isBlogIndex = cleanPath === '/blog';
+const isBlog = cleanPath.startsWith('/blog');
 ---
 
 <header>
