@@ -6,7 +6,6 @@ const cleanPath =
   Astro.url.pathname.replace(/(index)?\.html$/, '').replace(/\/$/, '') || '/';
 
 const isHome = cleanPath === '/';
-const isBlogIndex = cleanPath === '/blog';
 const isBlog = cleanPath.startsWith('/blog');
 ---
 
@@ -26,7 +25,7 @@ const isBlog = cleanPath.startsWith('/blog');
       <a
         href="/blog"
         class:list={[{ active: isBlog }]}
-        aria-current={isBlogIndex ? 'page' : isBlog ? 'true' : undefined}
+        aria-current={isBlog ? 'page' : undefined}
       >
         Blog</a
       >
