@@ -12,21 +12,22 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/mdx": "^7.0.8",
     "@astrojs/rss": "^4.0.19",
-    "@astrojs/ts-plugin": "^1.10.10",
+    "@astrojs/ts-plugin": "^1.10.11",
     "@resvg/resvg-js": "^2.6.2",
-    "astro": "^7.1.6",
-    "astro-compress": "^2.4.1",
-    "marked": "^18.0.6",
+    "astro": "^7.2.6",
+    "astro-compress": "^2.4.3",
+    "marked": "^18.0.11",
     "postcss-html": "^1.8.1",
     "prettier": "3.8.3",
     "prettier-plugin-astro": "0.14.1",
     "satori": "^0.26.0",
     "sharp": "^0.34.5",
-    "stylelint": "^17.14.0",
-    "stylelint-config-recess-order": "^7.7.0",
-    "typescript": "^6.0.3"
+    "stylelint": "^17.14.1",
+    "stylelint-config-recess-order": "^7.8.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.125.0"
   },
   "engines": {
     "node": ">=22"
