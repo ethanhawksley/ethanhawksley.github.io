@@ -11,7 +11,7 @@ Astro: All the developers behind such a flexible library
 Language: English
 Built With: Astro, Zod, Shiki, Sharp
 Tools: JetBrains Webstorm, Prettier, Git
-Hosting: GitHub Pages, Cloudflare
+Hosting: Cloudflare Pages, Cloudflare
 Code License: MIT
 Content License: CC BY 4.0
 Headshots License: CC BY-SA 4.0
