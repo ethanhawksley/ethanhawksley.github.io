@@ -14,7 +14,7 @@ concurrency:
 permissions: {}
 
 jobs:
-  build-and-deploy:
+  build-deploy-notify:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -43,15 +43,18 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: pnpm exec wrangler pages deploy dist --project-name=hawksley --commit-dirty=true
 
-  post-deploy:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Submit URLs to IndexNow
+      - name: Purge Cloudflare Zone Cache
         run: |
-          URLS_RAW=$(curl -sSf "https://hawksley.dev/sitemap.txt" | tr -d '\r' | grep -v '^$')
-          URL_JSON=$(echo "$URLS_RAW" | sed 's/\(.*\)/"\1"/' | paste -sd, -)
-          URL_JSON="[$URL_JSON]"
+          curl -sSf \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
+
+      - name: Submit Sitemap to IndexNow
+        run: |
+          URL_JSON=$(jq -R -s -c 'split("\n") | map(select(length > 0))' dist/sitemap.txt)
 
           curl -sSf \
             -X POST "https://api.indexnow.org/indexnow" \
