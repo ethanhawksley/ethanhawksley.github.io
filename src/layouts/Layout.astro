@@ -42,7 +42,7 @@ const isHome = cleanPath === '';
 
 const canonicalUrl = isHome
   ? 'https://hawksley.dev'
-  : new URL(cleanPath, Astro.site);
+  : new URL(cleanPath, Astro.site).toString();
 
 const isIndexable = !robots.includes('noindex');
 ---
