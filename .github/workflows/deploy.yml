@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -14,7 +14,7 @@ concurrency:
 permissions: {}
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,72 +22,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
-      - name: Write version file
-        run: echo "${{ github.sha }}" > public/version.txt
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
-      - name: Install, build, and upload site
-        uses: withastro/action@v6
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-  purge-cache:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Wait for origin to serve new deployment
-        run: |
-          TARGET_SHA="${{ github.sha }}"
-          MAX_ATTEMPTS=60
-          INTERVAL=5
+      - name: Build Astro site
+        run: pnpm run build
 
-          echo "Polling https://hawksley.dev/version.txt for $TARGET_SHA"
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=hawksley-dev --commit-dirty=true
 
-          for attempt in $(seq 1 "$MAX_ATTEMPTS"); do
-            CACHE_BUSTER=$(openssl rand -hex 16)
-            CURRENT_SHA=$(curl -sSfL "https://hawksley.dev/version.txt?cb=${CACHE_BUSTER}" 2>/dev/null || echo "")
-            CURRENT_SHA=$(echo "$CURRENT_SHA" | tr -d '[:space:]')
-            if [ "$CURRENT_SHA" = "$TARGET_SHA" ]; then
-              echo "Site is serving the new version after $attempt attempt(s)."
-              echo "Waiting 10s for global propagation."
-              sleep 10
-              exit 0
-            fi
-            echo "Attempt $attempt/$MAX_ATTEMPTS: site is still on the old version. Retrying in ${INTERVAL}s."
-            sleep "$INTERVAL"
-          done
-
-          echo "::warning::Site didn't update within $((MAX_ATTEMPTS * INTERVAL))s. Purging cache anyways."
-
-      - name: Purge Cloudflare cache
-        run: |
-          curl -sSf \
-            -X POST \
-            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"purge_everything":true}' \
-            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
-
-  submit-indexnow:
-    needs: purge-cache
+  post-deploy:
+    needs: build-and-deploy
     runs-on: ubuntu-latest
     steps:
       - name: Submit URLs to IndexNow
         run: |
-          CACHE_BUSTER=$(openssl rand -hex 16)
-          URLS_RAW=$(curl -sSf "https://hawksley.dev/sitemap.txt?cb=${CACHE_BUSTER}" | tr -d '\r' | grep -v '^$')
-
+          URLS_RAW=$(curl -sSf "https://hawksley.dev/sitemap.txt" | tr -d '\r' | grep -v '^$')
           URL_JSON=$(echo "$URLS_RAW" | sed 's/\(.*\)/"\1"/' | paste -sd, -)
           URL_JSON="[$URL_JSON]"
 
@@ -101,10 +64,6 @@ jobs:
               \"urlList\": $URL_JSON
             }"
 
-  notify-profile-readme-repo:
-    needs: submit-indexnow
-    runs-on: ubuntu-latest
-    steps:
       - name: Notify profile README repo
         run: |
           curl -sSf \
