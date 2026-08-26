@@ -1,16 +1,15 @@
-import type { APIContext } from 'astro';
 import rss from '@astrojs/rss';
 import { getSortedPosts, getPostHtml } from '../utils/content-helpers';
 
-export async function GET(context: APIContext) {
+export async function GET() {
   const allPosts = await getSortedPosts();
-  const siteUrl = context.site!.toString();
+  const siteUrl = 'https://hawksley.dev';
 
   return rss({
     title: "Ethan Hawksley's Blog",
     description:
       'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
-    site: context.site!,
+    site: siteUrl,
     xmlns: {
       atom: 'http://www.w3.org/2005/Atom',
     },
@@ -27,7 +26,7 @@ export async function GET(context: APIContext) {
     customData: [
       `<language>en</language>`,
       `<copyright>Content licensed under CC BY 4.0</copyright>`,
-      `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
+      `<atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />`,
     ].join(''),
   });
 }
