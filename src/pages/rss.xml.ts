@@ -1,32 +1,41 @@
-import rss from '@astrojs/rss';
 import { getSortedPosts, getPostHtml } from '../utils/content-helpers';
+
+function escapeXml(str: string): string {
+  return str
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;');
+}
 
 export async function GET() {
   const allPosts = await getSortedPosts();
   const siteUrl = 'https://hawksley.dev';
 
-  return rss({
-    title: "Ethan Hawksley's Blog",
-    description:
-      'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
-    site: siteUrl,
-    xmlns: {
-      atom: 'http://www.w3.org/2005/Atom',
+  const title = "Ethan Hawksley's Blog";
+  const description =
+    'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.';
+
+  const itemsXml = (
+    await Promise.all(
+      allPosts.map(async (post) => {
+        const postUrl = `${siteUrl}/blog/${post.id}`;
+        const contentHtml = await getPostHtml(post, siteUrl);
+        const categories = post.data.tags
+          .map((tag) => `<category>${escapeXml(tag)}</category>`)
+          .join('');
+
+        return `<item><title>${escapeXml(post.data.title)}</title><link>${postUrl}</link><guid isPermaLink="true">${postUrl}</guid><description>${escapeXml(post.data.description)}</description><pubDate>${post.data.pubDate.toUTCString()}</pubDate><content:encoded>${escapeXml(contentHtml)}</content:encoded>${categories}</item>`;
+      }),
+    )
+  ).join('');
+
+  const rssXml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>${escapeXml(title)}</title><description>${escapeXml(description)}</description><link>${siteUrl}</link><language>en</language><copyright>Content licensed under CC BY 4.0</copyright><atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>${itemsXml}</channel></rss>`;
+
+  return new Response(rssXml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
     },
-    items: await Promise.all(
-      allPosts.map(async (post) => ({
-        title: post.data.title,
-        pubDate: post.data.pubDate,
-        description: post.data.description,
-        link: `/blog/${post.id}`,
-        categories: post.data.tags,
-        content: await getPostHtml(post, siteUrl),
-      })),
-    ),
-    customData: [
-      `<language>en</language>`,
-      `<copyright>Content licensed under CC BY 4.0</copyright>`,
-      `<atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />`,
-    ].join(''),
   });
 }
