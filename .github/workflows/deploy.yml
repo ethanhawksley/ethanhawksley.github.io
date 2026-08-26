@@ -27,8 +27,16 @@ jobs:
         with:
           cache: true
 
+      - name: Cache assets
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.astro
+          key: astro-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'astro.config.mjs') }}-${{ github.sha }}
+          restore-keys: |
+            astro-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'astro.config.mjs') }}-
+
       - name: Build Astro site
-        run: pnpm run build && tree -a
+        run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
         env:
