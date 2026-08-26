@@ -18,14 +18,12 @@ export async function getContentUrls() {
 
   const contentPaths = [
     '',
-    'blog',
-    'elsewhere',
-    ...allPosts.map((post) => `blog/${post.id}`),
+    '/blog',
+    '/elsewhere',
+    ...allPosts.map((post) => `/blog/${post.id}`),
   ];
 
-  return contentPaths.map((path) =>
-    new URL(path, 'https://hawksley.dev').toString(),
-  );
+  return contentPaths.map((path) => `https://hawksley.dev${path}`);
 }
 
 export async function getAllSiteUrls() {

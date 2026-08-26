@@ -50,9 +50,13 @@ export async function GET(context: APIContext) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   ${allPages
     .map((page) => {
-      const loc = page.url.startsWith('http')
+      let loc = page.url.startsWith('http')
         ? page.url
         : new URL(page.url, siteUrl).toString();
+      if (loc === 'https://hawksley.dev/') {
+        loc = 'https://hawksley.dev';
+      }
+
       const lastmodTag = page.lastmod
         ? `\n    <lastmod>${page.lastmod}</lastmod>`
         : '';
