@@ -94,6 +94,7 @@ export default defineConfig({
     mdx(),
     compress({
       Image: false,
+      SVG: false,
       HTML: {
         'html-minifier-terser': {
           removeAttributeQuotes: false,
