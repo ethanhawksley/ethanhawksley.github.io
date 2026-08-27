@@ -74,10 +74,9 @@ const jsonLd = {
       articleSection: post.data.tags[0] ?? 'Computer Science',
       ...(post.data.tags.length > 0 && { keywords: post.data.tags.join(', ') }),
       inLanguage: 'en',
-      datePublished: post.data.pubDate.toISOString().split('T')[0],
+      datePublished: post.data.pubDate.toISOString(),
       dateModified:
-        post.data.modDate?.toISOString().split('T')[0] ??
-        post.data.pubDate.toISOString().split('T')[0],
+        post.data.modDate?.toISOString() ?? post.data.pubDate.toISOString(),
       author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
       image: {
