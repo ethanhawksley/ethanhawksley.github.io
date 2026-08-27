@@ -5,7 +5,6 @@ import { getSortedPosts } from '../../utils/content-helpers';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 
 const allPosts = await getSortedPosts();
-const lastModified = allPosts[0].data.pubDate.toISOString().split('T')[0];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -21,7 +20,6 @@ const jsonLd = {
       description:
         'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
       inLanguage: 'en',
-      dateModified: lastModified,
       mainEntity: { '@id': 'https://hawksley.dev/blog#blog' },
       breadcrumb: { '@id': 'https://hawksley.dev/blog#breadcrumb' },
       primaryImageOfPage: {
@@ -42,7 +40,6 @@ const jsonLd = {
       description:
         'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
       inLanguage: 'en',
-      dateModified: lastModified,
       publisher: { '@id': 'https://hawksley.dev#person' },
       license: 'https://creativecommons.org/licenses/by/4.0/',
     },
