@@ -79,6 +79,7 @@ const isIndexable = !robots.includes('noindex');
       href="/fonts/ibm-mono-subset.woff2"
       as="font"
       type="font/woff2"
+      fetchpriority={preloadImage ? undefined : 'high'}
       crossorigin
     />
 
