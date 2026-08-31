@@ -1,26 +1,39 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
-import { personJsonLd, websiteRef } from '../../utils/jsonLd';
+import { personJsonLd, websiteJsonLd } from '../../utils/jsonLd';
 import { getCollection } from 'astro:content';
 
 const allChapters = await getCollection('theSecondMaintainer');
+
+// Inline low quality avif since book index fits into initcwd
+// On Cloudflare, initcwd is ~40KB.
+const inlineImagePath = path.join(
+  process.cwd(),
+  'src/assets/the-second-maintainer-400x640.avif',
+);
+const inlineImageBuffer = fs.readFileSync(inlineImagePath);
+const inlineImageBase64 = `data:image/avif;base64,${inlineImageBuffer.toString('base64')}`;
+
+const ogImageUrl = new URL(
+  '/og/the-second-maintainer.jpg',
+  Astro.site,
+).toString();
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     personJsonLd,
-    websiteRef,
+    websiteJsonLd,
     {
-      '@type': 'CollectionPage',
-      '@id': 'https://hawksley.dev/blog#webpage',
-      url: 'https://hawksley.dev/blog',
+      '@type': 'ProfilePage',
+      '@id': 'https://hawksley.dev#webpage',
+      url: 'https://hawksley.dev',
       isPartOf: { '@id': 'https://hawksley.dev#website' },
-      name: "Ethan Hawksley's Blog",
-      description:
-        'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
+      name: 'About Ethan Hawksley',
       inLanguage: 'en',
-      mainEntity: { '@id': 'https://hawksley.dev/blog#blog' },
-      breadcrumb: { '@id': 'https://hawksley.dev/blog#breadcrumb' },
+      mainEntity: { '@id': 'https://hawksley.dev#person' },
       primaryImageOfPage: {
         '@type': 'ImageObject',
         url: 'https://hawksley.dev/ethan-hawksley.jpg',
@@ -30,64 +43,109 @@ const jsonLd = {
         height: 1536,
       },
     },
-    {
-      '@type': 'Blog',
-      '@id': 'https://hawksley.dev/blog#blog',
-      isPartOf: { '@id': 'https://hawksley.dev#website' },
-      mainEntityOfPage: { '@id': 'https://hawksley.dev/blog#webpage' },
-      name: "Ethan Hawksley's Blog",
-      description:
-        'A blog by Ethan Hawksley, a Computer Science student in the UK. Articles on systems programming, cybersecurity, and whatever else grabs my attention.',
-      inLanguage: 'en',
-      publisher: { '@id': 'https://hawksley.dev#person' },
-      license: 'https://creativecommons.org/licenses/by/4.0/',
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': 'https://hawksley.dev/blog#breadcrumb',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          item: 'https://hawksley.dev',
-          position: 1,
-          name: 'Home',
-        },
-        {
-          '@type': 'ListItem',
-          item: 'https://hawksley.dev/blog',
-          position: 2,
-          name: 'Blog',
-        },
-      ],
-    },
   ],
 };
-
-const ogImageUrl = new URL(
-  '/og/the-second-maintainer.jpg',
-  Astro.site,
-).toString();
 ---
 
 <Layout
-  title="The Second Maintainer | Ethan Hawksley"
-  description="A blog by Ethan Hawksley, a Computer Science student in the UK. Posts on systems programming, cybersecurity, and whatever else grabs my attention."
+  title="Ethan Hawksley"
+  description="The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity."
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
 >
-  <h1>Blog</h1>
-  <p>Articles primarily on tech, but also whatever grabs my attention.</p>
-  <ul role="list">
-    {allChapters.map((chapter) => <li>{chapter.data.title}</li>)}
-  </ul>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Second Maintainer</h1>
+      <p class="hero-lead">
+        Ethan Hawksley is a Computer Science student in the UK with a focus on
+        systems programming and cybersecurity.
+      </p>
+      <p>That's me! I&nbsp;use hawksley.dev to share all my projects.</p>
+    </div>
+    <picture>
+      <img
+        class="hero-avatar"
+        src="/the-second-maintainer/the-second-maintainer.jpg"
+        alt="Headshot of Ethan Hawksley, Computer Science student"
+        width="200"
+        height="320"
+        loading="lazy"
+        fetchpriority="low"
+        decoding="async"
+        style={`background-image:url(${inlineImageBase64})`}
+      />
+    </picture>
+  </section>
+  <section class="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading">Projects</h2>
+    <ul role="list">
+      {allChapters.map((project) => <li />)}
+    </ul>
+  </section>
+  <section aria-labelledby="blog-heading">
+    <h2 id="blog-heading">Latest Posts</h2>
+    <p>Articles primarily on tech, but also whatever grabs my attention.</p>
+  </section>
 </Layout>
+
 <style>
-  p {
-    max-width: 65ch;
-    margin-bottom: 1rem;
-    line-height: var(--leading-normal);
-    color: var(--color-text-muted);
+  .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero p {
+    max-width: 43ch;
     text-wrap: balance;
+  }
+
+  .hero-lead {
+    width: fit-content;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero-avatar {
+    width: 160px;
+    height: 256px;
+    color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    object-fit: cover;
+    background-color: #191919;
+    background-position: center;
+    background-size: cover;
+    border: 2px solid var(--color-border);
+    filter: none !important;
+  }
+
+  @media (min-width: 41em) {
+    .hero {
+      flex-direction: row;
+      gap: 0;
+      justify-content: space-between;
+    }
+
+    .hero-avatar {
+      width: 200px;
+      height: 320px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: var(--leading-normal);
+  }
+
+  .projects {
+    margin-bottom: 2rem;
   }
 </style>
