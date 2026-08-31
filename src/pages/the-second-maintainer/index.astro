@@ -3,10 +3,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
-import { personJsonLd, websiteJsonLd } from '../../utils/jsonLd';
+import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 import { getCollection } from 'astro:content';
 
 const allChapters = await getCollection('theSecondMaintainer');
+
+const firstChapter = allChapters[0];
 
 // Inline low quality avif since book index fits into initcwd
 // On Cloudflare, initcwd is ~40KB.
@@ -22,27 +24,72 @@ const ogImageUrl = new URL(
   Astro.site,
 ).toString();
 
+const pageUrl = 'https://hawksley.dev/the-second-maintainer';
+const coverImageUrl =
+  'https://hawksley.dev/the-second-maintainer/the-second-maintainer.jpg';
+
+const description =
+  'The Second Maintainer tells the true story of the XZ Utils backdoor. It exposes the social engineering performed against open-source maintainers, the supply chain attack that threatened the very backbone of the internet, and how just 500 milliseconds saved us all.';
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     personJsonLd,
-    websiteJsonLd,
+    websiteRef,
     {
-      '@type': 'ProfilePage',
-      '@id': 'https://hawksley.dev#webpage',
-      url: 'https://hawksley.dev',
+      '@type': 'ItemPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
       isPartOf: { '@id': 'https://hawksley.dev#website' },
-      name: 'About Ethan Hawksley',
+      name: 'The Second Maintainer | Ethan Hawksley',
+      description,
       inLanguage: 'en',
-      mainEntity: { '@id': 'https://hawksley.dev#person' },
+      mainEntity: { '@id': `${pageUrl}#book` },
+      breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: 'https://hawksley.dev/ethan-hawksley.jpg',
-        name: 'Ethan Hawksley',
-        caption: 'Ethan Hawksley',
-        width: 1536,
-        height: 1536,
+        url: coverImageUrl,
+        name: 'The Second Maintainer Cover',
+        width: 1600,
+        height: 2560,
       },
+    },
+    {
+      '@type': 'Book',
+      '@id': `${pageUrl}#book`,
+      url: pageUrl,
+      name: 'The Second Maintainer',
+      headline: 'The true story of the XZ Utils backdoor',
+      description,
+      inLanguage: 'en',
+      author: { '@id': 'https://hawksley.dev#person' },
+      publisher: { '@id': 'https://hawksley.dev#person' },
+      isAccessibleForFree: true,
+      image: coverImageUrl,
+      hasPart: allChapters.map((chapter, index) => ({
+        '@type': 'Chapter',
+        position: index + 1,
+        name: chapter.data.title,
+        url: `https://hawksley.dev/the-second-maintainer/${chapter.id}`,
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          item: 'https://hawksley.dev',
+          position: 1,
+          name: 'Home',
+        },
+        {
+          '@type': 'ListItem',
+          item: pageUrl,
+          position: 2,
+          name: 'The Second Maintainer',
+        },
+      ],
     },
   ],
 };
@@ -50,7 +97,7 @@ const jsonLd = {
 
 <Layout
   title="The Second Maintainer | Ethan Hawksley"
-  description="The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity."
+  description={description}
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
@@ -64,6 +111,54 @@ const jsonLd = {
         maintainers, the supply chain attack that threatened the very backbone
         of the internet, and how just 500 milliseconds saved us all.
       </p>
+      <A href={`/the-second-maintainer/${firstChapter.id}`} pressable>
+        Read Online<span class="arrow" aria-hidden="true">→</span>
+      </A>
+      <div
+        class="action-matrix"
+        aria-label="Book formats, downloads, and retailers"
+      >
+        <div class="action-row">
+          <span class="action-category">Download:</span>
+          <div class="action-links">
+            <A
+              href="/the-second-maintainer/the-second-maintainer.pdf"
+              download
+              pressable
+            >
+              PDF
+            </A>
+            <span aria-hidden="true" class="dot">·</span>
+            <A
+              href="/the-second-maintainer/the-second-maintainer.epub"
+              download
+              pressable
+            >
+              EPUB
+            </A>
+          </div>
+        </div>
+        <div class="action-row">
+          <span class="action-category">Print:</span>
+          <div class="action-links">
+            <A href="https://example.com" pressable>Amazon</A>
+            <span aria-hidden="true" class="dot">·</span>
+            <A href="https://example.com" pressable>Waterstones</A>
+            <span aria-hidden="true" class="dot">·</span>
+            <A href="https://example.com" pressable>Lulu</A>
+          </div>
+        </div>
+        <div class="action-row">
+          <span class="action-category">Ebook:</span>
+          <div class="action-links">
+            <A href="https://example.com" pressable>Kindle</A>
+            <span aria-hidden="true" class="dot">·</span>
+            <A href="https://example.com" pressable>Kobo</A>
+            <span aria-hidden="true" class="dot">·</span>
+            <A href="https://example.com" pressable>Apple Books</A>
+          </div>
+        </div>
+      </div>
     </div>
     <picture>
       <img
@@ -79,10 +174,7 @@ const jsonLd = {
       />
     </picture>
   </section>
-  <section>
-    <A href="/the-second-maintainer/1-the-tukaani-project">Read Online</A>
-  </section>
-  <section class="projects" aria-labelledby="synopsis-heading">
+  <section class="synopsis" aria-labelledby="synopsis-heading">
     <h2 id="synopsis-heading">Synopsis</h2>
     <p>
       For over a decade, the development of XZ Utils had fallen to just one man:
@@ -95,13 +187,13 @@ const jsonLd = {
       with this, Lasse's luck began to shift...
     </p>
   </section>
-  <section aria-labelledby="toc-heading">
-    <h2 id="toc">Table of Contents</h2>
+  <section class="toc" aria-labelledby="toc-heading">
+    <h2 id="toc-heading">Table of Contents</h2>
     <ul role="list">
       {
         allChapters.map((chapter) => (
           <li>
-            <A href={`/the-second-maintainer/${chapter.id}`}>
+            <A href={`/the-second-maintainer/${chapter.id}`} pressable>
               {chapter.data.title}
             </A>
           </li>
@@ -122,18 +214,19 @@ const jsonLd = {
 
   .hero p {
     max-width: 50ch;
+    margin-bottom: 1rem;
+    line-height: var(--leading-normal);
     text-wrap: balance;
   }
 
-  .hero p {
-    margin-bottom: 1rem;
+  .arrow {
+    display: inline-block;
+    transition: transform 250ms ease-out;
+    margin-left: 0.25em;
   }
 
-  .hero-lead {
-    width: fit-content;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--color-border);
+  :global(a:hover) .arrow {
+    transform: translateX(0.25em);
   }
 
   .book-cover {
@@ -157,10 +250,73 @@ const jsonLd = {
       justify-content: space-between;
     }
 
-    .hero-avatar {
+    .book-cover {
       width: 200px;
       height: 320px;
     }
+  }
+
+  .action-matrix {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .action-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 32em) {
+    .action-row {
+      flex-direction: row;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+  }
+
+  .action-category {
+    min-width: 4.5rem;
+    font-weight: var(--weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  .action-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    align-items: center;
+  }
+
+  .dot {
+    color: var(--color-text-muted);
+  }
+
+  .synopsis {
+    margin-bottom: 2rem;
+  }
+
+  .synopsis p + p {
+    margin-top: 1rem;
+  }
+
+  .toc ul {
+    margin-top: 0.5rem;
+  }
+
+  .toc li {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .toc li + li {
+    border-top: 1px solid var(--color-border);
   }
 
   h2 {
@@ -169,9 +325,5 @@ const jsonLd = {
 
   p {
     line-height: var(--leading-normal);
-  }
-
-  .projects {
-    margin-bottom: 2rem;
   }
 </style>
