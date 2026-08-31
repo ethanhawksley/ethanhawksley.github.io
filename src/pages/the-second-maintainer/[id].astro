@@ -4,9 +4,10 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
+import { getSortedSecondMaintainer } from '../../utils/content-helpers.ts';
 
 export const getStaticPaths = (async () => {
-  const allChapters = await getCollection('theSecondMaintainer');
+  const allChapters = await getSortedSecondMaintainer();
 
   return allChapters.map((chapter, index) => ({
     params: { id: chapter.id },

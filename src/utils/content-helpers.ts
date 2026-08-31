@@ -1,6 +1,11 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
 
+export async function getSortedProjects() {
+  const projects = await getCollection('projects');
+  return projects.toSorted((a, b) => a.data.priority - b.data.priority);
+}
+
 export async function getSortedPosts() {
   const posts = await getCollection('posts');
   return posts.toSorted(
@@ -8,9 +13,13 @@ export async function getSortedPosts() {
   );
 }
 
-export async function getSortedProjects() {
-  const projects = await getCollection('projects');
-  return projects.toSorted((a, b) => a.data.priority - b.data.priority);
+export async function getSortedSecondMaintainer() {
+  const chapters = await getCollection('theSecondMaintainer');
+  return chapters.toSorted((a, b) => {
+    const numA = Number(a.id.split('-')[0]);
+    const numB = Number(b.id.split('-')[0]);
+    return numA - numB;
+  });
 }
 
 export async function getPostHtml(post: CollectionEntry<'posts'>) {

@@ -16,9 +16,9 @@ let fontBold: Buffer | null = null;
 let fontRegular: Buffer | null = null;
 
 export async function getStaticPaths() {
-  const posts = await getSortedPosts();
+  const allPosts = await getSortedPosts();
 
-  const blogPaths = posts.map((post) => ({
+  const blogPaths = allPosts.map((post) => ({
     params: { route: `blog/${post.id}.jpg` },
     props: {
       page: {
@@ -186,13 +186,13 @@ export const GET: APIRoute = async ({ props }) => {
     height: 630,
     fonts: [
       {
-        title: 'IBM Plex Sans',
+        name: 'IBM Plex Sans',
         data: fontBold,
         weight: 700,
         style: 'normal',
       },
       {
-        title: 'IBM Plex Sans',
+        name: 'IBM Plex Sans',
         data: fontRegular,
         weight: 400,
         style: 'normal',

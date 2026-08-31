@@ -14,8 +14,8 @@ const MIME_TYPES: Record<string, string> = {
 };
 
 export const getStaticPaths = (async () => {
-  const posts = await getSortedPosts();
-  const validBlogSlugs = new Set(posts.map((post) => post.id));
+  const allPosts = await getSortedPosts();
+  const validBlogSlugs = new Set(allPosts.map((post) => post.id));
 
   const imageFiles = import.meta.glob(
     '/src/content/blog/**/*.{jpg,jpeg,png,webp,gif,svg,avif}',

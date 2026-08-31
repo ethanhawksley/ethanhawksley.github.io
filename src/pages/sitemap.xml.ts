@@ -1,5 +1,8 @@
 import type { APIContext } from 'astro';
-import { getSortedPosts } from '../utils/content-helpers';
+import {
+  getSortedPosts,
+  getSortedSecondMaintainer,
+} from '../utils/content-helpers';
 
 interface SitemapPage {
   url: string;
@@ -12,6 +15,7 @@ interface SitemapPage {
 export async function GET(context: APIContext) {
   const siteUrl = context.site!.toString();
   const allPosts = await getSortedPosts();
+  const allChapters = await getSortedSecondMaintainer();
 
   const blogLastPublished = allPosts[0].data.pubDate
     .toISOString()
@@ -31,6 +35,14 @@ export async function GET(context: APIContext) {
       changefreq: 'monthly',
       lastmod: blogLastPublished,
     },
+    {
+      url: 'the-second-maintainer',
+      priority: 0.9,
+      changefreq: 'monthly',
+      images: [
+        'https://hawksley.dev/the-second-maintainer/the-second-maintainer.jpg',
+      ],
+    },
     { url: 'elsewhere', priority: 0.8, changefreq: 'monthly' },
   ];
 
@@ -44,7 +56,13 @@ export async function GET(context: APIContext) {
     };
   });
 
-  const allPages = [...staticPages, ...postPages];
+  const chapterPages: SitemapPage[] = allChapters.map((chapter) => ({
+    url: `the-second-maintainer/${chapter.id}`,
+    priority: 0.7,
+    changefreq: 'monthly',
+  }));
+
+  const allPages = [...staticPages, ...postPages, ...chapterPages];
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
