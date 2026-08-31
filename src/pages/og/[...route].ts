@@ -186,13 +186,13 @@ export const GET: APIRoute = async ({ props }) => {
     height: 630,
     fonts: [
       {
-        name: 'IBM Plex Sans',
+        title: 'IBM Plex Sans',
         data: fontBold,
         weight: 700,
         style: 'normal',
       },
       {
-        name: 'IBM Plex Sans',
+        title: 'IBM Plex Sans',
         data: fontRegular,
         weight: 400,
         style: 'normal',

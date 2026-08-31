@@ -36,4 +36,14 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { posts, projects };
+const theSecondMaintainer = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/the-second-maintainer',
+  }),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = { posts, projects, theSecondMaintainer };

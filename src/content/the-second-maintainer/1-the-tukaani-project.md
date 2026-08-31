@@ -1,0 +1,45 @@
+---
+title: '1: The Tukaani Project'
+---
+
+2005, Finland: open-source software was experiencing an explosive growth in popularity. Whilst the world migrated to Windows XP, a global enclave of nerds was using Linux. It was a free operating system, born out of the early 90s, maintained by a community of volunteers.
+
+Lasse Collin, a Finnish student in his early twenties, belonged to this group of nerds. He was embedded deep among programmers, and many of his friendships were formed in online chat rooms.
+
+Linux is the overarching term that encompasses many distributions, or distros for short. There are many options to choose from: Ubuntu, SUSE, Debian, Fedora, and more. Lasse's personal favourite was Slackware Linux: a distro that had been going strong since its inception in 1993. Consequently, his appreciation for the distro prompted him to make a derivative of it.
+
+Logging on to the internet, he informed his friends of the plan. They jumped on board and began brainstorming immediately. Naturally, any good project needed a good project name and, after much deliberation, they settled on titling it Tukaani Project, hence calling the distro Tukaani Linux. Tukaani is Finnish for a toucan, so Lasse's friend Ville Koskinen designed a fitting mascot for the project - Bob the Toucan.
+
+However, they soon stumbled into a problem: Slackware Linux included plenty of preinstalled software. It may have been convenient whilst using it, but it made the installer much larger. It was so large that it couldn't fit on a CD-ROM and instead required a more expensive DVD-ROM.
+
+Lasse suggested that instead of removing software, they should try compressing the installer. Slackware already used "gzip", a popular compression algorithm designed in 1992, which could compress the installer to 1 gigabyte. Better, but not small enough. Lasse then tried using "LZMA", a newer and slightly less well-known compression algorithm.
+
+Perfect. The installer compressed to just under 700 megabytes, narrowly fitting onto the CD-ROM.
+
+LZMA compressed files better than gzip, yet it was majorly underutilised, which shocked Lasse. He promptly made a decision to change this. The world needed to start using LZMA, and he would be the one to introduce it to them.
+
+He informed the members of the Tukaani Project about the capabilities of LZMA, and they too were surprised by its efficiency. Each of them started creating small but useful programs that used LZMA.
+
+---
+
+Over the course of a year, the Tukaani Project created a suite of software named "LZMA Utils". It was a jack-of-all-trades and could manipulate LZMA in every way imaginable. The tools ran on the smallest of chips and on the biggest of servers.
+
+It didn't take long for the word to spread. By 2007, LZMA Utils had accumulated a large community of both users and contributors. Although gzip still stood as the dominant algorithm, LZMA was finally respected.
+
+Lasse wasn't satisfied, though. In his regular use of LZMA he had learned all of its flaws. The algorithm was good, yes, but the files it produced were fragile: it was prone to corrupting during file transfers, leaving it entirely useless. Lasse's coding skills had also improved, and starting afresh would let him build back stronger.
+
+He needed to make a new file format.
+
+---
+
+His plans for the format were fuzzy at best. He knew he wanted to use LZMA, but there were so many other unknowns. He couldn't make it alone, so he contacted the person who knew compression best. He reached out to Igor Pavlov, the original creator of LZMA.
+
+Igor was very receptive to Lasse's inquiries, so together they worked on a new format, with assistance from Ville. They chose to use Igor's latest algorithm - LZMA2. It split data into smaller chunks and compressed each in parallel. If a chunk couldn't be compressed, it would be left as-is.
+
+Development of the file format took a year - due to Lasse's personal priorities drawing him away - but at last, in 2009, the format was ready. He titled it "XZ", and officially rebranded LZMA Utils to XZ Utils.
+
+---
+
+XZ was an instant success with developers and became used almost everywhere. Linux distros started including XZ Utils pre-installed. Some distros even used XZ Utils to compress the installer itself. Competitor file formats came and went, but XZ was one of the few that stayed. Lasse's project was a success.
+
+After the creation of XZ Utils, the Tukaani Project began to slowly drift apart. Some of Lasse's friends found jobs, others had families. He, too, became increasingly busy. Yet, as its creator, XZ Utils remained his responsibility. People would occasionally submit code to add, but Lasse was the sole maintainer. As the software spread and became used by millions, he continued to maintain the project.

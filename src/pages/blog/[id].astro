@@ -154,7 +154,7 @@ const jsonLd = {
     </symbol>
   </Fragment>
 
-  <div class="back-to-blog">
+  <div class="back-to-index">
     <A href="/blog" pressable>
       <span class="arrow" aria-hidden="true">←</span> Back to blog
     </A>
@@ -438,7 +438,7 @@ const jsonLd = {
   }
 
   @media print {
-    .back-to-blog,
+    .back-to-index,
     .copy-button,
     .post-pager {
       display: none !important;
@@ -470,24 +470,24 @@ const jsonLd = {
     transition: transform 250ms ease-out;
   }
 
-  .back-to-blog {
+  .back-to-index {
     margin-bottom: 0.5rem;
     font-size: var(--font-size-sm);
   }
 
-  .back-to-blog :global(a) {
+  .back-to-index :global(a) {
     color: var(--color-text-muted);
   }
 
-  .back-to-blog :global(a:hover) {
+  .back-to-index :global(a:hover) {
     color: var(--color-accent);
   }
 
-  .back-to-blog .arrow {
+  .back-to-index .arrow {
     margin-right: 0.15em;
   }
 
-  .back-to-blog :global(a:hover) .arrow {
+  .back-to-index :global(a:hover) .arrow {
     transform: translateX(-0.25em);
   }
 
