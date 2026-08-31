@@ -160,6 +160,14 @@ const jsonLd = {
             </A>
           </div>
         </div>
+        <div class="action-row">
+          <span class="action-category">License:</span>
+          <div class="action-links">
+            <A href="https://creativecommons.org/licenses/by-sa/4.0/" pressable>
+              CC BY-SA 4.0
+            </A>
+          </div>
+        </div>
         <!--<div class="action-row">
           <span class="action-category">Print:</span>
           <div class="action-links">
@@ -357,5 +365,12 @@ const jsonLd = {
 
   p {
     line-height: var(--leading-normal);
+  }
+
+  @media print {
+    .read-link,
+    .action-matrix {
+      display: none !important;
+    }
   }
 </style>
