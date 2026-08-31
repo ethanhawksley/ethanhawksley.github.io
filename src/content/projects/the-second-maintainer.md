@@ -6,7 +6,7 @@ description:
 type: 'Book'
 stack: ['XZ Utils']
 url: 'https://hawksley.dev/the-second-maintainer'
-id: 'https://hawksley.dev/the-second-maintainer#undecidedasofyet'
+id: 'https://hawksley.dev/the-second-maintainer#book'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/the-second-maintainer'
