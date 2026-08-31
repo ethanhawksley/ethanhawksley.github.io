@@ -1,7 +1,4 @@
-import {
-  getSortedPosts,
-  getSortedSecondMaintainer,
-} from './content-helpers.ts';
+import { getSortedPosts, getSortedSecondMaintainer } from './content-helpers';
 
 export const NON_CONTENT_URLS = [
   'https://hawksley.dev/sitemap.xml',
