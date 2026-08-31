@@ -219,6 +219,25 @@ const jsonLd = {
     border-bottom-right-radius: 0.5rem;
   }
 
+  .prose hr {
+    height: auto;
+    max-width: 65ch;
+    margin: 2.5rem 0;
+    overflow: visible;
+    text-align: center;
+    border: 0;
+  }
+
+  .prose hr::before {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    letter-spacing: 0.5em;
+    color: var(--color-text-muted);
+    content: '***';
+    margin-right: -0.5em;
+  }
+
   @media print {
     .back-to-index,
     .chapter-pager {
