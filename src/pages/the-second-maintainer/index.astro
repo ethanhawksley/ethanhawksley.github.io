@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
+import A from '../../components/A.astro';
 import { personJsonLd, websiteJsonLd } from '../../utils/jsonLd';
 import { getCollection } from 'astro:content';
 
@@ -48,7 +49,7 @@ const jsonLd = {
 ---
 
 <Layout
-  title="Ethan Hawksley"
+  title="The Second Maintainer | Ethan Hawksley"
   description="The personal site and blog of Ethan Hawksley, a Computer Science student in the UK with a focus on systems programming and cybersecurity."
   jsonLd={jsonLd}
   ogType="website"
@@ -57,17 +58,18 @@ const jsonLd = {
   <section class="hero">
     <div class="hero-content">
       <h1>The Second Maintainer</h1>
-      <p class="hero-lead">
-        Ethan Hawksley is a Computer Science student in the UK with a focus on
-        systems programming and cybersecurity.
+      <p>
+        The Second Maintainer tells the true story of the XZ Utils backdoor. It
+        exposes the social engineering performed against open-source
+        maintainers, the supply chain attack that threatened the very backbone
+        of the internet, and how just 500 milliseconds saved us all.
       </p>
-      <p>That's me! I&nbsp;use hawksley.dev to share all my projects.</p>
     </div>
     <picture>
       <img
-        class="hero-avatar"
+        class="book-cover"
         src="/the-second-maintainer/the-second-maintainer.jpg"
-        alt="Ethan Hawksley"
+        alt="The Second Maintainer"
         width="200"
         height="320"
         loading="lazy"
@@ -77,15 +79,35 @@ const jsonLd = {
       />
     </picture>
   </section>
-  <section class="projects" aria-labelledby="projects-heading">
-    <h2 id="projects-heading">Projects</h2>
-    <ul role="list">
-      {allChapters.map((project) => <li />)}
-    </ul>
+  <section>
+    <A href="/the-second-maintainer/1-the-tukaani-project">Read Online</A>
   </section>
-  <section aria-labelledby="blog-heading">
-    <h2 id="blog-heading">Latest Posts</h2>
-    <p>Articles primarily on tech, but also whatever grabs my attention.</p>
+  <section class="projects" aria-labelledby="synopsis-heading">
+    <h2 id="synopsis-heading">Synopsis</h2>
+    <p>
+      For over a decade, the development of XZ Utils had fallen to just one man:
+      Lasse Collin. Whilst he maintained it quietly in the background, burnout
+      began to set in. The thousands of hours spent on this project were
+      starting to catch up to him.
+    </p>
+    <p>
+      When all hope seemed lost, a new face arrived. Jia Tan offered help, and
+      with this, Lasse's luck began to shift...
+    </p>
+  </section>
+  <section aria-labelledby="toc-heading">
+    <h2 id="toc">Table of Contents</h2>
+    <ul role="list">
+      {
+        allChapters.map((chapter) => (
+          <li>
+            <A href={`/the-second-maintainer/${chapter.id}`}>
+              {chapter.data.title}
+            </A>
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </Layout>
 
@@ -99,8 +121,12 @@ const jsonLd = {
   }
 
   .hero p {
-    max-width: 43ch;
+    max-width: 50ch;
     text-wrap: balance;
+  }
+
+  .hero p {
+    margin-bottom: 1rem;
   }
 
   .hero-lead {
@@ -110,7 +136,7 @@ const jsonLd = {
     border-bottom: 1px solid var(--color-border);
   }
 
-  .hero-avatar {
+  .book-cover {
     width: 160px;
     height: 256px;
     color: transparent;
