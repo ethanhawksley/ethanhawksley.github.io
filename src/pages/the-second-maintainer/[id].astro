@@ -73,6 +73,7 @@ const jsonLd = {
       description: chapterDescription,
       position: chapter.data.index,
       inLanguage: 'en',
+      isAccessibleForFree: true,
       author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
       image: {
@@ -112,7 +113,7 @@ const jsonLd = {
 ---
 
 <Layout
-  title={`${fullTitle} | Ethan Hawksley`}
+  title={`${fullTitle} | The Second Maintainer`}
   description={chapterDescription}
   jsonLd={jsonLd}
   ogType="article"
@@ -120,11 +121,12 @@ const jsonLd = {
 >
   <div class="back-to-index">
     <A href="/the-second-maintainer" pressable>
-      <span class="arrow" aria-hidden="true">←</span> Back to index
+      <span class="arrow" aria-hidden="true">←</span> Back to book index
     </A>
   </div>
   <article>
     <header>
+      <p class="book-eyebrow">The Second Maintainer, by Ethan Hawksley</p>
       <h1>{fullTitle}</h1>
     </header>
     <div class="prose">
@@ -176,7 +178,7 @@ const jsonLd = {
       </div>
     </div>
     <div class="pager-view-all">
-      <A href="/the-second-maintainer" pressable>Index</A>
+      <A href="/the-second-maintainer" pressable>Table of Contents</A>
     </div>
   </nav>
 </Layout>
@@ -196,59 +198,15 @@ const jsonLd = {
     margin-bottom: 0;
   }
 
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6,
   .prose p,
   .prose li,
   .prose blockquote {
     max-width: 65ch;
   }
 
-  .prose p,
-  .prose ul,
-  .prose ol {
+  .prose p {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-  }
-
-  .prose h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
-    font-size: var(--font-size-lg);
-  }
-
-  .prose h3 {
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-    font-size: var(--font-size-md);
-  }
-
-  .prose h4 {
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .prose h5,
-  .prose h6 {
-    margin-top: 1.25rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .prose li + li {
-    margin-top: 0.5rem;
-  }
-
-  .prose li > ul,
-  .prose li > ol {
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .prose img {
-    border-radius: 1rem;
   }
 
   .prose blockquote {
@@ -265,18 +223,6 @@ const jsonLd = {
     .back-to-index,
     .chapter-pager {
       display: none !important;
-    }
-
-    .prose a[href^='http']::after {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-muted);
-      word-break: break-all;
-      content: ' (' attr(href) ')';
-    }
-
-    .prose a span {
-      text-decoration-thickness: 0.07em !important;
-      text-underline-offset: auto !important;
     }
   }
 </style>
@@ -318,6 +264,12 @@ const jsonLd = {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .book-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
   }
 
   .chapter-pager {
