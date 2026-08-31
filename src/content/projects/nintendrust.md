@@ -9,5 +9,5 @@ id: 'https://nintendrust.hawksley.dev#app'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/nintendrust'
-priority: 1
+priority: 2
 ---

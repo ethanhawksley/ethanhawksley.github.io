@@ -19,9 +19,9 @@ const projects = defineCollection({
   schema: z.object({
     name: z.string(),
     description: z.string(),
-    type: z.enum(['Web', 'CLI', 'Tool']),
+    type: z.enum(['Web', 'CLI', 'Book']),
     stack: z.array(z.string()),
-    applicationCategory: z.string(),
+    applicationCategory: z.string().optional(),
     url: z.url(),
     id: z.url(),
     links: z

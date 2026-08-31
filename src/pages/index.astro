@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import LatestPosts from '../components/LatestPosts.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
+import { getSortedProjects } from '../utils/content-helpers';
 import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
 
 // Inline low quality avif since home page fits into initcwd
@@ -21,20 +21,22 @@ const ogImageUrl = new URL('/og/home.jpg', Astro.site).toString();
 
 const allProjects = await getSortedProjects();
 
-const projectJsonLds = allProjects.map((project) => {
-  const isWeb = project.data.type === 'Web';
+const projectJsonLds = allProjects
+  .filter((project) => ['Web', 'CLI'].includes(project.data.type))
+  .map((project) => {
+    const isWeb = project.data.type === 'Web';
 
-  return {
-    '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
-    '@id': project.data.id,
-    url: project.data.url,
-    name: project.data.name,
-    description: project.data.description,
-    applicationCategory: project.data.applicationCategory,
-    creator: { '@id': 'https://hawksley.dev#person' },
-    sameAs: project.data.links?.map((link) => link.url),
-  };
-});
+    return {
+      '@type': isWeb ? 'WebApplication' : 'SoftwareApplication',
+      '@id': project.data.id,
+      url: project.data.url,
+      name: project.data.name,
+      description: project.data.description,
+      applicationCategory: project.data.applicationCategory,
+      creator: { '@id': 'https://hawksley.dev#person' },
+      sameAs: project.data.links?.map((link) => link.url),
+    };
+  });
 
 const jsonLd = {
   '@context': 'https://schema.org',

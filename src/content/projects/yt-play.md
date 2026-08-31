@@ -9,5 +9,5 @@ id: 'https://hawksley.dev#app-yt-play'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/yt-play'
-priority: 3
+priority: 4
 ---

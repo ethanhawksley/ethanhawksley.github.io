@@ -9,5 +9,5 @@ id: 'https://mineduo.hawksley.dev#app'
 links:
   - name: 'Source'
     url: 'https://github.com/ethanhawksley/mineduo'
-priority: 2
+priority: 3
 ---
