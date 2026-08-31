@@ -19,7 +19,6 @@ const inlineImageBase64 = `data:image/avif;base64,${inlineImageBuffer.toString('
 
 const ogImageUrl = new URL('/og/home.jpg', Astro.site).toString();
 
-const allPosts = await getSortedPosts();
 const allProjects = await getSortedProjects();
 
 const projectJsonLds = allProjects.map((project) => {
