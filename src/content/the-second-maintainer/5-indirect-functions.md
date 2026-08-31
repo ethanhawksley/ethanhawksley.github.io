@@ -15,15 +15,15 @@ The transition wasn't entirely seamless: automated systems flagged the new digit
 
 ---
 
-Development picked up as June began. Three months after the project improved its security posture, a new developer called Hans Jansen appeared. He had prepared a pair of patches that would improve the performance of XZ Utils. They leveraged "indirect functions", commonly shortened to ifuncs. These ifuncs allow a program to rewire itself whenever it runs. Entire functions of code can be swapped with each other, according to the pre-programmed conditions. His patch optimised the *CRC64* function, which was used for checking if a file was corrupt. If the ifunc detected modern hardware, it would switch the *CRC64* function to a new, highly specialised version.
+Development picked up as June began. Three months after the project improved its security posture, a new developer called Hans Jansen appeared. He had prepared a pair of patches that would improve the performance of XZ Utils. They leveraged "indirect functions", commonly shortened to ifuncs. These ifuncs allow a program to rewire itself whenever it runs. Entire functions of code can be swapped with each other, according to the pre-programmed conditions. His patch optimised the _CRC64_ function, which was used for checking if a file was corrupt. If the ifunc detected modern hardware, it would switch the _CRC64_ function to a new, highly specialised version.
 
 Lasse took a look and noticed Jia had already reviewed the patch. He had picked out the usual reasons a patch needed reworking: bad variable names, too many letters on a line of code, and unnecessary spaces. However, his opinion of the CRC patch was largely positive:
 
 > "Overall, this seems like a nice improvement to our function picking strategy for CRC64. It will likely be useful when we implement CRC32 too :)"
 
-*CRC32* is just a smaller version of *CRC64*, which is slightly less accurate but faster to compute. Hans' patch only changed the *CRC64* function, but it was simple enough that Jia could follow in his footsteps to implement it for *CRC32* too.
+_CRC32_ is just a smaller version of _CRC64_, which is slightly less accurate but faster to compute. Hans' patch only changed the _CRC64_ function, but it was simple enough that Jia could follow in his footsteps to implement it for _CRC32_ too.
 
-Lasse wasn't quite as convinced as Jia. When he ran the automated tests on the patch, they returned errors. Looking closer, he noticed all of these errors were related to the optional *AddressSanitizer* memory checker. It was responsible for ensuring there were no unsafe modifications to memory. After researching, it turned out this was a well-known incompatibility. Ifuncs rewire the program before the *AddressSanitizer* is ready, resulting in a crash. The typical fix was to disable ifuncs when using the memory checker. He shrugged. It seemed an acceptable trade-off.
+Lasse wasn't quite as convinced as Jia. When he ran the automated tests on the patch, they returned errors. Looking closer, he noticed all of these errors were related to the optional _AddressSanitizer_ memory checker. It was responsible for ensuring there were no unsafe modifications to memory. After researching, it turned out this was a well-known incompatibility. Ifuncs rewire the program before the _AddressSanitizer_ is ready, resulting in a crash. The typical fix was to disable ifuncs when using the memory checker. He shrugged. It seemed an acceptable trade-off.
 
 With compatibility solved and out of the way, his other concern was performance. He asked Hans for details about the patch.
 
@@ -31,13 +31,13 @@ With compatibility solved and out of the way, his other concern was performance.
 
 Hans replied to him quickly.
 
->  "I was noticing a 4-5% improvement. I'm also running all of this on older hardware, which may be contributing to the speedup."
+> "I was noticing a 4-5% improvement. I'm also running all of this on older hardware, which may be contributing to the speedup."
 
 While a 4-5% speed improvement isn't anything spectacular, it seemed like a nice bonus. He fired off a quick private message to Jia to gauge his opinion on the matter. When Jia reaffirmed that he was supportive of the addition, they thanked Hans for his contribution and added his code to XZ Utils.
 
 ---
 
-After Hans' ifuncs were added to XZ Utils, Lasse and Jia received another email from Google's OSS-Fuzz service. It highlighted the new patch was causing constant crashes whenever the software was tested. They both read through the log trying to spot the issue, and it turned out to be as expected: OSS-Fuzz was utilising *AddressSanitizer*, not unlike their own tests had. The fix was simple: exempt ifuncs from Google's automated scans. Jia created a request for this, and within ten minutes, the change was in action.
+After Hans' ifuncs were added to XZ Utils, Lasse and Jia received another email from Google's OSS-Fuzz service. It highlighted the new patch was causing constant crashes whenever the software was tested. They both read through the log trying to spot the issue, and it turned out to be as expected: OSS-Fuzz was utilising _AddressSanitizer_, not unlike their own tests had. The fix was simple: exempt ifuncs from Google's automated scans. Jia created a request for this, and within ten minutes, the change was in action.
 
 This made Lasse uncomfortable. By disabling ifuncs in scans, any problems within the ifunc code wouldn't be easily identified ahead of time. Fortunately XZ Utils didn't use ifuncs in many places. He had read the documentation and knew how to spot the common pitfalls with them. The performance impact was also too good to pass up. It wasn't ideal, but he could sleep easily.
 
@@ -45,7 +45,7 @@ This made Lasse uncomfortable. By disabling ifuncs in scans, any problems within
 
 Work carried on as per usual. August marked Jia releasing version 5.4.4. It introduced web browser support to XZ Utils but did not support all features - only a subset of them. Regardless, it was a notable feat.
 
-Hans returned to XZ Utils in September. His new patches once again focused on the *CRC* algorithms from earlier. The earlier contributions were for *CRC64*, and he had finally returned to improve *CRC32*. This time it even came with benchmarks, promising up to 70% faster performance. Again, the speed improvement came from using ifuncs. Lasse could hardly believe his eyes - you don't see improvements this good every day.
+Hans returned to XZ Utils in September. His new patches once again focused on the _CRC_ algorithms from earlier. The earlier contributions were for _CRC64_, and he had finally returned to improve _CRC32_. This time it even came with benchmarks, promising up to 70% faster performance. Again, the speed improvement came from using ifuncs. Lasse could hardly believe his eyes - you don't see improvements this good every day.
 
 Hans kept iterating over his patch making small incremental improvements. After a few days of silence, Lasse finally responded.
 
@@ -61,10 +61,10 @@ Jia worked hard over the next week. He clearly wasn't satisfied with Hans' code 
 
 Lasse was hard at work too. He implemented "sandboxing", where XZ Utils is cut off from the rest of the computer. Through this, he could mitigate the damage that a vulnerability in XZ Utils would have. Any damage caused by a bug in XZ Utils would be restricted to inside the sandbox.
 
-Jia was inspired by Lasse's progress and also worked on the sandboxing. He fixed the automated tests by disabling sandboxing when using *AddressSanitizer*. He also continued adding sandboxing to more parts of XZ Utils, such as *xzdec* - the part dedicated to decompressing .xz files back to their original form.
+Jia was inspired by Lasse's progress and also worked on the sandboxing. He fixed the automated tests by disabling sandboxing when using _AddressSanitizer_. He also continued adding sandboxing to more parts of XZ Utils, such as _xzdec_ - the part dedicated to decompressing .xz files back to their original form.
 
 ---
 
-A month later, Jia brought up the topic of the project's homepage. At the time, the XZ Utils was hosted on tukaani.org. Since its inception, it had just been another part of the Tukaani project. Jia thought it was more than that though: he wanted XZ Utils to have its own website and identity. Lasse was reluctant, but folded when Jia offered to handle the site creation himself. He designed the new website and even made a new logo to replace Bob the Toucan: simply the letters *XZ* in bright orange and yellow.
+A month later, Jia brought up the topic of the project's homepage. At the time, the XZ Utils was hosted on tukaani.org. Since its inception, it had just been another part of the Tukaani project. Jia thought it was more than that though: he wanted XZ Utils to have its own website and identity. Lasse was reluctant, but folded when Jia offered to handle the site creation himself. He designed the new website and even made a new logo to replace Bob the Toucan: simply the letters _XZ_ in bright orange and yellow.
 
 Minor releases continued to be prepared by Jia. Versions 5.4.5 and 5.4.6 both had very minimal changes. The major changes, such as the new work on sandboxing, were set to release in the next major version.

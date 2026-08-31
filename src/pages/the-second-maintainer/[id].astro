@@ -220,8 +220,8 @@ const jsonLd = {
   }
 
   .prose hr {
-    height: auto;
     max-width: 65ch;
+    height: auto;
     margin: 2.5rem 0;
     overflow: visible;
     text-align: center;
@@ -230,12 +230,12 @@ const jsonLd = {
 
   .prose hr::before {
     display: block;
+    margin-right: -0.5em;
     font-family: var(--font-mono);
     font-size: var(--font-size-base);
-    letter-spacing: 0.5em;
     color: var(--color-text-muted);
+    letter-spacing: 0.5em;
     content: '***';
-    margin-right: -0.5em;
   }
 
   @media print {

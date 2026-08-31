@@ -5,13 +5,13 @@ index: 2
 
 In 2021, twelve years after its creation, XZ remained a dominant file format. With its popularity, however, came bug reports. Plenty of bug reports. Even though many bugs were minor, they constantly stole time out of his day for Lasse to deal with them all.
 
-It was November 10th when he checked his inbox and found an email which had arrived two weeks prior. Lasse was not known for regularly checking his emails - he frequently took internet breaks. The email was addressed from another developer named Jia Tan, and it contained a patch for XZ Utils. He proposed adding the file *.editorconfig*, that provided configuration for how text editors would format code. Lasse hoped it could settle the debates he'd had over formatting. However, when he added the patch to the code, problems ensued. He began to draft a reply to Jia.
+It was November 10th when he checked his inbox and found an email which had arrived two weeks prior. Lasse was not known for regularly checking his emails - he frequently took internet breaks. The email was addressed from another developer named Jia Tan, and it contained a patch for XZ Utils. He proposed adding the file _.editorconfig_, that provided configuration for how text editors would format code. Lasse hoped it could settle the debates he'd had over formatting. However, when he added the patch to the code, problems ensued. He began to draft a reply to Jia.
 
 > "Thanks! I hadn't heard about this before, but it sounds nice."
 
 There hadn't been much activity on XZ Utils recently, so Lasse was glad to see any new faces. Who knew, if he was lucky, maybe Jia would stay?
 
-The main issue with the proposed *.editorconfig* was that it needed to be more thorough. Jia had added formatting rules for some files but not all.
+The main issue with the proposed _.editorconfig_ was that it needed to be more thorough. Jia had added formatting rules for some files but not all.
 
 > "There are multiple indentation styles, even under src."
 
@@ -45,6 +45,6 @@ Unfortunately for Sebastian, parallel decompression was not ready in time for Ch
 
 ---
 
-Two weeks after Sebastian's request, Jia had prepared a new patch. He had ported over the existing automated tests to a new framework named *seatest*. These automated tests were responsible for ensuring the software always functioned properly - if new code broke XZ Utils, he would be alerted.
+Two weeks after Sebastian's request, Jia had prepared a new patch. He had ported over the existing automated tests to a new framework named _seatest_. These automated tests were responsible for ensuring the software always functioned properly - if new code broke XZ Utils, he would be alerted.
 
 What shocked Lasse most was the size: the patch was hundreds of lines of code, with clear effort put into it. He smiled. It looked like Jia was here to stay. It was a shame to lose the testing infrastructure he had built himself over the years, but it was a step in the right direction for the project. Jia's patch needed some improvements here and there, but was remarkably high quality - he clearly knew his stuff.
