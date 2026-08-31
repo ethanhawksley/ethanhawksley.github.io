@@ -11,12 +11,19 @@ import {
   getSortedSecondMaintainer,
 } from '../../utils/content-helpers';
 
-const VERSION = 'v6';
+const VERSION = 'v7';
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
 
 let bgBase64: string | null = null;
+let coverBase64: string | null = null;
 let fontBold: Buffer | null = null;
 let fontRegular: Buffer | null = null;
+
+interface PageProps {
+  title: string;
+  description?: string;
+  showCover?: boolean;
+}
 
 export async function getStaticPaths() {
   const allPosts = await getSortedPosts();
@@ -38,6 +45,7 @@ export async function getStaticPaths() {
       page: {
         title: `${chapter.data.index}: ${chapter.data.title}`,
         description: 'The Second Maintainer: Inside the XZ Backdoor',
+        showCover: true,
       },
     },
   }));
@@ -64,16 +72,6 @@ export async function getStaticPaths() {
       },
     },
     {
-      params: { route: 'the-second-maintainer.jpg' },
-      props: {
-        page: {
-          title: 'The Second Maintainer',
-          description:
-            'Inside the XZ Backdoor, a true story by Ethan Hawksley.',
-        },
-      },
-    },
-    {
       params: { route: 'elsewhere.jpg' },
       props: {
         page: {
@@ -89,13 +87,14 @@ export async function getStaticPaths() {
 }
 
 export const GET: APIRoute = async ({ props }) => {
-  const page = props.page as { title: string; description?: string };
-  const { title, description = '' } = page;
+  const page = props.page as PageProps;
+  const { title, description = '', showCover = false } = page;
 
   const hash = createHash('sha256')
     .update(VERSION)
     .update(title)
     .update(description)
+    .update(showCover ? 'cover' : 'nocover')
     .digest('hex');
   const cacheFilePath = path.join(CACHE_DIR, `${hash}.jpg`);
 
@@ -113,11 +112,16 @@ export const GET: APIRoute = async ({ props }) => {
     console.warn('Cache read error:', error);
   }
 
-  if (!bgBase64 || !fontBold || !fontRegular) {
+  if (!bgBase64 || !coverBase64 || !fontBold || !fontRegular) {
     const bgBuffer = readFileSync(
       path.join(process.cwd(), 'src/assets/og-background.png'),
     );
     bgBase64 = `data:image/png;base64,${bgBuffer.toString('base64')}`;
+
+    const coverBuffer = readFileSync(
+      path.join(process.cwd(), 'src/assets/the-second-maintainer.png'),
+    );
+    coverBase64 = `data:image/png;base64,${coverBuffer.toString('base64')}`;
 
     fontBold = readFileSync(
       path.join(process.cwd(), 'src/assets/ibm-plex-sans-bold.ttf'),
@@ -192,6 +196,38 @@ export const GET: APIRoute = async ({ props }) => {
     },
   };
 
+  const coverNode =
+    showCover && coverBase64
+      ? {
+          type: 'div',
+          props: {
+            style: {
+              position: 'absolute',
+              top: 59,
+              right: 105,
+              width: 320,
+              height: 512,
+              display: 'flex',
+              border: '2px solid #2a2a2a',
+              backgroundColor: '#191919',
+            },
+            children: [
+              {
+                type: 'img',
+                props: {
+                  src: coverBase64,
+                  style: {
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  },
+                },
+              },
+            ],
+          },
+        }
+      : null;
+
   const rootContainerNode = {
     type: 'div',
     props: {
@@ -201,7 +237,7 @@ export const GET: APIRoute = async ({ props }) => {
         display: 'flex',
         position: 'relative',
       },
-      children: [backgroundNode, contentNode],
+      children: [backgroundNode, contentNode, coverNode].filter(Boolean),
     },
   };
 
