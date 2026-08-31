@@ -31,7 +31,7 @@ explicitly excluded from the MIT License above and are governed as follows:
    The following assets are licensed under CC BY 4.0:
    - All original blog posts, articles, and MDX files
    - All project descriptions
-   - All documentation and written content
+   - All documentation and written content not covered per Section 2
    - Any imagery created by Ethan Hawksley not covered per Section 2 or 3
 
    Code snippets embedded within blog posts or MDX files (e.g. fenced
@@ -43,7 +43,14 @@ explicitly excluded from the MIT License above and are governed as follows:
 
 2. Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
    The following assets are licensed under CC BY-SA 4.0:
-   - The files /public/ethan-hawksley.png, /public/ethan-hawksley.jpg,
+   - The book "The Second Maintainer", including:
+     - All source Markdown chapters in /src/content/the-second-maintainer/
+     - All downloadable editions (/public/the-second-maintainer/the-second-maintainer.pdf,
+       /public/the-second-maintainer/the-second-maintainer.epub)
+     - All book cover art and graphical derivatives
+       (/public/the-second-maintainer/the-second-maintainer.*,
+       /src/assets/the-second-maintainer*)
+   - The headshot files /public/ethan-hawksley.png, /public/ethan-hawksley.jpg,
      /public/ethan-hawksley.webp, /public/ethan-hawksley.avif,
      /src/assets/ethan-hawksley.png, and /src/assets/ethan-hawksley-320.avif
 

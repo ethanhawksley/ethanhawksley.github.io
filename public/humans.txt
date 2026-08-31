@@ -15,4 +15,5 @@ Hosting: Cloudflare Pages, Cloudflare
 Code License: MIT
 Content License: CC BY 4.0
 Headshots License: CC BY-SA 4.0
+The Second Maintainer License: CC BY-SA 4.0
 Branding License: All Rights Reserved
