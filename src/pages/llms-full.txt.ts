@@ -1,9 +1,14 @@
-import { getSortedPosts, getSortedProjects } from '../utils/content-helpers';
+import {
+  getSortedPosts,
+  getSortedProjects,
+  getSortedSecondMaintainer,
+} from '../utils/content-helpers';
 import { profileSections } from '../utils/profiles';
 
 export async function GET() {
   const allPosts = await getSortedPosts();
   const allProjects = await getSortedProjects();
+  const allChapters = await getSortedSecondMaintainer();
 
   const content = `# Ethan Hawksley
 
@@ -11,6 +16,7 @@ export async function GET() {
 > Website: https://hawksley.dev
 > License (Code): MIT
 > License (Content): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+> License (Book): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 > License (Headshot): [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 > License (Assets/Branding): All Rights Reserved
 
@@ -33,6 +39,23 @@ ${project.data.description}
 `;
   })
   .join('')}
+## Book: The Second Maintainer
+
+> Inside the XZ Backdoor: A true story by Ethan Hawksley.
+> Index: https://hawksley.dev/the-second-maintainer
+> License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+${allChapters
+  .map(
+    (chapter) => `
+### ${chapter.data.index}: ${chapter.data.title}
+
+https://hawksley.dev/the-second-maintainer/${chapter.id}
+
+${chapter.body?.replaceAll(/^#/gm, '###') ?? ''}
+`,
+  )
+  .join('\n')}
 ## Blog Posts
 ${allPosts
   .map(

@@ -6,9 +6,12 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import type { APIRoute } from 'astro';
-import { getSortedPosts } from '../../utils/content-helpers';
+import {
+  getSortedPosts,
+  getSortedSecondMaintainer,
+} from '../../utils/content-helpers';
 
-const VERSION = 'v5';
+const VERSION = 'v6';
 const CACHE_DIR = path.join(process.cwd(), 'node_modules/.astro/og-cache');
 
 let bgBase64: string | null = null;
@@ -17,6 +20,7 @@ let fontRegular: Buffer | null = null;
 
 export async function getStaticPaths() {
   const allPosts = await getSortedPosts();
+  const allChapters = await getSortedSecondMaintainer();
 
   const blogPaths = allPosts.map((post) => ({
     params: { route: `blog/${post.id}.jpg` },
@@ -24,6 +28,16 @@ export async function getStaticPaths() {
       page: {
         title: post.data.title,
         description: post.data.description,
+      },
+    },
+  }));
+
+  const chapterPaths = allChapters.map((chapter) => ({
+    params: { route: `the-second-maintainer/${chapter.id}.jpg` },
+    props: {
+      page: {
+        title: `${chapter.data.index}: ${chapter.data.title}`,
+        description: 'The Second Maintainer: Inside the XZ Backdoor',
       },
     },
   }));
@@ -50,6 +64,16 @@ export async function getStaticPaths() {
       },
     },
     {
+      params: { route: 'the-second-maintainer.jpg' },
+      props: {
+        page: {
+          title: 'The Second Maintainer',
+          description:
+            'Inside the XZ Backdoor, a true story by Ethan Hawksley.',
+        },
+      },
+    },
+    {
       params: { route: 'elsewhere.jpg' },
       props: {
         page: {
@@ -61,7 +85,7 @@ export async function getStaticPaths() {
     },
   ];
 
-  return [...staticPaths, ...blogPaths];
+  return [...staticPaths, ...blogPaths, ...chapterPaths];
 }
 
 export const GET: APIRoute = async ({ props }) => {

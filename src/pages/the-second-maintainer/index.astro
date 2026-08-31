@@ -4,10 +4,9 @@ import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
-import { getSortedSecondMaintainer } from '../../utils/content-helpers.ts';
+import { getSortedSecondMaintainer } from '../../utils/content-helpers';
 
 const allChapters = await getSortedSecondMaintainer();
-
 const firstChapter = allChapters[0];
 
 // Inline low quality avif since book index fits into initcwd
@@ -29,7 +28,7 @@ const coverImageUrl =
   'https://hawksley.dev/the-second-maintainer/the-second-maintainer.jpg';
 
 const description =
-  'The Second Maintainer tells the true story of the XZ Utils backdoor. It exposes the social engineering performed against open-source maintainers, the supply chain attack that threatened the very backbone of the internet, and how just 500 milliseconds saved us all.';
+  'The true story of the XZ Utils backdoor, the social engineering of open-source maintainers, and how 500 milliseconds saved the internet.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -59,16 +58,17 @@ const jsonLd = {
       '@id': `${pageUrl}#book`,
       url: pageUrl,
       name: 'The Second Maintainer',
-      headline: 'The true story of the XZ Utils backdoor',
+      headline: 'Inside the XZ Backdoor',
       description,
       inLanguage: 'en',
       author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
       isAccessibleForFree: true,
+      license: 'https://creativecommons.org/licenses/by-sa/4.0/',
       image: coverImageUrl,
-      hasPart: allChapters.map((chapter, index) => ({
+      hasPart: allChapters.map((chapter) => ({
         '@type': 'Chapter',
-        position: index + 1,
+        position: chapter.data.index,
         name: chapter.data.title,
         url: `https://hawksley.dev/the-second-maintainer/${chapter.id}`,
       })),
@@ -105,15 +105,18 @@ const jsonLd = {
   <section class="hero">
     <div class="hero-content">
       <h1>The Second Maintainer</h1>
-      <p class="subtitle">Inside the XZ Backdoor</p>
-      <p class="author">By Ethan Hawksley</p>
+      <p class="subtitle">Inside the XZ Backdoor, by Ethan Hawksley</p>
       <p class="blurb">
         The Second Maintainer tells the true story of the XZ Utils backdoor. It
         exposes the social engineering performed against open-source
         maintainers, the supply chain attack that threatened the very backbone
         of the internet, and how just 500 milliseconds saved us all.
       </p>
-      <A href={`/the-second-maintainer/${firstChapter.id}`} pressable>
+      <A
+        class="read-link"
+        href={`/the-second-maintainer/${firstChapter.id}`}
+        pressable
+      >
         Read Online<span class="arrow" aria-hidden="true">→</span>
       </A>
       <div
@@ -191,7 +194,7 @@ const jsonLd = {
   </section>
   <section class="toc" aria-labelledby="toc-heading">
     <h2 id="toc-heading">Table of Contents</h2>
-    <ol role="list">
+    <ol class="toc-list" role="list">
       {
         allChapters.map((chapter) => (
           <li>
@@ -211,20 +214,36 @@ const jsonLd = {
     flex-direction: column-reverse;
     gap: 1.5rem;
     align-items: flex-start;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .hero p {
-    max-width: 50ch;
+  .subtitle {
+    margin-top: -1rem;
+    margin-bottom: 0.25rem;
+    font-size: var(--font-size-md);
+    color: var(--color-text-muted);
+  }
+
+  .author {
     margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+  }
+
+  .blurb {
+    max-width: 50ch;
     line-height: var(--leading-normal);
     text-wrap: balance;
   }
 
+  .read-link {
+    margin-bottom: 1rem;
+  }
+
   .arrow {
     display: inline-block;
-    transition: transform 250ms ease-out;
     margin-left: 0.25em;
+    transition: transform 250ms ease-out;
   }
 
   :global(a:hover) .arrow {
@@ -284,7 +303,6 @@ const jsonLd = {
   }
 
   .action-category {
-    min-width: 4.5rem;
     font-weight: var(--weight-medium);
     color: var(--color-text-muted);
   }
@@ -308,16 +326,16 @@ const jsonLd = {
     margin-top: 1rem;
   }
 
-  .toc ul {
+  .toc-list {
     margin-top: 0.5rem;
   }
 
-  .toc li {
+  .toc-list li {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
   }
 
-  .toc li + li {
+  .toc-list li + li {
     border-top: 1px solid var(--color-border);
   }
 

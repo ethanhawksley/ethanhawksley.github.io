@@ -1,5 +1,7 @@
-import { getCollection } from 'astro:content';
-import { getSortedSecondMaintainer } from './content-helpers.ts';
+import {
+  getSortedPosts,
+  getSortedSecondMaintainer,
+} from './content-helpers.ts';
 
 export const NON_CONTENT_URLS = [
   'https://hawksley.dev/sitemap.xml',
@@ -16,7 +18,6 @@ export const NON_CONTENT_URLS = [
 ];
 
 export async function getContentUrls() {
-  const { getSortedPosts } = await import('./content-helpers');
   const allPosts = await getSortedPosts();
   const allChapters = await getSortedSecondMaintainer();
 

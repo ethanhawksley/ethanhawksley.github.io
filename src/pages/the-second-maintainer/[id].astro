@@ -1,10 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
-import { getSortedSecondMaintainer } from '../../utils/content-helpers.ts';
+import { getSortedSecondMaintainer } from '../../utils/content-helpers';
 
 export const getStaticPaths = (async () => {
   const allChapters = await getSortedSecondMaintainer();
@@ -23,6 +23,8 @@ const { chapter, prevChapter, nextChapter } = Astro.props;
 const { Content } = await render(chapter);
 
 const chapterUrl = `https://hawksley.dev/the-second-maintainer/${chapter.id}`;
+const fullTitle = `${chapter.data.index}: ${chapter.data.title}`;
+const chapterDescription = `Chapter ${chapter.data.index} of The Second Maintainer: Inside the XZ Backdoor by Ethan Hawksley.`;
 
 const ogImageUrl = new URL(
   `/og/the-second-maintainer/${chapter.id}.jpg`,
@@ -39,14 +41,15 @@ const jsonLd = {
       '@id': `${chapterUrl}#webpage`,
       url: chapterUrl,
       isPartOf: { '@id': 'https://hawksley.dev#website' },
-      name: `${chapter.data.title} | The Second Maintainer`,
+      name: `${fullTitle} | The Second Maintainer`,
+      description: chapterDescription,
       inLanguage: 'en',
       mainEntity: { '@id': `${chapterUrl}#chapter` },
       breadcrumb: { '@id': `${chapterUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
         url: ogImageUrl,
-        name: `${chapter.data.title} - Cover Image`,
+        name: `${fullTitle} - Cover Image`,
         width: 1200,
         height: 630,
       },
@@ -65,8 +68,9 @@ const jsonLd = {
       url: chapterUrl,
       mainEntityOfPage: { '@id': `${chapterUrl}#webpage` },
       isPartOf: { '@id': 'https://hawksley.dev/the-second-maintainer#book' },
-      name: chapter.data.title,
-      headline: chapter.data.title,
+      name: fullTitle,
+      headline: fullTitle,
+      description: chapterDescription,
       position: chapter.data.index,
       inLanguage: 'en',
       author: { '@id': 'https://hawksley.dev#person' },
@@ -99,7 +103,7 @@ const jsonLd = {
           '@type': 'ListItem',
           item: chapterUrl,
           position: 3,
-          name: chapter.data.title,
+          name: fullTitle,
         },
       ],
     },
@@ -108,20 +112,20 @@ const jsonLd = {
 ---
 
 <Layout
-  title={`${chapter.data.title} | Ethan Hawksley`}
-  description=""
+  title={`${fullTitle} | Ethan Hawksley`}
+  description={chapterDescription}
   jsonLd={jsonLd}
   ogType="article"
   ogImage={ogImageUrl}
 >
   <div class="back-to-index">
     <A href="/the-second-maintainer" pressable>
-      <span class="arrow" aria-hidden="true">← </span>Back to index
+      <span class="arrow" aria-hidden="true">←</span> Back to index
     </A>
   </div>
   <article>
     <header>
-      <h1>{chapter.data.title}</h1>
+      <h1>{fullTitle}</h1>
     </header>
     <div class="prose">
       <Content />
@@ -143,7 +147,9 @@ const jsonLd = {
                 </span>
                 Previous
               </span>
-              <span class="pager-link-title">{prevChapter.data.title}</span>
+              <span class="pager-link-title">
+                {prevChapter.data.index}: {prevChapter.data.title}
+              </span>
             </a>
           )
         }
@@ -161,7 +167,9 @@ const jsonLd = {
                   →
                 </span>
               </span>
-              <span class="pager-link-title">{nextChapter.data.title}</span>
+              <span class="pager-link-title">
+                {nextChapter.data.index}: {nextChapter.data.title}
+              </span>
             </a>
           )
         }
@@ -311,12 +319,6 @@ const jsonLd = {
     flex-direction: column;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--color-border);
-  }
-
-  .newsletter-wrapper {
-    padding-top: 1.5rem;
-    margin-top: 2.5rem;
-    border-top: 1px solid var(--color-border);
   }
 
   .chapter-pager {
