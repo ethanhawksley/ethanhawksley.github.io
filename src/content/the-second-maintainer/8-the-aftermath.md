@@ -11,7 +11,7 @@ It had been an incredibly close call.
 
 ---
 
-The very next day, Andres publicly disclosed the backdoor for all the world to see. He explained where it came from, it's effects, and how to check if you were safe. He also added a disclaimer.
+The very next day, Andres publicly disclosed the backdoor for all the world to see. He explained where it came from, its effects, and how to check if you were safe. He also added a disclaimer.
 
 > "I am not a security researcher, nor a reverse engineer."
 
@@ -57,7 +57,7 @@ He initially tried logging into his GitHub account, but discovered his account h
 
 Lasse stopped forwarding XZ Utils mail to Jia, and removed Jia from the Tukaani Project. Nonetheless, he didn't let it spoil the rest of his holiday.
 
-When he returned home, Lasse immediately got back to work. He persuaded GitHub to reinstate his account, and after a week they enabled the XZ Utils repository again. Then started the tedious part - reviewing every patch that Jia ever made, and he noted down anything suspicious or out of the ordinary. What shocked him was how, even with hindsight, it was remarkably benign. Jia's contributions fixed plenty of bugs and added some very useful features.
+When he returned home, Lasse immediately got back to work. He persuaded GitHub to reinstate his account, and after a week they enabled the XZ Utils repository again. Then started the tedious part - reviewing every patch that Jia ever made, and he noted down anything suspicious or out of the ordinary. What shocked him was how, even with hindsight, it was remarkably benign. Jia's contributions fixed plenty of bugs and added some invaluable features.
 
 It took Lasse two months, but he finally reviewed all of Jia's code and purged the backdoor from XZ Utils. He even revived Bob the Toucan as the mascot. The project was finally safe with 5.6.2.
 

@@ -9,7 +9,7 @@ Lasse admired the state of the project. It was finally back on track and making 
 
 ---
 
-The question of Jia's promotion to maintainer stayed at the forefront of Lasse's mind. He had been intending to get round to it for some time, and in late October he finally decided to pull the trigger. After almost a year of collaboration with Jia, he officially invited Jia to become a maintainer of the Tukaani Project. He gladly accepted the offer and thanked Lasse for the past year of work together. It was just the two of them in Tukaani now - everyone else from the project's early days had left long ago.
+The question of Jia's promotion to maintainer stayed at the forefront of Lasse's mind. He had been intending to get round to it for some time, and in late October he finally decided to pull the trigger. After almost a year of collaboration with Jia, he officially invited Jia to become a maintainer of the Tukaani Project. He gladly accepted the offer and thanked Lasse for the past year of work together. It was just the two of them in Tukaani now - everyone else from the project's early days left long ago.
 
 Alongside the promotion, Jia suggested they modify the project's bug report email. At the time, it had been sending all emails just to Lasse. Jia asked if the emails could be forwarded to them both, and Lasse agreed. He was at his computer infrequently, so it made perfect sense for somebody a bit more punctual to receive the emails too. The bug report email was changed to *xz@tukaani.org*, an address they both had access to.
 

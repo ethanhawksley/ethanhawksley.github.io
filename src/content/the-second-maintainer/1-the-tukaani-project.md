@@ -7,13 +7,13 @@ index: 1
 
 Lasse Collin, a Finnish student in his early twenties, belonged to this group of nerds. He was embedded deep among programmers, and many of his friendships were formed in online chat rooms.
 
-Linux is the overarching term that encompasses many distributions, or distros for short. There are many options to choose from: Ubuntu, SUSE, Debian, Fedora, and more. Lasse's personal favourite was Slackware Linux: a distro that had been going strong since its inception in 1993. Consequently, his appreciation for the distro prompted him to make a derivative of it.
+Linux is the overarching term that encompasses many distributions, or distros for short. There are many options to choose from: Ubuntu, Debian, Arch, Fedora, and more. Each had their different software and communities, and Lasse's personal favourite was Slackware Linux: a distro that had been going strong since its inception in 1993. Consequently, his appreciation for the distro prompted him to make a derivative of it.
 
 Logging on to the internet, he informed his friends of the plan. They jumped on board and began brainstorming immediately. Naturally, any good project needed a good project name and, after much deliberation, they settled on titling it Tukaani Project, hence calling the distro Tukaani Linux. Tukaani is Finnish for a toucan, so Lasse's friend Ville Koskinen designed a fitting mascot for the project - Bob the Toucan.
 
 However, they soon stumbled into a problem: Slackware Linux included plenty of preinstalled software. It may have been convenient whilst using it, but it made the installer much larger. It was so large that it couldn't fit on a CD-ROM and instead required a more expensive DVD-ROM.
 
-Lasse suggested that instead of removing software, they should try compressing the installer. Slackware already used "gzip", a popular compression algorithm designed in 1992, which could compress the installer to 1 gigabyte. Better, but not small enough. Lasse then tried using "LZMA", a newer and slightly less well-known compression algorithm.
+Lasse suggested that instead of removing software, they should try compressing the installer. Slackware already used "gzip", a popular compression algorithm designed in 1992, which could compress the installer to one gigabyte. Better, but not small enough. Lasse then tried using "LZMA", a newer and slightly less well-known compression algorithm.
 
 Perfect. The installer compressed to just under 700 megabytes, narrowly fitting onto the CD-ROM.
 

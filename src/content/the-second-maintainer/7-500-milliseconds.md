@@ -5,7 +5,7 @@ index: 7
 
 Rewind back a month to late February. XZ Utils 5.6.0 had just been released, and a man called Andres Freund was performing tests. Andres was a software engineer at Microsoft, where he was paid to improve PostgreSQL - a free, community-designed database. Even the biggest companies like Spotify and Netflix used it. He had been developing PostgreSQL since 2009, with various companies paying him to do so. He had a fine eye for performance, with his primary goal being to optimise PostgreSQL to be as fast as possible.
 
-This time, whilst Andres was testing PostgreSQL's performance, he noticed errors in the Valgrind debugger. They pointed towards the latest XZ Utils update, but Valgrind was well known for flagging even inconsequential issues. Andres shelved the errors to the back of his mind, and moved on.
+This time, whilst Andres was testing PostgreSQL's performance, he noticed errors in the Valgrind debugger. They pointed towards the latest XZ Utils update, but Valgrind was well known for flagging even inconsequential issues. Andres shelved the errors to the back of his mind and moved on.
 
 ---
 
@@ -29,6 +29,6 @@ It was growing late, so he decided to call it for the night. Before he went to s
 
 The next day at work, Andres kept thinking about XZ Utils. He couldn't focus on his meetings: he knew he was sitting on a backdoor that could be triggered at any moment. As soon as he was finished with work for the day, he went straight to investigating again.
 
-He knew there was a backdoor in the program, but he didn't know how it got there. He read the source code online though nothing seemed suspicious. Andres decided to sanity-check himself and compare the source code with what was actually in each update.
+He knew there was a backdoor in the program, but he didn't know how it got there. He read the source code online, though nothing seemed suspicious. Andres decided to sanity-check himself and compare the source code with what was actually in each update.
 
 He spotted it. In the script that compiled the update's code, there were a few extra lines. In isolation, it looked entirely innocuous. With Andres' understanding, however, it explained every question he had. The script was heavily obfuscated, but he dissected the code and saw it load the malicious test files, decipher the backdoor, and compromise XZ Utils. When he checked who added this code, there was only one name: Jia Tan.

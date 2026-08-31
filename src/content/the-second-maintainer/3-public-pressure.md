@@ -3,9 +3,9 @@ title: 'Public Pressure'
 index: 3
 ---
 
-Fast forward five months to April 2022, and XZ Utils was the busiest it had been in years. Lasse and Jia were working through the backlog of bugs and feature requests. Jia prepared another patch for Lasse that allowed users to easily control the steps taken in compression. This idea had been long requested and served as another incremental improvement.
+Fast-forward five months to April 2022, and XZ Utils was the busiest it had been in years. Lasse and Jia were working through the backlog of bugs and feature requests. Jia prepared another patch for Lasse that allowed users to easily control the steps taken in compression. This idea had been long requested and served as another incremental improvement.
 
-When Lasse went to check the mailing list, an email had arrived from a new, opinionated developer, Jigar Kumar. He criticised Jia's latest patch, yet also complimented Jia's high quality code. The message signed off with a quiet lament over the pace of development. Lasse had to silently agree: despite the increased pace of development, the backlog was still sizeable. He didn't have the time to commit fully to XZ Utils.
+When Lasse went to check the mailing list, an email had arrived from a new, opinionated developer, Jigar Kumar. He criticised Jia's latest patch, yet also complimented Jia's high-quality code. The message signed off with a quiet lament over the pace of development. Lasse had to silently agree: despite the increased pace of development, the backlog was still sizeable. He didn't have the time to commit fully to XZ Utils.
 
 Jia fought back against Jigar. He quickly replied and explained how development was moving at a steady pace, given that nobody was paid to work on the project. After all, it was just a hobby project, even if the hobby project was used by millions, he believed there was no need for more urgency. He took Jigar's feedback into consideration, acted upon one, and discarded the rest.
 
@@ -49,7 +49,7 @@ Lasse continued to ignore the messages piling up. Jigar was wrong, and while he 
 
 This was the straw that broke the camel's back. Lasse cared so much about XZ Utils: it was his child, having been with him for over a decade. If the project was anybody's, it was his.
 
-He started to draft a response, but paused. There was a grain of truth to Jigar's complaints. Lasse hadn't lost interest, no, but he had lost the time to commit enough to the project. On the other hand, Jia had plenty of time. He was always punctual, and had been making even bigger patches. He began to write.
+He started to draft a response, but paused. There was a grain of truth to Jigar's complaints. Lasse hadn't lost interest, no, but he had lost the time to commit enough to the project. On the other hand, Jia had plenty of time. He was always punctual and had been making even bigger patches. He began to write.
 
 > The thought of finding new maintainers has existed for a long time too. Perhaps the moment after the 5.4.0 release would be a convenient moment to make changes in the list of project maintainer(s).
 
