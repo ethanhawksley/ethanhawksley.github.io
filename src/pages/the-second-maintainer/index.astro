@@ -4,7 +4,6 @@ import path from 'node:path';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
-import { getCollection } from 'astro:content';
 import { getSortedSecondMaintainer } from '../../utils/content-helpers.ts';
 
 const allChapters = await getSortedSecondMaintainer();
@@ -108,7 +107,7 @@ const jsonLd = {
       <h1>The Second Maintainer</h1>
       <p class="subtitle">Inside the XZ Backdoor</p>
       <p class="author">By Ethan Hawksley</p>
-      <p>
+      <p class="blurb">
         The Second Maintainer tells the true story of the XZ Utils backdoor. It
         exposes the social engineering performed against open-source
         maintainers, the supply chain attack that threatened the very backbone
@@ -192,17 +191,17 @@ const jsonLd = {
   </section>
   <section class="toc" aria-labelledby="toc-heading">
     <h2 id="toc-heading">Table of Contents</h2>
-    <ul role="list">
+    <ol role="list">
       {
         allChapters.map((chapter) => (
           <li>
             <A href={`/the-second-maintainer/${chapter.id}`} pressable>
-              {chapter.data.title}
+              {chapter.data.index}: {chapter.data.title}
             </A>
           </li>
         ))
       }
-    </ul>
+    </ol>
   </section>
 </Layout>
 

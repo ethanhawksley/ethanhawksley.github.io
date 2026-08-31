@@ -43,6 +43,7 @@ const theSecondMaintainer = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
+    index: z.number(),
   }),
 });
 

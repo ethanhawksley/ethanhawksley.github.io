@@ -1,5 +1,6 @@
 ---
-title: '8: The Aftermath'
+title: 'The Aftermath'
+index: 8
 ---
 
 Maintainers of major distros all have access to a private mailing list. Dangerous vulnerabilities get reported here so maintainers can fix them before the discoverer publicly announces it. The typical grace period is 16 days, in which maintainers have to fix the issue and have people update to it. When Andres Freund reported the backdoor in XZ Utils, they only had one day.

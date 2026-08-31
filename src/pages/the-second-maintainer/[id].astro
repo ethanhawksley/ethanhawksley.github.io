@@ -39,9 +39,9 @@ const jsonLd = {
       '@id': `${chapterUrl}#webpage`,
       url: chapterUrl,
       isPartOf: { '@id': 'https://hawksley.dev#website' },
-      name: chapter.data.title,
+      name: `${chapter.data.title} | The Second Maintainer`,
       inLanguage: 'en',
-      mainEntity: { '@id': `${chapterUrl}#blogposting` },
+      mainEntity: { '@id': `${chapterUrl}#chapter` },
       breadcrumb: { '@id': `${chapterUrl}#breadcrumb` },
       primaryImageOfPage: {
         '@type': 'ImageObject',
@@ -52,20 +52,22 @@ const jsonLd = {
       },
     },
     {
-      '@type': 'Blog',
-      '@id': 'https://hawksley.dev/blog#blog',
-      url: 'https://hawksley.dev/blog',
-      name: "Ethan Hawksley's Blog",
-      inLanguage: 'en',
+      '@type': 'Book',
+      '@id': 'https://hawksley.dev/the-second-maintainer#book',
+      url: 'https://hawksley.dev/the-second-maintainer',
+      name: 'The Second Maintainer',
+      author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
     },
     {
-      '@type': 'BlogPosting',
-      '@id': `${chapterUrl}#blogposting`,
+      '@type': 'Chapter',
+      '@id': `${chapterUrl}#chapter`,
       url: chapterUrl,
       mainEntityOfPage: { '@id': `${chapterUrl}#webpage` },
-      isPartOf: { '@id': 'https://hawksley.dev/blog#blog' },
+      isPartOf: { '@id': 'https://hawksley.dev/the-second-maintainer#book' },
+      name: chapter.data.title,
       headline: chapter.data.title,
+      position: chapter.data.index,
       inLanguage: 'en',
       author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
@@ -114,7 +116,7 @@ const jsonLd = {
 >
   <div class="back-to-index">
     <A href="/the-second-maintainer" pressable>
-      <span class="arrow" aria-hidden="true">←</span> Back to index
+      <span class="arrow" aria-hidden="true">← </span>Back to index
     </A>
   </div>
   <article>

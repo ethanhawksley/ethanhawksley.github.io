@@ -1,5 +1,6 @@
 ---
-title: '1: The Tukaani Project'
+title: 'The Tukaani Project'
+index: 1
 ---
 
 2005, Finland: open-source software was experiencing an explosive growth in popularity. Whilst the world migrated to Windows XP, a global enclave of nerds was using Linux. It was a free operating system, born out of the early 90s, maintained by a community of volunteers.

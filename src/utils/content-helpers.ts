@@ -15,11 +15,7 @@ export async function getSortedPosts() {
 
 export async function getSortedSecondMaintainer() {
   const chapters = await getCollection('theSecondMaintainer');
-  return chapters.toSorted((a, b) => {
-    const numA = Number(a.id.split('-')[0]);
-    const numB = Number(b.id.split('-')[0]);
-    return numA - numB;
-  });
+  return chapters.toSorted((a, b) => a.data.index - b.data.index);
 }
 
 export async function getPostHtml(post: CollectionEntry<'posts'>) {
