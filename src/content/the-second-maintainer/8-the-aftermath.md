@@ -9,7 +9,6 @@ Andres Freund detailed everything he had discovered so far, and the maintainers 
 
 It had been an incredibly close call.
 
-
 ---
 
 The very next day, Andres publicly disclosed the backdoor for all the world to see. He explained where it came from, it's effects, and how to check if you were safe. He also added a disclaimer.

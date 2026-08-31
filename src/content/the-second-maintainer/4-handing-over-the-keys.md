@@ -13,7 +13,7 @@ The question of Jia's promotion to maintainer stayed at the forefront of Lasse's
 
 Alongside the promotion, Jia suggested they modify the project's bug report email. At the time, it had been sending all emails just to Lasse. Jia asked if the emails could be forwarded to them both, and Lasse agreed. He was at his computer infrequently, so it made perfect sense for somebody a bit more punctual to receive the emails too. The bug report email was changed to *xz@tukaani.org*, an address they both had access to.
 
-Becoming a maintainer gave Jia the ability to alter XZ Utils' code without having to ask Lasse first. As a result, development quickened drastically. Although they each worked across the whole project, they specialised in specific areas: Lasse focused on compression and decompression, whereas Jia revamped the automated testing. 
+Becoming a maintainer gave Jia the ability to alter XZ Utils' code without having to ask Lasse first. As a result, development quickened drastically. Although they each worked across the whole project, they specialised in specific areas: Lasse focused on compression and decompression, whereas Jia revamped the automated testing.
 
 ---
 
