@@ -15,7 +15,7 @@ const posts = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
   schema: z.object({
     name: z.string(),
     description: z.string(),
@@ -38,7 +38,7 @@ const projects = defineCollection({
 
 const theSecondMaintainer = defineCollection({
   loader: glob({
-    pattern: '**/*.md',
+    pattern: '**/*.mdx',
     base: './src/content/the-second-maintainer',
   }),
   schema: z.object({
