@@ -41,7 +41,7 @@ ${project.data.description}
   .join('')}
 ## Book: The Second Maintainer
 
-> Inside the XZ Backdoor: A true story by Ethan Hawksley.
+> Inside the XZ Utils Backdoor: A true story by Ethan Hawksley.
 > Index: https://hawksley.dev/the-second-maintainer
 > License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 

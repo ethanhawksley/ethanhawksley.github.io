@@ -44,7 +44,7 @@ export async function getStaticPaths() {
     props: {
       page: {
         title: `${chapter.data.index}: ${chapter.data.title}`,
-        description: 'The Second Maintainer: Inside the XZ Backdoor',
+        description: 'The Second Maintainer: Inside the XZ Utils Backdoor',
         showCover: true,
       },
     },
