@@ -1,7 +1,7 @@
 ---
-title: "How to get a free .arpa domain"
+title: 'How to get a free .arpa domain'
 description: 'It only takes a few minutes to set up.'
-metaDescription: "Learn how to get a free .arpa domain by abusing IPv6 reverse DNS delegations on Hurricane Electric, configuring deSEC, and hosting a live website."
+metaDescription: 'Learn how to get a free .arpa domain by abusing IPv6 reverse DNS delegations on Hurricane Electric, configuring deSEC, and hosting a live website.'
 pubDate: 2026-08-31
 tags: ['web', 'domains']
 ---
@@ -53,11 +53,13 @@ We have a domain, we have DNS, so the very last step is a web host. Out of the o
 Create a new directory and an index.html file. You can put whatever content you'd like inside the index.html, I decided to put a [bare-bones replica of this blog post](http://get-arpa-domain.0.4.1.0.9.0.f.1.0.7.4.0.1.0.0.2.ip6.arpa/).
 
 Install npm or bun if you haven't already, and run surge.
+
 ```sh
 bunx surge . subdomain.domain.ip6.arpa
 # or alternatively
 npx surge . subdomain.domain.ip6.arpa
 ```
+
 Here, "subdomain" is a subdomain of your choice, and "domain" is the ip6.arpa address you calculated earlier. If it asks, make a free account as part of signup. Make note of the address it gives near the end of its output.
 
 ![Surge command bunx](./surge-run-command.png)
