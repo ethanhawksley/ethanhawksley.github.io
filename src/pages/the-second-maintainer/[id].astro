@@ -24,7 +24,6 @@ const { Content } = await render(chapter);
 
 const chapterUrl = `https://hawksley.dev/the-second-maintainer/${chapter.id}`;
 const fullTitle = `${chapter.data.index}: ${chapter.data.title}`;
-const chapterDescription = `Chapter ${chapter.data.index} of The Second Maintainer: Inside the XZ Utils Backdoor by Ethan Hawksley.`;
 
 const ogImageUrl = new URL(
   `/og/the-second-maintainer/${chapter.id}.jpg`,
@@ -42,7 +41,7 @@ const jsonLd = {
       url: chapterUrl,
       isPartOf: { '@id': 'https://hawksley.dev#website' },
       name: `${fullTitle} | The Second Maintainer`,
-      description: chapterDescription,
+      description: chapter.data.metaDescription,
       inLanguage: 'en',
       mainEntity: { '@id': `${chapterUrl}#chapter` },
       breadcrumb: { '@id': `${chapterUrl}#breadcrumb` },
@@ -70,7 +69,7 @@ const jsonLd = {
       isPartOf: { '@id': 'https://hawksley.dev/the-second-maintainer#book' },
       name: fullTitle,
       headline: fullTitle,
-      description: chapterDescription,
+      description: chapter.data.metaDescription,
       position: chapter.data.index,
       inLanguage: 'en',
       isAccessibleForFree: true,
@@ -114,7 +113,7 @@ const jsonLd = {
 
 <Layout
   title={`${fullTitle} | The Second Maintainer`}
-  description={chapterDescription}
+  description={chapter.data.metaDescription}
   jsonLd={jsonLd}
   ogType="article"
   ogImage={ogImageUrl}
