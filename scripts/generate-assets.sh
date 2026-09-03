@@ -54,8 +54,8 @@ avif_photo src/assets/ethan-hawksley.png public/ethan-hawksley.avif 30
 cp src/assets/ethan-hawksley.png public/ethan-hawksley.png
 
 TMP_PNG=$(mktemp --suffix=.png)
-resize src/assets/ethan-hawksley.png "$TMP_PNG" 320x320
-avif_photo "$TMP_PNG" src/assets/ethan-hawksley-320.avif 50
+resize src/assets/ethan-hawksley.png "$TMP_PNG" 360x360
+avif_photo "$TMP_PNG" src/assets/ethan-hawksley-360.avif 50
 
 
 avif_graphic src/assets/the-second-maintainer.png public/the-second-maintainer/the-second-maintainer.avif 30

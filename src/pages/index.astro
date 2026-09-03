@@ -13,7 +13,7 @@ import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
 // On Cloudflare, initcwd is ~40KB.
 const inlineImagePath = path.join(
   process.cwd(),
-  'src/assets/ethan-hawksley-320.avif',
+  'src/assets/ethan-hawksley-360.avif',
 );
 const inlineImageBuffer = fs.readFileSync(inlineImagePath);
 const inlineImageBase64 = `data:image/avif;base64,${inlineImageBuffer.toString('base64')}`;
@@ -93,7 +93,7 @@ const jsonLd = {
           >The Second Maintainer</A
         >.
       </p>
-      <p>That's me! I've built and written a few things.</p>
+      <p class="hero-sub">That's me! I've built and written a few things.</p>
       <SocialLinks />
     </div>
     <picture>
@@ -102,8 +102,8 @@ const jsonLd = {
         class="hero-avatar"
         src="/ethan-hawksley.jpg"
         alt="Ethan Hawksley"
-        width="160"
-        height="160"
+        width="180"
+        height="180"
         loading="lazy"
         fetchpriority="low"
         decoding="async"
@@ -182,8 +182,8 @@ const jsonLd = {
     }
 
     .hero-avatar {
-      width: 160px;
-      height: 160px;
+      width: 180px;
+      height: 180px;
     }
   }
 
