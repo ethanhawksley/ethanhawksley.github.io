@@ -34,7 +34,12 @@ export const personJsonLd = {
     'Computer Science student & systems/cybersecurity enthusiast, UK',
   jobTitle: 'Computer Science Student',
   knowsLanguage: 'en',
-  knowsAbout: ['Computer Science', 'Systems Programming', 'Cybersecurity'],
+  knowsAbout: [
+    'Computer Science',
+    'Systems Programming',
+    'Cybersecurity',
+    'XZ Utils Backdoor',
+  ],
   nationality: {
     '@type': 'Country',
     name: 'United Kingdom',

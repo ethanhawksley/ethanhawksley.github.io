@@ -26,7 +26,7 @@ const coverImageUrl =
   'https://hawksley.dev/the-second-maintainer/the-second-maintainer.jpg';
 
 const description =
-  'The true story of the XZ Utils backdoor, the social engineering of open-source maintainers, and how 500 milliseconds saved the internet.';
+  'A non-fiction book on the XZ Utils backdoor: open-source social engineering, Linux supply chain attacks, and how 500 milliseconds saved the internet.';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -62,6 +62,7 @@ const jsonLd = {
       author: { '@id': 'https://hawksley.dev#person' },
       publisher: { '@id': 'https://hawksley.dev#person' },
       license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      isAccessibleForFree: true,
       image: coverImageUrl,
       workExample: [
         {
@@ -111,7 +112,7 @@ const jsonLd = {
 ---
 
 <Layout
-  title="The Second Maintainer | Ethan Hawksley"
+  title="The Second Maintainer: XZ Utils Backdoor Book | Ethan Hawksley"
   description={description}
   jsonLd={jsonLd}
   ogType="website"
@@ -122,10 +123,10 @@ const jsonLd = {
       <h1>The Second Maintainer</h1>
       <p class="subtitle">Inside the XZ Utils Backdoor, by Ethan Hawksley</p>
       <p class="blurb">
-        The Second Maintainer tells the true story of the XZ Utils backdoor. It
-        exposes the social engineering performed against open-source
-        maintainers, the supply chain attack that threatened the very backbone
-        of the internet, and how just 500 milliseconds saved us all.
+        <em>The Second Maintainer</em> is a non-fiction book that tells the true story
+        of the XZ Utils backdoor. It exposes the social engineering performed against
+        open-source maintainers, the supply chain attack that threatened the very
+        backbone of the internet, and how just 500 milliseconds saved us all.
       </p>
       <A
         class="read-link"
@@ -139,7 +140,7 @@ const jsonLd = {
         aria-label="Book formats, downloads, and retailers"
       >
         <div class="action-row">
-          <span class="action-category">Download:</span>
+          <span class="action-category">Free Ebook:</span>
           <div class="action-links">
             <A
               href="/the-second-maintainer/the-second-maintainer.pdf"
@@ -198,7 +199,7 @@ const jsonLd = {
       <img
         class="book-cover"
         src="/the-second-maintainer/the-second-maintainer.jpg"
-        alt="The Second Maintainer"
+        alt="The Second Maintainer: Inside the XZ Utils Backdoor book cover"
         width="200"
         height="320"
         loading="lazy"
@@ -208,8 +209,8 @@ const jsonLd = {
       />
     </picture>
   </section>
-  <section class="synopsis" aria-labelledby="synopsis-heading">
-    <h2 id="synopsis-heading">Synopsis</h2>
+  <section class="about-the-book" aria-labelledby="about-the-book-heading">
+    <h2 id="about-the-book-heading">About the Book</h2>
     <p>
       For over a decade, the development of XZ Utils had fallen to just one man:
       Lasse Collin. Whilst he maintained it quietly in the background, burnout
@@ -347,11 +348,11 @@ const jsonLd = {
     color: var(--color-text-muted);
   }
 
-  .synopsis {
+  .about-the-book {
     margin-bottom: 2rem;
   }
 
-  .synopsis p + p {
+  .about-the-book p + p {
     margin-top: 1rem;
   }
 
