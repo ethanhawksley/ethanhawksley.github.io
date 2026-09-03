@@ -2,9 +2,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Layout from '../layouts/Layout.astro';
-import LatestPosts from '../components/LatestPosts.astro';
-import ProjectPreview from '../components/ProjectPreview.astro';
+import A from '../components/A.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import ProjectPreview from '../components/ProjectPreview.astro';
+import LatestPosts from '../components/LatestPosts.astro';
 import { getSortedProjects } from '../utils/content-helpers';
 import { personJsonLd, websiteJsonLd } from '../utils/jsonLd';
 
@@ -86,8 +87,11 @@ const jsonLd = {
     <div class="hero-content">
       <h1>Ethan Hawksley</h1>
       <p class="hero-lead">
-        Ethan Hawksley is a Computer Science student in the UK with a focus on
-        systems programming and cybersecurity.
+        Ethan Hawksley is a Computer Science student at the University of
+        Warwick, focusing on both systems programming and cybersecurity
+        research. He&nbsp;is also the author of <A href="/the-second-maintainer"
+          >The Second Maintainer</A
+        >.
       </p>
       <p>That's me! I&nbsp;use hawksley.dev to share all my projects.</p>
       <SocialLinks />
@@ -141,7 +145,7 @@ const jsonLd = {
   }
 
   .hero p {
-    max-width: 43ch;
+    max-width: 45ch;
     text-wrap: balance;
   }
 
