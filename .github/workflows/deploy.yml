@@ -46,6 +46,8 @@ jobs:
 
       - name: Purge Cloudflare Zone cache
         run: |
+          sleep 10
+
           curl -sSf \
             -X POST \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
