@@ -3,8 +3,11 @@ const FORM_ID = '9595926';
 const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 ---
 
-<section aria-label="Newsletter Subscription">
-  <h3>Get new posts in your inbox</h3>
+<section aria-labelledby="newsletter-heading">
+  <header>
+    <h2 id="newsletter-heading">Get new writing in your inbox</h2>
+    <p>Only sent when I publish something new. Unsubscribe at any time.</p>
+  </header>
 
   <form action={action} method="post" data-kit-form>
     <label for="newsletter-signup-email" class="sr-only">Email address</label>
@@ -37,10 +40,23 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     max-width: 65ch;
   }
 
-  h3 {
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  h2 {
     font-size: var(--font-size-base);
     font-weight: var(--weight-medium);
+    line-height: var(--leading-snug);
     color: var(--color-text);
+  }
+
+  p {
+    font-size: var(--font-size-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
   }
 
   form {
