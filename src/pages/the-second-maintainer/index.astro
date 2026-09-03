@@ -117,6 +117,9 @@ const jsonLd = {
   jsonLd={jsonLd}
   ogType="website"
   ogImage={ogImageUrl}
+  ogImageWidth={1600}
+  ogImageHeight={2560}
+  twitterCard="summary"
 >
   <section class="hero">
     <div class="hero-content">
@@ -140,7 +143,7 @@ const jsonLd = {
         aria-label="Book formats, downloads, and retailers"
       >
         <div class="action-row">
-          <span class="action-category">Free Ebook:</span>
+          <span class="action-category">Free Download:</span>
           <div class="action-links">
             <A
               href="/the-second-maintainer/the-second-maintainer.pdf"
@@ -162,33 +165,42 @@ const jsonLd = {
           </div>
         </div>
         <div class="action-row">
-          <span class="action-category">License:</span>
+          <span class="action-category">Print Edition:</span>
+          <div class="action-links">
+            <!--<A href="https://example.com" pressable>Amazon</A>-->
+            <!--<span aria-hidden="true" class="dot">·</span>-->
+            <!--<A href="https://example.com" pressable>Waterstones</A>-->
+            <!--<span aria-hidden="true" class="dot">·</span>-->
+            <A
+              href="https://www.lulu.com/shop/ethan-hawksley/the-second-maintainer/paperback/product-zmvmje8.html"
+              pressable>Lulu<span class="sr-only"> (Paperback edition)</span></A
+            >
+          </div>
+        </div>
+        <div class="action-row">
+          <span class="action-category">Ebook Stores:</span>
+          <div class="action-links">
+            <A
+              href="https://www.lulu.com/shop/ethan-hawksley/the-second-maintainer/ebook/product-kv48jrz.html"
+              pressable
+            >
+              Lulu<span class="sr-only"> (Ebook edition)</span></A
+            >
+            <!--<A href="https://example.com" pressable>Kindle</A>-->
+            <!--<span aria-hidden="true" class="dot">·</span>-->
+            <!--<A href="https://example.com" pressable>Kobo</A>-->
+            <!--<span aria-hidden="true" class="dot">·</span>-->
+            <!--<A href="https://example.com" pressable>Apple Books</A>-->
+          </div>
+        </div>
+        <div class="action-row">
+          <span class="action-category">Open License:</span>
           <div class="action-links">
             <A href="https://creativecommons.org/licenses/by-sa/4.0/" pressable>
               CC BY-SA 4.0
             </A>
           </div>
         </div>
-        <!--<div class="action-row">
-          <span class="action-category">Print:</span>
-          <div class="action-links">
-            <A href="https://example.com" pressable>Amazon</A>
-            <span aria-hidden="true" class="dot">·</span>
-            <A href="https://example.com" pressable>Waterstones</A>
-            <span aria-hidden="true" class="dot">·</span>
-            <A href="https://example.com" pressable>Lulu</A>
-          </div>
-        </div>
-        <div class="action-row">
-          <span class="action-category">Ebook:</span>
-          <div class="action-links">
-            <A href="https://example.com" pressable>Kindle</A>
-            <span aria-hidden="true" class="dot">·</span>
-            <A href="https://example.com" pressable>Kobo</A>
-            <span aria-hidden="true" class="dot">·</span>
-            <A href="https://example.com" pressable>Apple Books</A>
-          </div>
-        </div> -->
       </div>
     </div>
     <picture>
@@ -329,6 +341,10 @@ const jsonLd = {
       flex-direction: row;
       gap: 0.75rem;
       align-items: baseline;
+    }
+
+    .action-category {
+      width: 14ch;
     }
   }
 

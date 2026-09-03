@@ -11,6 +11,9 @@ interface Props {
   robots?: string;
   ogType?: 'website' | 'article';
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  twitterCard?: 'summary' | 'summary_large_image';
   article?: {
     publishedTime: string;
     modifiedTime?: string;
@@ -30,6 +33,9 @@ const {
   robots = 'max-image-preview:large',
   ogType = 'website',
   ogImage = defaultOgImage,
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  twitterCard = 'summary_large_image',
   article,
   preloadImage,
   preloadType,
@@ -162,8 +168,10 @@ const isIndexable = !robots.includes('noindex');
           <meta property="og:locale:alternate" content="en_US" />
           <meta property="og:image" content={ogImage} />
           <meta property="og:image:alt" content={title} />
+          <meta property="og:image:width" content={ogImageWidth.toString()} />
+          <meta property="og:image:height" content={ogImageHeight.toString()} />
 
-          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:card" content={twitterCard} />
           <meta name="twitter:site" content="@Ethan_Hawksley" />
           <meta name="twitter:creator" content="@Ethan_Hawksley" />
 
