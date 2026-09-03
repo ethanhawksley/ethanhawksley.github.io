@@ -6,8 +6,6 @@ export const NON_CONTENT_URLS = [
   'https://hawksley.dev/key.asc',
   'https://hawksley.dev/rss.xml',
   'https://hawksley.dev/feed.json',
-  'https://hawksley.dev/llms.txt',
-  'https://hawksley.dev/llms-full.txt',
   'https://hawksley.dev/elsewhere.txt',
   'https://hawksley.dev/.well-known/security.txt',
   'https://hawksley.dev/.well-known/webfinger',
