@@ -141,6 +141,8 @@ const isIndexable = !robots.includes('noindex');
         ? document.startViewTransition.bind(document)
         : null;
 
+      // Chromium has unbypassable flash of white on inter-page transitions.
+      // Other engines don't have this problem.
       if (
         navigator.userAgentData &&
         navigator.userAgentData.brands &&
