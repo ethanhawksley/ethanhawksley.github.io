@@ -33,15 +33,13 @@ import Sun from '../assets/sun.svg';
     position: absolute;
     width: 1.5rem;
     height: 1.5rem;
-    transform-origin: center;
     color: color-mix(
       in oklch,
       var(--color-accent) var(--hover-mix),
       var(--color-text)
     );
     transition:
-      transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 250ms ease-out,
+      opacity 150ms ease-out,
       --hover-mix 150ms ease-out;
   }
 
