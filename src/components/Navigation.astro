@@ -61,26 +61,32 @@ const isBlog = cleanPath.startsWith('/blog');
     align-items: center;
     justify-content: center;
     line-height: var(--leading-tight);
-    color: inherit;
     text-decoration: none;
   }
 
   .page-links a {
-    padding-left: 0.5rem;
     padding-right: 0.5rem;
-    margin-left: -0.5rem;
+    padding-left: 0.5rem;
     margin-right: -0.5rem;
+    margin-left: -0.5rem;
+    color: var(--color-text);
+    color: color-mix(
+      in oklch,
+      var(--color-accent) var(--accent-mix),
+      var(--color-text)
+    );
+    transition: --accent-mix 150ms ease-out;
   }
 
   .active {
-    color: var(--color-accent);
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 0.25em;
+    --accent-mix: 100%;
   }
 
   a:hover {
-    color: var(--color-accent);
+    --accent-mix: 100%;
   }
 
   a:active {

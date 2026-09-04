@@ -316,6 +316,12 @@ const isIndexable = !robots.includes('noindex');
     font-display: swap;
   }
 
+  @property --accent-mix {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+  }
+
   :root {
     color-scheme: light dark;
 
@@ -536,17 +542,9 @@ const isIndexable = !robots.includes('noindex');
     filter: none;
   }
 
-  a {
-    transition: color 150ms ease-out;
-  }
-
-  a:hover {
-    color: var(--color-accent);
-  }
-
   button {
     transition:
-      color 150ms ease-out,
+      --accent-mix 150ms ease-out,
       transform 100ms ease-out;
   }
 
@@ -556,19 +554,19 @@ const isIndexable = !robots.includes('noindex');
 
   html[data-theme-transition='active']::view-transition-old(root),
   html[data-theme-transition='active']::view-transition-new(root) {
+    mix-blend-mode: normal;
     animation-duration: 250ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    mix-blend-mode: normal;
   }
 
   html[data-theme-transition='active']::view-transition-old(root) {
-    animation: none;
     z-index: 1;
+    animation: none;
   }
 
   html[data-theme-transition='active']::view-transition-new(root) {
-    animation-name: theme-crossfade-in;
     z-index: 2;
+    animation-name: theme-crossfade-in;
   }
 
   @keyframes theme-crossfade-in {

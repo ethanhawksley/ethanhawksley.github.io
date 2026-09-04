@@ -93,11 +93,16 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
     font-weight: var(--weight-medium);
     line-height: var(--leading-snug);
     color: var(--color-text);
+    color: color-mix(
+      in oklch,
+      var(--color-accent) var(--accent-mix),
+      var(--color-text)
+    );
     border-bottom: 2px solid var(--color-accent);
   }
 
   button:hover {
-    color: var(--color-accent);
+    --accent-mix: 100%;
   }
 
   button:active {

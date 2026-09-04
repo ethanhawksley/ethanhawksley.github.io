@@ -46,12 +46,18 @@ const isExternalLink = external ?? isExternal(href);
 <style>
   a {
     color: var(--color-text);
+    color: color-mix(
+      in oklch,
+      var(--color-accent) var(--accent-mix),
+      var(--color-text)
+    );
     white-space: nowrap;
     text-decoration: none;
+    transition: --accent-mix 150ms ease-out;
   }
 
   a:hover {
-    color: var(--color-accent);
+    --accent-mix: 100%;
   }
 
   a[data-pressable] {
@@ -68,7 +74,6 @@ const isExternalLink = external ?? isExternal(href);
     text-decoration-thickness: 2px;
     text-decoration-color: var(--color-accent);
     text-underline-offset: 0.25em;
-    transition: text-decoration-color 180ms ease-out;
   }
 
   a > svg {
