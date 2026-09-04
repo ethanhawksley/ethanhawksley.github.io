@@ -31,17 +31,18 @@ import Sun from '../assets/sun.svg';
   .sun,
   .moon {
     position: absolute;
-    width: 2rem;
-    height: 2rem;
-    color: var(--color-text);
+    width: 1.5rem;
+    height: 1.5rem;
+    transform-origin: center;
     color: color-mix(
       in oklch,
       var(--color-accent) var(--hover-mix),
       var(--color-text)
     );
     transition:
-      --hover-mix 250ms ease-out,
-      opacity 250ms ease-out;
+      transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 250ms ease-out,
+      --hover-mix 150ms ease-out;
   }
 
   .sun {
@@ -79,11 +80,35 @@ import Sun from '../assets/sun.svg';
 
     updateAria(window.__getTheme());
 
-    button.addEventListener('click', () => {
-      const nextTheme = window.__getTheme() === 'dark' ? 'light' : 'dark';
-      window.__setTheme(nextTheme, true);
-      updateAria(nextTheme);
-    });
+    const toggleTheme = () => {
+      if (document.documentElement.dataset.themeTransition) return;
+
+      const currentTheme = window.__getTheme();
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      const prefersReducedMotion = matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
+
+      if (!window.__themeTransition || prefersReducedMotion) {
+        window.__setTheme(nextTheme, true);
+        updateAria(nextTheme);
+        return;
+      }
+
+      document.documentElement.dataset.themeTransition = 'active';
+
+      const transition = window.__themeTransition(() => {
+        window.__setTheme(nextTheme, true);
+        updateAria(nextTheme);
+      });
+
+      transition.finished.finally(() => {
+        delete document.documentElement.dataset.themeTransition;
+      });
+    };
+
+    button.addEventListener('click', toggleTheme);
 
     const controller = new AbortController();
 
@@ -117,9 +142,14 @@ import Sun from '../assets/sun.svg';
       { signal: controller.signal },
     );
 
-    document.addEventListener('astro:before-swap', () => controller.abort(), {
-      once: true,
-    });
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        delete document.documentElement.dataset.themeTransition;
+        controller.abort();
+      },
+      { once: true },
+    );
   }
 
   document.addEventListener('astro:page-load', initThemeToggle);

@@ -137,7 +137,10 @@ const isIndexable = !robots.includes('noindex');
 
       window.__setTheme(window.__getTheme(), false);
 
-      // 07/2026: Chromium incorrectly implements view transitions, leading to unbypassable FOUC.
+      window.__themeTransition = document.startViewTransition
+        ? document.startViewTransition.bind(document)
+        : null;
+
       if (
         navigator.userAgentData &&
         navigator.userAgentData.brands &&
@@ -283,24 +286,11 @@ const isIndexable = !robots.includes('noindex');
       <Footer />
     </div>
     <div id="a11y-status-announce" class="sr-only" aria-live="polite"></div>
+
     <script>
       document.addEventListener('astro:before-swap', (event) => {
         window.__setTheme(window.__getTheme(), false, event.newDocument);
         event.newDocument.documentElement.classList.add('js');
-      });
-
-      document.addEventListener('astro:after-swap', () => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            document.documentElement.classList.add('enable-transitions');
-          });
-        });
-      });
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          document.documentElement.classList.add('enable-transitions');
-        });
       });
     </script>
     <Misc />
@@ -544,61 +534,48 @@ const isIndexable = !robots.includes('noindex');
     filter: none;
   }
 
-  html.enable-transitions {
-    scroll-behavior: smooth;
-    transition:
-      background-color 250ms ease-out,
-      color 250ms ease-out,
-      scrollbar-color 250ms ease-out;
+  a {
+    transition: color 150ms ease-out;
   }
 
-  html.enable-transitions
-    :is(
-      div,
-      header,
-      nav,
-      footer,
-      p,
-      span,
-      li,
-      small,
-      blockquote,
-      code,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6
-    ) {
-    transition:
-      background-color 250ms ease-out,
-      border-color 250ms ease-out,
-      color 250ms ease-out;
+  a:hover {
+    color: var(--color-accent);
   }
 
-  html.enable-transitions pre {
+  button {
     transition:
-      background-color 250ms ease-out,
-      border-color 250ms ease-out,
-      color 250ms ease-out,
-      scrollbar-color 250ms ease-out;
-  }
-
-  html.enable-transitions :is(a, button, input) {
-    transition:
-      background-color 250ms ease-out,
-      border-color 250ms ease-out,
-      color 250ms ease-out,
-      text-decoration-color 250ms ease-out,
-      opacity 250ms ease-out,
+      color 150ms ease-out,
       transform 100ms ease-out;
   }
 
-  html.enable-transitions img {
-    transition:
-      border-color 250ms ease-out,
-      filter 250ms ease-out;
+  input {
+    transition: border-bottom-color 150ms ease-out;
+  }
+
+  html[data-theme-transition='active']::view-transition-old(root),
+  html[data-theme-transition='active']::view-transition-new(root) {
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    mix-blend-mode: normal;
+  }
+
+  html[data-theme-transition='active']::view-transition-old(root) {
+    animation: none;
+    z-index: 1;
+  }
+
+  html[data-theme-transition='active']::view-transition-new(root) {
+    animation-name: theme-crossfade-in;
+    z-index: 2;
+  }
+
+  @keyframes theme-crossfade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
