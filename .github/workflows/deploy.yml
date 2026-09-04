@@ -9,7 +9,7 @@ on:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions: {}
 
@@ -47,6 +47,15 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: pnpm exec wrangler pages deploy dist --project-name=hawksley --commit-dirty=true
 
+      - name: Immediately purge Cloudflare Zone cache
+        run: |
+          curl -sSf \
+            -X POST \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"purge_everything":true}' \
+            "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache"
+
       - name: Wait for origin to serve new deployment
         run: |
           TARGET_SHA="${{ github.sha }}"
@@ -72,7 +81,7 @@ jobs:
           echo "::warning::Site didn't update within $((MAX_ATTEMPTS * INTERVAL))s."
           exit 1
 
-      - name: Purge Cloudflare Zone cache
+      - name: Purge Cloudflare Zone cache once it is definitely fine.
         run: |
           curl -sSf \
             -X POST \
