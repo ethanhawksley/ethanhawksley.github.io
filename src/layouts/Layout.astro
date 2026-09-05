@@ -639,3 +639,44 @@ const isIndexable = !robots.includes('noindex');
     }
   }
 </style>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    max-width: 48rem;
+    min-height: 100dvh;
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: max(1rem, env(safe-area-inset-left));
+    z-index: 9999;
+    padding: 0.5rem 1rem;
+    color: var(--color-text-contrasted);
+    text-decoration: none;
+    background: var(--color-accent);
+    border-radius: 0.25rem;
+  }
+
+  .skip-link:focus {
+    top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .nav-bar {
+    margin-bottom: 1.5rem;
+  }
+
+  main {
+    flex-grow: 1;
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    margin-bottom: 1.5rem;
+    scroll-margin-top: 1.5rem;
+  }
+</style>
