@@ -18,7 +18,7 @@ Hurricane Electric offers really simple registration for an IPv6 address and its
 
 ![Hurricane Electric Tunnelbroker home page](./tunnelbroker-home-page.png)
 
-Sign up for a new account, feel free to provide fake information as it doesn't verify any of it. Verify your email, and then in the left sidebar select "Create Regular Tunnel".
+Next, sign up for a new account. It will ask for some personal information, but if you'd rather you can provide fake information since it doesn't verify any of it. Confirm your email address, and then in the left sidebar select "Create Regular Tunnel".
 
 ![Tunnelbroker dashboard](./tunnelbroker-dashboard.png)
 
@@ -31,6 +31,8 @@ This seemed to pass Hurricane Electric's form validation, so that's all that mat
 ![Tunnelbroker create new tunnel form](./tunnelbroker-create-new-tunnel.png)
 
 Once you've created a tunnel, take note of the "Routed IPv6 Prefix". Here mine is `2001:470:1f09:140::/64`, but the only part we need is `2001:470:1f09:140` before the trailing colons.
+
+> Note: Although here we aren't actually using tunnels for their intended purpose, I recommend giving them a closer look. In short, they encapsulate your IPv6 traffic inside IPv4 packets, so your ISP/router doesn't even need to support IPv6.
 
 ![Tunnelbroker tunnel details](./tunnelbroker-tunnel-details.png)
 
