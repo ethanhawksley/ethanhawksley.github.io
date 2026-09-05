@@ -413,12 +413,6 @@ const isIndexable = !robots.includes('noindex');
     margin: 0;
   }
 
-  ul[role='list'],
-  ol[role='list'] {
-    padding: 0;
-    list-style: none;
-  }
-
   html {
     scrollbar-gutter: stable;
     font-family: var(--font-sans);
@@ -492,15 +486,21 @@ const isIndexable = !robots.includes('noindex');
     letter-spacing: var(--tracking-normal);
   }
 
-  small {
-    font-size: var(--font-size-sm);
-    font-weight: var(--weight-medium);
-    line-height: var(--leading-normal);
-    letter-spacing: var(--tracking-normal);
+  img,
+  picture,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 
-  address {
-    font-style: normal;
+  img {
+    filter: var(--img-theme-filter);
+  }
+
+  img:hover,
+  img:focus {
+    filter: none;
   }
 
   a,
@@ -519,37 +519,58 @@ const isIndexable = !robots.includes('noindex');
     cursor: pointer;
     background-color: transparent;
     border: 0;
+    transition:
+      --accent-mix 150ms ease-out,
+      transform 100ms ease-out;
   }
 
   button:active {
     transform: scale(0.96);
   }
 
-  img,
-  picture,
-  svg {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  ul[role='list'],
+  ol[role='list'] {
+    padding: 0;
+    list-style: none;
   }
 
-  img {
-    filter: var(--img-theme-filter);
+  small {
+    font-size: var(--font-size-sm);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
   }
 
-  img:hover,
-  img:focus {
-    filter: none;
+  address {
+    font-style: normal;
   }
 
-  button {
-    transition:
-      --accent-mix 150ms ease-out,
-      transform 100ms ease-out;
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
   }
 
-  input {
-    transition: border-bottom-color 150ms ease-out;
+  main:focus-visible {
+    outline: none;
+  }
+
+  ::selection {
+    color: #fff;
+    background-color: var(--color-selection);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 0;
+    clip-path: inset(50%);
   }
 
   html[data-theme-transition='active']::view-transition-old(root),
@@ -592,52 +613,11 @@ const isIndexable = !robots.includes('noindex');
     ::view-transition-new(*) {
       animation: none !important;
     }
-
-    html {
-      scroll-behavior: auto !important;
-    }
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 4px;
-  }
-
-  main:focus-visible {
-    outline: none;
-  }
-
-  ::selection {
-    color: #fff;
-    background-color: var(--color-selection);
-  }
-
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    user-select: none;
-    border: 0;
-    clip-path: inset(50%);
   }
 
   @media print {
     :root {
       color-scheme: light !important;
-    }
-
-    img {
-      filter: none !important;
-    }
-
-    .nav-bar,
-    .skip-link {
-      display: none !important;
     }
 
     h1,
@@ -648,46 +628,14 @@ const isIndexable = !robots.includes('noindex');
     h6 {
       break-after: avoid;
     }
-  }
-</style>
 
-<style>
-  .page {
-    display: flex;
-    flex-direction: column;
-    max-width: 48rem;
-    min-height: 100dvh;
-    padding-top: max(1rem, env(safe-area-inset-top));
-    padding-bottom: max(2rem, env(safe-area-inset-bottom));
-    margin-right: auto;
-    margin-left: auto;
-  }
+    img {
+      filter: none !important;
+    }
 
-  .skip-link {
-    position: absolute;
-    top: -100%;
-    left: max(1rem, env(safe-area-inset-left));
-    z-index: 9999;
-    padding: 0.5rem 1rem;
-    color: var(--color-text-contrasted);
-    text-decoration: none;
-    background: var(--color-accent);
-    border-radius: 0.25rem;
-  }
-
-  .skip-link:focus {
-    top: max(1rem, env(safe-area-inset-top));
-  }
-
-  .nav-bar {
-    margin-bottom: 1.5rem;
-  }
-
-  main {
-    flex-grow: 1;
-    padding-right: max(1.5rem, env(safe-area-inset-right));
-    padding-left: max(1.5rem, env(safe-area-inset-left));
-    margin-bottom: 1.5rem;
-    scroll-margin-top: 1.5rem;
+    .nav-bar,
+    .skip-link {
+      display: none !important;
+    }
   }
 </style>
