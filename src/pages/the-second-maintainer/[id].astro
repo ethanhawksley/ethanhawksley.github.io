@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import A from '../../components/A.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { personJsonLd, websiteRef } from '../../utils/jsonLd';
 import { getSortedSecondMaintainer } from '../../utils/content-helpers';
 
@@ -131,6 +132,17 @@ const jsonLd = {
       <Content />
     </div>
   </article>
+
+  {
+    !nextChapter && (
+      <div class="newsletter-wrapper">
+        <NewsletterSignup
+          heading="Enjoyed the book?"
+          subtext="Sign up to get an email only when I publish something cool :)"
+        />
+      </div>
+    )
+  }
 
   <nav class="chapter-pager" aria-label="Chapter pagination">
     <div class="pager-links">
@@ -281,6 +293,12 @@ const jsonLd = {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .newsletter-wrapper {
+    padding-top: 1.5rem;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
   }
 
   .chapter-pager {
