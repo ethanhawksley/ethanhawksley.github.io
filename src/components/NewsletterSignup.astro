@@ -1,12 +1,19 @@
 ---
 const FORM_ID = '9595926';
 const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
+
+type Props = {
+  heading: string;
+  subtext: string;
+};
+
+const { heading, subtext } = Astro.props;
 ---
 
 <section aria-labelledby="newsletter-heading">
   <header>
-    <h2 id="newsletter-heading">Get new writing in your inbox</h2>
-    <p>Only sent when I publish something new. Unsubscribe at any time.</p>
+    <h2 id="newsletter-heading">{heading}</h2>
+    <p>{subtext}</p>
   </header>
 
   <form action={action} method="post" data-kit-form>
@@ -24,7 +31,7 @@ const action = `https://app.kit.com/forms/${FORM_ID}/subscriptions`;
 
   <footer aria-live="polite">
     <span class="newsletter-success" tabindex="-1" hidden>
-      Thanks, check your inbox to confirm.
+      Thanks, now just check your inbox to confirm!
     </span>
     <span class="newsletter-error" tabindex="-1" hidden>
       Something went wrong. Please try again.
